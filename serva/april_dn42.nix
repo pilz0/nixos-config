@@ -43,7 +43,7 @@
 
   services.bird2 = {
     config = lib.mkAfter ''
-      protocol bgp AS-aprl from dnpeers {
+      protocol bgp as_aprl from dnpeers {
           neighbor fe80::1442:1%april_dn42 as 4242422593;
       }
     '';
