@@ -1,3 +1,4 @@
+
 { config, lib, ... }:
 
 {
@@ -21,7 +22,7 @@
 
             ];
             Endpoint = "de02.dn42.lare.cc:20663";
-            PersistentKeepalive = 25;
+            PersistentKeepalive = 20;
           }
         ];
       };
@@ -42,11 +43,12 @@
     };
   };
 
-  services.bird2 = {
-    config = lib.mkAfter ''
-      protocol bgp dn42_lare from dnpeers {
-          neighbor fe80::3035:131%dn42_lare as 4242423035;
-      }
-    '';
-  };
+#  services.bird2 = {
+#    config = lib.mkAfter ''
+#      protocol bgp dn42_lare from dnpeers {
+#          neighbor fe80::3035:131%dn42_lare as 4242423035;
+#      }
+#    '';
+#  };
+#}
 }

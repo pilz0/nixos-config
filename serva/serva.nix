@@ -8,7 +8,6 @@
     ./services.nix
     ./monitoring.nix
     ./users.nix
-    ./ssh.nix
     ./nginx.nix
     ./nextcloud.nix
     ./graphics.nix
