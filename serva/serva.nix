@@ -1,14 +1,8 @@
-### Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 {
-  pkgs,
   ...
 }:
 {
   imports = [
-    # Include the results of the hardware scan.
     ./hardware-configuration-serva.nix
     ./net.nix
     ./services.nix
@@ -22,9 +16,6 @@
     ./restic.nix
     ./nixarr.nix
   ];
-  users.defaultUserShell = pkgs.zsh;
-  programs.zsh.enable = true;
-  programs.zsh.autosuggestions.enable = true;
 
   nix.optimise.dates = [ "03:45" ];
 

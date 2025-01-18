@@ -6,6 +6,7 @@
   imports = [
     ./common-pkgs.nix
     ./shell.nix
+    ./ssh.nix
   ];
   time.timeZone = "Europe/Berlin";
   # Select internationalisation properties.

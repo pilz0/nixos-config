@@ -3,6 +3,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     agenix.url = "github:ryantm/agenix";
+    catppuccin.url = "github:catppuccin/nix";
     nixarr.url = "github:rasmus-kirk/nixarr";
     home-manager = {
       url = "github:nix-community/home-manager/";
@@ -18,6 +19,7 @@
       self,
       nixpkgs,
       agenix,
+      catppuccin,
       nixarr,
       home-manager,
       spicetify-nix,
@@ -33,6 +35,7 @@
         modules = [
           ./framwok/home.nix
           spicetify-nix.homeManagerModules.default
+          catppuccin.homeManagerModules.catppuccin
         ];
       };
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
@@ -65,6 +68,7 @@
             ./framwok/framwok.nix
             ./common.nix
             spicetify-nix.nixosModules.default
+            catppuccin.nixosModules.catppuccin
             {
               environment.systemPackages = [ agenix.packages.x86_64-linux.default ];
             }

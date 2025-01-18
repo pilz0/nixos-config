@@ -19,7 +19,7 @@
               "::/0"
               "0.0.0.0/0"
             ];
-            Endpoint = "192.227.228.220:1";
+            Endpoint = "pogopeering.dn42.antibuild.ing:1";
             PersistentKeepalive = 25;
           }
         ];

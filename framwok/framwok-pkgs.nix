@@ -25,6 +25,7 @@
     libreoffice
     python3
     veracrypt
+    obs-studio
     discord
     wireshark-qt
     superTuxKart
