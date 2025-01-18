@@ -175,22 +175,6 @@
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
     };
-    virtualHosts."lists.ketamin.trade" = {
-      enableACME = true;
-      forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://localhost:61015";
-        proxyWebsockets = true; # needed if you need to use WebSocket
-      };
-    };
-    virtualHosts."torrent.ketamin.trade" = {
-      enableACME = true;
-      forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://10.10.1.22:8090";
-        proxyWebsockets = true; # needed if you need to use WebSocket
-      };
-    };
     virtualHosts."vm1.serva.ketamin.trade" = {
       enableACME = true;
       forceSSL = true;

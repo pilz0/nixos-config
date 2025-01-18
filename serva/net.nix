@@ -37,118 +37,6 @@
     };
   };
 
-  services.unbound = {
-    enable = true;
-    settings = {
-      options = {
-        empty-zones-enable = "no";
-        validate-except = [
-          "dn42"
-          "20.172.in-addr.arpa"
-          "21.172.in-addr.arpa"
-          "22.172.in-addr.arpa"
-          "23.172.in-addr.arpa"
-          "10.in-addr.arpa"
-          "d.f.ip6.arpa"
-        ];
-      };
-      server = {
-        local-zone = [
-          "20.172.in-addr.arpa. nodefault"
-          "21.172.in-addr.arpa. nodefault"
-          "22.172.in-addr.arpa. nodefault"
-          "23.172.in-addr.arpa. nodefault"
-          "10.in-addr.arpa. nodefault"
-          "d.f.ip6.arpa. nodefault"
-        ];
-        interface = [
-          "127.0.0.1"
-          "::1"
-          "fd49:d69f:6::1337"
-          "172.22.179.129"
-        ];
-        port = 53;
-        access-control = [
-          "0.0.0.0/0 allow"
-          "::1/0 allow"
-        ];
-        harden-glue = true;
-        harden-dnssec-stripped = true;
-        use-caps-for-id = false;
-        prefetch = true;
-        edns-buffer-size = 1232;
-      };
-      forward-zone = [
-        {
-          name = "dn42";
-          type = "forward";
-          forward-addr = [
-            "fd42:d42:d42:54::1"
-            "172.20.0.53"
-          ];
-        }
-        {
-          name = "20.172.in-addr.arpa";
-          type = "forward";
-          forward-addr = [
-            "fd42:d42:d42:54::1"
-            "172.20.0.53"
-          ];
-        }
-        {
-          name = "21.172.in-addr.arpa";
-          type = "forward";
-          forward-addr = [
-            "fd42:d42:d42:54::1"
-            "172.20.0.53"
-          ];
-        }
-        {
-          name = "22.172.in-addr.arpa";
-          type = "forward";
-          forward-addr = [
-            "fd42:d42:d42:54::1"
-            "172.20.0.53"
-          ];
-        }
-        {
-          name = "23.172.in-addr.arpa";
-          type = "forward";
-          forward-addr = [
-            "fd42:d42:d42:54::1"
-            "172.20.0.53"
-          ];
-        }
-        {
-          name = "10.in-addr.arpa";
-          type = "forward";
-          forward-addr = [
-            "fd42:d42:d42:54::1"
-            "172.20.0.53"
-          ];
-        }
-        {
-          name = "d.f.ip6.arpa";
-          type = "forward";
-          forward-addr = [
-            "fd42:d42:d42:54::1"
-            "172.20.0.53"
-          ];
-        }
-        #        {
-        #          name = ".";
-        #          forward-addr = [
-        #           "2606:4700:4700::1111#cloudflare-dns.com"
-        #            "2620:fe::fe#dns.quad9.net"
-        #            "1.1.1.1#cloudflare-dns.com"
-        #            "9.9.9.9#dns.quad9.net"
-        #          ];
-        #          forward-tls-upstream = true; # Protected DNS
-        #        }
-      ];
-    };
-  };
-
   networking.useNetworkd = true;
   systemd.network = {
     enable = true;
@@ -195,6 +83,7 @@
       80 # http
       443 # https
       179 # bgp
+      420 # Peering with April
       1100 # nextcloud-docker
       9001 # routerlab
       9002 # routerlab
@@ -212,6 +101,7 @@
       80 # http
       443 # https
       179 # bgp
+      420 # Peering with April
       1100 # nextcloud-docker
       9001 # routerlab
       9002 # routerlab

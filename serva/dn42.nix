@@ -22,6 +22,7 @@ in
     ./lare_dn42.nix
     ./haaien.nix
     ./iedon.nix
+    ./april_dn42.nix
   ];
   age.secrets.wg = {
     file = ../secrets/wg.age;
