@@ -23,7 +23,7 @@ in
     ./haaien.nix
     ./iedon.nix
     ./april_dn42.nix
-    ./0x4a6f_dn42.nix
+    ./ernst_is_dn42
   ];
   age.secrets.wg = {
     file = ../secrets/wg.age;

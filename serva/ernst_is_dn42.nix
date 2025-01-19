@@ -3,10 +3,10 @@
 {
   systemd.network = {
     netdevs = {
-      "0x4a6f_dn42" = {
+      "ernst_is_dn42" = {
         netdevConfig = {
           Kind = "wireguard";
-          Name = "0x4a6f_dn42";
+          Name = "ernst_is_dn42";
           MTUBytes = "1420";
         };
         wireguardConfig = {
@@ -25,9 +25,9 @@
         ];
       };
     };
-    networks."0x4a6f_dn42" = {
-      matchConfig.Name = "0x4a6f_dn42";
-      address = [ "fe80::1312/64" ];
+    networks."ernst_is_dn42" = {
+      matchConfig.Name = "ernst_is_dn42";
+      address = [ "fe80::acab/64" ];
       routes = [
         {
           Destination = "fe80::1312/64";
@@ -43,8 +43,8 @@
 
   services.bird2 = {
     config = lib.mkAfter ''
-      protocol bgp 0x4a6f_dn42 from dnpeers {
-          neighbor fe80::1442:1%0x4a6f as 4242420064;
+      protocol bgp ernst_is_dn42 from dnpeers {
+          neighbor fe80::1312%ernst_is_dn42 as 4242420064;
       }
     '';
   };
