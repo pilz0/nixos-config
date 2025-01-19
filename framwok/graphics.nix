@@ -14,11 +14,11 @@
   services.xserver.xkb.layout = "de";
 
   environment.systemPackages = with pkgs; [
-    #    (catppuccin-gtk.override {
-    #      accents = [ "pink" ]; # You can specify multiple accents here to output multiple themes
-    #      tweaks = [ "rimless" ]; # You can also specify multiple tweaks here
-    #      variant = "mocha";
-    #    })
+    (catppuccin-gtk.override {
+      accents = [ "pink" ]; # You can specify multiple accents here to output multiple themes
+      tweaks = [ "rimless" ]; # You can also specify multiple tweaks here
+      variant = "mocha";
+    })
     gnomeExtensions.burn-my-windows
     gnomeExtensions.desktop-cube
     gnomeExtensions.compiz-windows-effect

@@ -3,10 +3,10 @@
 {
   systemd.network = {
     netdevs = {
-      "dn42_lare" = {
+      "0x4a6f_dn42" = {
         netdevConfig = {
           Kind = "wireguard";
-          Name = "dn42_lare";
+          Name = "0x4a6f_dn42";
           MTUBytes = "1420";
         };
         wireguardConfig = {
@@ -14,24 +14,23 @@
         };
         wireguardPeers = [
           {
-            PublicKey = "dwtxXvpgWCGtX/QKFDaLXsWYRPd08Tg1JGsvzLudgjw=";
+            PublicKey = "PK8cQ3ghSNYPMurgTPXGXoHkYvqseRZgBa9oGVO+dzM=";
             AllowedIPs = [
               "::/0"
               "0.0.0.0/0"
-
             ];
-            Endpoint = "de02.dn42.lare.cc:20663";
-            PersistentKeepalive = 25;
+            Endpoint = "dn42.vpn02.ernst.is:51832";
+            PersistentKeepalive = 20;
           }
         ];
       };
     };
-    networks.dn42_lare = {
-      matchConfig.Name = "dn42_lare";
+    networks."0x4a6f_dn42" = {
+      matchConfig.Name = "0x4a6f_dn42";
       address = [ "fe80::1312/64" ];
       routes = [
         {
-          Destination = "fe80::3035:131/64";
+          Destination = "fe80::1312/64";
           Scope = "link";
         }
       ];
@@ -44,8 +43,8 @@
 
   services.bird2 = {
     config = lib.mkAfter ''
-      protocol bgp dn42_lare from dnpeers {
-          neighbor fe80::3035:131%dn42_lare as 4242423035;
+      protocol bgp 0x4a6f_dn42 from dnpeers {
+          neighbor fe80::1442:1%0x4a6f as 4242420064;
       }
     '';
   };
