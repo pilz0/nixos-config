@@ -1,10 +1,10 @@
 { config, lib, ... }:
 let
   pupkey = "Q3btSOBu8ClwQjdned5muBP/DEvK9Wb7cUfbkh2mjTQ=";
-  tunnelipsubnet = "fe80::acab/64";
+  tunnelip = "fe80::acab";
   name = "e3e";
   ASN = "4242421111";
-  wgendpoint = "[2a01:239:35d:7400::1]:20663";
+  wgendpoint = "85.215.209.127:20663";
   peertunnelip = "fe80::1312";
 in
 {
@@ -27,7 +27,7 @@ in
               "::/0"
               "0.0.0.0/0"
             ];
-            Endpoint = wgendpoint;
+            Endpoint = toString wgendpoint;
             PersistentKeepalive = 25;
           }
         ];
@@ -35,10 +35,10 @@ in
     };
     networks."${toString name}" = {
       matchConfig.Name = name;
-      address = [ tunnelipsubnet ];
+      address = [ tunnelip ];
       routes = [
         {
-          Destination = peertunnelip + "/64";
+          Destination = peertunnelip;
           Scope = "link";
         }
       ];
