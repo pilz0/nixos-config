@@ -20,7 +20,7 @@
               "0.0.0.0/0"
             ];
             Endpoint = "dn42.vpn02.ernst.is:51832";
-            PersistentKeepalive = 20;
+            PersistentKeepalive = 25;
           }
         ];
       };
