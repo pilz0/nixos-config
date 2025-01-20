@@ -41,7 +41,6 @@
     device = "/dev/disk/by-uuid/E578-E95C";
     fsType = "vfat";
   };
-
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

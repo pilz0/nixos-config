@@ -2,6 +2,7 @@
 {
   lib,
   pkgs,
+  config,
   ...
 }:
 let
@@ -13,7 +14,6 @@ let
     ${pkgs.bird2}/bin/birdc c 
     ${pkgs.bird2}/bin/birdc reload in all
   '';
-
 in
 {
   imports = [
@@ -24,6 +24,7 @@ in
     ./iedon.nix
     ./april_dn42.nix
     ./ernst_is_dn42.nix
+    ./e3e.nix
   ];
   age.secrets.wg = {
     file = ../secrets/wg.age;
