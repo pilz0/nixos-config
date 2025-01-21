@@ -1,11 +1,11 @@
 { config, lib, ... }:
 let
-  pupkey = "ZOuvH1ZzCxZR+MHCAGkLdZCkO3/tF0hbHTdI7NNzVik=";
-  tunnelipsubnet = "fe80::1312/64";
-  name = "april_dn42";
-  ASN = "4242422593";
-  peertunnelip = "fe80::1442:1";
-  ListenPort = "420";
+  pupkey = "";
+  tunnelipsubnet = "";
+  name = "";
+  ASN = "";
+  peertunnelip = "";
+  ListenPort = "";
   wgendpoint = "";
 in
 

@@ -151,10 +151,16 @@
               "localhost:${toString config.services.prometheus.exporters.restic.port}"
               "shit.ketamin.trade:${toString config.services.prometheus.exporters.node.port}"
               "tor1.ketamin.trade:${toString config.services.prometheus.exporters.node.port}"
+              "tor1.ketamin.trade:9191" # Fail2ban Exporer
               "tor2.ketamin.trade:${toString config.services.prometheus.exporters.node.port}"
+              "tor2.ketamin.trade:9191" # Fail2ban Exporer
               "tor3.ketamin.trade:${toString config.services.prometheus.exporters.node.port}"
+              "tor3.ketamin.trade:9191" # Fail2ban Exporer
+              "tor1.catgirl.dog:${toString config.services.prometheus.exporters.node.port}"
+              "tor1.catgirl.dog:9191" # Fail2ban Exporer
               "tor1.catgirl.dog:${toString config.services.prometheus.exporters.node.port}"
               "tor2.catgirl.dog:${toString config.services.prometheus.exporters.node.port}"
+              "tor2.catgirl.dog:9191" # Fail2ban Exporer
               "localhost:${toString config.services.prometheus.exporters.smartctl.port}"
               "localhost:${toString config.services.prometheus.exporters.node.port}"
               "localhost:${toString config.services.prometheus.exporters.bird.port}"
