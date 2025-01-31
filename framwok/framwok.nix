@@ -4,7 +4,6 @@
   inputs,
   lib,
   config,
-  outputs,
   ...
 }:
 {
@@ -12,11 +11,10 @@
   imports = [
     ./hardware-configuration-framwok.nix
     ./framwok-pkgs.nix
-    ./spicetify.nix
     ./vscode.nix
-    ./users.nix
     ./graphics.nix
-    inputs.home-manager.nixosModules.home-manager
+    ./users.nix
+    #./no-standby.nix
   ];
 
   nixpkgs = {
@@ -85,15 +83,6 @@
   services.tailscale.enable = true;
   programs.steam.enable = true;
 
-  home-manager = {
-    extraSpecialArgs = {
-      inherit inputs outputs;
-    };
-    users = {
-      marie = import ./home.nix;
-    };
-  };
-
   environment.sessionVariables = {
     NIXPKGS_ALLOW_UNFREE = "1";
   };
@@ -106,11 +95,6 @@
   };
   programs.zsh.shellAliases = {
     backup = "restic -r rclone:onedrive:/backup/server backup --verbose /home";
-  };
-
-  catppuccin = {
-    enable = true;
-    flavor = "mocha";
   };
 
 }

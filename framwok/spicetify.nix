@@ -1,4 +1,8 @@
-{ pkgs, spicetify-nix, ... }:
+{
+  pkgs,
+  spicetify-nix,
+  ...
+}:
 {
   programs.spicetify =
     let
