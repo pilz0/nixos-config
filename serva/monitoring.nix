@@ -163,6 +163,7 @@
               "tor2.catgirl.dog:9191" # Fail2ban Exporer
               "localhost:${toString config.services.prometheus.exporters.smartctl.port}"
               "localhost:${toString config.services.prometheus.exporters.node.port}"
+              "db.filmsli.de:${toString config.services.prometheus.exporters.node.port}"
               "localhost:${toString config.services.prometheus.exporters.bird.port}"
               "localhost:${toString config.services.prometheus.exporters.redis.port}"
               "localhost:${toString config.services.prometheus.exporters.postgres.port}"

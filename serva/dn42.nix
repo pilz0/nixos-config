@@ -247,7 +247,7 @@ in
                 } else reject;
               };
 
-              export filter { if is_valid_network() && source ~ [RTS_STATIC, RTS_BGP] then accept; else reject; };
+              export all;
               import limit 9000 action block;
           };
 
@@ -263,7 +263,7 @@ in
                   } else accept;
                 } else reject;
               };
-              export filter { if is_valid_network_v6() && source ~ [RTS_STATIC, RTS_BGP] then accept; else reject; };
+              export all;
               import limit 9000 action block; 
           };
       }
