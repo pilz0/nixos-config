@@ -13,15 +13,15 @@
     owner = "writefreely";
     group = "writefreely";
   };
-  #    services.ollama = {
-  #      enable = true;
-  #      acceleration = "cuda";
-  #      loadModels = [ "llama3.2" ];
-  #    };
-  #    services.open-webui = {
-  #      enable = true;
-  #      port = 2315;
-  #    };
+#      services.ollama = {
+#        enable = true;
+#        acceleration = "cuda";
+#        loadModels = [ "llama3.2" ];
+#     };
+#      services.open-webui = {
+#        enable = true;
+#       port = 2315;
+#      };
 
   services.writefreely = {
     enable = true;

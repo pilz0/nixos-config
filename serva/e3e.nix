@@ -1,6 +1,6 @@
 { config, lib, ... }:
 let
-  pupkey = "Q3btSOBu8ClwQjdned5muBP/DEvK9Wb7cUfbkh2mjTQ=";
+  pupkey = "/68diNYU0Lsa+gQ/FS8uaRoU0eYICc/xvaLo7yFSgCA=";
   tunnelipsubnet = "fe80::acab/64";
   name = "e3e";
   ASN = "4242421111";
