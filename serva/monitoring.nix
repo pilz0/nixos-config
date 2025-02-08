@@ -25,6 +25,11 @@
     owner = "prometheus";
     group = "prometheus";
   };
+  age.secrets.traewelling = {
+    file = ../secrets/traewelling.age;
+    owner = "grafana";
+    group = "grafana";
+  };
 
   services.grafana = {
     enable = true;
@@ -34,6 +39,7 @@
       grafana-oncall-app
       grafana-piechart-panel
       yesoreyeram-infinity-datasource
+      grafana-llm-app
     ];
     provision = {
       enable = true;
@@ -50,6 +56,29 @@
           type = "loki";
           url = "http://127.0.0.1:4040";
           uid = "180d3e53-be75-4a6a-bb71-bdf437aec085";
+        }
+        {
+          name = "trawelling";
+          type = "yesoreyeram-infinity-datasource";
+          basicAuth = false;
+          basicAuthUser = "";
+          isDefault = false;
+          jsonData = {
+            allowedHosts = [
+              "traewelling.de"
+              "https://traewelling.de"
+            ];
+            auth_method = "bearerToken";
+            customHealthCheckEnabled = true;
+            customHealthCheckUrl = "https://traewelling.de/api/v1/auth/user";
+            global_queries = [ ];
+            oauthPassThru = false;
+            readOnly = false;
+            apiVersion = "";
+            secureJsonData = {
+              bearerToken = "$__file{${toString config.age.secrets.traewelling.path}}";
+            };
+          };
         }
       ];
       dashboards = {
