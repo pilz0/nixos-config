@@ -52,4 +52,8 @@ in
     Laptop
     serva
   ];
+  "traewelling.age".publicKeys = [
+    marielap
+    serva
+  ];
 }

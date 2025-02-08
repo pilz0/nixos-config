@@ -1,0 +1,268 @@
+apiVersion: 1
+groups:
+    - orgId: 1
+      name: alerts
+      folder: test
+      interval: 1m
+      rules:
+        - uid: de746zy7fruv4f
+          title: Tor Traffic alert
+          condition: C
+          data:
+            - refId: A
+              relativeTimeRange:
+                from: 21600
+                to: 0
+              datasourceUid: e68e5107-0b44-4438-870c-019649e85d2b
+              model:
+                adhocFilters: []
+                datasource:
+                    type: prometheus
+                    uid: e68e5107-0b44-4438-870c-019649e85d2b
+                editorMode: code
+                exemplar: false
+                expr: sum(rate(node_network_receive_bytes_total{job="nodes", instance!="localhost:9100", instance!="10.10.1.25:9100" ,instance=~".*ketamin.*", device="ens6"}[$__rate_interval])) without (device, job)*8
+                format: table
+                instant: true
+                interval: ""
+                intervalMs: 60000
+                legendFormat: __auto
+                maxDataPoints: 43200
+                range: false
+                refId: A
+            - refId: B
+              datasourceUid: __expr__
+              model:
+                conditions:
+                    - evaluator:
+                        params: []
+                        type: gt
+                      operator:
+                        type: and
+                      query:
+                        params:
+                            - B
+                      reducer:
+                        params: []
+                        type: last
+                      type: query
+                datasource:
+                    type: __expr__
+                    uid: __expr__
+                expression: A
+                intervalMs: 1000
+                maxDataPoints: 43200
+                reducer: min
+                refId: B
+                settings:
+                    mode: dropNN
+                type: reduce
+            - refId: C
+              datasourceUid: __expr__
+              model:
+                conditions:
+                    - evaluator:
+                        params:
+                            - 1.2e+07
+                        type: lt
+                      operator:
+                        type: and
+                      query:
+                        params:
+                            - C
+                      reducer:
+                        params: []
+                        type: last
+                      type: query
+                datasource:
+                    type: __expr__
+                    uid: __expr__
+                expression: B
+                intervalMs: 1000
+                maxDataPoints: 43200
+                refId: C
+                type: threshold
+          dashboardUid: cdyy9ajcti0hsa
+          panelId: 10
+          noDataState: NoData
+          execErrState: Error
+          for: 1m
+          annotations:
+            __dashboardUid__: cdyy9ajcti0hsa
+            __panelId__: "10"
+          isPaused: false
+          notification_settings:
+            receiver: grafana-default-email
+        - uid: fe8gxjvdc3rwgd
+          title: Tor Traffic Alert
+          condition: C
+          data:
+            - refId: A
+              relativeTimeRange:
+                from: 21600
+                to: 0
+              datasourceUid: e68e5107-0b44-4438-870c-019649e85d2b
+              model:
+                adhocFilters: []
+                datasource:
+                    type: prometheus
+                    uid: e68e5107-0b44-4438-870c-019649e85d2b
+                editorMode: code
+                exemplar: false
+                expr: sum(rate(node_network_receive_bytes_total{job="nodes", instance=~".*catgirl.*", device="ens6"}[$__rate_interval])) without (device, job) * 8
+                instant: true
+                interval: ""
+                intervalMs: 60000
+                legendFormat: __auto
+                maxDataPoints: 43200
+                range: false
+                refId: A
+            - refId: B
+              datasourceUid: __expr__
+              model:
+                conditions:
+                    - evaluator:
+                        params: []
+                        type: gt
+                      operator:
+                        type: and
+                      query:
+                        params:
+                            - B
+                      reducer:
+                        params: []
+                        type: last
+                      type: query
+                datasource:
+                    type: __expr__
+                    uid: __expr__
+                expression: A
+                intervalMs: 1000
+                maxDataPoints: 43200
+                reducer: min
+                refId: B
+                settings:
+                    mode: dropNN
+                type: reduce
+            - refId: C
+              datasourceUid: __expr__
+              model:
+                conditions:
+                    - evaluator:
+                        params:
+                            - 1.2e+07
+                        type: lt
+                      operator:
+                        type: and
+                      query:
+                        params:
+                            - C
+                      reducer:
+                        params: []
+                        type: last
+                      type: query
+                datasource:
+                    type: __expr__
+                    uid: __expr__
+                expression: B
+                intervalMs: 1000
+                maxDataPoints: 43200
+                refId: C
+                type: threshold
+          dashboardUid: cdyy9ajcti0hsa
+          panelId: 10
+          noDataState: NoData
+          execErrState: Error
+          for: 1m
+          annotations:
+            __dashboardUid__: cdyy9ajcti0hsa
+            __panelId__: "10"
+          isPaused: false
+          notification_settings:
+            receiver: rhea
+        - uid: debfenqkm01z4b
+          title: Etwas Disk space
+          condition: C
+          data:
+            - refId: A
+              relativeTimeRange:
+                from: 86400
+                to: 0
+              datasourceUid: e68e5107-0b44-4438-870c-019649e85d2b
+              model:
+                adhocFilters: []
+                datasource:
+                    type: prometheus
+                    uid: e68e5107-0b44-4438-870c-019649e85d2b
+                expr: 100 - ((node_filesystem_avail_bytes{instance="db.filmsli.de:9100",job="nodes",device!~'rootfs'} * 100) / node_filesystem_size_bytes{instance="db.filmsli.de:9100",job="nodes",device!~'rootfs'})
+                format: time_series
+                interval: ""
+                intervalFactor: 1
+                intervalMs: 15000
+                legendFormat: '{{mountpoint}}'
+                maxDataPoints: 43200
+                refId: A
+                step: 240
+            - refId: B
+              datasourceUid: __expr__
+              model:
+                conditions:
+                    - evaluator:
+                        params: []
+                        type: gt
+                      operator:
+                        type: and
+                      query:
+                        params:
+                            - B
+                      reducer:
+                        params: []
+                        type: last
+                      type: query
+                datasource:
+                    type: __expr__
+                    uid: __expr__
+                expression: A
+                intervalMs: 1000
+                maxDataPoints: 43200
+                reducer: last
+                refId: B
+                type: reduce
+            - refId: C
+              datasourceUid: __expr__
+              model:
+                conditions:
+                    - evaluator:
+                        params:
+                            - 85
+                        type: gt
+                      operator:
+                        type: and
+                      query:
+                        params:
+                            - C
+                      reducer:
+                        params: []
+                        type: last
+                      type: query
+                datasource:
+                    type: __expr__
+                    uid: __expr__
+                expression: B
+                intervalMs: 1000
+                maxDataPoints: 43200
+                refId: C
+                type: threshold
+          dashboardUid: rYdddlPWk
+          panelId: 152
+          noDataState: NoData
+          execErrState: Error
+          for: 1m
+          annotations:
+            __dashboardUid__: rYdddlPWk
+            __panelId__: "152"
+            summary: Your disk space is at 85%
+          labels: {}
+          isPaused: false
+          notification_settings:
+            receiver: rhea

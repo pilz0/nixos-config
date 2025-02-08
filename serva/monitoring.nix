@@ -62,7 +62,60 @@
           ];
         };
       };
+      alerting = {
+        contactPoints = {
+          settings = {
+            apiVersion = 1;
+            contactPoints = [
+              {
+                orgId = 1;
+                name = "grafana-default-email";
+                receivers = [
+                  {
+                    uid = "ddygmh6y7orggf";
+                    type = "email";
+                    settings = {
+                      addresses = config.services.grafana.settings.security.admin_email;
+                      singleEmail = false;
+                      disableResolveMessage = false;
+                    };
+                  }
+                ];
+              }
+              {
+                orgId = 1;
+                name = "rhea";
+                receivers = [
+                  {
+                    uid = "fe8ewkmdxf5s0a";
+                    type = "email";
+                    settings = {
+                      addresses = "tor@catgirl.dog";
+                      singleEmail = false;
+                      disableResolveMessage = false;
+                    };
+                  }
+                ];
 
+              }
+            ];
+
+            deleteContactPoints = [
+              {
+                orgId = 1;
+                uid = "ddygmh6y7orggf";
+              }
+              {
+                orgId = 1;
+                uid = "fe8ewkmdxf5s0a";
+              }
+            ];
+          };
+        };
+        rules = {
+          path = "/etc/grafana-alerts"; # its way easyer to export them from the webinterface then manually rewrite them in nix
+        };
+      };
     };
 
     settings = {
@@ -96,42 +149,57 @@
   };
   environment.etc = {
     "grafana-dashboards/node-exporter.json" = {
-      source = ./grafana-dashboards/node-exporter.json;
+      source = ../grafana-dashboards/node-exporter.json;
       group = "grafana";
       user = "grafana";
     };
     "grafana-dashboards/restic.json" = {
-      source = ./grafana-dashboards/restic.json;
+      source = ../grafana-dashboards/restic.json;
       group = "grafana";
       user = "grafana";
     };
     "grafana-dashboards/tor.json" = {
-      source = ./grafana-dashboards/tor.json;
+      source = ../grafana-dashboards/tor.json;
       group = "grafana";
       user = "grafana";
     };
     "grafana-dashboards/smartctl.json" = {
-      source = ./grafana-dashboards/smartctl.json;
+      source = ../grafana-dashboards/smartctl.json;
       group = "grafana";
       user = "grafana";
     };
     "grafana-dashboards/bird.json" = {
-      source = ./grafana-dashboards/bird.json;
+      source = ../grafana-dashboards/bird.json;
       group = "grafana";
       user = "grafana";
     };
     "grafana-dashboards/unpoller.json" = {
-      source = ./grafana-dashboards/unpoller.json;
+      source = ../grafana-dashboards/unpoller.json;
       group = "grafana";
       user = "grafana";
     };
     "grafana-dashboards/dn42.json" = {
-      source = ./grafana-dashboards/dn42.json;
+      source = ../grafana-dashboards/dn42.json;
       group = "grafana";
       user = "grafana";
     };
     "grafana-dashboards/postgres.json" = {
-      source = ./grafana-dashboards/postgres.json;
+      source = ../grafana-dashboards/postgres.json;
+      group = "grafana";
+      user = "grafana";
+    };
+    "grafana-alerts/tor_traffic_rhea.yaml" = {
+      source = ../grafana-alerts/tor_traffic_rhea.yaml;
+      group = "grafana";
+      user = "grafana";
+    };
+    "grafana-alerts/tor_traffic_pilz.yaml" = {
+      source = ../grafana-alerts/tor_traffic_pilz.yaml;
+      group = "grafana";
+      user = "grafana";
+    };
+    "grafana-alerts/disk_space_rhea.yaml" = {
+      source = ../grafana-alerts/disk_space_rhea.yaml;
       group = "grafana";
       user = "grafana";
     };

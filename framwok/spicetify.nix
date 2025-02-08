@@ -15,9 +15,9 @@
         trashbin
         featureShuffle
         history
-        oneko
         beautiful-lyrics
       ];
-      theme = spicePkgs.themes.text;
+      theme = spicePkgs.themes.catppuccin;
+      colorScheme = "mocha";
     };
 }

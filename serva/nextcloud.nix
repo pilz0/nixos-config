@@ -56,7 +56,7 @@
       mail_smtpname = "t3st1ng1312@cock.li";
       mail_domain = "cock.li";
       mail_from_address = "t3st1ng1312";
-      mail_smtppassword = builtins.readFile config.age.secrets.smtpnextcloud.path; # set via secretfile
+      #  mail_smtppassword = builtins.readFile config.age.secrets.smtpnextcloud.path; # set via secretfile
     };
     config = {
       adminpassFile = config.age.secrets.nextcloud.path;

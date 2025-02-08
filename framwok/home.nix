@@ -8,7 +8,7 @@
   imports = [
     inputs.home-manager.nixosModules.home-manager
     inputs.catppuccin.nixosModules.catppuccin
-    inputs.spicetify-nix.nixosModules.default
+    inputs.spicetify-nix.nixosModules.spicetify
   ];
   home-manager = {
     useGlobalPkgs = true;
@@ -26,20 +26,19 @@
       };
       imports = [
         inputs.catppuccin.homeManagerModules.catppuccin
-        inputs.spicetify-nix.homeManagerModules.default
+        inputs.spicetify-nix.homeManagerModules.spicetify
         inputs.agenix.homeManagerModules.age
         ./spicetify.nix
       ];
-
       catppuccin = {
+        enable = true;
+        flavor = "mocha";
+        accent = "mauve";
         gtk = {
           enable = true;
           size = "compact";
           tweaks = [ "rimless" ];
         };
-        enable = true;
-        flavor = "mocha";
-        accent = "mauve";
       };
 
     };
