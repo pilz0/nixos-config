@@ -161,6 +161,7 @@
       };
       server = {
         domain = "grafana.pilz.foo";
+        root_url = "https://grafana.pilz.foo/";
         http_port = 3001;
         http_addr = "::1";
       };
