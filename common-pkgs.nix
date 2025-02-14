@@ -6,6 +6,8 @@
 
   environment.systemPackages = with pkgs; [
     ansible
+    kubernetes
+    ktop
     htop
     tmux
     busybox
