@@ -56,4 +56,12 @@ in
     marielap
     serva
   ];
+  "cloudflare_cert.age".publicKeys = [
+    marielap
+    serva
+  ];
+  "cloudflare_key.age".publicKeys = [
+    marielap
+    serva
+  ];
 }
