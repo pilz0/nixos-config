@@ -96,35 +96,26 @@
             apiVersion = 1;
             contactPoints = [
               {
-                orgId = 1;
                 name = "grafana-default-email";
-                receivers = [
-                  {
-                    uid = "ddygmh6y7orggf";
-                    type = "email";
-                    settings = {
-                      addresses = config.services.grafana.settings.security.admin_email;
-                      singleEmail = false;
-                      disableResolveMessage = false;
-                    };
-                  }
-                ];
+                orgId = 1;
+                type = "email";
+                uid = "ddygmh6y7orggf";
+                settings = {
+                  addresses = "marie0@riseup.net";
+                  disableResolveMessage = false;
+                  singleEmail = false;
+                };
               }
               {
-                orgId = 1;
                 name = "rhea";
-                receivers = [
-                  {
-                    uid = "fe8ewkmdxf5s0a";
-                    type = "email";
-                    settings = {
-                      addresses = "tor@catgirl.dog";
-                      singleEmail = false;
-                      disableResolveMessage = false;
-                    };
-                  }
-                ];
-
+                orgId = 1;
+                type = "email";
+                uid = "fe8ewkmdxf5s0a";
+                settings = {
+                  addresses = "tor@catgirl.dog";
+                  disableResolveMessage = false;
+                  singleEmail = false;
+                };
               }
             ];
 
