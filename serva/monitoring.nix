@@ -217,7 +217,7 @@
       group = "grafana";
       user = "grafana";
     };
-    "grafana-alerts/tor_traffic_rhea.yaml" = {
+    "grafana-alerts/alert.yaml" = {
       source = ../grafana-alerts/alert.yaml;
       group = "grafana";
       user = "grafana";
