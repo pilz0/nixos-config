@@ -39,7 +39,6 @@
       grafana-oncall-app
       grafana-piechart-panel
       yesoreyeram-infinity-datasource
-      grafana-llm-app
     ];
     provision = {
       enable = true;
@@ -142,7 +141,7 @@
           };
         };
         rules = {
-          path = "/etc/grafana-alerts"; # its way easyer to export them from the webinterface then manually rewrite them in nix
+          path = "/etc/grafana-alerts/alert.yaml"; # its way easyer to export them from the webinterface then manually rewrite them in nix
         };
       };
     };
@@ -219,17 +218,7 @@
       user = "grafana";
     };
     "grafana-alerts/tor_traffic_rhea.yaml" = {
-      source = ../grafana-alerts/tor_traffic_rhea.yaml;
-      group = "grafana";
-      user = "grafana";
-    };
-    "grafana-alerts/tor_traffic_pilz.yaml" = {
-      source = ../grafana-alerts/tor_traffic_pilz.yaml;
-      group = "grafana";
-      user = "grafana";
-    };
-    "grafana-alerts/disk_space_rhea.yaml" = {
-      source = ../grafana-alerts/disk_space_rhea.yaml;
+      source = ../grafana-alerts/alert.yaml;
       group = "grafana";
       user = "grafana";
     };
