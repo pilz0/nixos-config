@@ -91,46 +91,6 @@
         };
       };
       alerting = {
-        contactPoints = {
-          settings = {
-            apiVersion = 1;
-            contactPoints = [
-              {
-                name = "grafana-default-email";
-                orgId = 1;
-                type = "email";
-                uid = "ddygmh6y7orggf";
-                settings = {
-                  addresses = "marie0@riseup.net";
-                  disableResolveMessage = false;
-                  singleEmail = false;
-                };
-              }
-              {
-                name = "rhea";
-                orgId = 1;
-                type = "email";
-                uid = "fe8ewkmdxf5s0a";
-                settings = {
-                  addresses = "tor@catgirl.dog";
-                  disableResolveMessage = false;
-                  singleEmail = false;
-                };
-              }
-            ];
-
-            deleteContactPoints = [
-              {
-                orgId = 1;
-                uid = "ddygmh6y7orggf";
-              }
-              {
-                orgId = 1;
-                uid = "fe8ewkmdxf5s0a";
-              }
-            ];
-          };
-        };
         rules = {
           path = "/etc/grafana-alerts/alert.yaml"; # its way easyer to export them from the webinterface then manually rewrite them in nix
         };
