@@ -13,15 +13,15 @@
     owner = "writefreely";
     group = "writefreely";
   };
-#      services.ollama = {
-#        enable = true;
-#        acceleration = "cuda";
-#        loadModels = [ "llama3.2" ];
-#     };
-#      services.open-webui = {
-#        enable = true;
-#       port = 2315;
-#      };
+  #      services.ollama = {
+  #        enable = true;
+  #        acceleration = "cuda";
+  #        loadModels = [ "llama3.2" ];
+  #     };
+  #      services.open-webui = {
+  #        enable = true;
+  #       port = 2315;
+  #      };
 
   services.writefreely = {
     enable = true;
@@ -58,6 +58,9 @@
       port = 465;
     };
     streamingProcesses = 2; # Number of processes used by the mastodon-streaming service. recommended is the amount of your CPU cores minus one.
+    extraEnvFiles = [
+      config.age.secrets.s3-mastodon.path
+    ];
   };
   services.postgresqlBackup = {
     enable = true;
