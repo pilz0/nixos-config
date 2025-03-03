@@ -46,7 +46,7 @@
   };
   services.mastodon = {
     enable = true;
-    localDomain = "m.ketamin.trade"; # Replace with your own domain
+    localDomain = "m.pilz.foo"; # Replace with your own domain
     configureNginx = true;
     smtp = {
       fromAddress = "t3st1ng1312@cock.li"; # Email address used by Mastodon to send emails, replace with your own

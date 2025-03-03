@@ -32,7 +32,7 @@
     prowlarr.enable = true;
     radarr.enable = true;
     readarr.enable = true;
-    #    sonarr.enable = true; # I FUCKING HATE SONARR
+    sonarr.enable = true; # I FUCKING HATE SONARR
   };
   services.jellyseerr.enable = true;
   services.jellyfin.enable = true;
