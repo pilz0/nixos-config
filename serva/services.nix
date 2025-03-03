@@ -13,6 +13,11 @@
     owner = "writefreely";
     group = "writefreely";
   };
+  age.secrets.s3-mastodon = {
+    file = ../secrets/s3-mastodon.age;
+    owner = "mastodon";
+    group = "mastodon";
+  };
   #      services.ollama = {
   #        enable = true;
   #        acceleration = "cuda";
