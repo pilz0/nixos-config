@@ -14,7 +14,8 @@
     ./vscode.nix
     ./graphics.nix
     ./users.nix
-    #./no-standby.nix
+    ./restic.nix
+    # ./no-standby.nix
   ];
 
   nixpkgs = {

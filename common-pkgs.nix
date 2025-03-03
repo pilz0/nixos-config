@@ -7,6 +7,8 @@
   environment.systemPackages = with pkgs; [
     ansible
     kubernetes
+    kind
+    doctl
     ktop
     htop
     tmux
@@ -80,5 +82,9 @@
     dig
     wireguard-tools
     qemu
+    python312Packages.flask
+    md2pdf
+    python312Packages.python-dotenv
+    python312Packages.pytz
   ];
 }

@@ -94,6 +94,9 @@
         rules = {
           path = "/etc/grafana-alerts/alert.yaml"; # its way easyer to export them from the webinterface then manually rewrite them in nix
         };
+        contactPoints = {
+          path = "/etc/grafana-alerts/contacts.yaml";
+        };
       };
     };
 
@@ -165,6 +168,11 @@
     };
     "grafana-dashboards/postgres.json" = {
       source = ../grafana-dashboards/postgres.json;
+      group = "grafana";
+      user = "grafana";
+    };
+    "grafana-alerts/contacts.yaml" = {
+      source = ../grafana-alerts/contacts.yaml;
       group = "grafana";
       user = "grafana";
     };

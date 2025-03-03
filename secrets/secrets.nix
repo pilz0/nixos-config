@@ -16,10 +16,12 @@ in
     serva
   ];
   "rclone.age".publicKeys = [
+    Laptop
     marielap
     serva
   ];
   "restic.age".publicKeys = [
+    Laptop
     marielap
     serva
   ];
@@ -61,6 +63,10 @@ in
     serva
   ];
   "cloudflare_key.age".publicKeys = [
+    marielap
+    serva
+  ];
+  "s3-mastodon.age".publicKeys = [
     marielap
     serva
   ];
