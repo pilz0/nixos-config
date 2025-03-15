@@ -59,7 +59,7 @@
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
     };
-    virtualHosts."cloud.fffda.lol" = {
+    virtualHosts."dcloud.pilz.foo" = {
       enableACME = true;
       forceSSL = true;
       locations."/" = {
