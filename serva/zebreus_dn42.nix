@@ -41,7 +41,7 @@
     };
   };
 
-  services.bird2 = {
+  services.bird = {
     config = lib.mkAfter ''
       protocol bgp antibuilding from dnpeers {
           neighbor fe80::acab%zebreus_dn42 as 4242421403;

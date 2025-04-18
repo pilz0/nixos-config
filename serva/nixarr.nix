@@ -34,6 +34,8 @@
     readarr.enable = true;
     sonarr.enable = true; # I FUCKING HATE SONARR
   };
+#  recyclarr.enable = false;
+
   services.jellyseerr.enable = true;
   services.jellyfin.enable = true;
 

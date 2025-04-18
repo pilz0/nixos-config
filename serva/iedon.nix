@@ -42,7 +42,7 @@
     };
   };
 
-  services.bird2 = {
+  services.bird = {
     config = lib.mkAfter ''
       protocol bgp iedon_dn42 from dnpeers {
           neighbor fe80::2189:e9%iedon_dn42 as 4242422189;

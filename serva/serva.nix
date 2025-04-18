@@ -12,7 +12,7 @@
     ./nginx.nix
     ./nextcloud.nix
     ./graphics.nix
-    ./dn42.nix
+#    ./dn42.nix
     ./restic.nix
     ./nixarr.nix
   ];

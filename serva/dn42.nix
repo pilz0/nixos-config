@@ -108,7 +108,7 @@ in
     };
   };
 
-  services.bird2 = {
+  services.bird = {
     enable = true;
     autoReload = true;
     preCheckConfig = lib.mkOrder 2 ''

@@ -26,7 +26,7 @@
   services.nextcloud = {
     enable = true;
     configureRedis = true;
-    package = pkgs.nextcloud30;
+    package = pkgs.nextcloud31;
     hostName = "cloud.pilz.foo";
     appstoreEnable = true;
     autoUpdateApps.enable = true;
@@ -61,6 +61,7 @@
     config = {
       adminpassFile = config.age.secrets.nextcloud.path;
       adminuser = "admin";
+      dbtype = "sqlite";
     };
     settings = {
       trustedProxies = [

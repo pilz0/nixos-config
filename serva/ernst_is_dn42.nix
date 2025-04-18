@@ -41,7 +41,7 @@
     };
   };
 
-  services.bird2 = {
+  services.bird = {
     config = lib.mkAfter ''
       protocol bgp ernst_is_dn42 from dnpeers {
           neighbor fe80::1312%ernst_is_dn42 as 4242420064;

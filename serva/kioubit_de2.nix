@@ -42,7 +42,7 @@
     };
   };
 
-  services.bird2 = {
+  services.bird = {
     config = lib.mkAfter ''
       protocol bgp kioubit_de2 from dnpeers {
           neighbor fe80::ade0%kioubit_de2 as 4242423914;

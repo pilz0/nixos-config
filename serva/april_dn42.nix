@@ -52,7 +52,7 @@ in
     };
   };
 
-  services.bird2 = {
+  services.bird = {
     config = lib.mkAfter ''
       protocol bgp ${toString name} from dnpeers {
           neighbor ${toString peertunnelip}%${toString name} as ${toString ASN};

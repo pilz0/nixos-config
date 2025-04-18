@@ -38,43 +38,43 @@
   };
 
   networking.useNetworkd = true;
-  systemd.network = {
-    enable = true;
-    netdevs = {
-      "50-wg-cybertrash" = {
-        netdevConfig = {
-          Kind = "wireguard";
-          Name = "wg-cybertrash";
-          MTUBytes = "1300";
-        };
-        wireguardConfig = {
-          PrivateKeyFile = config.age.secrets.wg.path;
-          ListenPort = 51820;
-        };
-        wireguardPeers = [
-          {
-            ## Laptop
-            PublicKey = "ufN4BlaAZZUXGcRDDQfDX7n0toGVzstjlF22nbHMT1E=";
-            AllowedIPs = [
-              "172.22.179.146"
-              "fd49:d69f:6:100::69/64"
-            ];
-          }
-        ];
-      };
-    };
-    networks.wg-cybertrash = {
-      matchConfig.Name = "wg-cybertrash";
-      address = [
-        "172.22.179.144/28"
-        "fd49:d69f:6:100::/56"
-      ];
-      networkConfig = {
-        IPv4Forwarding = true;
-        IPv6Forwarding = true;
-      };
-    };
-  };
+#  systemd.network = {
+#    enable = true;
+#    netdevs = {
+#      "50-wg-cybertrash" = {
+#        netdevConfig = {
+#          Kind = "wireguard";
+#          Name = "wg-cybertrash";
+#          MTUBytes = "1300";
+#        };
+#        wireguardConfig = {
+#          PrivateKeyFile = config.age.secrets.wg.path;
+#          ListenPort = 51820;
+#        };
+#        wireguardPeers = [
+#          {
+#            ## Laptop
+#            PublicKey = "ufN4BlaAZZUXGcRDDQfDX7n0toGVzstjlF22nbHMT1E=";
+#            AllowedIPs = [
+#              "172.22.179.146"
+#              "fd49:d69f:6:100::69/64"
+#            ];
+#          }
+#        ];
+#      };
+#    };
+#    networks.wg-cybertrash = {
+#      matchConfig.Name = "wg-cybertrash";
+#      address = [
+#        "172.22.179.144/28"
+#        "fd49:d69f:6:100::/56"
+#      ];
+#      networkConfig = {
+#        IPv4Forwarding = true;
+#        IPv6Forwarding = true;
+#      };
+#    };
+#  };
 
   networking.firewall = {
     allowedTCPPorts = [
