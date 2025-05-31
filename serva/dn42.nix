@@ -79,7 +79,7 @@ in
         matchConfig.Name = "cybertrash";
         address = [
           "fd49:d69f:6::1337/112"
-          "172.22.179.129/27"
+          "172.22.179.129/32"
         ];
       };
     };
@@ -267,6 +267,7 @@ in
                   accept;
                 };
                 import limit 9000 action block;
+	        import table;
             };
           
             ipv6 {
@@ -303,7 +304,8 @@ in
                   print "[dn42] Exporting ", net, " via ", bgp_path;
                   accept;
                 };
-                import limit 9000 action block; 
+                import limit 9000 action block;
+		import table; 
             };
         }
     '';
