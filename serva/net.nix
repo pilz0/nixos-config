@@ -3,13 +3,6 @@
   ...
 }:
 {
-  # services.unifi = {
-  #   enable = true;
-  # openFirewall = true;
-  #  unifiPackage = pkgs.unifi8;
-  # };
-
-  #services.unifi.mongodbPackage = pkgs.mongodb-7_0;
   networking.networkmanager.enable = true;
   networking.nameservers = [
     "fd42:d42:d42:54::1"

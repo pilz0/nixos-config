@@ -51,7 +51,6 @@
     picocom
     dnsmasq
     spotifyd
-    unifi8
     pipes
     nvidia-docker
     htop

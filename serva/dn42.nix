@@ -1,4 +1,3 @@
-# Establishes wireguard tunnels with all nodes with static IPs as hubs.
 {
   lib,
   pkgs,
@@ -110,13 +109,14 @@ in
 
   services.bird = {
     enable = true;
+    package = pkgs.bird2;
     autoReload = true;
     preCheckConfig = lib.mkOrder 2 ''
       # Remove roa files for checking, because they are only available at runtime
-      sed -i 's|include "/etc/bird/roa_dn42.conf";||' bird2.conf
-      sed -i 's|include "/etc/bird/roa_dn42_v6.conf";||' bird2.conf
+      sed -i 's|include "/etc/bird/roa_dn42.conf";||' bird.conf
+      sed -i 's|include "/etc/bird/roa_dn42_v6.conf";||' bird.conf
 
-      cat -n bird2.conf
+      cat -n bird.conf
     '';
     config = ''
             define OWNAS = 4242420663;
@@ -138,9 +138,6 @@ in
           scan time 10;
       }
 
-      /*
-       *  Utility functions
-       */
 
       function is_self_net() {
         return net ~ OWNNETSET;
@@ -164,6 +161,12 @@ in
         ];
       }
 
+      function is_valid_network_v6() {
+        return net ~ [
+          fd00::/8{44,64} # ULA address space as per RFC 4193
+        ];
+      }
+
       roa4 table dn42_roa;
       roa6 table dn42_roa_v6;
 
@@ -176,12 +179,6 @@ in
           roa6 { table dn42_roa_v6; };
           include "/etc/bird/roa_dn42_v6.conf";
       };
-
-      function is_valid_network_v6() {
-        return net ~ [
-          fd00::/8{44,64} # ULA address space as per RFC 4193
-        ];
-      }
 
       protocol kernel {
           scan time 20;
@@ -227,46 +224,88 @@ in
           };
       }
 
-      template bgp dnpeers {
-          local as OWNAS;
-          path metric 1;
-              enable extended messages on;
-              graceful restart on;
-              long lived graceful restart on;
-          ipv4 {
-              extended next hop on;
-              next hop self on;
-              import filter {
-                if is_valid_network() && !is_self_net() then {
+
+        template bgp dnpeers {
+            local as OWNAS;
+            path metric 1;
+            
+            enable extended messages on;
+            graceful restart on;
+            long lived graceful restart on;
+          
+            ipv4 {
+                extended next hop on;
+                next hop self on;
+                import filter {
+                  if !is_valid_network() then {
+                    print "[dn42v4] Not importing ", net, " because it is not a valid IPv6 network", bgp_path;
+                    reject;
+                  }
+                  if is_self_net() then {
+                    print "[dn42v4] Not importing ", net, " because it is selfnet ", bgp_path;
+                    reject;
+                  }
                   if (roa_check(dn42_roa, net, bgp_path.last) != ROA_VALID) then {
-                    # Reject when unknown or invalid according to ROA
-                    print "[dn42] ROA check failed for ", net, " ASN ", bgp_path.last;
+                    print "[dn42v4] Not importing ", net, " because the ROA check failed for ASN ", bgp_path.last, " Full ASN path: ", bgp_path;
                     reject;
-                  } else accept;
-                } else reject;
-              };
+                  }
+                  
+                  print "[dn42v4] Importing ", net, " AS PATH: ", bgp_path;
+                  accept;
+                };
+                export filter {
+                  if !is_valid_network() then {
+                    print "[dn42v4] Not exporting ", net, " because it isnt a valid network";
+                    reject;
+                  }
+                  if source !~ [RTS_STATIC, RTS_BGP] then {
+                    print "[dn42v4] Not exporting ", net, " because it is not static or BGP, but ", source;
+                    reject;
+                  }
 
-              export all;
-              import limit 9000 action block;
-          };
+                  print "[dn42v4] Exporting ", net, " via ", bgp_path;
+                  accept;
+                };
+                import limit 9000 action block;
+            };
+          
+            ipv6 {
+                extended next hop on;
+                next hop self on;
+                import filter {
+                  if !is_valid_network_v6() then {
+                    print "[dn42] Not importing ", net, " because it is not a valid IPv6 network", bgp_path;
+                    reject;
+                  }
+                  if is_self_net_v6() then {
+                    print "[dn42] Not importing ", net, " because it is selfnet ", bgp_path;
+                    reject;
+                  }
 
-          ipv6 {
-              extended next hop on;
-              next hop self on;   
-              import filter {
-                if is_valid_network_v6() && !is_self_net_v6() then {
                   if (roa_check(dn42_roa_v6, net, bgp_path.last) != ROA_VALID) then {
-                    # Reject when unknown or invalid according to ROA
-                    print "[dn42] ROA check failed for ", net, " ASN ", bgp_path.last;
+                    print "[dn42] Not importing ", net, " because the ROA check failed for ASN ", bgp_path.last, " Full ASN path: ", bgp_path;
                     reject;
-                  } else accept;
-                } else reject;
-              };
-              export all;
-              import limit 9000 action block; 
-          };
-      }
+                  }
 
+                  print "[dn42] Importing ", net, " AS PATH: ", bgp_path;
+                  accept;
+                };
+                export filter {
+                  if !is_valid_network_v6() then {
+                    print "[dn42] Not exporting ", net, " because it isnt a valid network";
+                    reject;
+                  }
+                  if source !~ [RTS_STATIC, RTS_BGP] then {
+                    print "[dn42] Not exporting ", net, " because it is not static or BGP, but ", source;
+                    reject;
+                  }
+
+                  print "[dn42] Exporting ", net, " via ", bgp_path;
+                  accept;
+                };
+                import limit 9000 action block; 
+            };
+        }
     '';
   };
 }

@@ -2,7 +2,7 @@
 let
   pupkey = "/68diNYU0Lsa+gQ/FS8uaRoU0eYICc/xvaLo7yFSgCA=";
   tunnelipsubnet = "fe80::acab/64";
-  name = "e3e";
+  name = "E3E_AS";
   ASN = "4242421111";
   wgendpoint = "[2a01:239:35d:7400::1]:20663";
   peertunnelip = "fe80::1312";

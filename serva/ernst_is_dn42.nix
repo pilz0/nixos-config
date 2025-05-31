@@ -35,7 +35,7 @@
         }
       ];
       networkConfig = {
-        IPv4Forwarding = true;
+        IPv4Forwarding = false;
         IPv6Forwarding = true;
       };
     };
