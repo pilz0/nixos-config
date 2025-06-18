@@ -1,37 +1,49 @@
-# Establishes wireguard tunnels with all nodes with static IPs as hubs.
 { config, lib, ... }:
+let
+
+  pupkey = "4UTrN0YlflDPRhH9ak5nwrZrL0IrJiZUkEUiSuboRUc=";
+  tunnelipsubnet = "fe80::1312/64";
+  name = "Antibuilding";
+  ASN = "4242421403";
+  peertunnelip = "fe80::acab";
+  ListenPort = "";
+  wgendpoint = "167.235.154.30:1";
+  role = "peer";
+in
 
 {
+
   systemd.network = {
     netdevs = {
-      "50-kioubit_de2" = {
+      "${toString name}" = {
         netdevConfig = {
           Kind = "wireguard";
-          Name = "kioubit_de2";
+          Name = name;
           MTUBytes = "1420";
         };
         wireguardConfig = {
           PrivateKeyFile = config.age.secrets.wg.path;
+          ListenPort = ListenPort;
         };
         wireguardPeers = [
           {
-            PublicKey = "B1xSG/XTJRLd+GrWDsB06BqnIq8Xud93YVh/LYYYtUY=";
+            PublicKey = pupkey;
             AllowedIPs = [
               "::/0"
               "0.0.0.0/0"
             ];
-            Endpoint = "116.203.141.239:20663";
+            Endpoint = wgendpoint;
             PersistentKeepalive = 25;
           }
         ];
       };
     };
-    networks.kioubit_de2 = {
-      matchConfig.Name = "kioubit_de2";
-      address = [ "fe80::ade1/64" ];
+    networks."${toString name}" = {
+      matchConfig.Name = name;
+      address = [ tunnelipsubnet ];
       routes = [
         {
-          Destination = "fe80::ade0/64";
+          Destination = peertunnelip + "/64";
           Scope = "link";
         }
       ];
@@ -51,10 +63,10 @@
 
   services.bird = {
     config = lib.mkAfter ''
-            protocol bgp kioubit_de2 from dnpeers {
-                neighbor fe80::ade0%kioubit_de2 as 4242423914;
-       	        local role customer;
-            }
+      protocol bgp ${toString name} from dnpeers {
+          neighbor ${toString peertunnelip}%${toString name} as ${toString ASN};
+          local role ${toString role};
+      }
     '';
   };
 }

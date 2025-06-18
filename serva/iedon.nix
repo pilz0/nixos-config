@@ -20,7 +20,7 @@
               "0.0.0.0/0"
 
             ];
-            Endpoint = "de-fra.dn42.kuu.moe:55449";
+            Endpoint = "157.90.129.252:55449";
             PersistentKeepalive = 25;
           }
         ];
@@ -38,6 +38,13 @@
       networkConfig = {
         IPv4Forwarding = true;
         IPv6Forwarding = true;
+        IPv4ReversePathFilter = "no";
+        IPv6AcceptRA = false;
+        DHCP = false;
+      };
+
+      linkConfig = {
+        RequiredForOnline = "no";
       };
     };
   };
@@ -46,6 +53,7 @@
     config = lib.mkAfter ''
       protocol bgp iedon_dn42 from dnpeers {
           neighbor fe80::2189:e9%iedon_dn42 as 4242422189;
+          local role customer;
       }
     '';
   };

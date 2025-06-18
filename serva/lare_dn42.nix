@@ -20,7 +20,7 @@
               "0.0.0.0/0"
 
             ];
-            Endpoint = "de02.dn42.lare.cc:20663";
+            Endpoint = "77.90.28.219:20663";
             PersistentKeepalive = 25;
           }
         ];

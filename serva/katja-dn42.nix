@@ -1,36 +1,48 @@
 { config, lib, ... }:
+let
+
+  pupkey = "B3ZZUvJ/ZG9dc9cl4t4wofD/+wsmm+r56Uh9hqPrZEE=";
+  tunnelipsubnet = "fe80::acab/64";
+  name = "Katja_DN42";
+  ASN = "4242421718";
+  peertunnelip = "fe80::6b61";
+  ListenPort = "";
+  wgendpoint = "router-a.dn42.zaphyra.eu:51833";
+in
 
 {
+
   systemd.network = {
     netdevs = {
-      "zebreus_dn42" = {
+      "${toString name}" = {
         netdevConfig = {
           Kind = "wireguard";
-          Name = "zebreus_dn42";
+          Name = name;
           MTUBytes = "1420";
         };
         wireguardConfig = {
           PrivateKeyFile = config.age.secrets.wg.path;
+          ListenPort = ListenPort;
         };
         wireguardPeers = [
           {
-            PublicKey = "4UTrN0YlflDPRhH9ak5nwrZrL0IrJiZUkEUiSuboRUc=";
+            PublicKey = pupkey;
             AllowedIPs = [
               "::/0"
               "0.0.0.0/0"
             ];
-            Endpoint = "pogopeering.dn42.antibuild.ing:1";
+            Endpoint = wgendpoint;
             PersistentKeepalive = 25;
           }
         ];
       };
     };
-    networks.zebreus_dn42 = {
-      matchConfig.Name = "zebreus_dn42";
-      address = [ "fe80::1312/64" ];
+    networks."${toString name}" = {
+      matchConfig.Name = name;
+      address = [ tunnelipsubnet ];
       routes = [
         {
-          Destination = "fe80::acab/64";
+          Destination = peertunnelip + "/64";
           Scope = "link";
         }
       ];
@@ -43,8 +55,8 @@
 
   services.bird = {
     config = lib.mkAfter ''
-      protocol bgp antibuilding from dnpeers {
-          neighbor fe80::acab%zebreus_dn42 as 4242421403;
+      protocol bgp ${toString name} from dnpeers {
+          neighbor ${toString peertunnelip}%${toString name} as ${toString ASN};
       }
     '';
   };
