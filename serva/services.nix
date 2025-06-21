@@ -28,27 +28,6 @@
   #       port = 2315;
   #      };
 
-  services.writefreely = {
-    enable = true;
-    admin = {
-      name = "marie";
-      initialPasswordFile = config.age.secrets.writefreely.path;
-    };
-    group = "writefreely";
-    user = "writefreely";
-    settings.app.theme = "Painkiller Bullet";
-    host = "flohannes.de";
-    database = {
-      type = "sqlite3";
-    };
-    nginx = {
-      enable = true;
-      forceSSL = true;
-    };
-    acme = {
-      enable = true;
-    };
-  };
   services.mastodon = {
     enable = true;
     localDomain = "m.pilz.foo"; # Replace with your own domain

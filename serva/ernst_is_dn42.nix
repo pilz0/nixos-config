@@ -19,7 +19,7 @@
               "::/0"
               "0.0.0.0/0"
             ];
-            Endpoint = "dn42.vpn02.ernst.is:51832";
+            Endpoint = "157.90.129.252:51832";
             PersistentKeepalive = 25;
           }
         ];
@@ -37,6 +37,12 @@
       networkConfig = {
         IPv4Forwarding = true;
         IPv6Forwarding = true;
+        IPv4ReversePathFilter = "no";
+        IPv6AcceptRA = false;
+        DHCP = false;
+      };
+      linkConfig = {
+        RequiredForOnline = "no";
       };
     };
   };
@@ -45,6 +51,7 @@
     config = lib.mkAfter ''
       protocol bgp ernst_is_dn42 from dnpeers {
           neighbor fe80::1312%ernst_is_dn42 as 4242420064;
+          local role peer;
       }
     '';
   };
