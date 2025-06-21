@@ -15,7 +15,7 @@
     ./graphics.nix
     ./users.nix
     ./restic.nix
-    # ./no-standby.nix
+    #   ./no-standby.nix
   ];
 
   nixpkgs = {
@@ -97,5 +97,9 @@
   programs.zsh.shellAliases = {
     backup = "restic -r rclone:onedrive:/backup/server backup --verbose /home";
   };
-
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+    nix-direnv.enable = true;
+  };
 }

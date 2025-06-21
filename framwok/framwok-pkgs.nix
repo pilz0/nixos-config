@@ -18,7 +18,6 @@
     nil
     zed-editor
     speedtest-cli
-    element-desktop
     filezilla
     docker
     vscode
@@ -40,7 +39,6 @@
     wget
     restic
     chromium
-    android-studio
     winetricks
     helvum
     lutris
@@ -50,10 +48,9 @@
     woeusb
     antimicrox
     pavucontrol
-    setserial
     wineWowPackages.wayland
     tor-browser
-    chromedriver
+    drawio
     google-chrome
     gnome-themes-extra
     catppuccin-gtk
@@ -67,7 +64,6 @@
     selenium-manager
     python311Packages.selenium
     gdown
-    jetbrains.idea-ultimate
     gnomeExtensions.user-themes
     gnomeExtensions.media-controls
     gnomeExtensions.vitals

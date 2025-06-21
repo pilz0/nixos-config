@@ -53,16 +53,9 @@
     spotifyd
     unifi8
     pipes
-    nvidia-docker
-    htop
-    nvtopPackages.nvidia
     procps
     gnumake
     m4
-    cudatoolkit
-    linuxPackages.nvidia_x11
-    libGLU
-    libGL
     xorg.libXi
     xorg.libXmu
     freeglut
@@ -77,15 +70,12 @@
     curl
     ddclient
     docker-compose
-    jellyfin
-    jellyfin-web
-    jellyfin-ffmpeg
     dig
+    devenv
     wireguard-tools
     qemu
-    python312Packages.flask
     md2pdf
-    python312Packages.python-dotenv
-    python312Packages.pytz
+    python3
+    direnv
   ];
 }

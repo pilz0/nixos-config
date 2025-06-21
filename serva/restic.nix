@@ -6,10 +6,10 @@
     group = "root";
   };
   services.restic.backups = {
-    onedrive = {
+    smb = {
       rcloneConfigFile = config.age.secrets.rcloneconfig.path;
       user = "root";
-      repository = "rclone:onedrive:/Buro/backup";
+      repository = "rclone:smb:/Buro/backup";
       initialize = true; # initializes the repo, don't set if you want manual control
       passwordFile = config.age.secrets.restic.path;
       paths = [

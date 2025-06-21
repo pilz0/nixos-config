@@ -1,21 +1,21 @@
 {
   inputs,
-  spicetify-nix,
+  # spicetify-nix,
   ...
 }:
 {
 
   imports = [
     inputs.home-manager.nixosModules.home-manager
-    inputs.catppuccin.nixosModules.catppuccin
-    inputs.spicetify-nix.nixosModules.spicetify
+    #    inputs.catppuccin.nixosModules.catppuccin
+    #    inputs.spicetify-nix.nixosModules.spicetify
   ];
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
 
     extraSpecialArgs = {
-      inherit spicetify-nix;
+      #      inherit spicetify-nix;
     };
 
     users.marie = {
@@ -25,21 +25,21 @@
         homeDirectory = "/home/marie";
       };
       imports = [
-        inputs.catppuccin.homeManagerModules.catppuccin
-        inputs.spicetify-nix.homeManagerModules.spicetify
+        #        inputs.catppuccin.homeModules.catppuccin
+        #       inputs.spicetify-nix.homeManagerModules.spicetify
         inputs.agenix.homeManagerModules.age
-        ./spicetify.nix
+        #        ./spicetify.nix
       ];
-      catppuccin = {
-        enable = true;
-        flavor = "mocha";
-        accent = "mauve";
-        gtk = {
-          enable = true;
-          size = "compact";
-          tweaks = [ "rimless" ];
-        };
-      };
+      #      catppuccin = {
+      #        enable = true;
+      #        flavor = "mocha";
+      #        accent = "mauve";
+      #        gtk = {
+      #          enable = true;
+      #          size = "compact";
+      #          tweaks = [ "rimless" ];
+      #        };
+      #      };
 
     };
   };

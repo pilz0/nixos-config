@@ -17,7 +17,7 @@
         history
         beautiful-lyrics
       ];
-      theme = spicePkgs.themes.catppuccin;
+      #      theme = spicePkgs.themes.catppuccin;
       colorScheme = "mocha";
     };
 }
