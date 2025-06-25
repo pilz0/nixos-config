@@ -5,9 +5,15 @@
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-1.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    agenix.url = "github:ryantm/agenix";
+    nixpkgs = {
+      url = "github:nixos/nixpkgs/nixos-25.05";
+    };
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware/master";
+    };
+    agenix = {
+      url = "github:ryantm/agenix";
+    };
     #    catppuccin.url = "github:catppuccin/nix";
     nixarr = {
       url = "github:rasmus-kirk/nixarr";
@@ -24,6 +30,11 @@
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    colmena = {
+      url = "github:zhaofengli/colmena";
+      inputs.nixpkgs.follows = "nixpkgs";
+
+    };
   };
   outputs =
     {
@@ -37,11 +48,27 @@
       home-manager,
       spicetify-nix,
       disko,
+      colmena,
       ...
     }@inputs:
     {
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
-
+      colmenaHive = colmena.lib.makeHive {
+        meta = {
+          nixpkgs = import nixpkgs {
+            system = "x86_64-linux";
+            overlays = [ ];
+          };
+        };
+        "dus1.as214958.net" = {
+          deployment = {
+            targetHost = "oob.dus1.as214958.net";
+            targetPort = 22;
+            targetUser = "root";
+          };
+          time.timeZone = "Europe/Berlin";
+        };
+      };
       nixosConfigurations = {
         serva = nixpkgs.lib.nixosSystem {
           specialArgs = {
@@ -76,6 +103,7 @@
             ./common.nix
             agenix.nixosModules.default
             disko.nixosModules.disko
+
             {
               environment.systemPackages = [
                 agenix.packages.x86_64-linux.default

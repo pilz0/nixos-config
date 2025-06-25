@@ -53,5 +53,6 @@
     md2pdf
     python3
     direnv
+    colmena
   ];
 }

@@ -15,7 +15,7 @@
     enable = true;
     settings = {
       PasswordAuthentication = false;
-      PermitRootLogin = "yes";
+      PermitRootLogin = "prohibit-password";
     };
   };
 }

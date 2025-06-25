@@ -44,12 +44,12 @@
     frontend = {
       domain = "lg.as214958.net";
       enable = true;
-      servers = [ "serva" ];
+      servers = [ "localhost" ];
       protocolFilter = [
         "bgp"
         "static"
       ];
-      listenAddress = "[::1]:15000";
+      listenAddress = "localhost:15000";
       proxyPort = 18000;
       navbar = {
         brand = "as214958.net";

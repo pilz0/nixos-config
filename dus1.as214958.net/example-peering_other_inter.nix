@@ -1,8 +1,8 @@
 { lib, ... }:
 let
-  interface = "";
-  ownip = "";
-  ownip_cidr = "";
+  interface = "ens18";
+  ownip = "2a0e:8f02:f017::1337";
+  ownip_cidr = "64";
   name = "";
   asn = "";
   peerip = "";
@@ -11,7 +11,6 @@ let
 in
 {
   systemd.network = {
-
     networking = {
       interfaces.${toString interface} = {
         ipv6.addresses = [

@@ -19,6 +19,10 @@
           address = "2a0c:b640:10::2:44";
           prefixLength = 112;
         }
+        {
+          address = "2a0e:8f02:f017:1337::";
+          prefixLength = 64;
+        }
       ];
     };
     defaultGateway6 = {
