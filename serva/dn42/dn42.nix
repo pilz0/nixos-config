@@ -28,7 +28,7 @@ in
     ./nojus-dn42.nix
   ];
   age.secrets.wg = {
-    file = ../secrets/wg.age;
+    file = .../secrets/wg.age;
     owner = "systemd-network";
     group = "systemd-network";
   };
