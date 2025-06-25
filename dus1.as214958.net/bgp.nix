@@ -29,7 +29,7 @@
       networks.cybertrash = {
         matchConfig.Name = "dummyinter";
         address = [
-          "2a0e:8f02:f017::1337/48"
+          "2a0e:8f02:f017::/48"
         ];
       };
     };
@@ -38,7 +38,7 @@
   services.bird-lg = {
     proxy = {
       enable = true;
-      listenAddress = "2a0e:8f02:f017::1337";
+      listenAddress = "localhost:18000";
       allowedIPs = [ "::0/0" ];
     };
     frontend = {
@@ -96,7 +96,7 @@
       # IPv6 BGP session with Servperso
       protocol bgp BGP_Servperso_V6 {
               local as 214958;
-              neighbor 2a0c:b640:10::3:ffff as 34872;
+              neighbor 2a0c:b640:10::2:ffff as 34872;
               ipv6 {
                       import all;
                       export filter filter_to_upstream;

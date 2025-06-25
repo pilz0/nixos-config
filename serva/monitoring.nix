@@ -214,6 +214,11 @@
               "localhost:${toString config.services.prometheus.exporters.postgres.port}"
               "localhost:${toString config.services.prometheus.exporters.wireguard.port}"
               "localhost:${toString config.services.prometheus.exporters.smokeping.port}"
+              "oob.dus1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
+              "oob.dus1.as214958.net:${toString config.services.prometheus.exporters.bird.port}"
+              "oob.dus1.as214958.net:${toString config.services.prometheus.exporters.wireguard.port}"
+              "oob.dus1.as214958.net:${toString config.services.prometheus.exporters.smokeping.port}"
+
             ];
 
           }

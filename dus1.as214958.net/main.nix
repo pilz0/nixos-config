@@ -9,6 +9,7 @@
     ./bgp.nix
     ./disko.nix
     ./hardware-configuration.nix
+    ./services.nix
   ];
 
   nix.optimise.dates = [ "03:45" ];

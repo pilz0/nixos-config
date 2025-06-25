@@ -1,4 +1,5 @@
 {
+  config,
   ...
 }:
 {
@@ -19,10 +20,10 @@
           address = "2a0c:b640:10::2:44";
           prefixLength = 112;
         }
-        {
-          address = "2a0e:8f02:f017:1337::";
-          prefixLength = 64;
-        }
+        # {
+        #   address = "2a0e:8f02:f017:1337::";
+        #   prefixLength = 64;
+        # }
       ];
     };
     defaultGateway6 = {
@@ -38,6 +39,10 @@
       80 # http
       443 # https
       179 # bgp
+      config.services.prometheus.exporters.bird.port
+      config.services.prometheus.exporters.wireguard.port
+      config.services.prometheus.exporters.smokeping.port
+      config.services.prometheus.exporters.node.port
     ];
     allowedUDPPorts = [
       22 # ssh
@@ -46,6 +51,10 @@
       443 # https
       179 # bgp
       51820 # wireguard
+      config.services.prometheus.exporters.bird.port
+      config.services.prometheus.exporters.wireguard.port
+      config.services.prometheus.exporters.smokeping.port
+      config.services.prometheus.exporters.node.port
     ];
   };
 }
