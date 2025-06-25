@@ -4,7 +4,6 @@
 }:
 {
   imports = [
-    ./common-pkgs.nix
     ./shell.nix
     ./ssh.nix
   ];
@@ -23,7 +22,6 @@
     LC_TIME = "de_DE.UTF-8";
   };
   console.keyMap = "de";
-  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -32,9 +30,6 @@
     pulse.enable = true;
   };
 
-  virtualisation.docker.enable = true;
-  virtualisation.containerd.enable = true;
-  services.tailscale.enable = true;
   programs.git.config.user.name = "pilz0";
   programs.git.config.user.email = "marie0@riseup.net";
 

@@ -8,9 +8,7 @@ let
   ListenPort = "420";
   wgendpoint = "";
 in
-
 {
-
   systemd.network = {
     netdevs = {
       "${toString name}" = {

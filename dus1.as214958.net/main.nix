@@ -3,34 +3,21 @@
 }:
 {
   imports = [
-    ./hardware-configuration-serva.nix
     ./net.nix
-    ./services.nix
     ./monitoring.nix
     ./users.nix
-    ./nginx.nix
-    ./nextcloud.nix
-    ./graphics.nix
-    ./dn42/dn42.nix
-    ./restic.nix
-    ./nixarr.nix
+    ./bgp.nix
+    ./disko.nix
+    ./hardware-configuration.nix
   ];
 
   nix.optimise.dates = [ "03:45" ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  nixpkgs.config.permittedInsecurePackages = [
-    "aspnetcore-runtime-6.0.36"
-    "aspnetcore-runtime-wrapped-6.0.36"
-    "dotnet-sdk-6.0.428"
-    "dotnet-sdk-wrapped-6.0.428"
-  ];
-
-  virtualisation.docker.enable = true;
-  virtualisation.containerd.enable = true;
-  services.tailscale.enable = true;
+  boot.loader.grub = {
+    efiSupport = true;
+    efiInstallAsRemovable = true;
+  };
+  services.openssh.enable = true;
 
   system.stateVersion = "23.11"; # Did you read the comment?
 }

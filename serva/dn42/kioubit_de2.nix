@@ -1,36 +1,47 @@
+# Establishes wireguard tunnels with all nodes with static IPs as hubs.
 { config, lib, ... }:
-
+let
+  pupkey = "B1xSG/XTJRLd+GrWDsB06BqnIq8Xud93YVh/LYYYtUY=";
+  tunnelipsubnet = "fe80::ade1/64";
+  name = "kioubit_de2";
+  ASN = "4242423914";
+  peertunnelip = "fe80::ade0";
+  ListenPort = "";
+  wgendpoint = "116.203.141.239:20663";
+  role = "customer";
+in
 {
   systemd.network = {
     netdevs = {
-      "ernst_is_dn42" = {
+      "${toString name}" = {
         netdevConfig = {
           Kind = "wireguard";
-          Name = "ernst_is_dn42";
+          Name = name;
           MTUBytes = "1420";
         };
         wireguardConfig = {
           PrivateKeyFile = config.age.secrets.wg.path;
+          ListenPort = ListenPort;
         };
         wireguardPeers = [
           {
-            PublicKey = "PK8cQ3ghSNYPMurgTPXGXoHkYvqseRZgBa9oGVO+dzM=";
+            PublicKey = pupkey;
             AllowedIPs = [
               "::/0"
               "0.0.0.0/0"
             ];
-            Endpoint = "157.90.129.252:51832";
+            Endpoint = wgendpoint;
             PersistentKeepalive = 25;
           }
         ];
       };
     };
-    networks."ernst_is_dn42" = {
-      matchConfig.Name = "ernst_is_dn42";
-      address = [ "fe80::acab/64" ];
+    networks."${toString name}" = {
+      matchConfig.Name = name;
+      address = [ tunnelipsubnet ];
       routes = [
         {
-          Destination = "fe80::1312/64";
+          Destination = peertunnelip + "/64";
           Scope = "link";
         }
       ];
@@ -41,6 +52,7 @@
         IPv6AcceptRA = false;
         DHCP = false;
       };
+
       linkConfig = {
         RequiredForOnline = "no";
       };
@@ -49,9 +61,9 @@
 
   services.bird = {
     config = lib.mkAfter ''
-      protocol bgp ernst_is_dn42 from dnpeers {
-          neighbor fe80::1312%ernst_is_dn42 as 4242420064;
-          local role peer;
+      protocol bgp ${toString name} from dnpeers {
+          neighbor ${toString peertunnelip}%${toString name} as ${toString ASN};
+          local role ${toString role};
       }
     '';
   };

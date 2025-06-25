@@ -18,22 +18,13 @@
     owner = "mastodon";
     group = "mastodon";
   };
-  #      services.ollama = {
-  #        enable = true;
-  #        acceleration = "cuda";
-  #        loadModels = [ "llama3.2" ];
-  #     };
-  #      services.open-webui = {
-  #        enable = true;
-  #       port = 2315;
-  #      };
 
   services.mastodon = {
     enable = true;
-    localDomain = "m.pilz.foo"; # Replace with your own domain
+    localDomain = "m.pilz.foo";
     configureNginx = true;
     smtp = {
-      fromAddress = "t3st1ng1312@cock.li"; # Email address used by Mastodon to send emails, replace with your own
+      fromAddress = "t3st1ng1312@cock.li";
       user = "t3st1ng1312@cock.li";
       passwordFile = config.age.secrets.mailpw.path;
       host = "mail.cock.li";

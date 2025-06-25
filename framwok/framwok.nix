@@ -3,6 +3,7 @@
 {
   inputs,
   lib,
+  pkgs,
   config,
   ...
 }:
@@ -11,7 +12,7 @@
   imports = [
     ./hardware-configuration-framwok.nix
     ./framwok-pkgs.nix
-    ./vscode.nix
+    #    ./vscode.nix
     ./graphics.nix
     ./users.nix
     ./restic.nix
@@ -26,6 +27,8 @@
     };
   };
 
+  virtualisation.containerd.enable = true;
+
   # This will add each flake input as a registry
   # To make nix3 commands consistent with your flake
   nix.registry = (lib.mapAttrs (_: flake: { inherit flake; })) (
@@ -39,6 +42,9 @@
     name = "nix/path/${name}";
     value.source = value.flake;
   }) config.nix.registry;
+
+  services.pcscd.enable = true;
+  services.udev.packages = [ pkgs.yubikey-personalization ];
 
   networking.hostName = "framwok";
   networking.networkmanager.enable = true;
@@ -102,4 +108,8 @@
     enableZshIntegration = true;
     nix-direnv.enable = true;
   };
+  nix.extraOptions = ''
+    extra-substituters = https://devenv.cachix.org
+    extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=
+  '';
 }

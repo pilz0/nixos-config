@@ -1,25 +1,22 @@
 { config, lib, ... }:
 let
-
-  pupkey = "iYyFQsmCqaDB1XVmAkYPvG4cRWcYiEmIauVTolX8vlU=";
-  tunnelipsubnet = "fe80::acab/64";
-  name = "ETWAS_DN42";
-  ASN = "4242422264";
-  peertunnelip = "fe80::1312";
+  pupkey = "EsLAjyP7oYoPqMDO0nmfC3DxpyER+7yPFBaGIntr0lA=";
+  tunnelipsubnet = "fe80::1312/64";
+  name = "haaien_dn42";
+  ASN = "4242420575";
+  peertunnelip = "fe80::497a";
   ListenPort = "";
-  wgendpoint = "188.68.37.215:22265";
+  wgendpoint = "37.120.168.131:42422";
   role = "peer";
 in
-
 {
-
   systemd.network = {
     netdevs = {
       "${toString name}" = {
         netdevConfig = {
           Kind = "wireguard";
           Name = name;
-          MTUBytes = "1420";
+          MTUBytes = "1350";
         };
         wireguardConfig = {
           PrivateKeyFile = config.age.secrets.wg.path;

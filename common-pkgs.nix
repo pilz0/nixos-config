@@ -6,11 +6,6 @@
 
   environment.systemPackages = with pkgs; [
     ansible
-    awscli
-    kubernetes
-    kind
-    doctl
-    ktop
     htop
     tmux
     busybox
@@ -26,22 +21,14 @@
     lshw
     traceroute
     speedtest-cli
-    rustc
     pciutils
     git
-    metasploit
-    ecryptfs
-    gnumake
-    wireshark-qt
-    superTuxKart
     cargo
     gcc
     cron
-    vlc
     alacritty
     cmatrix
     btop
-    gitlab-runner
     wget
     rclone
     restic
@@ -50,25 +37,15 @@
     killall
     picocom
     dnsmasq
-    spotifyd
     pipes
     procps
     gnumake
-    m4
-    xorg.libXi
-    xorg.libXmu
-    freeglut
-    xorg.libXext
-    xorg.libX11
-    xorg.libXv
-    xorg.libXrandr
     zlib
     ncurses5
     stdenv.cc
     binutils
     curl
     ddclient
-    docker-compose
     dig
     devenv
     wireguard-tools

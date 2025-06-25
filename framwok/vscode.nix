@@ -29,6 +29,12 @@
             version = "1.319.1560";
             sha256 = "DSh7gN0iMxPhYXn95o5YxsL/Awy7SKkulJ33hT3Eqfo=";
           }
+          {
+            name = "vscode-wakatime";
+            publisher = "WakaTime";
+            version = "25.0.4";
+            sha256 = "sha256-J+H/PShsOGwt0AZExLApXLl86XQdZbE5cPS9v4gOXWc=";
+          }
         ];
     })
   ];

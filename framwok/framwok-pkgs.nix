@@ -29,7 +29,6 @@
     wireshark-qt
     superTuxKart
     vlc
-    google-cloud-sdk
     terraform
     terraformer
     prusa-slicer
@@ -71,7 +70,30 @@
     gnome-tweaks
     vesktop
     brlaser
-    catppuccin-gtk
+    gnupg
+    pinentry-tty
+    vlc
+    docker-compose
     telegram-desktop
+    m4
+    xorg.libXi
+    xorg.libXmu
+    freeglut
+    xorg.libXext
+    xorg.libX11
+    xorg.libXv
+    xorg.libXrandr
+    metasploit
+    ecryptfs
+    gnumake
+    wireshark-qt
+    awscli
+    kubernetes
+    kind
+    doctl
+    # Google Cloud SDK with additional components
+    (google-cloud-sdk.withExtraComponents [
+      google-cloud-sdk.components.gke-gcloud-auth-plugin
+    ])
   ];
 }

@@ -1,4 +1,5 @@
 {
+  pkgs,
   inputs,
   # spicetify-nix,
   ...
@@ -18,6 +19,11 @@
       #      inherit spicetify-nix;
     };
 
+home.packages = with pkgs; [
+  # ...
+  (google-cloud-sdk.withExtraComponents [google-cloud-sdk.components.gke-gcloud-auth-plugin])
+  # ...
+]
     users.marie = {
       home = {
         stateVersion = "24.11";

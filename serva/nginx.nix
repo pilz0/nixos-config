@@ -18,7 +18,7 @@
 
   security.acme = {
     acceptTerms = true;
-    defaults.email = "acme@ketamin.trade";
+    defaults.email = "acme@pilz.foo";
   };
 
   services.nginx = {
@@ -63,7 +63,7 @@
       enableACME = true;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://10.10.1.22:1100";
+        proxyPass = "http://172.22.179.129:1100";
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
     };
@@ -95,7 +95,7 @@
         foo = "foo";
       };
       locations."/" = {
-        proxyPass = "http://10.10.1.22:9001";
+        proxyPass = "http://172.22.179.129:9001";
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
     };
@@ -106,7 +106,7 @@
         foo = "foo";
       };
       locations."/" = {
-        proxyPass = "http://10.10.1.22:9002";
+        proxyPass = "http://172.22.179.129:9002";
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
     };
@@ -117,7 +117,7 @@
         foo = "foo";
       };
       locations."/" = {
-        proxyPass = "http://10.10.1.22:9003";
+        proxyPass = "http://172.22.179.129:9003";
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
     };
@@ -128,7 +128,7 @@
         foo = "foo";
       };
       locations."/" = {
-        proxyPass = "http://10.10.1.22:9004";
+        proxyPass = "http://172.22.179.129:9004";
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
     };
@@ -139,7 +139,7 @@
         foo = "foo";
       };
       locations."/" = {
-        proxyPass = "http://10.10.1.22:9005";
+        proxyPass = "http://172.22.179.129:9005";
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
     };
@@ -224,7 +224,7 @@
         deny all;
       '';
       locations."/" = {
-        proxyPass = "http://10.10.1.22:6901";
+        proxyPass = "http://172.22.179.129:6901";
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
     };
@@ -237,7 +237,7 @@
         deny all;
       '';
       locations."/" = {
-        proxyPass = "http://10.10.1.22:6902";
+        proxyPass = "http://172.22.179.129:6902";
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
     };
@@ -250,7 +250,7 @@
         deny all;
       '';
       locations."/" = {
-        proxyPass = "http://10.10.1.22:6903";
+        proxyPass = "http://172.22.179.129:6903";
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
     };
@@ -263,7 +263,7 @@
         deny all;
       '';
       locations."/" = {
-        proxyPass = "http://10.10.1.22:6904";
+        proxyPass = "http://172.22.179.129:6904";
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
     };
@@ -314,7 +314,7 @@
         foo = "foo";
       };
       locations."/" = {
-        proxyPass = "http://10.10.1.22:9001";
+        proxyPass = "http://172.22.179.129:9001";
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
     };
@@ -325,7 +325,7 @@
         foo = "foo";
       };
       locations."/" = {
-        proxyPass = "http://10.10.1.22:9001";
+        proxyPass = "http://172.22.179.129:9001";
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
     };
@@ -336,7 +336,7 @@
         foo = "foo";
       };
       locations."/" = {
-        proxyPass = "http://10.10.1.22:9002";
+        proxyPass = "http://172.22.179.129:9002";
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
     };
@@ -347,7 +347,7 @@
         foo = "foo";
       };
       locations."/" = {
-        proxyPass = "http://10.10.1.22:9002";
+        proxyPass = "http://172.22.179.129:9002";
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
     };
@@ -358,7 +358,7 @@
         foo = "foo";
       };
       locations."/" = {
-        proxyPass = "http://10.10.1.22:9003";
+        proxyPass = "http://172.22.179.129:9003";
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
     };
@@ -369,7 +369,7 @@
         foo = "foo";
       };
       locations."/" = {
-        proxyPass = "http://10.10.1.22:9003";
+        proxyPass = "http://172.22.179.129:9003";
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
     };
@@ -380,7 +380,7 @@
         foo = "foo";
       };
       locations."/" = {
-        proxyPass = "http://10.10.1.22:9004";
+        proxyPass = "http://172.22.179.129:9004";
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
     };
@@ -391,7 +391,7 @@
         foo = "foo";
       };
       locations."/" = {
-        proxyPass = "http://10.10.1.22:9004";
+        proxyPass = "http://172.22.179.129:9004";
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
     };
@@ -402,7 +402,7 @@
         foo = "foo";
       };
       locations."/" = {
-        proxyPass = "http://10.10.1.22:9005";
+        proxyPass = "http://172.22.179.129:9005";
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
     };
@@ -413,7 +413,7 @@
         foo = "foo";
       };
       locations."/" = {
-        proxyPass = "http://10.10.1.22:9005";
+        proxyPass = "http://172.22.179.129:9005";
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
     };
@@ -549,7 +549,7 @@
       enableACME = true;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://10.10.1.22:8090";
+        proxyPass = "http://172.22.179.129:8090";
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
     };
@@ -557,7 +557,7 @@
       enableACME = false;
       forceSSL = false;
       locations."/" = {
-        proxyPass = "http://10.10.1.22:8090";
+        proxyPass = "http://172.22.179.129:8090";
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
     };
@@ -570,7 +570,7 @@
         deny all;
       '';
       locations."/" = {
-        proxyPass = "http://10.10.1.22:6901";
+        proxyPass = "http://172.22.179.129:6901";
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
     };
@@ -583,7 +583,7 @@
         deny all;
       '';
       locations."/" = {
-        proxyPass = "http://10.10.1.22:6901";
+        proxyPass = "http://172.22.179.129:6901";
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
     };
@@ -596,7 +596,7 @@
         deny all;
       '';
       locations."/" = {
-        proxyPass = "http://10.10.1.22:6902";
+        proxyPass = "http://172.22.179.129:6902";
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
     };
@@ -609,7 +609,7 @@
         deny all;
       '';
       locations."/" = {
-        proxyPass = "http://10.10.1.22:6902";
+        proxyPass = "http://172.22.179.129:6902";
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
     };
@@ -622,7 +622,7 @@
         deny all;
       '';
       locations."/" = {
-        proxyPass = "http://10.10.1.22:6903";
+        proxyPass = "http://172.22.179.129:6903";
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
     };
@@ -635,7 +635,7 @@
         deny all;
       '';
       locations."/" = {
-        proxyPass = "http://10.10.1.22:6903";
+        proxyPass = "http://172.22.179.129:6903";
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
     };
@@ -648,7 +648,7 @@
         deny all;
       '';
       locations."/" = {
-        proxyPass = "http://10.10.1.22:6904";
+        proxyPass = "http://172.22.179.129:6904";
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
     };
@@ -661,7 +661,7 @@
         deny all;
       '';
       locations."/" = {
-        proxyPass = "http://10.10.1.22:6904";
+        proxyPass = "http://172.22.179.129:6904";
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
     };

@@ -1,37 +1,46 @@
 { config, lib, ... }:
-
+let
+  pupkey = "PK8cQ3ghSNYPMurgTPXGXoHkYvqseRZgBa9oGVO+dzM=";
+  tunnelipsubnet = "fe80::acab/64";
+  name = "ernst_is_dn42";
+  ASN = "4242420064";
+  peertunnelip = "fe80::1312";
+  ListenPort = "";
+  wgendpoint = "157.90.129.252:51832";
+  role = "peer";
+in
 {
   systemd.network = {
     netdevs = {
-      "iedon_dn42" = {
+      "${toString name}" = {
         netdevConfig = {
           Kind = "wireguard";
-          Name = "iedon_dn42";
+          Name = name;
           MTUBytes = "1420";
         };
         wireguardConfig = {
           PrivateKeyFile = config.age.secrets.wg.path;
+          ListenPort = ListenPort;
         };
         wireguardPeers = [
           {
-            PublicKey = "FHp0OR4UpAS8/Ra0FUNffTk18soUYCa6NcvZdOgxY0k=";
+            PublicKey = pupkey;
             AllowedIPs = [
               "::/0"
               "0.0.0.0/0"
-
             ];
-            Endpoint = "157.90.129.252:55449";
+            Endpoint = wgendpoint;
             PersistentKeepalive = 25;
           }
         ];
       };
     };
-    networks.iedon_dn42 = {
-      matchConfig.Name = "iedon_dn42";
-      address = [ "fe80::2189:e9/64" ];
+    networks."${toString name}" = {
+      matchConfig.Name = name;
+      address = [ tunnelipsubnet ];
       routes = [
         {
-          Destination = "fe80::2189:e9/64";
+          Destination = peertunnelip + "/64";
           Scope = "link";
         }
       ];
@@ -51,9 +60,9 @@
 
   services.bird = {
     config = lib.mkAfter ''
-      protocol bgp iedon_dn42 from dnpeers {
-          neighbor fe80::2189:e9%iedon_dn42 as 4242422189;
-          local role customer;
+      protocol bgp ${toString name} from dnpeers {
+          neighbor ${toString peertunnelip}%${toString name} as ${toString ASN};
+          local role ${toString role};
       }
     '';
   };

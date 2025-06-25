@@ -1,45 +1,57 @@
 { config, lib, ... }:
-
+let
+  pupkey = "dwtxXvpgWCGtX/QKFDaLXsWYRPd08Tg1JGsvzLudgjw=";
+  tunnelipsubnet = "fe80::1312/64";
+  name = "dn42_lare";
+  ASN = "4242423035";
+  peertunnelip = "fe80::3035:131";
+  ListenPort = "";
+  wgendpoint = "77.90.28.219:20663";
+  role = "customer";
+in
 {
   systemd.network = {
     netdevs = {
-      "haaien_dn42" = {
+      "${toString name}" = {
         netdevConfig = {
           Kind = "wireguard";
-          Name = "haaien_dn42";
-          MTUBytes = "1350";
+          Name = name;
+          MTUBytes = "1420";
         };
         wireguardConfig = {
           PrivateKeyFile = config.age.secrets.wg.path;
+          ListenPort = ListenPort;
         };
         wireguardPeers = [
           {
-            PublicKey = "EsLAjyP7oYoPqMDO0nmfC3DxpyER+7yPFBaGIntr0lA=";
+            PublicKey = pupkey;
             AllowedIPs = [
               "::/0"
               "0.0.0.0/0"
             ];
-            Endpoint = "37.120.168.131:42422";
+            Endpoint = wgendpoint;
             PersistentKeepalive = 25;
           }
         ];
       };
     };
-    networks.haaien_dn42 = {
-      matchConfig.Name = "haaien_dn42";
-      address = [ "fe80::1312/64" ];
+    networks."${toString name}" = {
+      matchConfig.Name = name;
+      address = [ tunnelipsubnet ];
       routes = [
         {
-          Destination = "fe80::497a/64";
+          Destination = peertunnelip + "/64";
           Scope = "link";
         }
       ];
       networkConfig = {
+        IPv4Forwarding = true;
         IPv6Forwarding = true;
         IPv4ReversePathFilter = "no";
         IPv6AcceptRA = false;
         DHCP = false;
       };
+
       linkConfig = {
         RequiredForOnline = "no";
       };
@@ -48,9 +60,9 @@
 
   services.bird = {
     config = lib.mkAfter ''
-      protocol bgp haaien_dn42 from dnpeers {
-          neighbor fe80::497a%haaien_dn42 as 4242420575;
-          local role peer;
+      protocol bgp ${toString name} from dnpeers {
+          neighbor ${toString peertunnelip}%${toString name} as ${toString ASN};
+          local role ${toString role};
       }
     '';
   };
