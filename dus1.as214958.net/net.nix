@@ -5,8 +5,8 @@
 {
   networking.networkmanager.enable = true;
   networking.nameservers = [
-    "fd42:d42:d42:54::1"
     "2606:4700:4700::1111"
+    "2606:4700:4700::1001"
     "1.1.1.1"
   ];
   networking.hostName = "dus1";
@@ -20,11 +20,29 @@
           address = "2a0c:b640:10::2:44";
           prefixLength = 112;
         }
-        # {
-        #   address = "2a0e:8f02:f017:1337::";
-        #   prefixLength = 64;
-        # }
       ];
+    };
+    interfaces.ens19 = {
+      ipv6 = {
+        addresses = [
+          {
+            address = "2a0c:b641:701:0:a5:21:4958:1";
+            prefixLength = 128;
+          }
+        ];
+        routes = [
+          {
+            address = "2a0c:b641:701::a5:20:2409:2";
+            prefixLength = 128;
+            via = "2a0c:b641:701:0:a5:21:4958:1";
+          }
+          {
+            address = "2a0c:b641:701::a5:20:2409:1";
+            prefixLength = 128;
+            via = "2a0c:b641:701:0:a5:21:4958:1";
+          }
+        ];
+      };
     };
     defaultGateway6 = {
       address = "2a0c:b640:10::2:ffff";
@@ -32,6 +50,9 @@
     };
   };
 
+  networking.extraHosts = ''
+    ::1 dus1
+  '';
   networking.firewall = {
     allowedTCPPorts = [
       22 # ssh
