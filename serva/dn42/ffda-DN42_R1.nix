@@ -1,13 +1,13 @@
 { config, lib, ... }:
 let
 
-  pupkey = "";
+  pupkey = "AgxBVyDU2WyHRe+SdZLQhmq96TGFGRb+ZRjeQDYaw0Q=";
   tunnelipsubnet = "fe80::21:4958/64";
-  name = "ffdaDN42";
-  ASN = "4242421403";
+  name = "ffdaDN42_R1";
+  ASN = "4242421084";
   peertunnelip = "fe80::6766";
   ListenPort = "";
-  wgendpoint = "";
+  wgendpoint = "v4.dn42-router1.darmstadt.freifunk.net:20663";
   role = "peer";
 in
 
