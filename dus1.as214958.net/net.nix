@@ -3,16 +3,31 @@
   ...
 }:
 {
-  networking.networkmanager.enable = true;
-  networking.nameservers = [
-    "2606:4700:4700::1111"
-    "2606:4700:4700::1001"
-    "1.1.1.1"
-  ];
-  networking.hostName = "dus1";
+  networking.networkmanager.enable = false; # Disable NetworkManager
   networking.useNetworkd = true;
 
-  networking.enableIPv6 = true;
+  services.resolved = {
+    enable = true;
+    dnssec = "false"; # Disable DNSSEC to reduce CPU usage
+    fallbackDns = [
+      "2606:4700:4700::1111"
+      "2606:4700:4700::1001"
+    ];
+    llmnr = "false";
+    extraConfig = ''
+      Cache=yes
+      CacheFromLocalhost=no
+      DNSStubListener=yes
+      ReadEtcHosts=yes
+      ResolveUnicastSingleLabel=no
+      # Reduce timeout and retries to prevent CPU spikes
+      DNSDefaultRoute=yes
+      MulticastDNS=no
+    '';
+  };
+
+  networking.hostName = "dus1";
+
   networking = {
     interfaces.ens18 = {
       ipv6.addresses = [
@@ -23,23 +38,19 @@
       ];
     };
     interfaces.ens19 = {
+      ipv4 = {
+        addresses = [
+          {
+            address = "185.1.155.158";
+            prefixLength = 24;
+          }
+        ];
+      };
       ipv6 = {
         addresses = [
           {
             address = "2a0c:b641:701:0:a5:21:4958:1";
-            prefixLength = 128;
-          }
-        ];
-        routes = [
-          {
-            address = "2a0c:b641:701::a5:20:2409:2";
-            prefixLength = 128;
-            via = "2a0c:b641:701:0:a5:21:4958:1";
-          }
-          {
-            address = "2a0c:b641:701::a5:20:2409:1";
-            prefixLength = 128;
-            via = "2a0c:b641:701:0:a5:21:4958:1";
+            prefixLength = 64;
           }
         ];
       };
@@ -53,6 +64,7 @@
   networking.extraHosts = ''
     ::1 dus1
   '';
+
   networking.firewall = {
     allowedTCPPorts = [
       22 # ssh
@@ -77,5 +89,11 @@
       config.services.prometheus.exporters.smokeping.port
       config.services.prometheus.exporters.node.port
     ];
+  };
+
+  # Optional: Limit systemd-resolved resource usage
+  systemd.services.systemd-resolved.serviceConfig = {
+    CPUQuota = "25%"; # Limit CPU usage
+    MemoryMax = "64M";
   };
 }

@@ -9,22 +9,17 @@
     htop
     tmux
     busybox
-    prometheus
     unzip
     vim
-    fastfetch
     neofetch
     zsh
     nmap
-    hyfetch
     go
     lshw
     traceroute
     speedtest-cli
     pciutils
     git
-    cargo
-    gcc
     cron
     alacritty
     cmatrix

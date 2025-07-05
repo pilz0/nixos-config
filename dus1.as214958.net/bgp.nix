@@ -6,6 +6,8 @@
   imports = [
     ./bgp-filters.nix
     ./bgp-peerings.nix
+    ./looking-glass.nix
+    ./rpki.nix
   ];
 
   systemd = {
@@ -31,7 +33,7 @@
       networks.dummyinter = {
         matchConfig.Name = "dummyinter";
         address = [
-          "2a0e:8f02:f017::/48"
+          "2a0e:8f02:f017::1337/48"
         ];
         networkConfig = {
           ConfigureWithoutCarrier = true;
@@ -48,6 +50,25 @@
       log syslog all;
 
       router id 225.3.77.150;
+
+      roa4 table rpki4;
+      roa6 table rpki6;
+
+      protocol rpki rpki1
+      {
+          roa4 { table rpki4; };
+          roa6 { table rpki6; };
+          remote "::1" port 8362;
+          retry 300;
+      }
+
+      function is_rpki_invalid_v6() {
+          return roa_check(rpki6, net, bgp_path.last_nonaggregated) = ROA_INVALID;
+        }
+
+      function is_rpki_invalid_v4() {
+          return roa_check(rpki4, net, bgp_path.last_nonaggregated) = ROA_INVALID;
+        }
 
       protocol device {
       scan time 60;
@@ -89,6 +110,7 @@
                 reject_default_route6();
                 reject_bogon_prefixes();
                 filter_import_v6();
+                if is_rpki_invalid_v6() then reject;
                 accept;
               };
               export filter {

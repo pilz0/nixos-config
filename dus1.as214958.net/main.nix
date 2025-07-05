@@ -1,6 +1,4 @@
-{
-  ...
-}:
+{ lib, ... }:
 {
   imports = [
     ./net.nix
@@ -10,15 +8,27 @@
     ./disko.nix
     ./hardware-configuration.nix
     ./services.nix
+    ./website.nix
   ];
 
   nix.optimise.dates = [ "03:45" ];
 
-  boot.loader.grub = {
-    efiSupport = true;
-    efiInstallAsRemovable = true;
+  boot = {
+    loader.grub = {
+      efiSupport = true;
+      efiInstallAsRemovable = true;
+    };
+    growPartition = true;
   };
+
   services.openssh.enable = true;
+
+  # Override any existing filesystem configuration from disko or other modules
+  fileSystems."/" = lib.mkForce {
+    device = "/dev/sda3";
+    fsType = "ext4";
+    autoResize = true;
+  };
 
   system.stateVersion = "23.11"; # Did you read the comment?
 }

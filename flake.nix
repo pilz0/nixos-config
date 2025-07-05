@@ -101,6 +101,7 @@
           modules = [
             ./dus1.as214958.net/main.nix
             ./common.nix
+            ./common-pkgs.nix
             agenix.nixosModules.default
             disko.nixosModules.disko
 
