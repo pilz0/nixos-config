@@ -35,7 +35,14 @@
           reject;
         }
       }
-
+      function reject_default_route4()
+      {
+        if net = 0.0.0.0/0 then {
+          # optional logging:
+          # print "Reject: Defaultroute: ", net, " ", bgp_path;
+          reject;
+        }
+      }
       function reject_default_route6()
       {
         if net = ::/0 then {
@@ -44,7 +51,31 @@
           reject;
         }
       }
-      define BOGON_PREFIXES = [ ::/8+,                         # RFC 4291 IPv4-compatible, loopback, et al
+      define BOGON_PREFIXES4 = [  0.0.0.0/8+,         # RFC 1122 'this' Network
+                                  10.0.0.0/8+,        # RFC 1918 Private
+                                  100.64.0.0/10+,     # RFC 6598 Carrier grade nat space
+                                  127.0.0.0/8+,       # RFC 1122 Loopback
+                                  169.254.0.0/16+,    # RFC 3927 Link Local
+                                  172.16.0.0/12+,     # RFC 1918 Private
+                                  192.0.2.0/24+,      # RFC 5737 Documentation TEST-NET-1
+                                  192.168.0.0/16+,    # RFC 1918 Private
+                                  198.18.0.0/15+,     # RFC 2544 Benchmarking
+                                  198.51.100.0/24+,   # RFC 5737 Documentation TEST-NET-2
+                                  203.0.113.0/24+,    # RFC 5737 Documentation TEST-NET-3
+                                  224.0.0.0/4+,       # RFC 5771 Multicast
+                                  240.0.0.0/4+        # RFC 1112 Reserved
+      ];
+
+      function reject_bogon_prefixes4()
+      prefix set bogon_prefixes4;
+      {
+          bogon_prefixes4 = BOGON_PREFIXES4;
+          if (net ~ bogon_prefixes4) then {
+              print "Reject: Bogon prefix: ", net, " ", bgp_path;
+              reject;
+          }
+      }
+      define BOGON_PREFIXES6 = [ ::/8+,                        # RFC 4291 IPv4-compatible, loopback, et al
                                 0100::/64+,                    # RFC 6666 Discard-Only
                                 2001:2::/48+,                  # RFC 5180 BMWG
                                 2001:10::/28+,                 # RFC 4843 ORCHID
@@ -59,16 +90,25 @@
                                 ff00::/8+                      # RFC 4291 multicast
       ];
 
-      function reject_bogon_prefixes()
-      prefix set bogon_prefixes;
+      function reject_bogon_prefixes6()
+      prefix set bogon_prefixes6;
       {
-          bogon_prefixes = BOGON_PREFIXES;
-          if (net ~ bogon_prefixes) then {
+          bogon_prefixes6 = BOGON_PREFIXES6;
+          if (net ~ bogon_prefixes6) then {
               print "Reject: Bogon prefix: ", net, " ", bgp_path;
               reject;
           }
       }
-      function filter_import_v6()
+      function reject_small_prefixes4()
+      {
+        # do not accept too short prefixes
+        if (net.len > 24) then {
+          print "Reject: Too small prefix: ", net, " ", bgp_path;
+          reject;
+        }
+      }
+
+      function reject_small_prefixes6()
       {
         # do not accept too short prefixes
         if (net.len > 48) then {
@@ -76,6 +116,29 @@
           reject;
         }
       }
+      define IXP_PREFIXES4 = [
+        185.1.155.0/24 # LocIX DUS
+      ];
+      define IXP_PREFIXES6 = [
+        2a0c:b641:701::/64 # LocIX DUS
+      ];
+      function reject_ixp_prefixes4()
+      prefix set ixp_prefixes4;
+      {
+        ixp_prefixes4 = IXP_PREFIXES4;
+        if (net ~ ixp_prefixes4) then {
+          reject;
+        }
+      }
+      function reject_ixp_prefixes6()
+      prefix set ixp_prefixes6;
+      {
+        ixp_prefixes6 = IXP_PREFIXES6;
+        if (net ~ ixp_prefixes6) then {
+          reject;
+        }
+      }
+
     '';
   };
 }
