@@ -72,6 +72,7 @@
       80 # http
       443 # https
       179 # bgp
+      51820 # Wireguard
       config.services.prometheus.exporters.bird.port
       config.services.prometheus.exporters.wireguard.port
       config.services.prometheus.exporters.smokeping.port

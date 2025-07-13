@@ -8,6 +8,7 @@
     ./bgp-peerings.nix
     ./looking-glass.nix
     ./rpki.nix
+    ./ospf_to_serva.nix
   ];
 
   systemd = {
@@ -33,7 +34,7 @@
       networks.dummyinter = {
         matchConfig.Name = "dummyinter";
         address = [
-          "2a0e:8f02:f017::1337/48"
+          "2a0e:8f02:f017::1337/64"
         ];
         networkConfig = {
           ConfigureWithoutCarrier = true;
@@ -100,19 +101,6 @@
           enable extended messages on;
           graceful restart on;
           long lived graceful restart on;
-          ipv6 {
-              import keep filtered;
-              import filter {
-                reject_long_aspaths();
-                reject_bogon_asns();
-                reject_default_route6();
-                reject_bogon_prefixes6();
-                reject_ixp_prefixes6();
-                reject_small_prefixes6();
-                if is_rpki_invalid_v6() then reject;
-                accept;
-              };
-
           ipv4 {
               import keep filtered;
               import filter {
@@ -123,6 +111,23 @@
                 reject_ixp_prefixes4();
                 reject_small_prefixes4();
                 if is_rpki_invalid_v4() then reject;
+                accept;
+              };
+              export filter {
+                # if (net.type = NET_IP4 && net ~ [ ]) then accept;
+                reject;
+              };
+          };
+          ipv6 {
+              import keep filtered;
+              import filter {
+                reject_long_aspaths();
+                reject_bogon_asns();
+                reject_default_route6();
+                reject_bogon_prefixes6();
+                reject_ixp_prefixes6();
+                reject_small_prefixes6();
+                if is_rpki_invalid_v6() then reject;
                 accept;
               };
               export filter {

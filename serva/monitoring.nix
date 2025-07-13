@@ -289,6 +289,7 @@
           "catgirl.dog"
           "google.com"
           "ip6.clerie.de"
+          "dus1.as214958.net"
         ];
       };
     };
