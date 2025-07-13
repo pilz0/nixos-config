@@ -18,6 +18,5 @@
       group = "nginx";
       user = "nginx";
     };
-
   };
 }

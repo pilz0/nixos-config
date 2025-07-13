@@ -4,7 +4,7 @@
     ./net.nix
     ./monitoring.nix
     ./users.nix
-    ./bgp.nix
+    ./bird.nix
     ./disko.nix
     ./hardware-configuration.nix
     ./services.nix

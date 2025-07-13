@@ -8,6 +8,7 @@
     ./bgp-peerings.nix
     ./looking-glass.nix
     ./rpki.nix
+    ./ospf_to_serva.nix
   ];
 
   systemd = {
@@ -33,7 +34,7 @@
       networks.dummyinter = {
         matchConfig.Name = "dummyinter";
         address = [
-          "2a0e:8f02:f017::1337/48"
+          "2a0e:8f02:f017::1337/64"
         ];
         networkConfig = {
           ConfigureWithoutCarrier = true;
@@ -61,13 +62,11 @@
           remote "::1" port 8362;
           retry 300;
       }
-
-      function is_rpki_invalid_v6() {
-          return roa_check(rpki6, net, bgp_path.last_nonaggregated) = ROA_INVALID;
-        }
-
       function is_rpki_invalid_v4() {
           return roa_check(rpki4, net, bgp_path.last_nonaggregated) = ROA_INVALID;
+        }
+      function is_rpki_invalid_v6() {
+          return roa_check(rpki6, net, bgp_path.last_nonaggregated) = ROA_INVALID;
         }
 
       protocol device {
@@ -102,14 +101,32 @@
           enable extended messages on;
           graceful restart on;
           long lived graceful restart on;
+          ipv4 {
+              import keep filtered;
+              import filter {
+                reject_long_aspaths();
+                reject_bogon_asns();
+                reject_default_route4();
+                reject_bogon_prefixes4();
+                reject_ixp_prefixes4();
+                reject_small_prefixes4();
+                if is_rpki_invalid_v4() then reject;
+                accept;
+              };
+              export filter {
+                # if (net.type = NET_IP4 && net ~ [ ]) then accept;
+                reject;
+              };
+          };
           ipv6 {
               import keep filtered;
               import filter {
                 reject_long_aspaths();
                 reject_bogon_asns();
                 reject_default_route6();
-                reject_bogon_prefixes();
-                filter_import_v6();
+                reject_bogon_prefixes6();
+                reject_ixp_prefixes6();
+                reject_small_prefixes6();
                 if is_rpki_invalid_v6() then reject;
                 accept;
               };

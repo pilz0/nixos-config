@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  config,
   ...
 }:
 let
@@ -108,6 +109,53 @@ in
       proxyPort = 18000;
       navbar = {
         brand = "cybertrash";
+      };
+    };
+  };
+  # WG to dus1.as214958.net
+  systemd.network = {
+    netdevs = {
+      "dus1" = {
+        netdevConfig = {
+          Kind = "wireguard";
+          Name = "dus1";
+          MTUBytes = "1420";
+        };
+        wireguardConfig = {
+          PrivateKeyFile = config.age.secrets.wg.path;
+        };
+        wireguardPeers = [
+          {
+            PublicKey = "rGhXFZSj5KgQmudouZ4LRZnBBjv/0U1wcHcZiwgGeng=";
+            AllowedIPs = [
+              "::/0"
+              "0.0.0.0/0"
+            ];
+            Endpoint = "dus1.as214958.net:51820";
+            PersistentKeepalive = 25;
+          }
+        ];
+      };
+    };
+    networks."dus1" = {
+      matchConfig.Name = "dus1";
+      address = [ "2a0e:8f02:f017:2::1312/64" ];
+      routes = [
+        {
+          Destination = "2a0e:8f02:f017:2::1337/64";
+          Scope = "link";
+        }
+      ];
+      networkConfig = {
+        IPv4Forwarding = true;
+        IPv6Forwarding = true;
+        IPv4ReversePathFilter = "no";
+        IPv6AcceptRA = false;
+        DHCP = false;
+      };
+
+      linkConfig = {
+        RequiredForOnline = "no";
       };
     };
   };
@@ -229,6 +277,26 @@ in
                 };
             }
 
+            protocol ospf {
+                import none;
+                export none;
+                area 0 {
+                  interface "dus1" {
+                  hello 10;
+                  retransmit 5;
+                  cost 10;
+                  transmit delay 1;
+                  dead count 4;
+                  wait 40;
+                  type broadcast;
+                  priority 1;
+                  authentication none;
+                  neighbors {
+                    2a0e:8f02:f017:2::1337;
+                  };
+                  };
+                };
+            }
 
               template bgp dnpeers {
                   local as OWNAS;
