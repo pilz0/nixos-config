@@ -3,7 +3,7 @@ let
 
   pupkey = "8WRX+ED+mWOVirSlLx8To8QycVudUri7VhrxLBLgARo=";
   tunnelipsubnet = "fe80::21:4958/64";
-  name = "ffdaDN42";
+  name = "ffdaDN42_R2";
   ASN = "4242421084";
   peertunnelip = "fe80::6766";
   ListenPort = "";
@@ -65,7 +65,6 @@ in
     config = lib.mkAfter ''
       protocol bgp ${toString name} from dnpeers {
           neighbor ${toString peertunnelip}%${toString name} as ${toString ASN};
-          local role ${toString role};
       }
     '';
   };

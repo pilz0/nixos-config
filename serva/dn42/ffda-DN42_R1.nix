@@ -8,7 +8,6 @@ let
   peertunnelip = "fe80::6766";
   ListenPort = "";
   wgendpoint = "v4.dn42-router1.darmstadt.freifunk.net:20663";
-  role = "peer";
 in
 
 {
@@ -65,7 +64,6 @@ in
     config = lib.mkAfter ''
       protocol bgp ${toString name} from dnpeers {
           neighbor ${toString peertunnelip}%${toString name} as ${toString ASN};
-          local role ${toString role};
       }
     '';
   };

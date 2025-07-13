@@ -26,9 +26,11 @@ in
     ./rhea-dn42.nix
     #    ./katja-dn42.nix
     ./nojus-dn42.nix
+    ./ffda-DN42_R1.nix
+    ./ffda-DN42_R2.nix
   ];
   age.secrets.wg = {
-    file = .../secrets/wg.age;
+    file = ../../secrets/wg.age;
     owner = "systemd-network";
     group = "systemd-network";
   };
