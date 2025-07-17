@@ -1,0 +1,3 @@
+# robots.txt for https://as214958.net/
+User-agent: *
+Disallow: *

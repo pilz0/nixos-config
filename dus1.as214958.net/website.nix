@@ -18,5 +18,10 @@
       group = "nginx";
       user = "nginx";
     };
+    "as214958_web/robots.txt" = {
+      source = ./as214958_web/robots.txt;
+      group = "nginx";
+      user = "nginx";
+    };
   };
 }

@@ -11,10 +11,10 @@
   };
   systemd.network = {
     netdevs = {
-      "dus1" = {
+      "wgserva" = {
         netdevConfig = {
           Kind = "wireguard";
-          Name = "dus1";
+          Name = "wgserva";
           MTUBytes = "1420";
         };
         wireguardConfig = {
@@ -26,26 +26,22 @@
             PublicKey = "NxHkdwZPVL+3HdrHTFOslUpUckTf0dzEG9qpZ0FTBnA=";
             AllowedIPs = [
               "::/0"
-              "0.0.0.0/0"
             ];
-            PersistentKeepalive = 25;
           }
         ];
       };
     };
     networks."wgserva" = {
       matchConfig.Name = "wgserva";
-      address = [ "2a0e:8f02:f017:2::1337/64" ];
+      address = [ "2a0e:8f02:f017:2::1337/128" ];
       routes = [
         {
-          Destination = "2a0e:8f02:f017:2::1312/64";
-          #Scope = "link";
+          Destination = "2a0e:8f02:f017:2::1338/128";
+          Scope = "link";
         }
       ];
       networkConfig = {
-        IPv4Forwarding = true;
         IPv6Forwarding = true;
-        IPv4ReversePathFilter = "no";
         IPv6AcceptRA = false;
         DHCP = false;
       };
@@ -58,25 +54,8 @@
 
   services.bird = {
     config = lib.mkAfter ''
-      protocol ospf wgserva {
-          # import none;
-          # export none;
-          area 0 {
-            interface "wgserva" {
-            hello 10;
-            retransmit 5;
-            cost 10;
-            transmit delay 1;
-            dead count 4;
-            wait 40;
-            type broadcast;
-            priority 1;
-            authentication none;
-            neighbors {
-              2a0e:8f02:f017:2::1312;
-            };
-            };
-          };
+      protocol bgp wgserva from ibgp {
+          neighbor 2a0e:8f02:f017:2::1338 as 214958;
       }
     '';
   };

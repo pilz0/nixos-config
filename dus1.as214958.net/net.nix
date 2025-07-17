@@ -66,12 +66,11 @@
   '';
 
   networking.firewall = {
+    trustedInterfaces = [ "wgserva" ];
     allowedTCPPorts = [
       22 # ssh
-      53 # DNS
       80 # http
       443 # https
-      179 # bgp
       51820 # Wireguard
       config.services.prometheus.exporters.bird.port
       config.services.prometheus.exporters.wireguard.port
@@ -80,10 +79,8 @@
     ];
     allowedUDPPorts = [
       22 # ssh
-      53 # DNS
       80 # http
       443 # https
-      179 # bgp
       51820 # wireguard
       config.services.prometheus.exporters.bird.port
       config.services.prometheus.exporters.wireguard.port

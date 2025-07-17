@@ -7,12 +7,23 @@
     ./bgp-filters.nix
     ./bgp-peerings.nix
     ./looking-glass.nix
-    ./rpki.nix
-    ./ospf_to_serva.nix
+    #   ./rpki.nix # disabled due to resource usage
+    ./bgp_to_serva.nix # disabled due to issues with systemd-networkd
   ];
+
+  networking.firewall.interfaces = {
+    "ens18".allowedTCPPorts = [ 179 ];
+    "ens19".allowedTCPPorts = [ 179 ];
+  };
 
   systemd = {
     network = {
+      config = {
+        networkConfig = {
+          ManageForeignRoutes = false;
+          ManageForeignRoutingPolicyRules = false;
+        };
+      };
       wait-online.enable = false;
       wait-online.anyInterface = false;
       enable = true;
@@ -55,20 +66,37 @@
       roa4 table rpki4;
       roa6 table rpki6;
 
-      protocol rpki rpki1
-      {
-          roa4 { table rpki4; };
-          roa6 { table rpki6; };
-          remote "::1" port 8362;
-          retry 300;
+      protocol rpki routinator1 {
+        roa4 { table rpki4; };
+        roa6 { table rpki6; };
+        remote "rpki.level66.network" port 3323;
+        retry keep 90;
+        refresh keep 900;
+        expire keep 172800;
       }
-      function is_rpki_invalid_v4() {
-          return roa_check(rpki4, net, bgp_path.last_nonaggregated) = ROA_INVALID;
+      protocol rpki routinator2 {
+        roa4 { table rpki4; };
+        roa6 { table rpki6; };
+        remote "rpki.zotan.network" port 3323;
+        retry keep 90;
+        refresh keep 900;
+        expire keep 172800;
+      }
+      function reject_rpki_invalid4() 
+      {
+        if roa_check(rpki4, net, bgp_path.last_nonaggregated) = ROA_INVALID then {
+          print "Reject: RPKI invalid: ", net, " ", bgp_path;
+          reject;
         }
-      function is_rpki_invalid_v6() {
-          return roa_check(rpki6, net, bgp_path.last_nonaggregated) = ROA_INVALID;
-        }
+      }
 
+      function reject_rpki_invalid6() 
+      {
+        if roa_check(rpki6, net, bgp_path.last_nonaggregated) = ROA_INVALID then {
+          print "Reject: RPKI invalid: ", net, " ", bgp_path;
+          reject;
+        }
+      }
       protocol device {
       scan time 60;
       }
@@ -95,6 +123,44 @@
               route 2a0e:8f02:f017::/48 unreachable;
       }
 
+      template bgp ibgp {
+        path metric 1;
+        local as 214958;
+        enable extended messages on;
+        graceful restart on;
+        long lived graceful restart on;
+        ipv4 {
+            import keep filtered;
+            import filter {
+              reject_long_aspaths();
+              reject_bogon_asns();
+              reject_default_route4();
+              reject_bogon_prefixes4();
+              reject_ixp_prefixes4();
+              reject_rpki_invalid4();
+              accept;
+            };
+            export filter {
+              # if (net.type = NET_IP4 && net ~ [ ]) then accept;
+              reject;
+            };
+        };
+        ipv6 {
+            import keep filtered;
+            import filter {
+              reject_long_aspaths();
+              reject_bogon_asns();
+              reject_default_route6();
+              reject_bogon_prefixes6();
+              reject_ixp_prefixes6();
+              reject_rpki_invalid6();
+              accept;
+            };
+            export filter {
+              accept;
+            };
+        };
+      }
       template bgp peers {
           path metric 1;
           local as 214958;
@@ -110,7 +176,7 @@
                 reject_bogon_prefixes4();
                 reject_ixp_prefixes4();
                 reject_small_prefixes4();
-                if is_rpki_invalid_v4() then reject;
+                reject_rpki_invalid4();
                 accept;
               };
               export filter {
@@ -127,7 +193,7 @@
                 reject_bogon_prefixes6();
                 reject_ixp_prefixes6();
                 reject_small_prefixes6();
-                if is_rpki_invalid_v6() then reject;
+                reject_rpki_invalid6();
                 accept;
               };
               export filter {

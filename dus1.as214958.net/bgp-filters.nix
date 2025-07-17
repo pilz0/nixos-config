@@ -9,7 +9,7 @@
       {
         if ( bgp_path.len > 50 ) then {
           # optional logging:
-          # print "Reject: Too long AS path: ", net, " ", bgp_path;
+          print "Reject: Too long AS path: ", net, " ", bgp_path;
           reject;
         }
       }
@@ -30,24 +30,21 @@
       {
         bogon_asns = BOGON_ASNS;
         if ( bgp_path ~ bogon_asns ) then {
-          # optional logging:
-          # print "Reject: bogon AS_PATH: ", net, " ", bgp_path;
+          print "Reject: bogon AS_PATH: ", net, " ", bgp_path;
           reject;
         }
       }
       function reject_default_route4()
       {
         if net = 0.0.0.0/0 then {
-          # optional logging:
-          # print "Reject: Defaultroute: ", net, " ", bgp_path;
+          print "Reject: Defaultroute: ", net, " ", bgp_path;
           reject;
         }
       }
       function reject_default_route6()
       {
         if net = ::/0 then {
-          # optional logging:
-          # print "Reject: Defaultroute: ", net, " ", bgp_path;
+          print "Reject: Defaultroute: ", net, " ", bgp_path;
           reject;
         }
       }
@@ -127,6 +124,7 @@
       {
         ixp_prefixes4 = IXP_PREFIXES4;
         if (net ~ ixp_prefixes4) then {
+          print "Reject: IXP Prefix detected: ", net, " ", bgp_path;
           reject;
         }
       }
@@ -135,6 +133,7 @@
       {
         ixp_prefixes6 = IXP_PREFIXES6;
         if (net ~ ixp_prefixes6) then {
+          print "Reject: IXP Prefix detected: ", net, " ", bgp_path;
           reject;
         }
       }
