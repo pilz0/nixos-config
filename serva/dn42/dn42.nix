@@ -139,10 +139,10 @@ in
     };
     networks."dus1" = {
       matchConfig.Name = "dus1";
-      address = [ "2a0e:8f02:f017:2::1312/64" ];
+      address = [ "2a0e:8f02:f017:2::1338/128" ];
       routes = [
         {
-          Destination = "2a0e:8f02:f017:2::1337/64";
+          Destination = "2a0e:8f02:f017:2::1337/128";
           Scope = "link";
         }
       ];
@@ -277,28 +277,23 @@ in
                 };
             }
 
-            protocol ospf {
-                import none;
-                export none;
-                area 0 {
-                  interface "dus1" {
-                  hello 10;
-                  retransmit 5;
-                  cost 10;
-                  transmit delay 1;
-                  dead count 4;
-                  wait 40;
-                  type broadcast;
-                  priority 1;
-                  authentication none;
-                  neighbors {
-                    2a0e:8f02:f017:2::1337;
-                  };
-                  };
-                };
-            }
-
-              template bgp dnpeers {
+      protocol bgp dus1 {
+          path metric 1;
+          local as 214958;
+          enable extended messages on;
+          graceful restart on;
+          long lived graceful restart on;
+          ipv4 {
+            import none;
+            export none;
+          };
+          ipv6 {
+            import all;
+            export none;
+          };
+          neighbor 2a0e:8f02:f017:2::1337 as 214958;
+      }         
+		template bgp dnpeers {
                   local as OWNAS;
                   path metric 1;
                   

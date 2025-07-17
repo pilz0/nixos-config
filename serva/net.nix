@@ -70,6 +70,7 @@
   #  };
 
   networking.firewall = {
+    trustedInterfaces = [ "dus1" ];
     allowedTCPPorts = [
       22 # ssh
       53 # DNS
