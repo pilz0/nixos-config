@@ -8,7 +8,7 @@
     ./bgp-peerings.nix
     ./looking-glass.nix
     #   ./rpki.nix # disabled due to resource usage
-    ./bgp_to_serva.nix # disabled due to issues with systemd-networkd
+    #   ./bgp_to_serva.nix # disabled due to issues with the IPv6 connectivity from server
   ];
 
   networking.firewall.interfaces = {
@@ -161,7 +161,8 @@
             };
         };
       }
-      template bgp peers {
+
+      template bgp ebgp {
           path metric 1;
           local as 214958;
           enable extended messages on;
@@ -177,6 +178,8 @@
                 reject_ixp_prefixes4();
                 reject_small_prefixes4();
                 reject_rpki_invalid4();
+                strip_too_many_communities();
+                honor_graceful_shutdown();
                 accept;
               };
               export filter {
@@ -194,6 +197,8 @@
                 reject_ixp_prefixes6();
                 reject_small_prefixes6();
                 reject_rpki_invalid6();
+                strip_too_many_communities();
+                honor_graceful_shutdown();
                 accept;
               };
               export filter {
@@ -201,6 +206,83 @@
                 reject;
               };
           };
+      }
+
+      template bgp peers from ebgp {
+        ipv4 {
+          import filter {
+            reject_long_aspaths();
+            reject_bogon_asns();
+            reject_default_route4();
+            reject_bogon_prefixes4();
+            reject_ixp_prefixes4();
+            reject_small_prefixes4();
+            reject_rpki_invalid4();
+            strip_too_many_communities();
+            honor_graceful_shutdown();
+            reject_transit_paths();
+            accept;
+          };
+          import limit 1000 action restart;
+        };
+        ipv6 {
+          import filter {
+            reject_long_aspaths();
+            reject_bogon_asns();
+            reject_default_route6();
+            reject_bogon_prefixes6();
+            reject_ixp_prefixes6();
+            reject_small_prefixes6();
+            reject_rpki_invalid6();
+            strip_too_many_communities();
+            honor_graceful_shutdown();
+            reject_transit_paths();
+            accept;
+          };
+          import limit 500 action restart;
+        };
+      }
+      template bgp rs_peer from ebgp {
+        ipv4 {
+          import filter {
+            reject_long_aspaths();
+            reject_bogon_asns();
+            reject_default_route4();
+            reject_bogon_prefixes4();
+            reject_ixp_prefixes4();
+            reject_small_prefixes4();
+            reject_rpki_invalid4();
+            strip_too_many_communities();
+            honor_graceful_shutdown();
+            reject_transit_paths();
+            accept;
+          };
+          import limit 450000 action restart;
+        };
+        ipv6 {
+          import filter {
+            reject_long_aspaths();
+            reject_bogon_asns();
+            reject_default_route6();
+            reject_bogon_prefixes6();
+            reject_ixp_prefixes6();
+            reject_small_prefixes6();
+            reject_rpki_invalid6();
+            strip_too_many_communities();
+            honor_graceful_shutdown();
+            reject_transit_paths();
+            accept;
+          };
+          import limit 150000 action restart;
+        };
+      }
+      template bgp client from ebgp {
+        ipv4 {
+          import limit 3000000 action restart;
+        };
+        ipv6 {
+          import limit 400000 action restart;
+        };
       }
     '';
   };

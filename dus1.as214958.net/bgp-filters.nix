@@ -5,6 +5,7 @@
 {
   services.bird = {
     config = lib.mkBefore ''
+      # https://routing.denog.de/guides/route_filtering/inbound/as_path_length/
       function reject_long_aspaths()
       {
         if ( bgp_path.len > 50 ) then {
@@ -14,6 +15,7 @@
         }
       }
 
+      # https://routing.denog.de/guides/route_filtering/inbound/bogon_asn/
       define BOGON_ASNS = [
         0,                      # RFC 7607
         23456,                  # RFC 4893 AS_TRANS
@@ -34,6 +36,8 @@
           reject;
         }
       }
+
+      # https://routing.denog.de/guides/route_filtering/inbound/default_route/
       function reject_default_route4()
       {
         if net = 0.0.0.0/0 then {
@@ -48,6 +52,8 @@
           reject;
         }
       }
+
+      # https://routing.denog.de/guides/route_filtering/inbound/bogon_prefixes/
       define BOGON_PREFIXES4 = [  0.0.0.0/8+,         # RFC 1122 'this' Network
                                   10.0.0.0/8+,        # RFC 1918 Private
                                   100.64.0.0/10+,     # RFC 6598 Carrier grade nat space
@@ -62,7 +68,6 @@
                                   224.0.0.0/4+,       # RFC 5771 Multicast
                                   240.0.0.0/4+        # RFC 1112 Reserved
       ];
-
       function reject_bogon_prefixes4()
       prefix set bogon_prefixes4;
       {
@@ -96,6 +101,8 @@
               reject;
           }
       }
+
+      # https://routing.denog.de/guides/route_filtering/inbound/prefix_length/#__tabbed_1_4
       function reject_small_prefixes4()
       {
         # do not accept too short prefixes
@@ -104,7 +111,6 @@
           reject;
         }
       }
-
       function reject_small_prefixes6()
       {
         # do not accept too short prefixes
@@ -113,6 +119,8 @@
           reject;
         }
       }
+
+      # https://routing.denog.de/guides/route_filtering/inbound/peering_lan/
       define IXP_PREFIXES4 = [
         185.1.155.0/24 # LocIX DUS
       ];
@@ -138,6 +146,48 @@
         }
       }
 
+      # https://routing.denog.de/guides/route_filtering/inbound/number_of_bgp_communities/
+      function strip_too_many_communities() {
+          if ( ( bgp_community.len + bgp_ext_community.len + bgp_large_community.len ) >= 100 ) then {
+              print "Error: too many communities: ", bgp_community.len, " ", bgp_ext_community.len, " ",bgp_large_community.len;
+              bgp_community.empty;
+              bgp_ext_community.empty;
+              bgp_large_community.empty;
+          }
+      }
+
+      # https://bgpfilterguide.nlnog.net/guides/graceful_shutdown/
+      function honor_graceful_shutdown() {
+        if (65535, 0) ~ bgp_community then {
+          bgp_local_pref = 0;
+        }
+      }
+
+      # https://bgpfilterguide.nlnog.net/guides/no_transit_leaks/
+      define TRANSIT_ASNS = [ 174,                  # Cogent
+                              701,                  # UUNET
+                              1299,                 # Telia
+                              2914,                 # NTT Ltd.
+                              3257,                 # GTT Backbone
+                              3320,                 # Deutsche Telekom AG (DTAG)
+                              3356,                 # Level3
+                              3491,                 # PCCW
+                              4134,                 # Chinanet
+                              5511,                 # Orange opentransit
+                              6453,                 # Tata Communications
+                              6461,                 # Zayo Bandwidth
+                              6762,                 # Seabone / Telecom Italia
+                              6830,                 # Liberty Global
+                              7018 ];               # AT&T
+      function reject_transit_paths()
+      int set transit_asns;
+      {
+              transit_asns = TRANSIT_ASNS;
+              if (bgp_path ~ transit_asns) then {
+                      print "Reject: Transit ASNs found on IXP: ", net, " ", bgp_path;
+                      reject;
+              }
+      }
     '';
   };
 }
