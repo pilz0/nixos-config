@@ -31,6 +31,14 @@
     group = "grafana";
   };
 
+  environment.etc = {
+    "grafana-dashboards" = {
+      source = ../grafana-dashboards;
+      group = "grafana";
+      user = "grafana";
+    };
+  };
+
   services.grafana = {
     enable = true;
     declarativePlugins = with pkgs.grafanaPlugins; [
@@ -49,12 +57,6 @@
           name = "prometheus";
           url = "http://localhost:${toString config.services.prometheus.port}";
           uid = "e68e5107-0b44-4438-870c-019649e85d2b";
-        }
-        {
-          name = "Loki";
-          type = "loki";
-          url = "http://127.0.0.1:4040";
-          uid = "180d3e53-be75-4a6a-bb71-bdf437aec085";
         }
         {
           name = "trawelling";
@@ -130,58 +132,6 @@
       };
     };
   };
-  environment.etc = {
-    "grafana-dashboards/node-exporter.json" = {
-      source = ../grafana-dashboards/node-exporter.json;
-      group = "grafana";
-      user = "grafana";
-    };
-    "grafana-dashboards/restic.json" = {
-      source = ../grafana-dashboards/restic.json;
-      group = "grafana";
-      user = "grafana";
-    };
-    "grafana-dashboards/tor.json" = {
-      source = ../grafana-dashboards/tor.json;
-      group = "grafana";
-      user = "grafana";
-    };
-    "grafana-dashboards/smartctl.json" = {
-      source = ../grafana-dashboards/smartctl.json;
-      group = "grafana";
-      user = "grafana";
-    };
-    "grafana-dashboards/bird.json" = {
-      source = ../grafana-dashboards/bird.json;
-      group = "grafana";
-      user = "grafana";
-    };
-    "grafana-dashboards/unpoller.json" = {
-      source = ../grafana-dashboards/unpoller.json;
-      group = "grafana";
-      user = "grafana";
-    };
-    "grafana-dashboards/dn42.json" = {
-      source = ../grafana-dashboards/dn42.json;
-      group = "grafana";
-      user = "grafana";
-    };
-    "grafana-dashboards/postgres.json" = {
-      source = ../grafana-dashboards/postgres.json;
-      group = "grafana";
-      user = "grafana";
-    };
-    "grafana-alerts/contacts.yaml" = {
-      source = ../grafana-alerts/contacts.yaml;
-      group = "grafana";
-      user = "grafana";
-    };
-    "grafana-alerts/alert.yaml" = {
-      source = ../grafana-alerts/alert.yaml;
-      group = "grafana";
-      user = "grafana";
-    };
-  };
 
   services.prometheus = {
     scrapeConfigs = [
@@ -219,16 +169,6 @@
               "oob.dus1.as214958.net:${toString config.services.prometheus.exporters.wireguard.port}"
               "oob.dus1.as214958.net:${toString config.services.prometheus.exporters.smokeping.port}"
             ];
-
-          }
-        ];
-      }
-      {
-        job_name = "unifi";
-        scrape_interval = "30s";
-        static_configs = [
-          {
-            targets = [ "localhost:9130" ];
 
           }
         ];

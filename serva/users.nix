@@ -14,14 +14,5 @@
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII1mECV9Etr/nLIgg1E2mpFvAW1RexhhsRKrF7XcDEZI marie@framwok"
       ];
     };
-    april = {
-      isNormalUser = true;
-      description = "april";
-      createHome = true;
-      extraGroups = [ ];
-      openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOBF4P4mA/44Hi9966gD0TiaFA29sA36Qq8yLKwaPMaH _4pr1l@yaptop"
-      ];
-    };
   };
 }

@@ -30,7 +30,6 @@
 
   virtualisation.docker.enable = true;
   virtualisation.containerd.enable = true;
-  services.tailscale.enable = true;
 
   system.stateVersion = "23.11"; # Did you read the comment?
 }

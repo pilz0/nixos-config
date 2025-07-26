@@ -17,57 +17,8 @@
     127.0.0.1 cloud.pilz.foo
     172.22.179.129 serva.lg.pilz.foo
   '';
-  services.unpoller = {
-    #   enable = true;
-    influxdb.disable = true;
-    unifi = {
-      defaults = {
-        url = "https://localhost:8443";
-        user = "unpoller";
-        pass = "/srv/password";
-        verify_ssl = false;
-      };
-    };
-  };
 
   networking.useNetworkd = true;
-  #  systemd.network = {
-  #    enable = true;
-  #    netdevs = {
-  #      "50-wg-cybertrash" = {
-  #        netdevConfig = {
-  #          Kind = "wireguard";
-  #          Name = "wg-cybertrash";
-  #          MTUBytes = "1300";
-  #        };
-  #        wireguardConfig = {
-  #          PrivateKeyFile = config.age.secrets.wg.path;
-  #          ListenPort = 51820;
-  #        };
-  #        wireguardPeers = [
-  #          {
-  #            ## Laptop
-  #            PublicKey = "ufN4BlaAZZUXGcRDDQfDX7n0toGVzstjlF22nbHMT1E=";
-  #            AllowedIPs = [
-  #              "172.22.179.146"
-  #              "fd49:d69f:6:100::69/64"
-  #            ];
-  #          }
-  #        ];
-  #      };
-  #    };
-  #    networks.wg-cybertrash = {
-  #      matchConfig.Name = "wg-cybertrash";
-  #      address = [
-  #        "172.22.179.144/28"
-  #        "fd49:d69f:6:100::/56"
-  #      ];
-  #      networkConfig = {
-  #        IPv4Forwarding = true;
-  #        IPv6Forwarding = true;
-  #      };
-  #    };
-  #  };
 
   networking.firewall = {
     trustedInterfaces = [ "dus1" ];
