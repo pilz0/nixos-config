@@ -13,7 +13,7 @@
       initialize = true; # initializes the repo, don't set if you want manual control
       passwordFile = config.age.secrets.restic.path;
       paths = [
-        "/home/marie"
+        "/home/"
         "/var/"
       ];
       timerConfig = {

@@ -1,5 +1,4 @@
 {
-  config,
   ...
 }:
 {
@@ -58,6 +57,7 @@
       6903 # linuxvm
       6904 # linuxvm
       51820 # wireguard
+      1328 # prefixlabs
     ];
   };
 }

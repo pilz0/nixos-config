@@ -8,11 +8,6 @@
     owner = "mastodon";
     group = "mastodon";
   };
-  age.secrets.writefreely = {
-    file = ../secrets/writefreely.age;
-    owner = "writefreely";
-    group = "writefreely";
-  };
   age.secrets.s3-mastodon = {
     file = ../secrets/s3-mastodon.age;
     owner = "mastodon";

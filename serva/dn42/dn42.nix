@@ -1,7 +1,6 @@
 {
   lib,
   pkgs,
-  config,
   ...
 }:
 let
@@ -30,6 +29,7 @@ in
     ./ffda-DN42_R1.nix
     ./ffda-DN42_R2.nix
     ./dus1.nix
+    ./prefixlabs.nix
   ];
   age.secrets.wg = {
     file = ../../secrets/wg.age;

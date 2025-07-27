@@ -1,0 +1,114 @@
+ @font-face {
+     font-family: MonaspaceNeon-Light;
+     src: url(MonaspaceNeon-Light.woff);
+ }
+
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+ }
+
+ body {
+     background-color: #000000;
+     font-family: 'MonaspaceNeon-Light', 'Courier New', monospace;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     min-height: 100vh;
+     padding: 20px;
+ }
+
+ .container {
+     background-color: #d1c5c0;
+     padding: 60px 60px;
+     border-radius: 16px;
+     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+     text-align: center;
+     max-width: 1200px;
+     width: 100%;
+ }
+
+ h1 {
+     color: #37EBF3;
+     text-shadow: -1px 0 #f6ff00, 0 1px #f6ff00, 1px 0 #495057, 0 -1px #495057;
+     font-size: 32px;
+     font-weight: 300;
+     margin-bottom: 40px;
+     letter-spacing: -0.5px;
+ }
+
+ h2 {
+     color: #f6ff00;
+     font-size: 20px;
+     font-weight: 400;
+     margin-bottom: 20px;
+     margin-top: 40px;
+ }
+
+ .links-section {
+     margin-bottom: 40px;
+ }
+
+ .link {
+     display: inline-block;
+     margin: 16px 12px;
+     padding: 18px 32px;
+     background-color: #272932;
+     color: #37EBF3;
+     text-decoration: none;
+     border-radius: 12px;
+     border: 2px solid #f6ff00;
+     font-size: 16px;
+     font-weight: 500;
+     transition: all 0.2s ease;
+ }
+
+ .link:hover {
+     background-color: #e455ae;
+     transform: translateY(-2px);
+     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+     text-shadow: -1px 0 #f6ff00, 0 1px #f6ff00, 1px 0 #495057, 0 -1px #495057;
+
+ }
+
+ .link:active {
+     transform: translateY(0);
+ }
+
+ .diagram-section {
+     border-top: 1px solid #d6d8db;
+ }
+
+ .diagram-container {
+     background-color: #272932;
+     border: 2px solid #f6ff00;
+     border-radius: 24px;
+     padding: 30px;
+     text-align: left;
+     overflow-x: auto;
+ }
+
+ .network-info {
+     font-family: 'MonaspaceNeon-Light', monospace;
+     font-size: 14px;
+     line-height: 1.2;
+     color: #37EBF3;
+     white-space: pre;
+     margin: 0;
+ }
+
+ @media (max-width: 768px) {
+     .container {
+         padding: 40px 30px;
+     }
+
+     .link {
+         display: block;
+         margin: 16px 0;
+     }
+
+     .ascii-diagram {
+         font-size: 12px;
+     }
+ }

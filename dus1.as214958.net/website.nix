@@ -8,18 +8,8 @@
     };
   };
   environment.etc = {
-    "as214958_web/index.html" = {
-      source = ./as214958_web/index.html;
-      group = "nginx";
-      user = "nginx";
-    };
-    "as214958_web/peering.html" = {
-      source = ./as214958_web/peering.html;
-      group = "nginx";
-      user = "nginx";
-    };
-    "as214958_web/robots.txt" = {
-      source = ./as214958_web/robots.txt;
+    "as214958_web" = {
+      source = ./as214958_web;
       group = "nginx";
       user = "nginx";
     };

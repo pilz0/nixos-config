@@ -20,6 +20,7 @@
     network = {
       config = {
         networkConfig = {
+          # https://github.com/systemd/systemd/issues/36347
           ManageForeignRoutes = false;
           ManageForeignRoutingPolicyRules = false;
         };
@@ -31,7 +32,6 @@
         IPv4Forwarding = true;
         IPv6Forwarding = true;
       };
-
       netdevs = {
         "50-dummyinter" = {
           enable = true;
@@ -41,7 +41,6 @@
           };
         };
       };
-
       networks.dummyinter = {
         matchConfig.Name = "dummyinter";
         address = [
