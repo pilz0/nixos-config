@@ -9,6 +9,11 @@
     owner = "systemd-network";
     group = "systemd-network";
   };
+
+  networking.firewall = {
+    trustedInterfaces = [ "wgserva" ];
+  };
+
   systemd.network = {
     netdevs = {
       "wgserva" = {
@@ -53,7 +58,7 @@
   };
 
   services.bird = {
-    config = lib.mkAfter ''
+    config = lib.mkOrder 20 ''
       protocol bgp wgserva from ibgp {
           neighbor 2a0e:8f02:f017:2::1338 as 214958;
       }

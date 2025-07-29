@@ -4,7 +4,7 @@
 }:
 {
   services.bird = {
-    config = lib.mkAfter ''
+    config = lib.mkOrder 5 ''
       protocol bgp Servperso_V6 from client {
               neighbor 2a0c:b640:10::2:ffff as 34872;
       }

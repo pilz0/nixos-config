@@ -7,7 +7,7 @@
     ./bird.nix
     ./disko.nix
     ./hardware-configuration.nix
-    ./services.nix
+    ./nginx.nix
     ./website.nix
   ];
 

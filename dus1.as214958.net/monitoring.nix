@@ -1,4 +1,7 @@
-{ ... }:
+{
+  config,
+  ...
+}:
 {
   services.prometheus = {
     exporters = {
@@ -22,5 +25,13 @@
         ];
       };
     };
+  };
+  networking.firewall = {
+    allowedTCPPorts = [
+      config.services.prometheus.exporters.bird.port
+      config.services.prometheus.exporters.wireguard.port
+      config.services.prometheus.exporters.smokeping.port
+      config.services.prometheus.exporters.node.port
+    ];
   };
 }

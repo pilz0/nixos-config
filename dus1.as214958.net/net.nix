@@ -1,17 +1,17 @@
 {
-  config,
   ...
 }:
 {
-  networking.networkmanager.enable = false; # Disable NetworkManager
+  networking.networkmanager.enable = false;
   networking.useNetworkd = true;
 
   services.resolved = {
     enable = true;
-    dnssec = "false"; # Disable DNSSEC to reduce CPU usage
+    dnssec = "false";
     fallbackDns = [
       "2606:4700:4700::1111"
       "2606:4700:4700::1001"
+      "1.1.1.1"
     ];
     llmnr = "false";
     extraConfig = ''
@@ -37,6 +37,7 @@
         }
       ];
     };
+    # LoCIX DUS
     interfaces.ens19 = {
       ipv4 = {
         addresses = [
@@ -66,26 +67,13 @@
   '';
 
   networking.firewall = {
-    trustedInterfaces = [ "wgserva" ];
     allowedTCPPorts = [
       22 # ssh
       80 # http
       443 # https
-      51820 # Wireguard
-      config.services.prometheus.exporters.bird.port
-      config.services.prometheus.exporters.wireguard.port
-      config.services.prometheus.exporters.smokeping.port
-      config.services.prometheus.exporters.node.port
     ];
     allowedUDPPorts = [
-      22 # ssh
-      80 # http
-      443 # https
       51820 # wireguard
-      config.services.prometheus.exporters.bird.port
-      config.services.prometheus.exporters.wireguard.port
-      config.services.prometheus.exporters.smokeping.port
-      config.services.prometheus.exporters.node.port
     ];
   };
 

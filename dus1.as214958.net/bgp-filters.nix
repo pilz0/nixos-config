@@ -4,7 +4,7 @@
 }:
 {
   services.bird = {
-    config = lib.mkBefore ''
+    config = lib.mkOrder 1 ''
       # https://routing.denog.de/guides/route_filtering/inbound/as_path_length/
       function reject_long_aspaths()
       {
@@ -91,7 +91,6 @@
                                 fec0::/10+,                    # RFC 3879 old site local unicast
                                 ff00::/8+                      # RFC 4291 multicast
       ];
-
       function reject_bogon_prefixes6()
       prefix set bogon_prefixes6;
       {

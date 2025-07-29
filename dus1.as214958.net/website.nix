@@ -1,4 +1,7 @@
-{ ... }:
+{
+  config,
+  ...
+}:
 {
   services.nginx = {
     virtualHosts."as214958.net" = {
@@ -10,8 +13,8 @@
   environment.etc = {
     "as214958_web" = {
       source = ./as214958_web;
-      group = "nginx";
-      user = "nginx";
+      group = config.services.nginx.group;
+      user = config.services.nginx.user;
     };
   };
 }
