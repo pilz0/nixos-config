@@ -1,14 +1,16 @@
 { lib, ... }:
 {
   imports = [
-    ./net.nix
-    ./monitoring.nix
-    ./users.nix
-    ./bird.nix
-    ./disko.nix
     ./hardware-configuration.nix
-    ./nginx.nix
-    ./website.nix
+
+    ./users.nix
+    ./disko.nix
+    ./network/net.nix
+    ./network/bird.nix
+    ./services/nginx.nix
+    ./services/website.nix
+    ./services/monitoring.nix
+
   ];
 
   nix.optimise.dates = [ "03:45" ];

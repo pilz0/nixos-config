@@ -91,7 +91,6 @@
               ipv6;
               route 2a0e:8f02:f017::/48 unreachable;
       }
-
     '';
   };
 }

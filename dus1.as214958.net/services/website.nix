@@ -12,7 +12,7 @@
   };
   environment.etc = {
     "as214958_web" = {
-      source = ./as214958_web;
+      source = ../as214958_web;
       group = config.services.nginx.group;
       user = config.services.nginx.user;
     };
