@@ -7,7 +7,6 @@
   imports = [
     ./bgp-filters.nix
     ./bgp-peerings.nix
-    ./looking-glass.nix
     ./rpki.nix
     ./bird_templates.nix
     #   ./routinator.nix # disabled due to resource usage
