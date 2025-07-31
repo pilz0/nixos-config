@@ -13,9 +13,13 @@
     #   ./bgp_to_serva.nix # disabled due to issues with the IPv6 connectivity from server
   ];
 
-  networking.firewall.interfaces = {
-    "ens18".allowedTCPPorts = [ 179 ];
-    "ens19".allowedTCPPorts = [ 179 ];
+  networking.firewall = {
+    interfaces = {
+      "ens19".allowedTCPPorts = [ 179 ];
+    };
+    extraCommands = ''
+      ${pkgs.iptables}/bin/ip6tables -A INPUT -p tcp --dport 179 -i ens18 -s 2a0c:b640:10::2:ffff -j ACCEPT
+    '';
   };
 
   systemd = {
@@ -34,7 +38,6 @@
         enable = false;
         anyInterface = false;
       };
-      enable = true;
       netdevs = {
         "50-dummyinter" = {
           enable = true;

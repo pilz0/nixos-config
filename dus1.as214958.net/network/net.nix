@@ -2,7 +2,6 @@
   ...
 }:
 {
-  networking.networkmanager.enable = false;
   networking.useNetworkd = true;
 
   services.resolved = {
@@ -28,37 +27,27 @@
 
   networking.hostName = "dus1";
 
-  networking = {
-    interfaces.ens18 = {
-      ipv6.addresses = [
-        {
-          address = "2a0c:b640:10::2:44";
-          prefixLength = 112;
-        }
-      ];
-    };
-    # LoCIX DUS
-    interfaces.ens19 = {
-      ipv4 = {
-        addresses = [
-          {
-            address = "185.1.155.158";
-            prefixLength = 24;
-          }
+  systemd.network = {
+    enable = true;
+    networks = {
+      "10-ens18" = {
+        matchConfig.Name = "ens18";
+        address = [
+          "2a0c:b640:10::2:44/112"
         ];
-      };
-      ipv6 = {
-        addresses = [
-          {
-            address = "2a0c:b641:701:0:a5:21:4958:1";
-            prefixLength = 64;
-          }
+        routes = [
+          { Gateway = "2a0c:b640:10::2:ffff"; }
         ];
+        linkConfig.RequiredForOnline = "routable";
       };
-    };
-    defaultGateway6 = {
-      address = "2a0c:b640:10::2:ffff";
-      interface = "ens18";
+      "20-ens19" = {
+        matchConfig.Name = "ens19";
+        address = [
+          "185.1.155.158/24"
+          "2a0c:b641:701:0:a5:21:4958:1/64"
+        ];
+        linkConfig.RequiredForOnline = "no";
+      };
     };
   };
 

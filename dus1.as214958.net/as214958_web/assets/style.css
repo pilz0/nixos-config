@@ -21,7 +21,7 @@
 
  .container {
      background-color: #d1c5c0;
-     padding: 60px 60px;
+     padding: 30px 30px;
      border-radius: 16px;
      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
      text-align: center;
@@ -40,6 +40,7 @@
 
  h2 {
      color: #f6ff00;
+     text-shadow: -1px 0 #37EBF3, 0 1px #37EBF3, 1px 0 #495057, 0 -1px #495057;
      font-size: 20px;
      font-weight: 400;
      margin-bottom: 20px;
@@ -69,7 +70,6 @@
      transform: translateY(-2px);
      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
      text-shadow: -1px 0 #f6ff00, 0 1px #f6ff00, 1px 0 #495057, 0 -1px #495057;
-
  }
 
  .link:active {
@@ -84,18 +84,33 @@
      background-color: #272932;
      border: 2px solid #f6ff00;
      border-radius: 24px;
-     padding: 30px;
+     padding: 10px;
      text-align: left;
-     overflow-x: auto;
+ }
+
+ .email-link {
+     color: #37EBF3;
  }
 
  .network-info {
      font-family: 'MonaspaceNeon-Light', monospace;
-     font-size: 14px;
      line-height: 1.2;
      color: #37EBF3;
-     white-space: pre;
      margin: 0;
+ }
+
+ th,
+ td {
+     vertical-align: top;
+     padding: 0.3em;
+ }
+
+ .peering-table {
+     width: 100%;
+     border: 2px solid #f6ff00;
+     padding: 2px #f6ff00;
+     border-collapse: collapse;
+     margin-top: 20px;
  }
 
  @media (max-width: 768px) {
