@@ -57,10 +57,18 @@
         }
       }
 
-      function reject_roa_invalid() 
+      function reject_roa_invalid4() 
       {
         if roa_check(dn42_roa, net, bgp_path.last) != ROA_VALID then {
           print "[dn42v4] Not importing ", net, " because the ROA check failed for ASN ", bgp_path.last, " Full ASN path: ", bgp_path;
+          reject;
+        }
+      }
+
+      function reject_roa_invalid6() 
+      {
+        if roa_check(dn42_roa_v6, net, bgp_path.last) != ROA_VALID then {
+          print "[dn42v6] Not importing ", net, " because the ROA check failed for ASN ", bgp_path.last, " Full ASN path: ", bgp_path;
           reject;
         }
       }

@@ -18,16 +18,11 @@
             import filter {
               reject_invalid_net4();
               reject_ownnetset4();
-              reject_roa_invalid();
+              reject_roa_invalid4();
               print "[dn42v4] Importing ", net, " AS PATH: ", bgp_path;
               accept;
             };
             export filter {
-              if source !~ [RTS_STATIC, RTS_BGP] then {
-                print "[dn42v4] Not exporting ", net, " because it is not static or BGP, but ", source;
-                reject;
-              }
-              print "[dn42v4] Exporting ", net, " via ", bgp_path;
               accept;
             };
             import limit 9000 action block;
@@ -39,16 +34,11 @@
             import filter {
               reject_invalid_net6();
               reject_ownnetset6();
-              reject_roa_invalid();
+              reject_roa_invalid6();
               print "[dn42] Importing ", net, " AS PATH: ", bgp_path;
               accept;
             };
             export filter {
-              if source !~ [RTS_STATIC, RTS_BGP] then {
-                print "[dn42] Not exporting ", net, " because it is not static or BGP, but ", source;
-                reject;
-              }
-              print "[dn42] Exporting ", net, " via ", bgp_path;
               accept;
             };
             import limit 9000 action block;

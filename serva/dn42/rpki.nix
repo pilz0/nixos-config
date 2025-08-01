@@ -4,7 +4,7 @@
 }:
 {
   services.bird = {
-    config = lib.mkOrder 4 ''
+    config = lib.mkOrder 3 ''
       roa4 table dn42_roa;
       roa6 table dn42_roa_v6;
 
