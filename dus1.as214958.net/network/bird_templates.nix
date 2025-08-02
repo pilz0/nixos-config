@@ -12,35 +12,35 @@
         graceful restart on;
         long lived graceful restart on;
         ipv4 {
-            import keep filtered;
-            import filter {
-              reject_long_aspaths();
-              reject_bogon_asns();
-              reject_default_route4();
-              reject_bogon_prefixes4();
-              reject_ixp_prefixes4();
-              reject_rpki_invalid4();
-              accept;
-            };
-            export filter {
-              # if (net.type = NET_IP4 && net ~ [ ]) then accept;
-              reject;
-            };
+          import keep filtered;
+          import filter {
+            reject_long_aspaths();
+            reject_bogon_asns();
+            reject_default_route4();
+            reject_bogon_prefixes4();
+            reject_ixp_prefixes4();
+            reject_rpki_invalid4();
+            accept;
+          };
+          export filter {
+            # if (net.type = NET_IP4 && net ~ [ ]) then accept;
+            reject;
+          };
         };
         ipv6 {
-            import keep filtered;
-            import filter {
-              reject_long_aspaths();
-              reject_bogon_asns();
-              reject_default_route6();
-              reject_bogon_prefixes6();
-              reject_ixp_prefixes6();
-              reject_rpki_invalid6();
-              accept;
-            };
-            export filter {
-              accept;
-            };
+          import keep filtered;
+          import filter {
+            reject_long_aspaths();
+            reject_bogon_asns();
+            reject_default_route6();
+            reject_bogon_prefixes6();
+            reject_ixp_prefixes6();
+            reject_rpki_invalid6();
+            accept;
+          };
+          export filter {
+            accept;
+          };
         };
       }
 
@@ -51,23 +51,23 @@
           graceful restart on;
           long lived graceful restart on;
           ipv4 {
-              import keep filtered;
-              import filter {
-                reject_long_aspaths();
-                reject_bogon_asns();
-                reject_default_route4();
-                reject_bogon_prefixes4();
-                reject_ixp_prefixes4();
-                reject_small_prefixes4();
-                reject_rpki_invalid4();
-                strip_too_many_communities();
-                honor_graceful_shutdown();
-                accept;
-              };
-              export filter {
-                # if (net.type = NET_IP4 && net ~ [ ]) then accept;
-                reject;
-              };
+            import keep filtered;
+            import filter {
+              reject_long_aspaths();
+              reject_bogon_asns();
+              reject_default_route4();
+              reject_bogon_prefixes4();
+              reject_ixp_prefixes4();
+              reject_small_prefixes4();
+              reject_rpki_invalid4();
+              strip_too_many_communities();
+              honor_graceful_shutdown();
+              accept;
+            };
+            export filter {
+              # if (net.type = NET_IP4 && net ~ [ ]) then accept;
+              reject;
+            };
           };
           ipv6 {
               import keep filtered;

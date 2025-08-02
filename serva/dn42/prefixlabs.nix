@@ -6,7 +6,7 @@ let
   ASN = "4242421240";
   peertunnelip = "fe80::1240:11";
   ListenPort = "1328";
-  wgendpoint = "de-01.prefixlabs.net:0663";
+  wgendpoint = "de-01.prefixlabs.net:20663";
 in
 {
   systemd.network = {
