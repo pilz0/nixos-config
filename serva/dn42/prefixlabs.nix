@@ -2,11 +2,11 @@
 let
   pupkey = "ixeEBfac1BXpjNKbxcgL6Beg9HTgtmq6CjHIfMwNSDw=";
   tunnelipsubnet = "fe80::acab/64";
-  name = "prefixlabs_defra";
+  name = "prefixlabs";
   ASN = "4242421240";
   peertunnelip = "fe80::1240:11";
   ListenPort = "1328";
-  wgendpoint = "de-01.prefixlabs.net:0663";
+  wgendpoint = "de-01.prefixlabs.net:663";
 in
 {
   systemd.network = {
