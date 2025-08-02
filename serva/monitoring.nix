@@ -30,8 +30,12 @@
     owner = "grafana";
     group = "grafana";
   };
-
   environment.etc = {
+    "grafana-alerts" = {
+      source = ../grafana-alerts;
+      group = "grafana";
+      user = "grafana";
+    };
     "grafana-dashboards" = {
       source = ../grafana-dashboards;
       group = "grafana";
