@@ -1,7 +1,7 @@
 { config, lib, ... }:
 let
   pupkey = "ixeEBfac1BXpjNKbxcgL6Beg9HTgtmq6CjHIfMwNSDw=";
-  tunnelipsubnet = "fe80::acab/64";
+  tunnelipsubnet = "fe80::1312/64";
   name = "prefixlabs";
   ASN = "4242421240";
   peertunnelip = "fe80::1240:11";

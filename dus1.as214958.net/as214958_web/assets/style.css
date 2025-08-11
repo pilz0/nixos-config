@@ -99,7 +99,11 @@
      margin: 0;
  }
 
- th,
+ th {
+     vertical-align: top;
+     padding: 0.3em;
+ }
+
  td {
      vertical-align: top;
      padding: 0.3em;
@@ -107,6 +111,7 @@
 
  .peering-table {
      width: 100%;
+     padding: 10px;
      border: 2px solid #f6ff00;
      padding: 2px #f6ff00;
      border-collapse: collapse;
@@ -125,5 +130,32 @@
 
      .ascii-diagram {
          font-size: 12px;
+     }
+
+     .peering-table {
+         table-layout: auto;
+         font-size: 14px;
+     }
+
+     .peering-table td,
+     .peering-table th {
+         padding: 6px;
+         word-break: break-word;
+     }
+
+     div:has(.peering-table) {
+         overflow-x: auto;
+         -webkit-overflow-scrolling: touch;
+     }
+ }
+
+ @media (max-width: 480px) {
+     .peering-table {
+         font-size: 12px;
+     }
+
+     .peering-table td,
+     .peering-table th {
+         padding: 4px;
      }
  }
