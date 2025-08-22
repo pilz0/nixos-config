@@ -52,23 +52,19 @@
       ...
     }@inputs:
     {
+      packages.x86_64-linux =
+        let
+          pkgs = import nixpkgs { system = "x86_64-linux"; };
+        in
+        {
+          pmacct-custom = pkgs.callPackage ./pmacct-custom.nix {
+            withKafka = true;
+            withJansson = true;
+            withPgSQL = true;
+            withSQLite = true;
+          };
+        };
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
-      colmenaHive = colmena.lib.makeHive {
-        meta = {
-          nixpkgs = import nixpkgs {
-            system = "x86_64-linux";
-            overlays = [ ];
-          };
-        };
-        "dus1.as214958.net" = {
-          deployment = {
-            targetHost = "oob.dus1.as214958.net";
-            targetPort = 22;
-            targetUser = "root";
-          };
-          time.timeZone = "Europe/Berlin";
-        };
-      };
       nixosConfigurations = {
         serva = nixpkgs.lib.nixosSystem {
           specialArgs = {
@@ -96,15 +92,23 @@
             inherit self;
             inherit inputs;
             inherit agenix;
+            pmacct-custom = self.packages.x86_64-linux.pmacct-custom;
           };
           system = "x86_64-linux";
           modules = [
             ./dus1.as214958.net/main.nix
             ./common.nix
-            ./common-pkgs.nix
+            #./common-pkgs.nix
             agenix.nixosModules.default
             disko.nixosModules.disko
-
+            (
+              { pkgs, ... }:
+              {
+                environment.systemPackages = [
+                  self.packages.x86_64-linux.pmacct-custom
+                ];
+              }
+            )
             {
               environment.systemPackages = [
                 agenix.packages.x86_64-linux.default

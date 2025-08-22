@@ -38,7 +38,6 @@
     wget
     restic
     chromium
-    winetricks
     helvum
     lutris
     polychromatic
@@ -47,7 +46,6 @@
     woeusb
     antimicrox
     pavucontrol
-    wineWowPackages.wayland
     tor-browser
     drawio
     google-chrome

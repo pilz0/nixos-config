@@ -33,6 +33,7 @@ in
     ./bird_templates.nix
     ./filters.nix
     ./rpki.nix
+    ./NOT_MNT.nix
   ];
   age.secrets.wg = {
     file = ../../secrets/wg.age;

@@ -1,25 +1,20 @@
 {
-  pkgs,
   lib,
-  config,
+  pmacct-custom,
   ...
 }:
 {
-  # https://brooks.sh/2019/11/17/network-flow-analysis-with-prometheus/
-  environment.systemPackages = with pkgs; [
-    pmacct
-  ];
+
+  # pmacctd without Kafka: keep everything in memory for exporter to query
   systemd.services.pmacctd = {
     enable = true;
-    description = "pmacctd Netflow probe";
-    unitConfig = {
-      Type = "simple";
-    };
-    serviceConfig = {
-      execStart = "${pkgs.pmacctd}/sbin/pmacctd -f /etc/pmacct/pmacctd.conf";
-    };
-    wantedBy = [ "multi-user.target" ];
+    description = "pmacctd flow collector (pcap) for Prometheus exporter";
     after = [ "network.target" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      ExecStart = "${pmacct-custom}/sbin/pmacctd -f /etc/pmacct/pmacctd.conf";
+      Restart = "on-failure";
+    };
   };
 
   systemd = {
@@ -33,7 +28,7 @@
           };
         };
       };
-      networks.dummyinter = {
+      networks."lo2" = {
         matchConfig.Name = "lo2";
         address = [
           "127.0.0.2/32"
@@ -46,6 +41,7 @@
   };
 
   environment.etc."pmacct/pmacctd.conf".text = ''
+    # debug: true
     daemonize: false
     pcap_interfaces_map: /etc/pmacct/interfaces.map
     pre_tag_map: /etc/pmacct/pretag.map
@@ -54,7 +50,6 @@
     networks_file: /etc/pmacct/networks.lst
     networks_file_no_lpm: true
     sampling_rate: 1
-    aggregate: src_host, dst_host, src_port, dst_port, src_as, dst_as, label, proto
     !
     bgp_daemon: true
     bgp_daemon_ip: 127.0.0.2
@@ -62,12 +57,16 @@
     bgp_daemon_max_peers: 10
     bgp_agent_map: /etc/pmacct/peering_agent.map
     !
+    aggregate: src_host, dst_host, src_port, dst_port, src_as, dst_as, label, proto
+    !
     plugins: kafka
     kafka_output: json
     kafka_broker_host: kafka.as214958.net
+    kafka_broker_port: 9092
     kafka_refresh_time: 5
     kafka_history: 5m
     kafka_history_roundoff: m
+    kafka_topic: pmacct.acct
   '';
   environment.etc."pmacct/interfaces.map".text = ''
     ifindex=100  ifname=ens18
@@ -88,7 +87,6 @@
         description "pmacctd";
         local 127.0.0.1 as 214958;
         neighbor 127.0.0.2 port 180 as 214958;
-        rr client;
         hold time 90;
         keepalive time 30;
         graceful restart;
@@ -127,6 +125,7 @@
       listeners = [
         "INSIDE://:19092"
         "OUTSIDE://:9092"
+        "CONTROLLER://:9093"
       ];
       "auto.create.topics.enable" = true;
       "advertised.listeners" = [
@@ -136,39 +135,30 @@
       "listener.security.protocol.map" = [
         "INSIDE:PLAINTEXT"
         "OUTSIDE:PLAINTEXT"
+        "CONTROLLER:PLAINTEXT"
       ];
+      "inter.broker.listener.name" = "INSIDE";
       "controller.quorum.voters" = [
         "1@127.0.0.1:9093"
       ];
       "controller.listener.names" = [ "CONTROLLER" ];
+      "log.dirs" = [ "/var/lib/apache-kafka" ];
 
       "node.id" = 1;
       "process.roles" = [
         "broker"
         "controller"
       ];
-
-      # I prefer to use this directory, because /tmp may be erased
-      "log.dirs" = [ "/var/lib/apache-kafka" ];
-      "offsets.topic.replication.factor" = 1;
-      "transaction.state.log.replication.factor" = 1;
-      "transaction.state.log.min.isr" = 1;
     };
   };
 
-  # Set this so that systemd automatically create /var/lib/apache-kafka
-  # with the right permissions
   systemd.services.apache-kafka.unitConfig.StateDirectory = "apache-kafka";
 
   services.prometheus.exporters.flow = {
     enable = true;
-    brokers = [ "kafka.as214958.net:19092" ];
+    brokers = [ "localhost:9092" ];
     asn = 214958;
-    topic = "pmacct.acct:3:1";
-  };
-  networking.firewall = {
-    allowedTCPPorts = [
-      config.services.prometheus.exporters.flow.port
-    ];
+    openFirewall = true;
+    topic = "pmacct.acct";
   };
 }

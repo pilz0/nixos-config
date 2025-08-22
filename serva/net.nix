@@ -23,6 +23,7 @@
     trustedInterfaces = [ "dus1" ];
     allowedTCPPorts = [
       22 # ssh
+      20 # peering with not_mnt
       53 # DNS
       80 # http
       443 # https
@@ -41,6 +42,7 @@
     ];
     allowedUDPPorts = [
       22 # ssh
+      20 # peering with not_mnt
       53 # DNS
       80 # http
       443 # https
