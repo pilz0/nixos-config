@@ -1,6 +1,7 @@
 {
   lib,
   pmacct-custom,
+  flow-exporter-custom,
   ...
 }:
 {
@@ -154,11 +155,19 @@
 
   systemd.services.apache-kafka.unitConfig.StateDirectory = "apache-kafka";
 
-  services.prometheus.exporters.flow = {
+  systemd.services.flow-exporter = {
     enable = true;
-    brokers = [ "localhost:9092" ];
-    asn = 214958;
-    openFirewall = true;
-    topic = "pmacct.acct";
+    description = "Prometheus Flow Exporter";
+    after = [ "network.target" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      ExecStart = "${flow-exporter-custom}/bin/flow-exporter --brokers=kafka.as214958.net:9092 --topic=pmacct.acct --asn=214958";
+      Restart = "on-failure";
+    };
+  };
+  networking.firewall = {
+    allowedTCPPorts = [
+      9590 # flow-exporter
+    ];
   };
 }

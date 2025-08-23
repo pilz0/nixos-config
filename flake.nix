@@ -57,12 +57,13 @@
           pkgs = import nixpkgs { system = "x86_64-linux"; };
         in
         {
-          pmacct-custom = pkgs.callPackage ./pmacct-custom.nix {
+          pmacct-custom = pkgs.callPackage ./custom_pkgs/pmacct.nix {
             withKafka = true;
             withJansson = true;
             withPgSQL = true;
             withSQLite = true;
           };
+          flow-exporter-custom = pkgs.callPackage ./custom_pkgs/flow-exporter.nix { };
         };
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
       nixosConfigurations = {
@@ -93,6 +94,7 @@
             inherit inputs;
             inherit agenix;
             pmacct-custom = self.packages.x86_64-linux.pmacct-custom;
+            flow-exporter-custom = self.packages.x86_64-linux.flow-exporter-custom;
           };
           system = "x86_64-linux";
           modules = [
@@ -105,6 +107,7 @@
               { pkgs, ... }:
               {
                 environment.systemPackages = [
+                  self.packages.x86_64-linux.flow-exporter-custom
                   self.packages.x86_64-linux.pmacct-custom
                 ];
               }
