@@ -28,12 +28,12 @@ in
     ./nojus-dn42.nix
     ./ffda-DN42_R1.nix
     ./ffda-DN42_R2.nix
-    ./dus1.nix
     ./prefixlabs.nix
     ./bird_templates.nix
     ./filters.nix
     ./rpki.nix
     ./NOT_MNT.nix
+    ./maraun_dn42.nix
   ];
   age.secrets.wg = {
     file = ../../secrets/wg.age;

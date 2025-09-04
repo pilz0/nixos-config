@@ -1,36 +1,48 @@
 { config, lib, ... }:
+let
+
+  pupkey = "uS1AYe7zTGAP48XeNn0vppNjg7q0hawyh8Y0bvvAWhk=";
+  tunnelipsubnet = "fe80::acab/64";
+  name = "maraun_dn42";
+  ASN = "4242422225";
+  peertunnelip = "fe80::2225";
+  ListenPort = "";
+  wgendpoint = "37.120.175.249:20663";
+in
+
 {
-  # WG to dus1.as214958.net
+
   systemd.network = {
     netdevs = {
-      "dus1" = {
+      "${toString name}" = {
         netdevConfig = {
           Kind = "wireguard";
-          Name = "dus1";
+          Name = name;
           MTUBytes = "1420";
         };
         wireguardConfig = {
           PrivateKeyFile = config.age.secrets.wg.path;
+          ListenPort = ListenPort;
         };
         wireguardPeers = [
           {
-            PublicKey = "rGhXFZSj5KgQmudouZ4LRZnBBjv/0U1wcHcZiwgGeng=";
+            PublicKey = pupkey;
             AllowedIPs = [
               "::/0"
               "0.0.0.0/0"
             ];
-            Endpoint = "dus1.as214958.net:51820";
+            Endpoint = wgendpoint;
             PersistentKeepalive = 25;
           }
         ];
       };
     };
-    networks."dus1" = {
-      matchConfig.Name = "dus1";
-      address = [ "2a0e:8f02:f017:2::1338/128" ];
+    networks."${toString name}" = {
+      matchConfig.Name = name;
+      address = [ tunnelipsubnet ];
       routes = [
         {
-          Destination = "2a0e:8f02:f017:2::1337/128";
+          Destination = peertunnelip + "/64";
           Scope = "link";
         }
       ];
@@ -47,23 +59,11 @@
       };
     };
   };
+
   services.bird = {
     config = lib.mkAfter ''
-        protocol bgp dus1 {
-          path metric 1;
-          local as 214958;
-          enable extended messages on;
-          graceful restart on;
-          long lived graceful restart on;
-          ipv4 {
-            import none;
-            export none;
-          };
-          ipv6 {
-            import all;
-            export none;
-          };
-          neighbor 2a0e:8f02:f017:2::1337 as 214958;
+      protocol bgp ${toString name} from dnpeers {
+          neighbor ${toString peertunnelip}%${toString name} as ${toString ASN};
       }
     '';
   };
