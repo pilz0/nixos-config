@@ -10,8 +10,16 @@
     ./rpki.nix
     ./bird_templates.nix
     #   ./routinator.nix # disabled due to resource usage
-    #   ./bgp_to_serva.nix # disabled due to issues with the IPv6 connectivity from server
   ];
+
+  services.prometheus = {
+    exporters = {
+      bird = {
+        openFirewall = true;
+        enable = true;
+      };
+    };
+  };
 
   networking.firewall = {
     interfaces = {
@@ -20,43 +28,6 @@
     extraCommands = ''
       ${pkgs.iptables}/bin/ip6tables -A INPUT -p tcp --dport 179 -i ens18 -s 2a0c:b640:10::2:ffff -j ACCEPT
     '';
-  };
-
-  systemd = {
-    network = {
-      config = {
-        networkConfig = {
-          # https://github.com/systemd/systemd/issues/36347
-          ManageForeignRoutes = false;
-          ManageForeignRoutingPolicyRules = false;
-          IPv4Forwarding = true;
-          IPv6Forwarding = true;
-
-        };
-      };
-      wait-online = {
-        enable = false;
-        anyInterface = false;
-      };
-      netdevs = {
-        "50-dummyinter" = {
-          enable = true;
-          netdevConfig = {
-            Kind = "dummy";
-            Name = "dummyinter";
-          };
-        };
-      };
-      networks.dummyinter = {
-        matchConfig.Name = "dummyinter";
-        address = [
-          "2a0e:8f02:f017::1337/64"
-        ];
-        networkConfig = {
-          ConfigureWithoutCarrier = true;
-        };
-      };
-    };
   };
 
   services.bird = {

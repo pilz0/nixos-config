@@ -2,6 +2,9 @@
   ...
 }:
 {
+  imports = [
+    ./wgframwok.nix
+  ];
   networking.useNetworkd = true;
 
   services.resolved = {
@@ -48,6 +51,38 @@
         ];
         linkConfig.RequiredForOnline = "no";
       };
+      "30-dummyinter" = {
+        matchConfig.Name = "dummyinter";
+        address = [
+          "2a0e:8f02:f017::1337/64"
+        ];
+        networkConfig = {
+          ConfigureWithoutCarrier = true;
+        };
+      };
+
+    };
+    config = {
+      networkConfig = {
+        # https://github.com/systemd/systemd/issues/36347
+        ManageForeignRoutes = false;
+        ManageForeignRoutingPolicyRules = false;
+        IPv4Forwarding = true;
+        IPv6Forwarding = true;
+      };
+    };
+    wait-online = {
+      enable = false;
+      anyInterface = false;
+    };
+    netdevs = {
+      "50-dummyinter" = {
+        enable = true;
+        netdevConfig = {
+          Kind = "dummy";
+          Name = "dummyinter";
+        };
+      };
     };
   };
 
@@ -66,9 +101,8 @@
     ];
   };
 
-  # Optional: Limit systemd-resolved resource usage
   systemd.services.systemd-resolved.serviceConfig = {
-    CPUQuota = "25%"; # Limit CPU usage
+    CPUQuota = "25%";
     MemoryMax = "64M";
   };
 }

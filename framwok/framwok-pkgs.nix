@@ -94,4 +94,24 @@
       google-cloud-sdk.components.gke-gcloud-auth-plugin
     ])
   ];
+
+  programs.firefox.policies = {
+    DisablePocket = true;
+    DisableTelemetry = true;
+    PasswordManagerEnabled = false;
+    cookies = "reject";
+    DisableFirefoxStudies = true;
+  };
+
+  services.tailscale.enable = true;
+  programs.steam.enable = true;
+
+  programs.zsh.shellAliases = {
+    backup = "restic -r rclone:onedrive:/backup/server backup --verbose /home";
+  };
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+    nix-direnv.enable = true;
+  };
 }

@@ -10,7 +10,7 @@ buildGoModule (finalAttrs: {
 
   src = fetchFromGitHub {
     rev = "master";
-    owner = "pilz0";
+    owner = "neptune-networks";
     repo = "flow-exporter";
     sha256 = "sha256-GvXgE0tkdYJ8C35XH5lUi/GC2KZAQWQbdnS1aSSKxIY=";
   };

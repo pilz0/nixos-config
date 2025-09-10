@@ -1,10 +1,6 @@
 {
   description = "PilzOS";
   inputs = {
-    lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-1.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nixpkgs = {
       url = "github:nixos/nixpkgs/nixos-25.05";
     };
@@ -14,7 +10,6 @@
     agenix = {
       url = "github:ryantm/agenix";
     };
-    #    catppuccin.url = "github:catppuccin/nix";
     nixarr = {
       url = "github:rasmus-kirk/nixarr";
     };
@@ -30,25 +25,17 @@
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    colmena = {
-      url = "github:zhaofengli/colmena";
-      inputs.nixpkgs.follows = "nixpkgs";
-
-    };
   };
   outputs =
     {
       self,
       nixpkgs,
       agenix,
-      #      catppuccin,
-      #      lix-module,
       nixos-hardware,
       nixarr,
       home-manager,
       spicetify-nix,
       disko,
-      colmena,
       ...
     }@inputs:
     {
@@ -67,7 +54,7 @@
         };
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
       nixosConfigurations = {
-        serva = nixpkgs.lib.nixosSystem {
+        "serva" = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit self;
             inherit inputs;
@@ -77,12 +64,12 @@
           };
           system = "x86_64-linux";
           modules = [
-            ./serva/serva.nix
+            ./serva
             ./common.nix
             ./common-pkgs.nix
+            ./ssh.nix
             agenix.nixosModules.default
             nixarr.nixosModules.default
-            #            lix-module.nixosModules.default
             {
               environment.systemPackages = [ agenix.packages.x86_64-linux.default ];
             }
@@ -98,52 +85,40 @@
           };
           system = "x86_64-linux";
           modules = [
-            ./dus1.as214958.net/main.nix
+            ./dus1.as214958.net
             ./common.nix
-            #./common-pkgs.nix
+            ./ssh.nix
             agenix.nixosModules.default
             disko.nixosModules.disko
-            (
-              { pkgs, ... }:
-              {
-                environment.systemPackages = [
-                  self.packages.x86_64-linux.flow-exporter-custom
-                  self.packages.x86_64-linux.pmacct-custom
-                ];
-              }
-            )
             {
               environment.systemPackages = [
                 agenix.packages.x86_64-linux.default
+                self.packages.x86_64-linux.flow-exporter-custom
+                self.packages.x86_64-linux.pmacct-custom
+
               ];
             }
           ];
         };
-
-        framwok = nixpkgs.lib.nixosSystem {
+        "framwok" = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit inputs;
             inherit agenix;
             inherit spicetify-nix;
-            #            inherit catppuccin;
           };
           system = "x86_64-linux";
           modules = [
             agenix.nixosModules.default
-            ./framwok/framwok.nix
+            ./framwok
             ./common.nix
             ./common-pkgs.nix
-            #            ./framwok/home.nix # home manager
             nixos-hardware.nixosModules.framework-12th-gen-intel
-            #            catppuccin.nixosModules.catppuccin
-            #            lix-module.nixosModules.default
             home-manager.nixosModules.home-manager
             {
               environment.systemPackages = [
                 agenix.packages.x86_64-linux.default
               ];
             }
-
           ];
         };
       };

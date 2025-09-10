@@ -5,13 +5,14 @@
   ...
 }:
 {
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  #X11 Server
+
+  #X11
   services.xserver.enable = true;
   hardware.graphics.enable = true;
   services.xserver.xkb.variant = "";
   services.xserver.xkb.layout = "de";
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
 
   environment.systemPackages = with pkgs; [
     gnomeExtensions.burn-my-windows

@@ -5,7 +5,6 @@
 {
   imports = [
     ./shell.nix
-    ./ssh.nix
   ];
   time.timeZone = "Europe/Berlin";
   # Select internationalisation properties.

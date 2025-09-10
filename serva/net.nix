@@ -20,46 +20,19 @@
   networking.useNetworkd = true;
 
   networking.firewall = {
-    trustedInterfaces = [ "dus1" ];
     allowedTCPPorts = [
       22 # ssh
-      20 # peering with not_mnt
       53 # DNS
       80 # http
       443 # https
       179 # bgp
-      420 # Peering with April
       1100 # nextcloud-docker
-      9001 # routerlab
-      9002 # routerlab
-      9003 # routerlab
-      9004 # routerlab
-      9005 # routerlab
-      6901 # linuxvm
-      6902 # linuxvm
-      6903 # linuxvm
-      6904 # linuxvm
     ];
     allowedUDPPorts = [
       22 # ssh
-      20 # peering with not_mnt
       53 # DNS
-      80 # http
-      443 # https
-      179 # bgp
-      420 # Peering with April
       1100 # nextcloud-docker
-      9001 # routerlab
-      9002 # routerlab
-      9003 # routerlab
-      9004 # routerlab
-      9005 # routerlab
-      6901 # linuxvm
-      6902 # linuxvm
-      6903 # linuxvm
-      6904 # linuxvm
       51820 # wireguard
-      1328 # prefixlabs
     ];
   };
 }

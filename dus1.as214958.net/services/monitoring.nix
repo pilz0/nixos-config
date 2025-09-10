@@ -13,9 +13,6 @@
         enabledCollectors = [ "systemd" ];
         port = 9100;
       };
-      bird = {
-        enable = true;
-      };
       wireguard = {
         enable = true;
         withRemoteIp = true;
@@ -31,7 +28,6 @@
   };
   networking.firewall = {
     allowedTCPPorts = [
-      config.services.prometheus.exporters.bird.port
       config.services.prometheus.exporters.wireguard.port
       config.services.prometheus.exporters.smokeping.port
       config.services.prometheus.exporters.node.port
