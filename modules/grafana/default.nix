@@ -133,18 +133,11 @@
   };
   services.nginx = {
     virtualHosts.${config.services.grafana.settings.server.domain} = {
-      enableACME = true;
-      forceSSL = true;
+      sslCertificate = config.age.secrets.cloudflare_cert.path;
+      sslCertificateKey = config.age.secrets.cloudflare_key.path;
       locations."/" = {
         proxyPass = "http://localhost:3001";
         proxyWebsockets = true; # needed if you need to use WebSocket
-      };
-    };
-    virtualHosts."grafana.ketamin.trade" = {
-      enableACME = true;
-      forceSSL = true;
-      locations."/" = {
-        return = "302 https://grafana.pilz.foo";
       };
     };
   };

@@ -12,9 +12,13 @@
     ./graphics.nix
     ./users.nix
     ./restic.nix
-    ./osm.nix
+    ./ffda
     ./audio.nix
     ./network.nix
+    ../modules/ssh
+    ../modules/shell
+    ../modules/common
+    ../modules/pkgs
     #   ./no-standby.nix
   ];
 

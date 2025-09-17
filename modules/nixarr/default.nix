@@ -41,35 +41,35 @@
 
   services.nginx = {
     virtualHosts."radarr.ketamin.trade" = {
-      enableACME = true;
-      forceSSL = true;
+      sslCertificate = config.age.secrets.cloudflare_cert.path;
+      sslCertificateKey = config.age.secrets.cloudflare_key.path;
       locations."/" = {
         proxyPass = "http://localhost:7878";
-        proxyWebsockets = true; # needed if you need to use WebSocket
+        proxyWebsockets = true;
       };
     };
     virtualHosts."bazarr.ketamin.trade" = {
-      enableACME = true;
-      forceSSL = true;
+      sslCertificate = config.age.secrets.cloudflare_cert.path;
+      sslCertificateKey = config.age.secrets.cloudflare_key.path;
       locations."/" = {
         proxyPass = "http://localhost:6767";
-        proxyWebsockets = true; # needed if you need to use WebSocket
+        proxyWebsockets = true;
       };
     };
     virtualHosts."sonarr.ketamin.trade" = {
-      enableACME = true;
-      forceSSL = true;
+      sslCertificate = config.age.secrets.cloudflare_cert.path;
+      sslCertificateKey = config.age.secrets.cloudflare_key.path;
       locations."/" = {
         proxyPass = "http://localhost:8989";
-        proxyWebsockets = true; # needed if you need to use WebSocket
+        proxyWebsockets = true;
       };
     };
     virtualHosts."prowlarr.ketamin.trade" = {
-      enableACME = true;
-      forceSSL = true;
+      sslCertificate = config.age.secrets.cloudflare_cert.path;
+      sslCertificateKey = config.age.secrets.cloudflare_key.path;
       locations."/" = {
         proxyPass = "http://localhost:9696";
-        proxyWebsockets = true; # needed if you need to use WebSocket
+        proxyWebsockets = true;
       };
     };
     virtualHosts."readarr.ketamin.trade" = {
@@ -77,23 +77,23 @@
       forceSSL = true;
       locations."/" = {
         proxyPass = "http://localhost:8787";
-        proxyWebsockets = true; # needed if you need to use WebSocket
+        proxyWebsockets = true;
       };
     };
     virtualHosts."lidarr.ketamin.trade" = {
-      enableACME = true;
-      forceSSL = true;
+      sslCertificate = config.age.secrets.cloudflare_cert.path;
+      sslCertificateKey = config.age.secrets.cloudflare_key.path;
       locations."/" = {
         proxyPass = "http://localhost:8686";
-        proxyWebsockets = true; # needed if you need to use WebSocket
+        proxyWebsockets = true;
       };
     };
     virtualHosts."jellyseerr.ketamin.trade" = {
-      enableACME = true;
-      forceSSL = true;
+      sslCertificate = config.age.secrets.cloudflare_cert.path;
+      sslCertificateKey = config.age.secrets.cloudflare_key.path;
       locations."/" = {
         proxyPass = "http://localhost:5055";
-        proxyWebsockets = true; # needed if you need to use WebSocket
+        proxyWebsockets = true;
       };
     };
     virtualHosts."jellyseerr.dn42.ketamin.trade" = {
@@ -101,16 +101,16 @@
       forceSSL = false;
       locations."/" = {
         proxyPass = "http://localhost:5055";
-        proxyWebsockets = true; # needed if you need to use WebSocket
+        proxyWebsockets = true;
       };
     };
 
     virtualHosts."jellyfin.ketamin.trade" = {
-      enableACME = true;
-      forceSSL = true;
+      sslCertificate = config.age.secrets.cloudflare_cert.path;
+      sslCertificateKey = config.age.secrets.cloudflare_key.path;
       locations."/" = {
         proxyPass = "http://localhost:8096";
-        proxyWebsockets = true; # needed if you need to use WebSocket
+        proxyWebsockets = true;
       };
     };
     virtualHosts."jellyfin.dn42.ketamin.trade" = {
@@ -118,15 +118,15 @@
       forceSSL = false;
       locations."/" = {
         proxyPass = "http://localhost:8096";
-        proxyWebsockets = true; # needed if you need to use WebSocket
+        proxyWebsockets = true;
       };
     };
     virtualHosts."radarr.pilz.foo" = {
-      enableACME = true;
-      forceSSL = true;
+      sslCertificate = config.age.secrets.cloudflare_cert.path;
+      sslCertificateKey = config.age.secrets.cloudflare_key.path;
       locations."/" = {
         proxyPass = "http://localhost:7878";
-        proxyWebsockets = true; # needed if you need to use WebSocket
+        proxyWebsockets = true;
       };
     };
     virtualHosts."radarr.dn42.pilz.foo" = {
@@ -134,15 +134,15 @@
       forceSSL = false;
       locations."/" = {
         proxyPass = "http://localhost:7878";
-        proxyWebsockets = true; # needed if you need to use WebSocket
+        proxyWebsockets = true;
       };
     };
     virtualHosts."bazarr.pilz.foo" = {
-      enableACME = true;
-      forceSSL = true;
+      sslCertificate = config.age.secrets.cloudflare_cert.path;
+      sslCertificateKey = config.age.secrets.cloudflare_key.path;
       locations."/" = {
         proxyPass = "http://localhost:6767";
-        proxyWebsockets = true; # needed if you need to use WebSocket
+        proxyWebsockets = true;
       };
     };
     virtualHosts."bazarr.dn42.pilz.foo" = {
@@ -150,15 +150,15 @@
       forceSSL = false;
       locations."/" = {
         proxyPass = "http://localhost:6767";
-        proxyWebsockets = true; # needed if you need to use WebSocket
+        proxyWebsockets = true;
       };
     };
     virtualHosts."sonarr.pilz.foo" = {
-      enableACME = true;
-      forceSSL = true;
+      sslCertificate = config.age.secrets.cloudflare_cert.path;
+      sslCertificateKey = config.age.secrets.cloudflare_key.path;
       locations."/" = {
         proxyPass = "http://localhost:8989";
-        proxyWebsockets = true; # needed if you need to use WebSocket
+        proxyWebsockets = true;
       };
     };
     virtualHosts."sonarr.dn42.pilz.foo" = {
@@ -166,47 +166,47 @@
       forceSSL = false;
       locations."/" = {
         proxyPass = "http://localhost:8989";
-        proxyWebsockets = true; # needed if you need to use WebSocket
+        proxyWebsockets = true;
       };
     };
     virtualHosts."prowlarr.pilz.foo" = {
-      enableACME = true;
-      forceSSL = true;
+      sslCertificate = config.age.secrets.cloudflare_cert.path;
+      sslCertificateKey = config.age.secrets.cloudflare_key.path;
       locations."/" = {
         proxyPass = "http://localhost:9696";
-        proxyWebsockets = true; # needed if you need to use WebSocket
+        proxyWebsockets = true;
       };
     };
     virtualHosts."prowlarr.dn42.pilz.foo" = {
-      enableACME = false;
-      forceSSL = false;
+      sslCertificate = config.age.secrets.cloudflare_cert.path;
+      sslCertificateKey = config.age.secrets.cloudflare_key.path;
       locations."/" = {
         proxyPass = "http://localhost:9696";
-        proxyWebsockets = true; # needed if you need to use WebSocket
+        proxyWebsockets = true;
       };
     };
     virtualHosts."readarr.pilz.foo" = {
-      enableACME = true;
-      forceSSL = true;
+      sslCertificate = config.age.secrets.cloudflare_cert.path;
+      sslCertificateKey = config.age.secrets.cloudflare_key.path;
       locations."/" = {
         proxyPass = "http://localhost:8787";
-        proxyWebsockets = true; # needed if you need to use WebSocket
+        proxyWebsockets = true;
       };
     };
     virtualHosts."readarr.dn42.pilz.foo" = {
-      enableACME = false;
-      forceSSL = false;
+      sslCertificate = config.age.secrets.cloudflare_cert.path;
+      sslCertificateKey = config.age.secrets.cloudflare_key.path;
       locations."/" = {
         proxyPass = "http://localhost:8787";
-        proxyWebsockets = true; # needed if you need to use WebSocket
+        proxyWebsockets = true;
       };
     };
     virtualHosts."lidarr.pilz.foo" = {
-      enableACME = true;
-      forceSSL = true;
+      sslCertificate = config.age.secrets.cloudflare_cert.path;
+      sslCertificateKey = config.age.secrets.cloudflare_key.path;
       locations."/" = {
         proxyPass = "http://localhost:8686";
-        proxyWebsockets = true; # needed if you need to use WebSocket
+        proxyWebsockets = true;
       };
     };
     virtualHosts."lidarr.dn42.pilz.foo" = {
@@ -214,15 +214,15 @@
       forceSSL = false;
       locations."/" = {
         proxyPass = "http://localhost:8686";
-        proxyWebsockets = true; # needed if you need to use WebSocket
+        proxyWebsockets = true;
       };
     };
     virtualHosts."jellyseerr.pilz.foo" = {
-      enableACME = true;
-      forceSSL = true;
+      sslCertificate = config.age.secrets.cloudflare_cert.path;
+      sslCertificateKey = config.age.secrets.cloudflare_key.path;
       locations."/" = {
         proxyPass = "http://localhost:5055";
-        proxyWebsockets = true; # needed if you need to use WebSocket
+        proxyWebsockets = true;
       };
     };
     virtualHosts."jellyseerr.dn42.pilz.foo" = {
@@ -230,7 +230,7 @@
       forceSSL = false;
       locations."/" = {
         proxyPass = "http://localhost:5055";
-        proxyWebsockets = true; # needed if you need to use WebSocket
+        proxyWebsockets = true;
       };
     };
     virtualHosts."jellyfin.pilz.foo" = {
@@ -238,7 +238,7 @@
       sslCertificateKey = config.age.secrets.cloudflare_key.path;
       locations."/" = {
         proxyPass = "http://localhost:8096";
-        proxyWebsockets = true; # needed if you need to use WebSocket
+        proxyWebsockets = true;
       };
     };
     virtualHosts."jellyfin.dn42.pilz.foo" = {
@@ -248,7 +248,7 @@
       onlySSL = false;
       locations."/" = {
         proxyPass = "http://localhost:8096";
-        proxyWebsockets = true; # needed if you need to use WebSocket
+        proxyWebsockets = true;
       };
     };
   };

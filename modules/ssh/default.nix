@@ -1,4 +1,3 @@
-{ ... }:
 {
   services.openssh.banner = ''
     <p><div class='plussize'>

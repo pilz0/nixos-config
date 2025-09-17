@@ -36,7 +36,6 @@
     enable = true;
     databases = [
       "mastodon"
-      "nextcloud"
     ];
   };
 }

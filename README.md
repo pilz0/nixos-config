@@ -1,1 +1,5 @@
-Config for all my devices running nixos, there is no documentation, the code is documentation enough.
+Config for all my devices running nixos
+
+## Naming scheme
+airport-code+machine-number.domain.tld for machines, for example ams1.as214958.net
+VMs/containers are purpose.airport-code+machine-number.domain.tld

@@ -15,6 +15,10 @@
     ./services/looking-glass.nix
     ../modules/nginx
     ../modules/netflow-exporter
+    ../modules/ssh
+    ../modules/ssh-users
+    ../modules/shell
+    ../modules/common
   ];
 
   boot = {

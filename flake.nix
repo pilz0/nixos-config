@@ -65,9 +65,6 @@
           system = "x86_64-linux";
           modules = [
             ./serva
-            ./common.nix
-            ./common-pkgs.nix
-            ./ssh.nix
             agenix.nixosModules.default
             nixarr.nixosModules.default
             {
@@ -86,8 +83,6 @@
           system = "x86_64-linux";
           modules = [
             ./dus1.as214958.net
-            ./common.nix
-            ./ssh.nix
             agenix.nixosModules.default
             disko.nixosModules.disko
             {
@@ -110,8 +105,6 @@
           modules = [
             agenix.nixosModules.default
             ./framwok
-            ./common.nix
-            ./common-pkgs.nix
             nixos-hardware.nixosModules.framework-12th-gen-intel
             home-manager.nixosModules.home-manager
             {

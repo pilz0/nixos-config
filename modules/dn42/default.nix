@@ -15,25 +15,12 @@ let
 in
 {
   imports = [
-    ./kioubit_de2.nix
-    ./zebreusDN42.nix
-    ./lare_dn42.nix
-    ./haaien.nix
-    ./iedon.nix
-    ./april_dn42.nix
-    ./ernst_is_dn42.nix
-    #    ./e3e.nix
-    ./rhea-dn42.nix
-    #    ./katja-dn42.nix
-    ./nojus-dn42.nix
-    ./ffda-DN42_R1.nix
-    ./ffda-DN42_R2.nix
-    ./prefixlabs.nix
-    ./bird_templates.nix
+    ./peerings
+    ./peering_templates.nix
     ./filters.nix
     ./rpki.nix
-    ./NOT_MNT.nix
-    ./maraun_dn42.nix
+    ./bird-lg.nix
+    ./peerings-module.nix
   ];
   age.secrets.wg = {
     file = ../../secrets/wg.age;
@@ -90,38 +77,6 @@ in
           "fd49:d69f:6::1337/112"
           "172.22.179.129/32"
         ];
-      };
-    };
-  };
-
-  services.bird-lg = {
-    proxy = {
-      enable = true;
-      listenAddress = "172.22.179.129:18000";
-      allowedIPs = [ "172.0.0.0/8" ];
-    };
-    frontend = {
-      domain = "lg.ketamin.trade";
-      enable = true;
-      servers = [ "serva" ];
-      protocolFilter = [
-        "bgp"
-        "static"
-      ];
-      listenAddress = "[::1]:15000";
-      proxyPort = 18000;
-      navbar = {
-        brand = "cybertrash";
-      };
-    };
-  };
-
-  services.nginx = {
-    virtualHosts."lg.pilz.foo" = {
-      enableACME = true;
-      forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://localhost:15000";
       };
     };
   };

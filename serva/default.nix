@@ -5,7 +5,6 @@
   imports = [
     ./hardware-configuration-serva.nix
     ./net.nix
-    ./users.nix
     ./graphics.nix
     ./restic.nix
     ../modules/dn42
@@ -16,6 +15,11 @@
     ../modules/nixarr
     ../modules/nginx
     ../modules/reverse-proxy-nc-docker
+    ../modules/ssh
+    ../modules/ssh-users
+    ../modules/shell
+    ../modules/common
+    ../modules/pkgs
   ];
 
   nix.optimise.dates = [ "03:45" ];

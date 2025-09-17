@@ -5,7 +5,10 @@
   imports = [
     ./wgframwok.nix
   ];
-  networking.useNetworkd = true;
+  networking = {
+    useNetworkd = true;
+    hostName = "dus1";
+  };
 
   services.resolved = {
     enable = true;
@@ -27,8 +30,6 @@
       MulticastDNS=no
     '';
   };
-
-  networking.hostName = "dus1";
 
   systemd.network = {
     enable = true;
