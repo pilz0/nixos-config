@@ -10,4 +10,4 @@ jobs:
     - uses: cachix/install-nix-action@v31
       with:
         nix_path: nixpkgs=channel:nixos-unstable
-    - run: nixos-rebuild build --flake .#dus1.as214958.net
+    - run: nix build .#dus1.as214958.net
