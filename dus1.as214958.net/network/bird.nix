@@ -40,29 +40,29 @@
       router id 225.3.77.150;
 
       protocol device {
-        scan time 60;
+      scan time 60;
       }
 
       # Inject received BGP routes into the Linux kernel
       protocol kernel krnv4 {
-              scan time 60;
-              ipv4 {
-                      import none;
-                      export all;
-              };
+      scan time 60;
+      ipv4 {
+        import none;
+        export all;
+      };
       }
 
       protocol kernel krnv6 {
-              scan time 60;
-              ipv6 {
-                      import none;
-                      export all;
-              };
+      scan time 60;
+      ipv6 {
+        import none;
+        export all;
+      };
       }
 
       protocol static announce_ipv6 {
-              ipv6;
-              route 2a0e:8f02:f017::/48 unreachable;
+      ipv6;
+      route 2a0e:8f02:f017::/48 unreachable;
       }
     '';
   };

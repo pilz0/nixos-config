@@ -3,9 +3,7 @@
   ...
 }:
 {
-  imports = [
-    ./netflow-exporter.nix
-  ];
+
   services.prometheus = {
     exporters = {
       node = {

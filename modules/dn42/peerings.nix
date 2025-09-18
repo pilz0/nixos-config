@@ -2,6 +2,10 @@
   ...
 }:
 {
+  imports = [
+    ./peerings-module.nix
+  ];
+
   config.modules.dn42.peerings = {
     kioubit_de2 = {
       peerLinkLocal = "fe80::ade0";

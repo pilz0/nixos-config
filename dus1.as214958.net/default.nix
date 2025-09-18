@@ -5,11 +5,9 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./users.nix
     ./disko.nix
     ./network/net.nix
     ./network/bird.nix
-    ./services/nginx.nix
     ./services/website.nix
     ./services/monitoring.nix
     ./services/looking-glass.nix
