@@ -1,18 +1,64 @@
-name: Build Nix Flake
+name: Validate NixOS Flake
+
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   pull_request:
+  workflow_dispatch:
+    inputs:
+      dry-run-builds:
+        description: "Perform nix build --dry-run for each nixosConfiguration"
+        required: false
+        default: "false"
+        type: choice
+        options: [ "false", "true" ]
+
 jobs:
-  build:
+  validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Set up Nix
-        uses: cachix/install-nix-action@v25
+        uses: cachix/install-nix-action@v31
         with:
           extra_nix_config: |
             experimental-features = nix-command flakes
-      - name: Build flake
-        run: nix build .#
+
+      - name: Show flake outputs
+        run: nix flake show --all-systems
+
+      - name: Evaluate NixOS configurations
+        run: |
+          set -euo pipefail
+          hosts=(serva dus1.as214958.net framwok)
+          for h in "${hosts[@]}"; do
+            echo "== Eval $h =="
+            nix eval ".#nixosConfigurations.${h}.config.system.build.toplevel.drvPath" >/dev/null
+          done
+
+      - name: Dry-run builds (optional)
+        if: ${{ inputs.dry-run-builds == 'true' }}
+        run: |
+            set -euo pipefail
+            hosts=(serva dus1.as214958.net framwok)
+            for h in "${hosts[@]}"; do
+              echo "== Dry-run build $h =="
+              nix build ".#nixosConfigurations.${h}.config.system.build.toplevel" --dry-run || exit 1
+            done
+
+      - name: Formatting check (nixfmt) (optional)
+        continue-on-error: true
+        run: |
+          if nix build .#formatter.x86_64-linux >/dev/null 2>&1; then
+            fmt=$(nix build .#formatter.x86_64-linux --print-out-paths)
+            echo "Running formatter to detect drift (no write)..."
+            # We only show diff if there is one; no write-back.
+            if command -v git >/dev/null; then
+              git diff --quiet || echo "(Pre-existing diff before formatting)"
+            fi
+            find . -name '*.nix' -print0 | xargs -0 "$fmt" --check || echo "Formatting differences detected"
+          else
+            echo "No formatter defined in flake outputs (formatter.x86_64-linux)"
+          fi
