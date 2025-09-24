@@ -32,20 +32,20 @@ jobs:
       - name: Evaluate NixOS configurations
         run: |
           set -euo pipefail
-          hosts=(serva dus1.as214958.net framwok)
+          hosts=(serva "dus1.as214958.net" framwok)
           for h in "${hosts[@]}"; do
             echo "== Eval $h =="
-            nix eval ".#nixosConfigurations.${h}.config.system.build.toplevel.drvPath" >/dev/null
+            nix eval ".#nixosConfigurations.\"${h}\".config.system.build.toplevel.drvPath" >/dev/null
           done
 
       - name: Dry-run builds (optional)
         if: ${{ inputs.dry-run-builds == 'true' }}
         run: |
             set -euo pipefail
-            hosts=(serva dus1.as214958.net framwok)
+            hosts=(serva "dus1.as214958.net" framwok)
             for h in "${hosts[@]}"; do
               echo "== Dry-run build $h =="
-              nix build ".#nixosConfigurations.${h}.config.system.build.toplevel" --dry-run || exit 1
+              nix build ".#nixosConfigurations.\"${h}\".config.system.build.toplevel" --dry-run || exit 1
             done
 
       - name: Formatting check (nixfmt) (optional)
