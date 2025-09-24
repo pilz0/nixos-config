@@ -124,6 +124,7 @@
           import limit 500 action restart;
         };
       }
+
       template bgp rs_peer from ebgp {
         ipv4 {
           import filter {
@@ -158,6 +159,7 @@
           import limit 150000 action restart;
         };
       }
+
       template bgp client from ebgp {
         ipv4 {
           import limit 3000000 action restart;

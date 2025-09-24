@@ -39,6 +39,7 @@
       grafana-clock-panel
       grafana-oncall-app
       grafana-piechart-panel
+      grafana-polystat-panel
       yesoreyeram-infinity-datasource
     ];
     provision = {
