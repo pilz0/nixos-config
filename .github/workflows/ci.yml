@@ -1,13 +1,18 @@
-name: "Test"
+name: Build Nix Flake
 on:
-  pull_request:
   push:
+    branches:
+      - main
+  pull_request:
 jobs:
-  tests:
+  build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v5
-    - uses: cachix/install-nix-action@v31
-      with:
-        nix_path: nixpkgs=channel:nixos-unstable
-    - run: nix build .#dus1.as214958.net
+      - uses: actions/checkout@v3
+      - name: Set up Nix
+        uses: cachix/install-nix-action@v25
+        with:
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+      - name: Build flake
+        run: nix build .#
