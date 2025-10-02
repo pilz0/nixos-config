@@ -10,27 +10,6 @@
     hostName = "dus1";
   };
 
-  services.resolved = {
-    enable = true;
-    dnssec = "false";
-    fallbackDns = [
-      "2606:4700:4700::1111"
-      "2606:4700:4700::1001"
-      "1.1.1.1"
-    ];
-    llmnr = "false";
-    extraConfig = ''
-      Cache=yes
-      CacheFromLocalhost=no
-      DNSStubListener=yes
-      ReadEtcHosts=yes
-      ResolveUnicastSingleLabel=no
-      # Reduce timeout and retries to prevent CPU spikes
-      DNSDefaultRoute=yes
-      MulticastDNS=no
-    '';
-  };
-
   systemd.network = {
     enable = true;
     networks = {

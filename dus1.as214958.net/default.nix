@@ -7,8 +7,7 @@
     ./hardware-configuration.nix
     ./disko.nix
     ./network/net.nix
-    ./network/bird.nix
-    ./services/website.nix
+    ./network/bird
     ./services/monitoring.nix
     ./services/looking-glass.nix
     ../modules/nginx
@@ -17,7 +16,11 @@
     ../modules/ssh-users
     ../modules/shell
     ../modules/common
+    ../modules/as214958_net
+    ../modules/node-exporter
   ];
+
+  programs.ssh.startAgent = true;
 
   boot = {
     loader.grub = {
@@ -26,18 +29,6 @@
     };
     growPartition = true;
   };
-
-  nix = {
-    optimise = {
-      automatic = true;
-      randomizedDelaySec = "0";
-      dates = [
-        "03:45"
-      ];
-    };
-  };
-
-  services.openssh.enable = true;
 
   fileSystems."/" = lib.mkForce {
     device = "/dev/sda3";

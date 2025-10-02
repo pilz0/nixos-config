@@ -6,10 +6,12 @@
 {
   imports = [
     ./peerings.nix
-    ./peering_templates.nix
-    ./filters.nix
-    ./rpki.nix
     ./bird-lg.nix
+    ../../modules/bgp-filters
+    ../../modules/bird-templates
+    ../../modules/bird-default
+    ../../modules/rpki
+    ../../modules/rpki-dn42
   ];
   age.secrets.wg = {
     file = ../../secrets/wg.age;
@@ -49,53 +51,11 @@
     enable = true;
     package = pkgs.bird2;
     autoReload = true;
-    config = lib.mkOrder 1 ''
-      define OWNAS = 4242420663;
-      define OWNNET = 172.22.179.128/27;
-      define OWNNETv6 = fd49:d69f:6::/48;
-      define OWNNETSET = [ 172.22.179.128/27 ];
-      define OWNNETSETv6 = [ fd49:d69f:6::/48 ];
-      define OWNIP = 172.22.179.129;
-      define OWNIPv6 = fd49:d69f:6::1337;
-
-      ################################################
-      #                 Header end                   #
-      ################################################
-
-      router id OWNIP;
-
-      protocol device {
-          scan time 10;
-      }
-
-      protocol kernel {
-          scan time 20;
-
-          ipv6 {
-              import none;
-              export filter {
-                  if source = RTS_STATIC then reject;
-                  krt_prefsrc = OWNIPv6;
-                  accept;
-              };
-          };
-      };
-
-      protocol kernel {
-          scan time 20;
-
-          ipv4 {
-              import none;
-              export filter {
-                  if source = RTS_STATIC then reject;
-                  krt_prefsrc = OWNIP;
-                  accept;
-              };
-          };
-      }
+    config = lib.mkOrder 3 ''
+      router id 172.22.179.129;
 
       protocol static {
-          route OWNNET reject;
+          route OWNNET_DN42 reject;
 
           ipv4 {
               import all;
@@ -104,7 +64,7 @@
       }
 
       protocol static {
-          route OWNNETv6 reject;
+          route OWNNETv6_DN42 reject;
 
           ipv6 {
               import all;

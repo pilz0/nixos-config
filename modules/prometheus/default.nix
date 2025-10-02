@@ -3,20 +3,22 @@
   ...
 }:
 {
-  age.secrets.rclone = {
-    file = ../../secrets/rclone.age;
-    owner = "prometheus";
-    group = "prometheus";
-  };
-  age.secrets.restic = {
-    file = ../../secrets/restic.age;
-    owner = "prometheus";
-    group = "prometheus";
-  };
-  age.secrets.nextcloud-exporter = {
-    file = ../../secrets/nextcloud-exporter.age;
-    owner = "prometheus";
-    group = "prometheus";
+  age.secrets = {
+    rclone = {
+      file = ../../secrets/rclone.age;
+      owner = "prometheus";
+      group = "prometheus";
+    };
+    restic = {
+      file = ../../secrets/restic.age;
+      owner = "prometheus";
+      group = "prometheus";
+    };
+    nextcloud-exporter = {
+      file = ../../secrets/nextcloud-exporter.age;
+      owner = "prometheus";
+      group = "prometheus";
+    };
   };
 
   services.prometheus = {

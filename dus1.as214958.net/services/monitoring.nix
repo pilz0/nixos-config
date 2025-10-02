@@ -6,11 +6,6 @@
 
   services.prometheus = {
     exporters = {
-      node = {
-        enable = true;
-        enabledCollectors = [ "systemd" ];
-        port = 9100;
-      };
       wireguard = {
         enable = true;
         withRemoteIp = true;
@@ -28,7 +23,6 @@
     allowedTCPPorts = [
       config.services.prometheus.exporters.wireguard.port
       config.services.prometheus.exporters.smokeping.port
-      config.services.prometheus.exporters.node.port
     ];
   };
 }

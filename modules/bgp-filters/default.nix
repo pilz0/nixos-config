@@ -4,7 +4,7 @@
 }:
 {
   services.bird = {
-    config = lib.mkOrder 1 ''
+    config = lib.mkOrder 2 ''
       # https://routing.denog.de/guides/route_filtering/inbound/as_path_length/
       function reject_long_aspaths()
       {
@@ -128,6 +128,7 @@
       define IXP_PREFIXES6 = [
         2a0c:b641:701::/64 # LocIX DUS
       ];
+
       function reject_ixp_prefixes4()
       prefix set ixp_prefixes4;
       {
@@ -137,6 +138,7 @@
           reject;
         }
       }
+
       function reject_ixp_prefixes6()
       prefix set ixp_prefixes6;
       {
@@ -188,6 +190,75 @@
         transit_asns = TRANSIT_ASNS;
         if (bgp_path ~ transit_asns) then {
           print "Reject: Transit ASNs found on IXP: ", net, " ", bgp_path;
+          reject;
+        }
+      }
+
+      # DN42 filters
+      function is_valid_network4_dn42() {
+        return net ~ [
+          172.20.0.0/14{21,29}, # dn42
+          172.20.0.0/24{28,32}, # dn42 Anycast
+          172.21.0.0/24{28,32}, # dn42 Anycast
+          172.22.0.0/24{28,32}, # dn42 Anycast
+          172.23.0.0/24{28,32}, # dn42 Anycast
+          172.31.0.0/16+,       # ChaosVPN
+          10.100.0.0/14+,       # ChaosVPN
+          10.127.0.0/16+,       # neonetwork
+          10.0.0.0/8{15,24}     # Freifunk.net
+        ];
+      }
+
+      function is_valid_network6_dn42() {
+        return net ~ [
+          fd00::/8+ 
+        ];
+      }
+
+      function reject_invalid_net4_dn42() 
+      {
+        if net = !is_valid_network4_dn42() then {
+          print "[dn42v4] Not importing ", net, " because it is not a valid IPv4 network", bgp_path;
+          reject;
+        }
+      }
+
+      function reject_invalid_net6_dn42() 
+      {
+        if net = !is_valid_network6_dn42() then {
+          print "[dn42v6] Not importing ", net, " because it is not a valid IPv6 network", bgp_path;
+          reject;
+        }
+      }
+
+      function reject_ownnetset4_dn42() 
+      {
+        if net ~ OWNNETSET_DN42 then {
+          print "[dn42v4] Not importing ", net, " because it is selfnet ", bgp_path;
+          reject;
+        }
+      }
+
+      function reject_ownnetset6_dn42()
+      {
+        if net ~ OWNNETSETv6_DN42 then {
+          print "[dn42v6] Not importing ", net, " because it is selfnet ", bgp_path;
+          reject;
+        }
+      }
+
+      function reject_roa_invalid4_dn42() 
+      {
+        if roa_check(dn42_roa, net, bgp_path.last) != ROA_VALID then {
+          print "[dn42v4] Not importing ", net, " because the ROA check failed for ASN ", bgp_path.last, " Full ASN path: ", bgp_path;
+          reject;
+        }
+      }
+
+      function reject_roa_invalid6_dn42() 
+      {
+        if roa_check(dn42_roa_v6, net, bgp_path.last) != ROA_VALID then {
+          print "[dn42v6] Not importing ", net, " because the ROA check failed for ASN ", bgp_path.last, " Full ASN path: ", bgp_path;
           reject;
         }
       }

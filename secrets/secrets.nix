@@ -61,10 +61,12 @@ in
   "cloudflare_cert.age".publicKeys = [
     marielap
     serva
+    dus1
   ];
   "cloudflare_key.age".publicKeys = [
     marielap
     serva
+    dus1
   ];
   "s3-mastodon.age".publicKeys = [
     marielap

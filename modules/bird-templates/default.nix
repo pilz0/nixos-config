@@ -168,6 +168,43 @@
           import limit 400000 action restart;
         };
       }
+
+      # DN42 templates
+      template bgp dnpeers {
+        local as OWNAS_DN42;
+        path metric 1; 
+        enable extended messages on;
+        graceful restart on;
+        long lived graceful restart on;
+        ipv4 {
+          import table;
+          extended next hop on;
+          import limit 9000 action block;
+          import filter {
+            reject_invalid_net4_dn42();
+            reject_ownnetset4_dn42();
+            reject_roa_invalid4_dn42();
+            accept;
+          };
+          export filter {
+            accept;
+          };
+       };
+      ipv6 {
+          extended next hop on;
+          import limit 9000 action block;
+          import table; 
+          import filter {
+            reject_invalid_net6_dn42();
+            reject_ownnetset6_dn42();
+            reject_roa_invalid6_dn42();
+            accept;
+          };
+          export filter {
+            accept;
+          };
+        };
+      }
     '';
   };
 }

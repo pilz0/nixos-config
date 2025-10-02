@@ -126,6 +126,8 @@
         "OUTSIDE://:9092"
         "CONTROLLER://:9093"
       ];
+
+      "delete.topic.enable" = true;
       "auto.create.topics.enable" = true;
       "advertised.listeners" = [
         "INSIDE://:19092"

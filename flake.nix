@@ -39,6 +39,8 @@
       ...
     }@inputs:
     {
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
+
       packages.x86_64-linux =
         let
           pkgs = import nixpkgs { system = "x86_64-linux"; };
@@ -52,7 +54,7 @@
           };
           flow-exporter-custom = pkgs.callPackage ./custom_pkgs/flow-exporter.nix { };
         };
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
+
       nixosConfigurations = {
         "serva" = nixpkgs.lib.nixosSystem {
           specialArgs = {

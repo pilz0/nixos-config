@@ -1,5 +1,4 @@
 {
-  lib,
   pkgs,
   ...
 }:
@@ -38,29 +37,5 @@ in
       wantedBy = [ "timers.target" ];
       before = [ "bird.service" ];
     };
-  };
-
-  services.bird = {
-    preCheckConfig = lib.mkOrder 2 ''
-      # Remove roa files for checking, because they are only available at runtime
-      sed -i 's|include "/etc/bird/roa_dn42.conf";||' bird.conf
-      sed -i 's|include "/etc/bird/roa_dn42_v6.conf";||' bird.conf
-
-      cat -n bird.conf
-    '';
-    config = lib.mkOrder 3 ''
-      roa4 table dn42_roa;
-      roa6 table dn42_roa_v6;
-
-      protocol static {
-          roa4 { table dn42_roa; };
-          include "/etc/bird/roa_dn42.conf";
-      };
-
-      protocol static {
-          roa6 { table dn42_roa_v6; };
-          include "/etc/bird/roa_dn42_v6.conf";
-      };
-    '';
   };
 }
