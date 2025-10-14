@@ -5,7 +5,7 @@
 {
   environment.systemPackages = with pkgs; [
     mitmproxy
-    windows10-icons
+    ledger-live-desktop
     gimp
     thunderbird
     firefox

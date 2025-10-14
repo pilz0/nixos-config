@@ -121,7 +121,7 @@
           domain = "grafana.pilz.foo";
           root_url = "https://grafana.pilz.foo/";
           http_port = 3001;
-          http_addr = "::1";
+          http_addr = "";
         };
         "auth.anonymous" = {
           enabled = true;
@@ -132,16 +132,6 @@
           admin_password = "$__file{${toString config.age.secrets.grafana.path}}";
           admin_user = "admin";
           admin_email = "marie0@riseup.net";
-        };
-      };
-    };
-    nginx = {
-      virtualHosts.${config.services.grafana.settings.server.domain} = {
-        sslCertificate = config.age.secrets.cloudflare_cert.path;
-        sslCertificateKey = config.age.secrets.cloudflare_key.path;
-        locations."/" = {
-          proxyPass = "http://localhost:3001";
-          proxyWebsockets = true; # needed if you need to use WebSocket
         };
       };
     };

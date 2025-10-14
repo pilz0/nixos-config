@@ -5,7 +5,7 @@
 {
   services = {
     resolved = {
-      enable = true;
+      #enable = true;
       dnssec = "false";
       fallbackDns = [
         "2606:4700:4700::1111"

@@ -1,42 +1,18 @@
 {
-  lib,
   ...
 }:
 {
   imports = [
     ./hardware-configuration.nix
-    ./disko.nix
-    ./network/net.nix
-    ./network/bird
-    ./services/monitoring.nix
-    ./services/looking-glass.nix
-    ../modules/nginx
-    ../modules/netflow-exporter
+    ./net.nix
     ../modules/ssh
     ../modules/ssh-users
     ../modules/shell
     ../modules/common
-    ../modules/as214958_net
+    ../modules/container_default
     ../modules/node-exporter
+    ../modules/routinator
   ];
-
-  programs.ssh.startAgent = true;
-
-  boot = {
-    loader.grub = {
-      efiSupport = true;
-      efiInstallAsRemovable = true;
-    };
-    growPartition = true;
-  };
-
-  fileSystems."/" = lib.mkForce {
-    device = "/dev/sda3";
-    fsType = "ext4";
-    autoResize = true;
-  };
-
-  system.stateVersion = "23.11"; # Did you read the comment?
 }
 ## github copilot wrote this
 #  I hope you can help me.

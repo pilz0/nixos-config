@@ -74,25 +74,78 @@
             }
           ];
         };
-        "dus1.as214958.net" = nixpkgs.lib.nixosSystem {
+        "web1.ams1.as214958.net" = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit self;
             inherit inputs;
             inherit agenix;
-            pmacct-custom = self.packages.x86_64-linux.pmacct-custom;
-            flow-exporter-custom = self.packages.x86_64-linux.flow-exporter-custom;
           };
           system = "x86_64-linux";
           modules = [
-            ./dus1.as214958.net
+            ./web1.ams1.as214958.net
             agenix.nixosModules.default
             disko.nixosModules.disko
             {
               environment.systemPackages = [
                 agenix.packages.x86_64-linux.default
+              ];
+            }
+          ];
+        };
+        "jellyfin.ams1.as214958.net" = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit self;
+            inherit inputs;
+            inherit agenix;
+            inherit nixarr;
+          };
+          system = "x86_64-linux";
+          modules = [
+            ./jellyfin.ams1.as214958.net
+            agenix.nixosModules.default
+            disko.nixosModules.disko
+            nixarr.nixosModules.default
+            {
+              environment.systemPackages = [
+                agenix.packages.x86_64-linux.default
+              ];
+            }
+          ];
+        };
+        "rpki.ams1.as214958.net" = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit self;
+            inherit inputs;
+            inherit agenix;
+          };
+          system = "x86_64-linux";
+          modules = [
+            ./rpki.ams1.as214958.net
+            agenix.nixosModules.default
+            disko.nixosModules.disko
+            {
+              environment.systemPackages = [
+                agenix.packages.x86_64-linux.default
+              ];
+            }
+          ];
+        };
+        "grafana.ams1.as214958.net" = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit self;
+            inherit inputs;
+            inherit agenix;
+            flow-exporter-custom = self.packages.x86_64-linux.flow-exporter-custom;
+          };
+          system = "x86_64-linux";
+          modules = [
+            ./grafana.ams1.as214958.net
+            agenix.nixosModules.default
+            disko.nixosModules.disko
+            {
+              environment.systemPackages = [
                 self.packages.x86_64-linux.flow-exporter-custom
-                self.packages.x86_64-linux.pmacct-custom
-
+                agenix.packages.x86_64-linux.default
               ];
             }
           ];

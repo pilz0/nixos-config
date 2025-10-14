@@ -5,7 +5,7 @@
   services.routinator = {
     enable = true;
     settings = {
-      rtr-listen = [ "[::1]:8362" ];
+      rtr-listen = [ "10.10.10.5:3323" ];
     };
   };
 }

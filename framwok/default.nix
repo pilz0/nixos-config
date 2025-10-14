@@ -34,8 +34,12 @@
 
   # yubikey stuff
   services.pcscd.enable = true;
-  services.udev.packages = [ pkgs.yubikey-personalization ];
-
+  services.udev.packages = with pkgs; [
+    ledger-udev-rules
+    trezor-udev-rules
+    yubikey-personalization
+    # potentially even more if you need them
+  ];
   virtualisation.docker.enable = true;
   virtualisation.containerd.enable = true;
 
