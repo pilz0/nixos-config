@@ -6,15 +6,15 @@
     useNetworkd = true;
     hostName = "dn42";
     domain = "as214958.net";
-    hostId = "40663434";
+    hostId = "40163434";
   };
 
   systemd.network = {
     networks = {
       "10-eth0" = {
         address = [
-          "10.10.10.4/24"
-          "2a0e:8f02:f017::4/48"
+          "10.10.10.6/24"
+          "2a0e:8f02:f017::6/48"
         ];
       };
     };

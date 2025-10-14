@@ -55,8 +55,9 @@
               "[2a0e:8f02:f017::2]:${toString config.services.prometheus.exporters.node.port}"
               "[2a0e:8f02:f017::3]:${toString config.services.prometheus.exporters.node.port}"
               "[2a0e:8f02:f017::4]:${toString config.services.prometheus.exporters.node.port}"
+              "[2a0e:8f02:f017::5]:${toString config.services.prometheus.exporters.node.port}"
               "[2a0e:8f02:f017::1]:${toString config.services.prometheus.exporters.bird.port}"
-              "localhost:9590"
+              "localhost:9590" # netflow exporter
             ];
           }
         ];

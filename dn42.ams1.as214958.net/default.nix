@@ -11,6 +11,7 @@
     ../modules/common
     ../modules/container_default
     ../modules/node-exporter
+    ../modules/dn42
   ];
 }
 ## github copilot wrote this

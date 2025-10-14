@@ -7,7 +7,7 @@
     ./net.nix
     ./graphics.nix
     ./restic.nix
-    ../modules/dn42
+    #../modules/dn42
     ../modules/nextcloud
     ../modules/mastodon
     ../modules/grafana

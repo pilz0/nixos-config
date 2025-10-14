@@ -19,7 +19,7 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "rpool/data/subvol-101-disk-0";
+    device = "rpool/data/subvol-104-disk-0";
     fsType = "zfs";
   };
 

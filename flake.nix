@@ -74,6 +74,24 @@
             }
           ];
         };
+        "dn42.ams1.as214958.net" = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit self;
+            inherit inputs;
+            inherit agenix;
+          };
+          system = "x86_64-linux";
+          modules = [
+            ./dn42.ams1.as214958.net
+            agenix.nixosModules.default
+            disko.nixosModules.disko
+            {
+              environment.systemPackages = [
+                agenix.packages.x86_64-linux.default
+              ];
+            }
+          ];
+        };
         "web1.ams1.as214958.net" = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit self;
