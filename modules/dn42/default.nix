@@ -19,6 +19,10 @@
     group = "systemd-network";
   };
 
+  environment.systemPackages = with pkgs; [
+    wireguard-tools
+  ];
+
   systemd = {
     network = {
       wait-online.enable = false;

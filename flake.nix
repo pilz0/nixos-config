@@ -25,6 +25,10 @@
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    harmonia = {
+      url = "github:nix-community/harmonia?ref=47d447dd3392dc97ea24d3368dfd84b14d2c5f09";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs =
     {
@@ -36,6 +40,7 @@
       home-manager,
       spicetify-nix,
       disko,
+      harmonia,
       ...
     }@inputs:
     {
@@ -54,7 +59,6 @@
           };
           flow-exporter-custom = pkgs.callPackage ./custom_pkgs/flow-exporter.nix { };
         };
-
       nixosConfigurations = {
         "serva" = nixpkgs.lib.nixosSystem {
           specialArgs = {
@@ -66,7 +70,7 @@
           };
           system = "x86_64-linux";
           modules = [
-            ./serva
+            ./machines/serva
             agenix.nixosModules.default
             nixarr.nixosModules.default
             {
@@ -82,7 +86,7 @@
           };
           system = "x86_64-linux";
           modules = [
-            ./dn42.ams1.as214958.net
+            ./machines/dn42.ams1.as214958.net
             agenix.nixosModules.default
             disko.nixosModules.disko
             {
@@ -100,9 +104,47 @@
           };
           system = "x86_64-linux";
           modules = [
-            ./web1.ams1.as214958.net
+            ./machines/web1.ams1.as214958.net
             agenix.nixosModules.default
             disko.nixosModules.disko
+            {
+              environment.systemPackages = [
+                agenix.packages.x86_64-linux.default
+              ];
+            }
+          ];
+        };
+        "netbox.ams1.as214958.net" = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit self;
+            inherit inputs;
+            inherit agenix;
+          };
+          system = "x86_64-linux";
+          modules = [
+            ./machines/netbox.ams1.as214958.net
+            agenix.nixosModules.default
+            disko.nixosModules.disko
+            {
+              environment.systemPackages = [
+                agenix.packages.x86_64-linux.default
+              ];
+            }
+          ];
+        };
+        "build.ams1.as214958.net" = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit self;
+            inherit inputs;
+            inherit agenix;
+            inherit harmonia;
+          };
+          system = "x86_64-linux";
+          modules = [
+            ./machines/build.ams1.as214958.net
+            agenix.nixosModules.default
+            disko.nixosModules.disko
+            harmonia.nixosModules.harmonia
             {
               environment.systemPackages = [
                 agenix.packages.x86_64-linux.default
@@ -119,7 +161,7 @@
           };
           system = "x86_64-linux";
           modules = [
-            ./jellyfin.ams1.as214958.net
+            ./machines/jellyfin.ams1.as214958.net
             agenix.nixosModules.default
             disko.nixosModules.disko
             nixarr.nixosModules.default
@@ -138,7 +180,7 @@
           };
           system = "x86_64-linux";
           modules = [
-            ./rpki.ams1.as214958.net
+            ./machines/rpki.ams1.as214958.net
             agenix.nixosModules.default
             disko.nixosModules.disko
             {
@@ -157,7 +199,7 @@
           };
           system = "x86_64-linux";
           modules = [
-            ./grafana.ams1.as214958.net
+            ./machines/grafana.ams1.as214958.net
             agenix.nixosModules.default
             disko.nixosModules.disko
             {
@@ -177,7 +219,7 @@
           system = "x86_64-linux";
           modules = [
             agenix.nixosModules.default
-            ./framwok
+            ./machines/framwok
             nixos-hardware.nixosModules.framework-12th-gen-intel
             home-manager.nixosModules.home-manager
             {

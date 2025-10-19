@@ -7,7 +7,10 @@
       frontend = {
         domain = "lg.as214958.net";
         enable = true;
-        servers = [ "ams1.as214958.net" ];
+        servers = [
+          "ams1"
+          "dn42"
+        ];
         protocolFilter = [
           "bgp"
           "static"

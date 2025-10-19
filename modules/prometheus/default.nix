@@ -52,10 +52,13 @@
               "10.10.10.1:${toString config.services.prometheus.exporters.postgres.port}"
               "vps.flohannes.de:${toString config.services.prometheus.exporters.node.port}"
               "[2a0e:8f02:f017::1]:${toString config.services.prometheus.exporters.node.port}"
-              "[2a0e:8f02:f017::2]:${toString config.services.prometheus.exporters.node.port}"
-              "[2a0e:8f02:f017::3]:${toString config.services.prometheus.exporters.node.port}"
-              "[2a0e:8f02:f017::4]:${toString config.services.prometheus.exporters.node.port}"
-              "[2a0e:8f02:f017::5]:${toString config.services.prometheus.exporters.node.port}"
+              "web1.web1.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
+              "grafana.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
+              "jellyfin.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
+              "rpki.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
+              "dn42.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
+              "netbox.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
+              "build.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
               "[2a0e:8f02:f017::1]:${toString config.services.prometheus.exporters.bird.port}"
               "localhost:9590" # netflow exporter
             ];

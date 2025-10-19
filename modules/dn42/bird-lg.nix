@@ -6,7 +6,7 @@
     bird-lg = {
       proxy = {
         enable = true;
-        listenAddress = "5000";
+        listenAddress = "18000";
       };
     };
   };

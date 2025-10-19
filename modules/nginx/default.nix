@@ -17,13 +17,6 @@
     };
   };
 
-  security = {
-    acme = {
-      acceptTerms = true;
-      defaults.email = "acme@pilz.foo";
-    };
-  };
-
   services = {
     nginx = {
       enable = true;
