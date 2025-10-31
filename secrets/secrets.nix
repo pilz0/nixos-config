@@ -31,9 +31,49 @@ let
   rpki = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJWxHkhwJPhT0hL1TGWjIxWSRPzMvGleKE9Jq9mCUXOI root@rpki"
   ];
+  tor1 = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA2lst0kq6NAlb+Cc3qMHiRck8m6TxsbIY1xw4c2Uy6+ root@tor1"
+  ];
+  tor2 = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKnLmMvgQyXmFLlpUEy3WZ5FgUX3FSY+Akc+xbbnp8si root@tor2"
+  ];
+  tor3 = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICvef2S49SyNxnsHwnoWFLU1ujorffUg9U30kyZVFdfH root@tor3"
+  ];
+  tor4 = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPKSD/jZi43fTDPmTWEaVAbPP2mcsNIuCRpJ6V08xS3f root@tor4"
+  ];
+  tor5 = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFiQj9hJyXjUc2j61qSy/A2bdAUnnporPGV0sv483gxT root@tor5"
+  ];
+  tor6 = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJU7Un7wPWlCApfYPgsnBTEh0nyC7AyUtCgnm/qer6I/ root@tor6"
+  ];
+  tor7 = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILBJuIu8Xovd9h2oSltlzMYHYY5aE+L8xMU1YYxfNpQs root@tor7"
+  ];
+  tor8 = [
+  ];
 
   all_hosts =
-    Laptop ++ marielap ++ serva ++ grafana ++ web1_host ++ jellyfin ++ dn42 ++ netbox ++ build ++ rpki;
+    Laptop
+    ++ marielap
+    ++ serva
+    ++ grafana
+    ++ web1_host
+    ++ jellyfin
+    ++ dn42
+    ++ netbox
+    ++ build
+    ++ rpki
+    ++ tor1
+    ++ tor2
+    ++ tor3
+    ++ tor4
+    ++ tor5
+    ++ tor6
+    ++ tor7
+    ++ tor8;
 in
 
 {
