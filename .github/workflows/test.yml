@@ -4,10 +4,16 @@ on:
     branches: [ "main" ]
 
 jobs:
+  debug:
+    runs-on: self-hosted
+    steps:
+      - name: debug
+        run: |
+          ls
+          ls nixos-config
   build:
     runs-on: self-hosted
     steps:
       - name: build with colmena
         run: |
-          ls
           nix run nixpkgs#colmena -- build --impure
