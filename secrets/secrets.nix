@@ -97,4 +97,5 @@ in
   "github-runner-ams1.age".publicKeys = marielap ++ build;
   "harmonia.age".publicKeys = marielap ++ build;
   "nixbuildssh.age".publicKeys = all_hosts;
+  "github-runner-nixos-config.age".publicKeys = marielap ++ build;
 }
