@@ -8,6 +8,7 @@
     ../../modules/nginx
     ../../modules/as214958_net
     ../../modules/container_default
+    ../../modules/container_default/network.nix
     ../../modules/bird-lg-frontend
     ./proxys.nix
     ../../modules/nixos-builder-client

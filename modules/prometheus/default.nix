@@ -33,24 +33,22 @@
             targets = [
               "shit.ketamin.trade:${toString config.services.prometheus.exporters.node.port}"
               "tor1.ketamin.trade:${toString config.services.prometheus.exporters.node.port}"
-              "tor1.ketamin.trade:9191" # Fail2ban Exporer
               "tor2.ketamin.trade:${toString config.services.prometheus.exporters.node.port}"
-              "tor2.ketamin.trade:9191" # Fail2ban Exporer
               "tor3.ketamin.trade:${toString config.services.prometheus.exporters.node.port}"
-              "tor3.ketamin.trade:9191" # Fail2ban Exporer
               "tor4.ketamin.trade:${toString config.services.prometheus.exporters.node.port}"
-              "tor4.ketamin.trade:9191" # Fail2ban Exporer
-              "tor1.catgirl.dog:${toString config.services.prometheus.exporters.node.port}"
-              "tor1.catgirl.dog:9191" # Fail2ban Exporer
+              "tor1.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
+              "tor2.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
+              "tor3.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
+              "tor4.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
+              "tor5.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
+              "tor6.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
+              "tor7.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
+              "tor8.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
               "tor1.catgirl.dog:${toString config.services.prometheus.exporters.node.port}"
               "tor2.catgirl.dog:${toString config.services.prometheus.exporters.node.port}"
-              "tor2.catgirl.dog:9191" # Fail2ban Exporer
               "10.10.10.1:${toString config.services.prometheus.exporters.smartctl.port}"
               "10.10.10.1:${toString config.services.prometheus.exporters.node.port}"
               "10.10.10.1:${toString config.services.prometheus.exporters.bird.port}"
-              "10.10.10.1:${toString config.services.prometheus.exporters.redis.port}"
-              "10.10.10.1:${toString config.services.prometheus.exporters.postgres.port}"
-              "vps.flohannes.de:${toString config.services.prometheus.exporters.node.port}"
               "[2a0e:8f02:f017::1]:${toString config.services.prometheus.exporters.node.port}"
               "web1.web1.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
               "grafana.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
@@ -60,7 +58,7 @@
               "netbox.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
               "build.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
               "[2a0e:8f02:f017::1]:${toString config.services.prometheus.exporters.bird.port}"
-              "localhost:9590" # netflow exporter
+              "grafana.ams1.as214958.net:9590" # netflow exporter
             ];
           }
         ];

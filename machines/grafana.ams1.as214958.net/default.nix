@@ -5,11 +5,13 @@
   imports = [
     ./hardware-configuration.nix
     ./net.nix
-    ../modules/nginx
-    ../modules/container_default
-    ../modules/prometheus
-    ../modules/grafana
-    ../modules/netflow-exporter
+    ../../modules/nginx
+    ../../modules/container_default
+    ../../modules/container_default/network.nix
+
+    ../../modules/prometheus
+    ../../modules/grafana
+    ../../modules/netflow-exporter
   ];
 }
 ## github copilot wrote this

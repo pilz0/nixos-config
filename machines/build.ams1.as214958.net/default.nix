@@ -6,6 +6,7 @@
     ./hardware-configuration.nix
     ./net.nix
     ../../modules/container_default
+    ../../modules/container_default/network.nix
     ../../modules/github-runner
     ../../modules/nixos_builder
     ../../modules/binary-cache

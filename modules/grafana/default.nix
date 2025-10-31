@@ -57,29 +57,6 @@
                 url = "http://localhost:${toString config.services.prometheus.port}";
                 uid = "e68e5107-0b44-4438-870c-019649e85d2b";
               }
-              {
-                name = "trawelling";
-                type = "yesoreyeram-infinity-datasource";
-                basicAuth = false;
-                basicAuthUser = "";
-                isDefault = false;
-                jsonData = {
-                  allowedHosts = [
-                    "traewelling.de"
-                    "https://traewelling.de"
-                  ];
-                  auth_method = "bearerToken";
-                  customHealthCheckEnabled = true;
-                  customHealthCheckUrl = "https://traewelling.de/api/v1/auth/user";
-                  global_queries = [ ];
-                  oauthPassThru = false;
-                  readOnly = false;
-                  apiVersion = "";
-                  secureJsonData = {
-                    bearerToken = "$__file{${toString config.age.secrets.traewelling.path}}";
-                  };
-                };
-              }
             ];
           };
         };

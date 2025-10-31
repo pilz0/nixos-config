@@ -190,6 +190,150 @@
             }
           ];
         };
+        "tor1.ams1.as214958.net" = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit self;
+            inherit inputs;
+            inherit agenix;
+          };
+          system = "x86_64-linux";
+          modules = [
+            ./machines/tor1.ams1.as214958.net
+            agenix.nixosModules.default
+            disko.nixosModules.disko
+            {
+              environment.systemPackages = [
+                agenix.packages.x86_64-linux.default
+              ];
+            }
+          ];
+        };
+        "tor2.ams1.as214958.net" = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit self;
+            inherit inputs;
+            inherit agenix;
+          };
+          system = "x86_64-linux";
+          modules = [
+            ./machines/tor2.ams1.as214958.net
+            agenix.nixosModules.default
+            disko.nixosModules.disko
+            {
+              environment.systemPackages = [
+                agenix.packages.x86_64-linux.default
+              ];
+            }
+          ];
+        };
+        "tor3.ams1.as214958.net" = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit self;
+            inherit inputs;
+            inherit agenix;
+          };
+          system = "x86_64-linux";
+          modules = [
+            ./machines/tor3.ams1.as214958.net
+            agenix.nixosModules.default
+            disko.nixosModules.disko
+            {
+              environment.systemPackages = [
+                agenix.packages.x86_64-linux.default
+              ];
+            }
+          ];
+        };
+        "tor4.ams1.as214958.net" = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit self;
+            inherit inputs;
+            inherit agenix;
+          };
+          system = "x86_64-linux";
+          modules = [
+            ./machines/tor4.ams1.as214958.net
+            agenix.nixosModules.default
+            disko.nixosModules.disko
+            {
+              environment.systemPackages = [
+                agenix.packages.x86_64-linux.default
+              ];
+            }
+          ];
+        };
+        "tor5.ams1.as214958.net" = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit self;
+            inherit inputs;
+            inherit agenix;
+          };
+          system = "x86_64-linux";
+          modules = [
+            ./machines/tor5.ams1.as214958.net
+            agenix.nixosModules.default
+            disko.nixosModules.disko
+            {
+              environment.systemPackages = [
+                agenix.packages.x86_64-linux.default
+              ];
+            }
+          ];
+        };
+        "tor6.ams1.as214958.net" = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit self;
+            inherit inputs;
+            inherit agenix;
+          };
+          system = "x86_64-linux";
+          modules = [
+            ./machines/tor6.ams1.as214958.net
+            agenix.nixosModules.default
+            disko.nixosModules.disko
+            {
+              environment.systemPackages = [
+                agenix.packages.x86_64-linux.default
+              ];
+            }
+          ];
+        };
+        "tor7.ams1.as214958.net" = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit self;
+            inherit inputs;
+            inherit agenix;
+          };
+          system = "x86_64-linux";
+          modules = [
+            ./machines/tor7.ams1.as214958.net
+            agenix.nixosModules.default
+            disko.nixosModules.disko
+            {
+              environment.systemPackages = [
+                agenix.packages.x86_64-linux.default
+              ];
+            }
+          ];
+        };
+        "tor8.ams1.as214958.net" = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit self;
+            inherit inputs;
+            inherit agenix;
+          };
+          system = "x86_64-linux";
+          modules = [
+            ./machines/tor8.ams1.as214958.net
+            agenix.nixosModules.default
+            disko.nixosModules.disko
+            {
+              environment.systemPackages = [
+                agenix.packages.x86_64-linux.default
+              ];
+            }
+          ];
+        };
         "grafana.ams1.as214958.net" = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit self;

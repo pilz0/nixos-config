@@ -98,7 +98,6 @@
     DisableFirefoxStudies = true;
   };
 
-  services.tailscale.enable = true;
   programs.steam.enable = true;
 
   programs.zsh.shellAliases = {

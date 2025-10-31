@@ -6,6 +6,7 @@
     ./hardware-configuration.nix
     ./net.nix
     ../../modules/container_default
+    ../../modules/container_default/network.nix
     ../../modules/dn42
     ../../modules/nixos-builder-client
   ];

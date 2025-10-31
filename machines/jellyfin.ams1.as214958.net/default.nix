@@ -6,6 +6,8 @@
     ./hardware-configuration.nix
     ./net.nix
     ../../modules/container_default
+    ../../modules/container_default/network.nix
+
     ../../modules/nixarr
     ../../modules/nixos-builder-client
   ];

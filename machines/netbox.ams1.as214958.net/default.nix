@@ -5,9 +5,10 @@
   imports = [
     ./hardware-configuration.nix
     ./net.nix
-    ../modules/container_default
-    ../modules/netbox
-    ../modules/nixos-builder-client
+    ../../modules/container_default
+    ../../modules/container_default/network.nix
+    ../../modules/netbox
+    ../../modules/nixos-builder-client
   ];
 }
 ## github copilot wrote this
