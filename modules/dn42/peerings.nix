@@ -140,6 +140,14 @@
           publicWireguardEndpoint = "router-a.dn42.zaphyra.eu:51833";
           publicWireguardKey = "B3ZZUvJ/ZG9dc9cl4t4wofD/+wsmm+r56Uh9hqPrZEE=";
         };
+        darkpoint_DN42 = {
+          peerLinkLocal = "fe80::150";
+          ownLinkLocal = "fe80::acab";
+          asNumber = "4242420150";
+          publicWireguardEndpoint = "fra.darkpoint.xyz:20663";
+          publicWireguardKey = "nfoxTtmJdBdxNR3TmfVLG13KA5E+ZtU+uIGCegxrxxw=";
+          publicWireguardPort = "150";
+        };
       };
     };
   };

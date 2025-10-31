@@ -2,7 +2,7 @@
   services.tor = {
     settings = {
       address = "94.142.241.153";
-      ORPort = 8080;
+      ORPort = 3306;
     };
   };
 }

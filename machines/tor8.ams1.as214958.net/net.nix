@@ -5,7 +5,7 @@
 {
   networking = {
     hostName = "tor8";
-    hostId = "2166b438";
+    hostId = "2112e232";
   };
 
   systemd.network = {
@@ -17,7 +17,7 @@
       };
       "20-eth1" = {
         address = [
-          "10.0.0.9/24"
+          "10.0.0.10/24"
         ];
       };
     };

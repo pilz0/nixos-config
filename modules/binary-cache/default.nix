@@ -1,13 +1,9 @@
 {
   config,
-  harmonia,
   ...
 }:
 
 {
-  imports = [
-    harmonia.nixosModules.harmonia
-  ];
 
   age.secrets."harmonia-signing-key".file = ../../secrets/harmonia.age;
 

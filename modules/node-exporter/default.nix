@@ -1,5 +1,4 @@
 {
-  config,
   ...
 }:
 {
@@ -11,10 +10,5 @@
         port = 9100;
       };
     };
-  };
-  networking.firewall = {
-    allowedTCPPorts = [
-      config.services.prometheus.exporters.node.port
-    ];
   };
 }
