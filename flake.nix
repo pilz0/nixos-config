@@ -1,5 +1,5 @@
 {
-  description = "PilzOS";
+  description = "Pilz's nixos-based infra";
   inputs = {
     nixpkgs = {
       url = "github:nixos/nixpkgs/nixos-25.05";
@@ -51,6 +51,7 @@
     {
       colmena = {
         meta = {
+          description = "Pilz's nixos-based infra";
           nixpkgs = import nixpkgs {
             system = "x86_64-linux";
             overlays = [ ];
@@ -187,6 +188,28 @@
             ];
             deployment = {
               targetHost = "rpki.ams1.as214958.net";
+              targetUser = "root";
+              targetPort = 22;
+            };
+          };
+        "grafana.ams1.as214958.net" =
+          {
+            config,
+            pkgs,
+            inputs,
+            ...
+          }:
+          {
+            imports = [
+              ./machines/grafana.ams1.as214958.net
+              agenix.nixosModules.default
+              disko.nixosModules.disko
+            ];
+            environment.systemPackages = [
+              agenix.packages.x86_64-linux.default
+            ];
+            deployment = {
+              targetHost = "grafana.ams1.as214958.net";
               targetUser = "root";
               targetPort = 22;
             };
@@ -380,7 +403,6 @@
             withPgSQL = true;
             withSQLite = true;
           };
-          flow-exporter-custom = pkgs.callPackage ./custom_pkgs/flow-exporter.nix { };
         };
       nixosConfigurations = {
         "serva" = nixpkgs.lib.nixosSystem {
@@ -398,26 +420,6 @@
             nixarr.nixosModules.default
             {
               environment.systemPackages = [ agenix.packages.x86_64-linux.default ];
-            }
-          ];
-        };
-        "grafana.ams1.as214958.net" = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit self;
-            inherit inputs;
-            inherit agenix;
-            flow-exporter-custom = self.packages.x86_64-linux.flow-exporter-custom;
-          };
-          system = "x86_64-linux";
-          modules = [
-            ./machines/grafana.ams1.as214958.net
-            agenix.nixosModules.default
-            disko.nixosModules.disko
-            {
-              environment.systemPackages = [
-                self.packages.x86_64-linux.flow-exporter-custom
-                agenix.packages.x86_64-linux.default
-              ];
             }
           ];
         };

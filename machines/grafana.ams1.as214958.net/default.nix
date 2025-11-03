@@ -8,7 +8,6 @@
     ../../modules/nginx
     ../../modules/container_default
     ../../modules/container_default/network.nix
-
     ../../modules/prometheus
     ../../modules/grafana
     ../../modules/netflow-exporter

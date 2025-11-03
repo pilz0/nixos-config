@@ -1,7 +1,10 @@
 {
-  flow-exporter-custom,
+  pkgs,
   ...
 }:
+let
+  flow-exporter-custom = pkgs.callPackage ../../custom_pkgs/flow-exporter.nix { };
+in
 {
 
   # https://discourse.nixos.org/t/how-to-setup-kafka-server-on-nixos/45055
@@ -18,6 +21,7 @@
       ];
 
       "delete.topic.enable" = true;
+      "log.retention.hours" = 24;
       "auto.create.topics.enable" = true;
       "advertised.listeners" = [
         "INSIDE://:19092"

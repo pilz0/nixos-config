@@ -10,6 +10,5 @@
     ../../modules/nixos-builder-client
     ../../modules/tor-relay
     ../../modules/tor-relay/network-pve.nix
-
   ];
 }
