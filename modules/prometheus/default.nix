@@ -44,6 +44,14 @@
               "tor6.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
               "tor7.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
               "tor8.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
+              "tor1.ams1.as214958.net:9052" # tor
+              "tor2.ams1.as214958.net:9052" # tor
+              "tor3.ams1.as214958.net:9052" # tor
+              "tor4.ams1.as214958.net:9052" # tor
+              "tor5.ams1.as214958.net:9052" # tor
+              "tor6.ams1.as214958.net:9052" # tor
+              "tor7.ams1.as214958.net:9052" # tor
+              "tor8.ams1.as214958.net:9052" # tor
               "tor1.catgirl.dog:${toString config.services.prometheus.exporters.node.port}"
               "tor2.catgirl.dog:${toString config.services.prometheus.exporters.node.port}"
               "10.10.10.1:${toString config.services.prometheus.exporters.smartctl.port}"

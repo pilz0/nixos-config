@@ -57,6 +57,50 @@
             overlays = [ ];
           };
         };
+        "framwok" =
+          {
+            config,
+            pkgs,
+            inputs,
+            ...
+          }:
+          {
+            imports = [
+              agenix.nixosModules.default
+              ./machines/framwok
+              nixos-hardware.nixosModules.framework-12th-gen-intel
+              home-manager.nixosModules.home-manager
+            ];
+            environment.systemPackages = [
+              agenix.packages.x86_64-linux.default
+            ];
+            deployment = {
+              targetHost = "null";
+              allowLocalDeployment = true;
+            };
+          };
+        "serva" =
+          {
+            config,
+            pkgs,
+            inputs,
+            ...
+          }:
+          {
+            imports = [
+              ./machines/serva
+              agenix.nixosModules.default
+              nixarr.nixosModules.default
+            ];
+            environment.systemPackages = [
+              agenix.packages.x86_64-linux.default
+            ];
+            deployment = {
+              targetHost = "fff161.ddns.net";
+              targetUser = "root";
+              targetPort = 22;
+            };
+          };
         "netbox.ams1.as214958.net" =
           {
             config,
@@ -404,44 +448,5 @@
             withSQLite = true;
           };
         };
-      nixosConfigurations = {
-        "serva" = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit self;
-            inherit inputs;
-            inherit nixarr;
-            inherit agenix;
-
-          };
-          system = "x86_64-linux";
-          modules = [
-            ./machines/serva
-            agenix.nixosModules.default
-            nixarr.nixosModules.default
-            {
-              environment.systemPackages = [ agenix.packages.x86_64-linux.default ];
-            }
-          ];
-        };
-        "framwok" = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit agenix;
-            inherit inputs;
-            inherit spicetify-nix;
-          };
-          system = "x86_64-linux";
-          modules = [
-            agenix.nixosModules.default
-            ./machines/framwok
-            nixos-hardware.nixosModules.framework-12th-gen-intel
-            home-manager.nixosModules.home-manager
-            {
-              environment.systemPackages = [
-                agenix.packages.x86_64-linux.default
-              ];
-            }
-          ];
-        };
-      };
     };
 }

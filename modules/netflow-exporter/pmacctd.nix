@@ -1,8 +1,17 @@
 {
   lib,
-  pmacct-custom,
+  pkgs,
   ...
 }:
+let
+  # there is an upstream fix for kafka but its still in unstable
+  pmacct-custom = pkgs.callPackage ../../custom_pkgs/pmacct.nix {
+    withKafka = true;
+    withJansson = true;
+    withPgSQL = true;
+    withSQLite = true;
+  };
+in
 {
   systemd.services.pmacctd = {
     enable = true;

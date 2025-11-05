@@ -3,15 +3,15 @@
   ...
 }:
 let
+  # flow exporter is currently broken upstream with newer kafka versions (https://github.com/neptune-networks/flow-exporter/pull/21#issuecomment-3272158539)
   flow-exporter-custom = pkgs.callPackage ../../custom_pkgs/flow-exporter.nix { };
 in
 {
-
   # https://discourse.nixos.org/t/how-to-setup-kafka-server-on-nixos/45055
   systemd.services.apache-kafka.unitConfig.StateDirectory = "apache-kafka";
   services.apache-kafka = {
     enable = true;
-    clusterId = "xxxxxxxxxxxxxxxxxxxxxx";
+    clusterId = "1312xxxxxxxxxxxxxxacab";
     formatLogDirs = true;
     settings = {
       listeners = [
@@ -21,7 +21,7 @@ in
       ];
 
       "delete.topic.enable" = true;
-      "log.retention.hours" = 24;
+      "log.retention.bytes" = 1000000000;
       "auto.create.topics.enable" = true;
       "advertised.listeners" = [
         "INSIDE://:19092"
@@ -37,7 +37,7 @@ in
         "1@127.0.0.1:9093"
       ];
       "controller.listener.names" = [ "CONTROLLER" ];
-      "log.dirs" = [ "/var/lib/apache-kafka" ];
+      "log.dirs" = [ "/tmp/apache-kafka" ];
       "node.id" = 1;
       "process.roles" = [
         "broker"

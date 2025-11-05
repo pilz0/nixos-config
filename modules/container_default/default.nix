@@ -36,30 +36,27 @@
       ::1 ${config.networking.hostName}
     '';
   };
-  boot.kernel.sysctl = {
-    "net.ipv6.conf.eth0.accept_dad" = false;
-    "net.ipv6.conf.eth0.dad_transmits" = false;
-    "net.ipv6.conf.default.accept_dad" = false;
-    "net.ipv6.conf.default.dad_transmits" = false;
-  };
-  boot.isContainer = true;
-  programs.ssh.startAgent = true;
-
-  environment.systemPackages = with pkgs; [
-    keychain
-  ];
-
-  programs.zsh.interactiveShellInit = ''
-    eval $(keychain --eval --quiet id_rsa)
-  '';
-
   boot = {
+    isContainer = true;
+    kernel.sysctl = {
+      "net.ipv6.conf.eth0.accept_dad" = false;
+      "net.ipv6.conf.eth0.dad_transmits" = false;
+      "net.ipv6.conf.default.accept_dad" = false;
+      "net.ipv6.conf.default.dad_transmits" = false;
+    };
     loader.grub = {
       efiSupport = true;
       efiInstallAsRemovable = true;
     };
     growPartition = true;
+    tmp.useTmpfs = true;
   };
+
+  programs.ssh.startAgent = true;
+
+  environment.systemPackages = with pkgs; [
+    keychain
+  ];
 
   security = {
     acme = {
