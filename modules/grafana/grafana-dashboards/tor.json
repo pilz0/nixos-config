@@ -18,7 +18,7 @@
     "editable": true,
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
-    "id": 8,
+    "id": 32,
     "links": [
         {
             "asDropdown": false,
@@ -47,8 +47,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green",
-                                "value": null
+                                "color": "green"
                             },
                             {
                                 "color": "green",
@@ -84,7 +83,7 @@
                 "textMode": "auto",
                 "wideLayout": true
             },
-            "pluginVersion": "11.3.0",
+            "pluginVersion": "12.0.6",
             "targets": [
                 {
                     "datasource": {
@@ -92,7 +91,7 @@
                         "uid": "e68e5107-0b44-4438-870c-019649e85d2b"
                     },
                     "editorMode": "code",
-                    "expr": "sum(increase(node_network_receive_bytes_total{device=\"ens6\"}[1w]))",
+                    "expr": "sum(increase(node_network_receive_bytes_total{job=\"tor\"}[1w]))",
                     "instant": false,
                     "legendFormat": "__auto",
                     "range": true,
@@ -115,8 +114,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green",
-                                "value": null
+                                "color": "green"
                             },
                             {
                                 "color": "green",
@@ -152,7 +150,7 @@
                 "textMode": "auto",
                 "wideLayout": true
             },
-            "pluginVersion": "11.3.0",
+            "pluginVersion": "12.0.6",
             "targets": [
                 {
                     "datasource": {
@@ -160,7 +158,7 @@
                         "uid": "e68e5107-0b44-4438-870c-019649e85d2b"
                     },
                     "editorMode": "code",
-                    "expr": "sum(increase(node_network_transmit_bytes_total{device=\"ens6\"}[1w]))",
+                    "expr": "sum(increase(node_network_transmit_bytes_total{job=\"tor\"}[1w]))",
                     "instant": false,
                     "legendFormat": "__auto",
                     "range": true,
@@ -186,8 +184,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green",
-                                "value": null
+                                "color": "green"
                             },
                             {
                                 "color": "green",
@@ -223,7 +220,7 @@
                 "textMode": "auto",
                 "wideLayout": true
             },
-            "pluginVersion": "11.3.0",
+            "pluginVersion": "12.0.6",
             "targets": [
                 {
                     "datasource": {
@@ -231,7 +228,7 @@
                         "uid": "e68e5107-0b44-4438-870c-019649e85d2b"
                     },
                     "editorMode": "code",
-                    "expr": "sum(increase(node_network_receive_bytes_total{device=\"ens6\"}[1w])) + sum(increase(node_network_transmit_bytes_total{device=\"ens6\"}[1w]))",
+                    "expr": "sum(increase(node_network_receive_bytes_total{job=\"tor\"}[1w])) + sum(increase(node_network_transmit_bytes_total{job=\"tor\"}[1w]))",
                     "instant": false,
                     "legendFormat": "__auto",
                     "range": true,
@@ -257,8 +254,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green",
-                                "value": null
+                                "color": "green"
                             },
                             {
                                 "color": "green",
@@ -294,7 +290,7 @@
                 "textMode": "auto",
                 "wideLayout": true
             },
-            "pluginVersion": "11.3.0",
+            "pluginVersion": "12.0.6",
             "targets": [
                 {
                     "datasource": {
@@ -302,7 +298,7 @@
                         "uid": "e68e5107-0b44-4438-870c-019649e85d2b"
                     },
                     "editorMode": "code",
-                    "expr": "sum(increase(node_network_transmit_bytes_total{device=\"ens6\"}[1d])) + sum(increase(node_network_receive_bytes_total{device=\"ens6\"}[1d]))",
+                    "expr": "sum(increase(node_network_transmit_bytes_total{job=\"tor\"}[1d])) + sum(increase(node_network_receive_bytes_total{job=\"tor\"}[1d]))",
                     "instant": false,
                     "legendFormat": "__auto",
                     "range": true,
@@ -329,8 +325,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "purple",
-                                "value": null
+                                "color": "purple"
                             }
                         ]
                     },
@@ -362,7 +357,7 @@
                 "textMode": "auto",
                 "wideLayout": true
             },
-            "pluginVersion": "11.3.0",
+            "pluginVersion": "12.0.6",
             "targets": [
                 {
                     "datasource": {
@@ -370,7 +365,7 @@
                         "uid": "e68e5107-0b44-4438-870c-019649e85d2b"
                     },
                     "editorMode": "code",
-                    "expr": "sum(irate(node_network_receive_bytes_total{job=\"nodes\", instance!=\"localhost:9100\", instance!=\"10.10.1.25:9100\"}[$__rate_interval])) * 8",
+                    "expr": "sum(irate(node_network_receive_bytes_total{job=\"tor\"}[$__rate_interval])) * 8",
                     "instant": false,
                     "legendFormat": "__auto",
                     "range": true,
@@ -434,8 +429,7 @@
                         "mode": "percentage",
                         "steps": [
                             {
-                                "color": "green",
-                                "value": null
+                                "color": "green"
                             },
                             {
                                 "color": "red",
@@ -499,11 +493,12 @@
                     "showLegend": false
                 },
                 "tooltip": {
+                    "hideZeros": false,
                     "mode": "single",
                     "sort": "none"
                 }
             },
-            "pluginVersion": "11.3.0",
+            "pluginVersion": "12.0.6",
             "targets": [
                 {
                     "datasource": {
@@ -511,7 +506,7 @@
                         "uid": "e68e5107-0b44-4438-870c-019649e85d2b"
                     },
                     "editorMode": "code",
-                    "expr": "sum(irate(node_network_receive_bytes_total{job=\"nodes\", instance!=\"localhost:9100\", instance!=\"10.10.1.25:9100\"}[$__rate_interval])) * 8 ",
+                    "expr": "sum(irate(node_network_receive_bytes_total{job=\"tor\"}[$__rate_interval])) * 8 ",
                     "instant": false,
                     "legendFormat": "__auto",
                     "range": true,
@@ -523,7 +518,7 @@
                         "uid": "e68e5107-0b44-4438-870c-019649e85d2b"
                     },
                     "editorMode": "code",
-                    "expr": "sum(irate(node_network_transmit_bytes_total{job=\"nodes\", instance!=\"localhost:9100\", instance!=\"10.10.1.25:9100\"}[$__rate_interval])) * 8 ",
+                    "expr": "sum(irate(node_network_transmit_bytes_total{job=\"tor\"}[$__rate_interval])) * 8 ",
                     "hide": false,
                     "instant": false,
                     "legendFormat": "__auto",
@@ -551,8 +546,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "purple",
-                                "value": null
+                                "color": "purple"
                             }
                         ]
                     },
@@ -584,7 +578,7 @@
                 "textMode": "auto",
                 "wideLayout": true
             },
-            "pluginVersion": "11.3.0",
+            "pluginVersion": "12.0.6",
             "targets": [
                 {
                     "datasource": {
@@ -592,7 +586,7 @@
                         "uid": "e68e5107-0b44-4438-870c-019649e85d2b"
                     },
                     "editorMode": "code",
-                    "expr": "sum(irate(node_network_transmit_bytes_total{job=\"nodes\", instance!=\"localhost:9100\", instance!=\"10.10.1.25:9100\"}[$__rate_interval])) * 8",
+                    "expr": "sum(irate(node_network_transmit_bytes_total{job=\"tor\"}[$__rate_interval])) * 8",
                     "instant": false,
                     "legendFormat": "__auto",
                     "range": true,
@@ -600,6 +594,194 @@
                 }
             ],
             "title": "Traffic currently (transmit)",
+            "type": "stat"
+        },
+        {
+            "datasource": {
+                "type": "prometheus",
+                "uid": "e68e5107-0b44-4438-870c-019649e85d2b"
+            },
+            "description": "Onion Skins per second for last 1 hour",
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisBorderShow": false,
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "Dropped",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "barWidthFactor": 0.6,
+                        "drawStyle": "line",
+                        "fillOpacity": 10,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "insertNulls": false,
+                        "lineInterpolation": "linear",
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "never",
+                        "spanNulls": false,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "min": 0,
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green"
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "cps"
+                },
+                "overrides": [
+                    {
+                        "matcher": {
+                            "id": "byRegexp",
+                            "options": "/processed/"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.axisPlacement",
+                                "value": "right"
+                            },
+                            {
+                                "id": "custom.axisLabel",
+                                "value": "Processed"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "gridPos": {
+                "h": 14,
+                "w": 17,
+                "x": 0,
+                "y": 12
+            },
+            "id": 12,
+            "options": {
+                "legend": {
+                    "calcs": [
+                        "max"
+                    ],
+                    "displayMode": "list",
+                    "placement": "bottom",
+                    "showLegend": true
+                },
+                "tooltip": {
+                    "hideZeros": false,
+                    "mode": "multi",
+                    "sort": "none"
+                }
+            },
+            "pluginVersion": "12.0.6",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "prometheus",
+                        "uid": "e68e5107-0b44-4438-870c-019649e85d2b"
+                    },
+                    "exemplar": true,
+                    "expr": "rate(tor_relay_load_onionskins_total[5m])",
+                    "interval": "",
+                    "legendFormat": "{{type}} {{action}}",
+                    "refId": "A"
+                }
+            ],
+            "title": "Onion Skins",
+            "type": "timeseries"
+        },
+        {
+            "datasource": {
+                "type": "prometheus",
+                "uid": "e68e5107-0b44-4438-870c-019649e85d2b"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "mappings": [],
+                    "noValue": "No data",
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green"
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 14,
+                "w": 7,
+                "x": 17,
+                "y": 12
+            },
+            "id": 13,
+            "options": {
+                "colorMode": "value",
+                "graphMode": "area",
+                "justifyMode": "auto",
+                "orientation": "horizontal",
+                "percentChangeColorMode": "standard",
+                "reduceOptions": {
+                    "calcs": [
+                        "last"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "showPercentChange": false,
+                "text": {},
+                "textMode": "auto",
+                "wideLayout": true
+            },
+            "pluginVersion": "12.0.6",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "prometheus",
+                        "uid": "e68e5107-0b44-4438-870c-019649e85d2b"
+                    },
+                    "disableTextWrap": false,
+                    "editorMode": "builder",
+                    "expr": "tor_relay_circuits_total",
+                    "fullMetaSearch": false,
+                    "includeNullMetadata": true,
+                    "instant": false,
+                    "legendFormat": "{{instance}}",
+                    "range": true,
+                    "refId": "A",
+                    "useBackend": false
+                }
+            ],
+            "title": "Opened Sokets",
             "type": "stat"
         },
         {
@@ -620,8 +802,7 @@
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "purple",
-                                "value": null
+                                "color": "purple"
                             }
                         ]
                     },
@@ -630,10 +811,10 @@
                 "overrides": []
             },
             "gridPos": {
-                "h": 10,
+                "h": 14,
                 "w": 24,
                 "x": 0,
-                "y": 12
+                "y": 26
             },
             "id": 10,
             "options": {
@@ -653,7 +834,7 @@
                 "textMode": "auto",
                 "wideLayout": true
             },
-            "pluginVersion": "11.3.0",
+            "pluginVersion": "12.0.6",
             "targets": [
                 {
                     "datasource": {
@@ -661,7 +842,7 @@
                         "uid": "e68e5107-0b44-4438-870c-019649e85d2b"
                     },
                     "editorMode": "code",
-                    "expr": "sum(rate(node_network_receive_bytes_total{job=\"nodes\", instance!=\"localhost:9100\", instance!=\"10.10.1.25:9100\", device=\"ens6\"}[$__rate_interval])) without (device, job)*8",
+                    "expr": "sum(rate(node_network_receive_bytes_total{job=\"tor\" }[$__rate_interval])) without (device, job)*8",
                     "instant": false,
                     "legendFormat": "__auto",
                     "range": true,
@@ -674,7 +855,7 @@
     ],
     "preload": false,
     "refresh": "10s",
-    "schemaVersion": 40,
+    "schemaVersion": 41,
     "tags": [],
     "templating": {
         "list": []
@@ -693,8 +874,7 @@
         ]
     },
     "timezone": "browser",
-    "title": "Tor Relays",
-    "uid": "cdyy9ajcti0hsa",
-    "version": 38,
-    "weekStart": ""
+    "title": "Tor Relays_dev",
+    "uid": "cdyy9ajcti0hsas",
+    "version": 1
 }

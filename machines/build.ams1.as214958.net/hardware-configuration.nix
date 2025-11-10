@@ -22,8 +22,12 @@
     device = "rpool/data/subvol-106-disk-0";
     fsType = "zfs";
   };
-
-  swapDevices = [ ];
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 48 * 1024;
+    }
+  ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }

@@ -14,7 +14,7 @@
     settings = {
       ContactInfo = "darmstadt@fridaysforfuture.de";
       Nickname = "as214958${config.networking.hostName}";
-      BandWidthRate = "6 MBytes";
+      BandWidthRate = "7 MBytes";
       RelayBandwidthBurst = "12 MBytes";
       ExitRelay = false;
       MetricsPort = "[::]:9052";

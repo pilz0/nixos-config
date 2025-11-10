@@ -2,6 +2,7 @@
   modulesPath,
   config,
   pkgs,
+  lib,
   ...
 }:
 {
@@ -12,6 +13,12 @@
     ../shell
     ../common
     ../node-exporter
+  ];
+
+  systemd.suppressedSystemUnits = [
+    "dev-mqueue.mount"
+    "sys-kernel-debug.mount"
+    "sys-fs-fuse-connections.mount"
   ];
 
   networking = {
@@ -49,7 +56,7 @@
       efiInstallAsRemovable = true;
     };
     growPartition = true;
-    tmp.useTmpfs = true;
+    tmp.useTmpfs = lib.mkDefault true;
   };
 
   programs.ssh.startAgent = true;

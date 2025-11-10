@@ -1,9 +1,13 @@
 {
+  lib,
+  ...
+}:
+{
 
   services.openssh = {
     enable = true;
     settings = {
-      PasswordAuthentication = false;
+      PasswordAuthentication = lib.mkDefault false;
       PermitRootLogin = "prohibit-password";
     };
     banner = ''

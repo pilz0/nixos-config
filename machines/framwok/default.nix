@@ -29,7 +29,7 @@
     };
   };
 
-  services.openssh.enable = true;
+  services.openssh.settings.PasswordAuthentication = true;
 
   # yubikey stuff
   services.pcscd.enable = true;

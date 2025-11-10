@@ -1,54 +1,18 @@
 {
   description = "Pilz's nixos-based infra";
-  inputs = {
-    nixpkgs = {
-      url = "github:nixos/nixpkgs/nixos-25.05";
-    };
-    nixos-hardware = {
-      url = "github:NixOS/nixos-hardware/master";
-    };
-    agenix = {
-      url = "github:ryantm/agenix";
-    };
-    nixarr = {
-      url = "github:rasmus-kirk/nixarr";
-    };
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    spicetify-nix = {
-      url = "github:Gerg-L/spicetify-nix/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    disko = {
-      url = "github:nix-community/disko/latest";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    harmonia = {
-      url = "github:nix-community/harmonia?ref=47d447dd3392dc97ea24d3368dfd84b14d2c5f09";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    colmena = {
-      url = "github:zhaofengli/colmena";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-  };
   outputs =
     {
-      self,
       nixpkgs,
       agenix,
       nixos-hardware,
       nixarr,
       home-manager,
-      spicetify-nix,
       disko,
       harmonia,
-      colmena,
       ...
-    }@inputs:
+    }:
     {
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
       colmena = {
         meta = {
           description = "Pilz's nixos-based infra";
@@ -121,6 +85,10 @@
               targetHost = "netbox.ams1.as214958.net";
               targetUser = "root";
               targetPort = 22;
+              tags = [
+                "infra"
+                "ams1"
+              ];
             };
           };
         "dn42.ams1.as214958.net" =
@@ -143,6 +111,10 @@
               targetHost = "dn42.ams1.as214958.net";
               targetUser = "root";
               targetPort = 22;
+              tags = [
+                "infra"
+                "ams1"
+              ];
             };
           };
         "web1.ams1.as214958.net" =
@@ -165,6 +137,10 @@
               targetHost = "web1.ams1.as214958.net";
               targetUser = "root";
               targetPort = 22;
+              tags = [
+                "infra"
+                "ams1"
+              ];
             };
           };
         "build.ams1.as214958.net" =
@@ -189,6 +165,10 @@
               targetHost = "build.ams1.as214958.net";
               targetUser = "root";
               targetPort = 22;
+              tags = [
+                "infra"
+                "ams1"
+              ];
             };
           };
         "jellyfin.ams1.as214958.net" =
@@ -212,6 +192,10 @@
               targetHost = "jellyfin.ams1.as214958.net";
               targetUser = "root";
               targetPort = 22;
+              tags = [
+                "infra"
+                "ams1"
+              ];
             };
           };
         "rpki.ams1.as214958.net" =
@@ -234,6 +218,10 @@
               targetHost = "rpki.ams1.as214958.net";
               targetUser = "root";
               targetPort = 22;
+              tags = [
+                "infra"
+                "ams1"
+              ];
             };
           };
         "grafana.ams1.as214958.net" =
@@ -256,6 +244,10 @@
               targetHost = "grafana.ams1.as214958.net";
               targetUser = "root";
               targetPort = 22;
+              tags = [
+                "infra"
+                "ams1"
+              ];
             };
           };
         "tor1.ams1.as214958.net" =
@@ -278,6 +270,10 @@
               targetHost = "tor1.ams1.as214958.net";
               targetUser = "root";
               targetPort = 22;
+              tags = [
+                "tor"
+                "ams1"
+              ];
             };
           };
         "tor2.ams1.as214958.net" =
@@ -300,6 +296,10 @@
               targetHost = "tor2.ams1.as214958.net";
               targetUser = "root";
               targetPort = 22;
+              tags = [
+                "tor"
+                "ams1"
+              ];
             };
           };
         "tor3.ams1.as214958.net" =
@@ -322,6 +322,10 @@
               targetHost = "tor3.ams1.as214958.net";
               targetUser = "root";
               targetPort = 22;
+              tags = [
+                "tor"
+                "ams1"
+              ];
             };
           };
         "tor4.ams1.as214958.net" =
@@ -344,6 +348,10 @@
               targetHost = "tor4.ams1.as214958.net";
               targetUser = "root";
               targetPort = 22;
+              tags = [
+                "tor"
+                "ams1"
+              ];
             };
           };
         "tor5.ams1.as214958.net" =
@@ -366,6 +374,10 @@
               targetHost = "tor5.ams1.as214958.net";
               targetUser = "root";
               targetPort = 22;
+              tags = [
+                "tor"
+                "ams1"
+              ];
             };
           };
         "tor6.ams1.as214958.net" =
@@ -388,6 +400,10 @@
               targetHost = "tor6.ams1.as214958.net";
               targetUser = "root";
               targetPort = 22;
+              tags = [
+                "tor"
+                "ams1"
+              ];
             };
           };
         "tor7.ams1.as214958.net" =
@@ -410,6 +426,10 @@
               targetHost = "tor7.ams1.as214958.net";
               targetUser = "root";
               targetPort = 22;
+              tags = [
+                "tor"
+                "ams1"
+              ];
             };
           };
         "tor8.ams1.as214958.net" =
@@ -432,21 +452,46 @@
               targetHost = "tor8.ams1.as214958.net";
               targetUser = "root";
               targetPort = 22;
+              tags = [
+                "tor"
+                "ams1"
+              ];
             };
           };
       };
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
-      packages.x86_64-linux =
-        let
-          pkgs = import nixpkgs { system = "x86_64-linux"; };
-        in
-        {
-          pmacct-custom = pkgs.callPackage ./custom_pkgs/pmacct.nix {
-            withKafka = true;
-            withJansson = true;
-            withPgSQL = true;
-            withSQLite = true;
-          };
-        };
     };
+  inputs = {
+    nixpkgs = {
+      url = "github:nixos/nixpkgs/nixos-25.05";
+    };
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware/master";
+    };
+    agenix = {
+      url = "github:ryantm/agenix";
+    };
+    nixarr = {
+      url = "github:rasmus-kirk/nixarr";
+    };
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    disko = {
+      url = "github:nix-community/disko/latest";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    harmonia = {
+      url = "github:nix-community/harmonia?ref=47d447dd3392dc97ea24d3368dfd84b14d2c5f09";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    colmena = {
+      url = "github:zhaofengli/colmena";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
 }
