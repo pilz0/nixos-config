@@ -16,10 +16,13 @@
 
   nix = {
     distributedBuilds = true;
+    settings.trusted-public-keys = [
+      "cache.as214958.net:YOUR_BUILDER_PUBLIC_KEY_HERE"
+    ];
     buildMachines = [
       {
         hostName = "cache.as214958.net";
-        protocol = "ssh";
+        protocol = "ssh-ng";
         sshUser = "root";
         sshKey = config.age.secrets.nixbuildssh.path;
         systems = [

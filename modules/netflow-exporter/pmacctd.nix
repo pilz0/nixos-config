@@ -25,7 +25,6 @@ in
   };
 
   environment.etc."pmacct/pmacctd.conf".text = ''
-    # debug: true
     daemonize: false
     pcap_interfaces_map: /etc/pmacct/interfaces.map
     pre_tag_map: /etc/pmacct/pretag.map
@@ -41,7 +40,7 @@ in
     bgp_daemon_max_peers: 10
     bgp_agent_map: /etc/pmacct/peering_agent.map
     !
-    aggregate: src_host, dst_host, src_port, dst_port, src_as, dst_as, label, proto
+    aggregate: src_port, dst_port, src_as, dst_as, src_net, dst_net, src_mask, dst_mask, label
     !
     plugins: kafka
     kafka_output: json
@@ -51,12 +50,10 @@ in
     kafka_refresh_time: 5
     kafka_history: 5m
     kafka_history_roundoff: m
-    kafka_topic: pmacct.acct
+    kafka_topic: pmacctd.acct
   '';
   environment.etc."pmacct/interfaces.map".text = ''
-    ifindex=100  ifname=eno1
-    ifindex=200  ifname=vmbr0
-    ifindex=300  ifname=vmbr1
+    ifindex=100  ifname=vmbr1
   '';
   environment.etc."pmacct/networks.lst".text = ''
     214958,94.142.241.152/31,2a0e:8f02:f017::/48

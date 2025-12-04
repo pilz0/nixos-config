@@ -28,6 +28,20 @@
       define OWNIP_DN42 = 172.22.179.129;
       define OWNIPv6_DN42 = fd49:d69f:6::1337;
 
+      define PREFIXES_ANNOUNCED_V4 = [
+        94.142.241.152/31
+      ];
+      define PREFIXES_ANNOUNCED_V6 = [
+        2a0e:8f02:f017::/48,
+        2a02:898:427::/48
+      ];
+      define PREFIXES_ANNOUNCED_V4_DN42 = [
+        172.22.179.128/27
+      ];
+      define PREFIXES_ANNOUNCED_V6_DN42 = [
+        fd49:d69f:6::/48
+      ];
+
       roa4 table dn42_roa;
       roa6 table dn42_roa_v6;
 

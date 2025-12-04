@@ -51,6 +51,13 @@
 
   services.openssh.enable = true;
 
+  security = {
+    acme = {
+      acceptTerms = true;
+      defaults.email = "acme@pilz.foo";
+    };
+  };
+
   time = {
     timeZone = "Europe/Berlin";
   };

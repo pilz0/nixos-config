@@ -3,7 +3,16 @@
   pkgs,
   ...
 }:
+let
+  grafanaPlugin = pkgs.callPackage (
+    pkgs.path + "/pkgs/servers/monitoring/grafana/plugins/grafana-plugin.nix"
+  ) { };
+  netsage-sankey-panel = pkgs.callPackage ../../custom_pkgs/grafana-plugin/netsage-sankey-panel {
+    inherit grafanaPlugin;
+  };
+in
 {
+
   age.secrets = {
     smtp = {
       file = ../../secrets/smtp.age;
@@ -43,6 +52,7 @@
         grafana-oncall-app
         grafana-piechart-panel
         grafana-polystat-panel
+        netsage-sankey-panel
         yesoreyeram-infinity-datasource
       ];
       provision = {

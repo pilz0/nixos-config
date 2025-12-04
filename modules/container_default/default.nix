@@ -19,6 +19,7 @@
     "dev-mqueue.mount"
     "sys-kernel-debug.mount"
     "sys-fs-fuse-connections.mount"
+    "zfs-zed.service"
   ];
 
   networking = {
@@ -65,11 +66,5 @@
     keychain
   ];
 
-  security = {
-    acme = {
-      acceptTerms = true;
-      defaults.email = "acme@pilz.foo";
-    };
-  };
   system.stateVersion = "23.11"; # Did you read the comment?
 }

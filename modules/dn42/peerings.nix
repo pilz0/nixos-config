@@ -148,6 +148,14 @@
           publicWireguardKey = "nfoxTtmJdBdxNR3TmfVLG13KA5E+ZtU+uIGCegxrxxw=";
           publicWireguardPort = "150";
         };
+        clerie_DN42 = {
+          peerLinkLocal = "fe80::1111";
+          ownLinkLocal = "fe80::acab";
+          asNumber = "4242422574";
+          publicWireguardEndpoint = "dn42-il-gw1.net.clerie.de:50663";
+          publicWireguardKey = "r38qvXqu26x4f6yUGxg44Ji4db/g2HK7RZwG7Boh+38=";
+          publicWireguardPort = "163";
+        };
       };
     };
   };

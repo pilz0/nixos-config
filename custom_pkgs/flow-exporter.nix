@@ -1,21 +1,22 @@
 {
   buildGoModule,
-  fetchFromGitHub,
   lib,
+  fetchFromGitHub,
 }:
 
 buildGoModule (finalAttrs: {
   pname = "flow-exporter";
-  version = "1.1.1";
+  version = "1.1.2";
 
   src = fetchFromGitHub {
-    rev = "master";
-    owner = "neptune-networks";
+    owner = "pilz0";
     repo = "flow-exporter";
-    sha256 = "sha256-GvXgE0tkdYJ8C35XH5lUi/GC2KZAQWQbdnS1aSSKxIY=";
+    rev = "add_metrics_2";
+    # haschisch rauchen !!!!
+    hash = "sha256-B2ua0jpiyIt0wZUmuz/JAjQF2/I7bUpvLUDcUNlcPqA=";
   };
 
-  vendorHash = "sha256-fTV6hO7IGxoAOF7xzKz+jR6Gwaq5f24rlc7wiT4zCKg=";
+  vendorHash = "sha256-2raOUOPiMUMydIsfSsnwUAAiM7WyMio1NgL1EoADr2s=";
 
   meta = with lib; {
     description = "Export network flows from kafka to Prometheus";

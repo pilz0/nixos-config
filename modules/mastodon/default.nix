@@ -41,6 +41,6 @@
   };
   services.nginx.virtualHosts.${config.services.mastodon.localDomain} = {
     forceSSL = false;
-    enableACME = false;
+    enableACME = true;
   };
 }

@@ -98,7 +98,7 @@
       {
         bogon_prefixes6 = BOGON_PREFIXES6;
         if (net ~ bogon_prefixes6) then {
-            print "Reject: Bogon prefix: ", net, " ", bgp_path;
+            print "Exporting: own prefix: ", net;
             reject;
         }
       }
