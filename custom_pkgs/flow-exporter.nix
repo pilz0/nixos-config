@@ -6,17 +6,17 @@
 
 buildGoModule (finalAttrs: {
   pname = "flow-exporter";
-  version = "1.1.2";
+  version = "1.1.3";
 
   src = fetchFromGitHub {
     owner = "pilz0";
     repo = "flow-exporter";
-    rev = "add_metrics_2";
+    rev = "multiple_metrics";
     # haschisch rauchen !!!!
-    hash = "sha256-B2ua0jpiyIt0wZUmuz/JAjQF2/I7bUpvLUDcUNlcPqA=";
+    hash = "sha256-D0Jc0BQbsitw4SE0F914UHnEdrc3eZFtCI0hNxSyJeE=";
   };
 
-  vendorHash = "sha256-2raOUOPiMUMydIsfSsnwUAAiM7WyMio1NgL1EoADr2s=";
+  vendorHash = "sha256-fTV6hO7IGxoAOF7xzKz+jR6Gwaq5f24rlc7wiT4zCKg=";
 
   meta = with lib; {
     description = "Export network flows from kafka to Prometheus";

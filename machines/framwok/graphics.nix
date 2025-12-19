@@ -1,24 +1,23 @@
-# This is your system's configuration file.
-# Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
 {
   pkgs,
   ...
 }:
 {
-
-  #X11
   services.xserver.enable = true;
   hardware.graphics.enable = true;
   services.xserver.xkb.variant = "";
   services.xserver.xkb.layout = "de";
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
 
   environment.systemPackages = with pkgs; [
+    catppuccin-gtk
+    gnome-themes-extra
     gnomeExtensions.burn-my-windows
     gnomeExtensions.desktop-cube
     gnomeExtensions.compiz-windows-effect
     gnomeExtensions.vitals
     gnomeExtensions.media-controls
+    gnomeExtensions.user-themes
   ];
 }

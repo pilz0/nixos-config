@@ -25,10 +25,11 @@
     allowedUDPPorts = [
     ];
     extraCommands = ''
-      ${pkgs.iptables}/bin/ip6tables -A INPUT -p tcp --dport 9092 -i eth0 -s 2a0e:8f02:f017::1 -j ACCEPT
-      ${pkgs.iptables}/bin/ip6tables -A INPUT -p tcp --dport 9092 -i eth0 -s 2a02:898:0:20::427:1 -j ACCEPT
-      ${pkgs.iptables}/bin/iptables -A INPUT -p tcp --dport 3001 -i eth0 -s 94.142.241.152 -j ACCEPT
-      ${pkgs.iptables}/bin/ip6tables -A INPUT -p tcp --dport 3001 -i eth0 -s 2a0e:8f02:f017::2 -j ACCEPT
+      ${pkgs.iptables}/bin/ip6tables -A INPUT -p tcp --dport 9092 -s 2a0e:8f02:f017::1 -j ACCEPT
+      ${pkgs.iptables}/bin/ip6tables -A INPUT -p tcp --dport 9092 -s 2a02:898:0:20::427:1 -j ACCEPT
+      ${pkgs.iptables}/bin/iptables -A INPUT -p tcp --dport 3001 -s 94.142.241.152 -j ACCEPT
+      ${pkgs.iptables}/bin/ip6tables -A INPUT -p tcp --dport 3001 -s 2a0e:8f02:f017::2 -j ACCEPT
+      ${pkgs.iptables}/bin/ip6tables -A INPUT -p tcp --dport 3100 -s 2a0e:8f02:f017::0/48 -j ACCEPT
     '';
   };
 }

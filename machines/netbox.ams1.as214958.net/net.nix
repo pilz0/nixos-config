@@ -1,5 +1,6 @@
 {
   pkgs,
+  config,
   ...
 }:
 {
@@ -22,7 +23,7 @@
   };
 
   networking.extraHosts = ''
-    ::1 netbox.ams1.as214958.net
+    ::1 ${toString config.networking.fqdn}
     ::1 netbox
   '';
 

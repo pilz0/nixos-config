@@ -5,16 +5,20 @@
   imports = [
     ./hardware-configuration.nix
     ./net.nix
-    ../../modules/nginx
-    ../../modules/as214958_net
-    ../../modules/container_default
-    ../../modules/container_default/network.nix
-    ../../modules/bird-lg-frontend
-    ./proxys.nix
+    ../../modules/services/nginx
+    ../../modules/services/as214958-net
+    ../../modules/container-default
+    ../../modules/container-default/network.nix
+    ../../modules/services/bird-lg-frontend
     ../../modules/nixos-builder-client
+    ./proxys.nix
+    ./promtail-nginx.nix
   ];
+
   virtualisation.docker.enable = true;
+
 }
+
 ## github copilot wrote this
 #  I hope you can help me.
 #  I’m not sure if this is the issue, but I think you need to use  users.users.marie.openssh.authorizedKeys.keys  instead of  users.users.marie.openssh.authorizedKeys .

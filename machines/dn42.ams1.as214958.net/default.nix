@@ -5,9 +5,9 @@
   imports = [
     ./hardware-configuration.nix
     ./net.nix
-    ../../modules/container_default
-    ../../modules/container_default/network.nix
-    ../../modules/dn42
+    ../../modules/container-default
+    ../../modules/container-default/network.nix
+    ../../modules/networking/dn42
     ../../modules/nixos-builder-client
   ];
 }

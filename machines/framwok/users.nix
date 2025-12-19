@@ -5,8 +5,7 @@
 {
   age.secrets.HashedPassword = {
     file = ../../secrets/HashedPassword.age;
-    owner = "marie";
-    group = "users";
+    owner = "root";
   };
   users.users = {
     marie = {

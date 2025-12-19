@@ -6,11 +6,11 @@
   imports = [
     ./hardware-configuration.nix
     ./net.nix
-    ../../modules/container_default
-    ../../modules/container_default/network.nix
-    ../../modules/github-runner
-    ../../modules/nixos_builder
-    ../../modules/binary-cache
+    ../../modules/container-default
+    ../../modules/container-default/network.nix
+    ../../modules/services/github-runner
+    ../../modules/services/nixos-builder
+    ../../modules/services/binary-cache
   ];
   # if a build uses a lot of tmp storage ram will overflow
   boot.tmp.useTmpfs = false;

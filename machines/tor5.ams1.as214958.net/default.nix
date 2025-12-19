@@ -6,9 +6,9 @@
     ./hardware-configuration.nix
     ./net.nix
     ./tor.nix
-    ../../modules/container_default
+    ../../modules/container-default
     ../../modules/nixos-builder-client
-    ../../modules/tor-relay
-    ../../modules/tor-relay/network-pve.nix
+    ../../modules/services/tor-relay
+    ../../modules/services/tor-relay/network-pve.nix
   ];
 }

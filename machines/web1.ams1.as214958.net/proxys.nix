@@ -5,7 +5,7 @@
         enableACME = true;
         forceSSL = true;
         locations."/" = {
-          proxyPass = "http://[2a0e:8f02:f017::3]:3001";
+          proxyPass = "http://grafana.ams1.as214958.net:3001";
           proxyWebsockets = true;
         };
       };
@@ -13,7 +13,7 @@
         enableACME = true;
         forceSSL = true;
         locations."/" = {
-          proxyPass = "http://10.10.10.2:8096";
+          proxyPass = "http://jellyfin.ams1.as214958.net:8096";
           proxyWebsockets = true;
         };
       };

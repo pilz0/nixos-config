@@ -5,10 +5,10 @@
   imports = [
     ./hardware-configuration.nix
     ./net.nix
-    ../../modules/container_default
-    ../../modules/container_default/network.nix
+    ../../modules/container-default
+    ../../modules/container-default/network.nix
     ../../modules/nixos-builder-client
-    ../../modules/routinator
+    ../../modules/services/routinator
   ];
 }
 ## github copilot wrote this

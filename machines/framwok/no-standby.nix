@@ -8,6 +8,5 @@
     AllowHibernation=no
     AllowHybridSleep=no
     AllowSuspendThenHibernate=no
-
   '';
 }

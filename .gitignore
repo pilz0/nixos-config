@@ -38,3 +38,4 @@ update-git-commits.txt
 # JetBrains IDEA module declaration file
 /nixpkgs.iml
 pve.sh
+pmacctd.conf

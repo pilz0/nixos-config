@@ -3,14 +3,15 @@
 }:
 {
   imports = [
-    ./hardware-configuration.nix
     ./net.nix
-    ../../modules/nginx
-    ../../modules/container_default
-    ../../modules/container_default/network.nix
-    ../../modules/prometheus
-    ../../modules/grafana
-    ../../modules/netflow-exporter
+    ./hardware-configuration.nix
+    ../../modules/services/nginx
+    ../../modules/container-default
+    ../../modules/container-default/network.nix
+    ../../modules/monitoring/prometheus
+    ../../modules/monitoring/grafana
+    ../../modules/monitoring/netflow-exporter
+    ../../modules/monitoring/loki
   ];
 }
 ## github copilot wrote this

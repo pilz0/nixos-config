@@ -3,22 +3,21 @@
 }:
 {
   imports = [
-    ./hardware-configuration-serva.nix
-    ./net.nix
-    ./graphics.nix
-    ./restic.nix
-    ../../modules/nextcloud
-    ../../modules/mastodon
-    ../../modules/grafana
-    ../../modules/prometheus
-    ../../modules/nixarr
-    ../../modules/nginx
-    ../../modules/reverse-proxy-nc-docker
     ../../modules/ssh
     ../../modules/ssh-users
     ../../modules/shell
     ../../modules/common
-    ../../modules/pkgs
+    ../../modules/common/pkgs
+    ./hardware-configuration-serva.nix
+    ./net.nix
+    ./graphics.nix
+    ./restic.nix
+    ../../modules/services/nextcloud
+    ../../modules/services/mastodon
+    ../../modules/monitoring/grafana
+    ../../modules/monitoring/prometheus
+    ../../modules/services/nixarr
+    ../../modules/services/nginx
   ];
 
   nix.optimise.dates = [ "03:45" ];

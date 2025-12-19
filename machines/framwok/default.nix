@@ -10,26 +10,22 @@
     ./graphics.nix
     ./users.nix
     ./restic.nix
-    ./ffda/osm.nix
     ./audio.nix
     ./network.nix
     ../../modules/ssh
     ../../modules/shell
     ../../modules/common
-    ../../modules/pkgs
+    ../../modules/common/pkgs
     ../../modules/nixos-builder-client
+    ./android-studio.nix
     #   ./no-standby.nix
   ];
 
   nixpkgs = {
-    overlays = [
-    ];
     config = {
       allowUnfree = true;
     };
   };
-
-  services.openssh.settings.PasswordAuthentication = true;
 
   # yubikey stuff
   services.pcscd.enable = true;
@@ -37,8 +33,8 @@
     ledger-udev-rules
     trezor-udev-rules
     yubikey-personalization
-    # potentially even more if you need them
   ];
+
   virtualisation.docker.enable = true;
   virtualisation.containerd.enable = true;
 
@@ -63,14 +59,9 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  environment.sessionVariables = {
-    NIXPKGS_ALLOW_UNFREE = "1";
-  };
-
   nix.extraOptions = ''
     extra-substituters = https://devenv.cachix.org
     extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=
   '';
   system.stateVersion = "23.11";
-
 }
