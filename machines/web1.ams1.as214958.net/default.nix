@@ -5,9 +5,9 @@
   imports = [
     ./hardware-configuration.nix
     ./net.nix
+    ../../modules/container-default
     ../../modules/services/nginx
     ../../modules/services/as214958-net
-    ../../modules/container-default
     ../../modules/container-default/network.nix
     ../../modules/services/bird-lg-frontend
     ../../modules/nixos-builder-client

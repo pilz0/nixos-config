@@ -5,6 +5,11 @@
     owner = "root";
     group = "root";
   };
+    age.secrets.restic = {
+    file = ../../secrets/restic.age;
+    owner = "root";
+    group = "root";
+  };
   services.restic.backups = {
     smb = {
       rcloneConfigFile = config.age.secrets.rcloneconfig.path;

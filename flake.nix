@@ -6,7 +6,6 @@
       agenix,
       nixos-hardware,
       nixarr,
-      home-manager,
       disko,
       harmonia,
       ...
@@ -33,7 +32,6 @@
               agenix.nixosModules.default
               ./machines/framwok
               nixos-hardware.nixosModules.framework-12th-gen-intel
-              home-manager.nixosModules.home-manager
             ];
             environment.systemPackages = [
               agenix.packages.x86_64-linux.default
@@ -472,10 +470,6 @@
     };
     nixarr = {
       url = "github:rasmus-kirk/nixarr";
-    };
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix/master";

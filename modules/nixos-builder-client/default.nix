@@ -5,7 +5,7 @@
 {
   age.secrets."nixbuildssh" = {
     owner = "marie";
-    group = "marie";
+    group = "users";
     file = ../../secrets/nixbuildssh.age;
   };
 

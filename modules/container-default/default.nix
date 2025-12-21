@@ -7,7 +7,7 @@
 }:
 {
   imports = [
-    "${modulesPath}/virtualisation/lxc-container.nix"
+    "${modulesPath}/virtualisation/proxmox-lxc.nix"
     ../ssh
     ../ssh-users
     ../shell
@@ -16,11 +16,20 @@
     ../promtail
   ];
 
+  networking.fqdn = "${toString config.networking.hostName}.${toString config.networking.domain}";
+
+  proxmoxLXC = {
+    manageNetwork = false;
+    privileged = false;
+    manageHostName = false;
+  };
+  services.fstrim.enable = false;
   systemd.suppressedSystemUnits = [
     "dev-mqueue.mount"
     "sys-kernel-debug.mount"
     "sys-fs-fuse-connections.mount"
     "zfs-zed.service"
+    "zfs-share.service"
   ];
 
   networking = {

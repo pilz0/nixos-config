@@ -43,7 +43,6 @@
         "03:45"
       ];
     };
-    package = pkgs.nixVersions.stable;
     extraOptions = ''
       experimental-features = nix-command flakes cgroups
     '';
@@ -97,4 +96,16 @@
 
   nixpkgs.config.allowUnfree = true;
   environment.sessionVariables.NIXPKGS_ALLOW_UNFREE = "1";
+
+  nixpkgs.overlays = [
+    (final: prev: {
+      inherit (prev.lixPackageSets.stable)
+        nixpkgs-review
+        nix-eval-jobs
+        nix-fast-build
+        ;
+    })
+  ];
+
+  nix.package = pkgs.lixPackageSets.stable.lix;
 }

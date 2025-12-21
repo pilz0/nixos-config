@@ -5,16 +5,18 @@
 {
   age.secrets.rcloneconfig = {
     file = ../../secrets/rclone.age;
-    owner = "marie";
+    owner = "root";
+    group = "users";
   };
   age.secrets.restic = {
     file = ../../secrets/restic.age;
-    owner = "marie";
+    owner = "root";
+    group = "users";
   };
   services.restic.backups = {
     onedrive = {
       rcloneConfigFile = config.age.secrets.rcloneconfig.path;
-      user = "marie";
+      user = "root";
       repository = "rclone:onedrive:/backup/server";
       initialize = true;
       passwordFile = config.age.secrets.restic.path;

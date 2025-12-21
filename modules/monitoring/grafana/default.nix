@@ -65,7 +65,7 @@ in
               {
                 type = "loki";
                 name = "Loki";
-                url = "http://localhost:${toString config.services.loki.configuration.server.http_listen_port}";
+                url = "http://localhost:3100";
                 uid = "5e20af34-8d96-4035-9830-19a7e3cbb200";
               }
             ];

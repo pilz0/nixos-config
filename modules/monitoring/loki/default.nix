@@ -66,7 +66,6 @@
       frontend = {
         encoding = "protobuf";
       };
-
     };
   };
 }
