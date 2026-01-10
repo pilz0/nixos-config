@@ -9,6 +9,7 @@
     settings = {
       PasswordAuthentication = lib.mkDefault false;
       PermitRootLogin = "prohibit-password";
+      KbdInteractiveAuthentication = false;
     };
     banner = ''
       <p><div class='plussize'>

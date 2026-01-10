@@ -88,7 +88,6 @@
       extensions = with pkgs.vscode-extensions; [
         golang.go
         jnoortheen.nix-ide
-        catppuccin.catppuccin-vsc
       ];
     };
   };

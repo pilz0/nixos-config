@@ -26,7 +26,7 @@ let
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBNFGU7d/tmjOL7yOR6LHPKM2S6EWeBIy4RHzaRCWjpM root@netbox"
   ];
   build = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHzi2rVKv/xy3+Q+In/T8SntPjTlxYR46Gqwf209iC9N root@build"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAy+DchMGEo5Q9Fuu02KERSabQ055pY6VjCqoX+DlZBn root@build"
   ];
   rpki = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJWxHkhwJPhT0hL1TGWjIxWSRPzMvGleKE9Jq9mCUXOI root@rpki"
@@ -94,8 +94,8 @@ in
   "s3-mastodon.age".publicKeys = marielap ++ serva;
   "wg-dus1.age".publicKeys = marielap ++ serva;
   "netbox.age".publicKeys = marielap ++ netbox;
-  "github-runner-ams1.age".publicKeys = marielap ++ build;
   "harmonia.age".publicKeys = marielap ++ build;
   "nixbuildssh.age".publicKeys = all_hosts;
-  "github-runner-nixos-config.age".publicKeys = marielap ++ build;
+  "forgejo-runner-token.age".publicKeys = marielap ++ build;
+  "github-runner.age".publicKeys = marielap ++ build;
 }

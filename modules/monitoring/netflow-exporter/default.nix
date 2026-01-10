@@ -48,7 +48,7 @@ in
 
   # port 9590
   systemd.services.flow-exporter = {
-    enable = true;
+    enable = true;  
     description = "Prometheus Flow Exporter";
     after = [
       "network.target"
@@ -56,6 +56,7 @@ in
     ];
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
+      RuntimeMaxSec = "24h";
       ExecStart = "${flow-exporter-custom}/bin/flow-exporter --brokers=localhost:9092 --topic=pmacctd.acct --asn=214958";
       Restart = "on-failure";
     };

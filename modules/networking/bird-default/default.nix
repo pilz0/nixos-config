@@ -28,6 +28,8 @@
       define OWNIP_DN42 = 172.22.179.129;
       define OWNIPv6_DN42 = fd49:d69f:6::1337;
 
+      log syslog all;
+
       define PREFIXES_ANNOUNCED_V4 = [
         94.142.241.152/31
       ];
@@ -45,38 +47,20 @@
       roa4 table dn42_roa;
       roa6 table dn42_roa_v6;
 
-      protocol static {
-          roa4 { table dn42_roa; };
-          include "/etc/bird/roa_dn42.conf";
-      };
-
-      protocol static {
-          roa6 { table dn42_roa_v6; };
-          include "/etc/bird/roa_dn42_v6.conf";
-      };
-
-      log syslog all;
-
       protocol device {
-      scan time 60;
+        scan time 10;
       }
 
-      # Inject received BGP routes into the Linux kernel
-      protocol kernel krnv4 {
-      scan time 60;
-      ipv4 {
-        import none;
-        export all;
+      protocol static {
+        roa4 { table dn42_roa; };
+        include "/etc/bird/roa_dn42.conf";
       };
-      }
 
-      protocol kernel krnv6 {
-      scan time 60;
-      ipv6 {
-        import none;
-        export all;
+      protocol static {
+        roa6 { table dn42_roa_v6; };
+        include "/etc/bird/roa_dn42_v6.conf";
       };
-      }
+
     '';
 
   };

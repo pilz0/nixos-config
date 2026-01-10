@@ -1,10 +1,12 @@
 {
   pkgs,
+  inputs,
   ...
 }:
 {
-  # You can import other NixOS modules here
   imports = [
+    inputs.nixos-hardware.nixosModules.framework-12th-gen-intel
+    inputs.catppuccin.nixosModules.catppuccin
     ./hardware-configuration-framwok.nix
     ./framwok-pkgs.nix
     ./graphics.nix
@@ -21,25 +23,32 @@
     #   ./no-standby.nix
   ];
 
+  pilz.deployment.targetHost = null;
+
   nixpkgs = {
     config = {
       allowUnfree = true;
     };
   };
 
-  # yubikey stuff
-  services.pcscd.enable = true;
-  services.udev.packages = with pkgs; [
-    ledger-udev-rules
-    trezor-udev-rules
-    yubikey-personalization
-  ];
+  services = {
+    # yubikey stuff
+    pcscd.enable = true;
+    udev.packages = with pkgs; [
+      ledger-udev-rules
+      trezor-udev-rules
+      yubikey-personalization
+    ];
 
-  virtualisation.docker.enable = true;
-  virtualisation.containerd.enable = true;
+    fwupd.enable = true;
+  };
+
+  virtualisation = {
+    docker.enable = true;
+    containerd.enable = true;
+  };
 
   console.keyMap = "de";
-  services.printing.enable = true;
   security.rtkit.enable = true;
   i18n.defaultLocale = "de_DE.UTF-8";
 
@@ -56,8 +65,10 @@
   };
   time.timeZone = "Europe/Berlin";
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
 
   nix.extraOptions = ''
     extra-substituters = https://devenv.cachix.org

@@ -24,7 +24,7 @@
             max_age = "12h";
             labels = {
               job = "systemd-journal";
-              host = config.networking.hostName;
+              host = config.networking.fqdn;
             };
           };
           relabel_configs = [

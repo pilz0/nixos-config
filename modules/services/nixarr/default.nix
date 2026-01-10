@@ -1,9 +1,13 @@
 {
   config,
+  inputs,
   ...
 }:
 
 {
+  imports = [
+    inputs.nixarr.nixosModules.default
+  ];
   age.secrets.nixarr-wg = {
     file = ../../../secrets/nixarr-wg.age;
     owner = "nixarr";

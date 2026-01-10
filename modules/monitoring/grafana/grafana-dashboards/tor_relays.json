@@ -1,54 +1,11 @@
 {
-  "__inputs": [
-    {
-      "name": "DS_PROMETHEUS",
-      "label": "prometheus",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "prometheus",
-      "pluginName": "Prometheus"
-    }
-  ],
-  "__elements": {},
-  "__requires": [
-    {
-      "type": "panel",
-      "id": "bargauge",
-      "name": "Bar gauge",
-      "version": ""
-    },
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "11.2.2"
-    },
-    {
-      "type": "datasource",
-      "id": "prometheus",
-      "name": "Prometheus",
-      "version": "1.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "stat",
-      "name": "Stat",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "timeseries",
-      "name": "Time series",
-      "version": ""
-    }
-  ],
   "annotations": {
     "list": [
       {
         "builtIn": 1,
         "datasource": {
-          "type": "datasource",
-          "uid": "grafana"
+          "type": "grafana",
+          "uid": "-- Grafana --"
         },
         "enable": true,
         "hide": true,
@@ -58,224 +15,464 @@
       }
     ]
   },
-  "description": "Tor Relay",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": null,
-  "links": [],
+  "id": 32,
+  "links": [
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [],
+      "targetBlank": true,
+      "title": "metrics.torproject.org",
+      "tooltip": "",
+      "type": "link",
+      "url": "https://metrics.torproject.org/rs.html#search/ketatrade"
+    }
+  ],
   "panels": [
     {
       "datasource": {
+        "default": true,
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "e68e5107-0b44-4438-870c-019649e85d2b"
       },
       "fieldConfig": {
         "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
           "mappings": [],
-          "noValue": "No data",
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
+                "color": "green"
+              },
+              {
                 "color": "green",
-                "value": null
+                "value": 80
               }
             ]
-          }
+          },
+          "unit": "decbytes"
         },
         "overrides": []
       },
       "gridPos": {
         "h": 4,
-        "w": 8,
+        "w": 4,
         "x": 0,
         "y": 0
       },
-      "id": 11,
+      "id": 8,
       "options": {
         "colorMode": "value",
-        "graphMode": "area",
+        "graphMode": "none",
         "justifyMode": "auto",
-        "orientation": "horizontal",
+        "orientation": "auto",
         "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
-            "last"
+            "lastNotNull"
           ],
           "fields": "",
           "values": false
         },
         "showPercentChange": false,
-        "text": {},
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.2.2",
+      "pluginVersion": "12.0.6",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "e68e5107-0b44-4438-870c-019649e85d2b"
           },
-          "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "tor_relay_circuits_total",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
+          "editorMode": "code",
+          "expr": "sum(increase(node_network_receive_bytes_total{job=\"tor\"}[1w]))",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
-          "refId": "A",
-          "useBackend": false
+          "refId": "A"
         }
       ],
-      "title": "Opened Sokets",
+      "title": "Traffic receive last week",
       "type": "stat"
     },
     {
       "datasource": {
+        "default": true,
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "e68e5107-0b44-4438-870c-019649e85d2b"
       },
-      "description": "Onion Skins per second for last 1 hour",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "green",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 4,
+        "y": 0
+      },
+      "id": 6,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.0.6",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "e68e5107-0b44-4438-870c-019649e85d2b"
+          },
+          "editorMode": "code",
+          "expr": "sum(increase(node_network_transmit_bytes_total{job=\"tor\"}[1w]))",
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Traffic transmit last week",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "default": true,
+        "type": "prometheus",
+        "uid": "e68e5107-0b44-4438-870c-019649e85d2b"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "thresholds"
           },
           "mappings": [],
-          "noValue": "no data",
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
+                "color": "green"
+              },
+              {
                 "color": "green",
-                "value": null
+                "value": 80
               }
             ]
           },
-          "unit": "cps"
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 5,
+        "x": 8,
+        "y": 0
+      },
+      "id": 3,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.0.6",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "e68e5107-0b44-4438-870c-019649e85d2b"
+          },
+          "editorMode": "code",
+          "expr": "sum(increase(node_network_receive_bytes_total{job=\"tor\"}[1w])) + sum(increase(node_network_transmit_bytes_total{job=\"tor\"}[1w]))",
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Total Traffic in the last week (both ways)",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "default": true,
+        "type": "prometheus",
+        "uid": "e68e5107-0b44-4438-870c-019649e85d2b"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "green",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 13,
+        "y": 0
+      },
+      "id": 9,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.0.6",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "e68e5107-0b44-4438-870c-019649e85d2b"
+          },
+          "editorMode": "code",
+          "expr": "sum(increase(node_network_transmit_bytes_total{job=\"tor\"}[1d])) + sum(increase(node_network_receive_bytes_total{job=\"tor\"}[1d]))",
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Traffic last 24h",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "default": true,
+        "type": "prometheus",
+        "uid": "e68e5107-0b44-4438-870c-019649e85d2b"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "purple"
+              }
+            ]
+          },
+          "unit": "bps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 7,
+        "x": 17,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.0.6",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "e68e5107-0b44-4438-870c-019649e85d2b"
+          },
+          "editorMode": "code",
+          "expr": "sum(irate(node_network_receive_bytes_total{job=\"tor\"}[$__rate_interval])) * 8",
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Traffic currently (Reseive)",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "default": true,
+        "type": "prometheus",
+        "uid": "e68e5107-0b44-4438-870c-019649e85d2b"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "purple",
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 93,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 800
+              }
+            ]
+          },
+          "unit": "Bps"
         },
         "overrides": [
           {
             "matcher": {
               "id": "byRegexp",
-              "options": "/dropped/"
+              "options": "/.*trans.*/"
             },
             "properties": [
               {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green",
-                      "value": null
-                    },
-                    {
-                      "color": "red",
-                      "value": 1e-9
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 5,
-        "x": 8,
-        "y": 0
-      },
-      "id": 6,
-      "options": {
-        "displayMode": "basic",
-        "maxVizHeight": 300,
-        "minVizHeight": 16,
-        "minVizWidth": 8,
-        "namePlacement": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showUnfilled": false,
-        "sizing": "auto",
-        "text": {},
-        "valueMode": "color"
-      },
-      "pluginVersion": "11.2.2",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "exemplar": true,
-          "expr": "rate(tor_relay_load_onionskins_total[1h])",
-          "interval": "",
-          "legendFormat": "{{type}} {{action}}",
-          "refId": "A"
-        }
-      ],
-      "title": "Onion Skins last hour",
-      "type": "bargauge"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "noValue": "No Data",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
+                "id": "custom.transform",
+                "value": "negative-Y"
               }
             ]
           },
-          "unit": "reqps"
-        },
-        "overrides": [
           {
             "matcher": {
-              "id": "byFrameRefID",
-              "options": "B"
+              "id": "byName",
+              "options": "sum(irate(node_network_receive_bytes_total{job=\"nodes\", instance!=\"localhost:9100\", instance!=\"10.10.1.25:9100\"}[1m0s])) * 8 "
             },
             "properties": [
               {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green",
-                      "value": null
-                    },
-                    {
-                      "color": "red",
-                      "value": 1e-11
-                    }
-                  ]
-                }
+                "id": "displayName",
+                "value": "Receive"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sum(irate(node_network_transmit_bytes_total{job=\"nodes\", instance!=\"localhost:9100\", instance!=\"10.10.1.25:9100\"}[1m0s])) * 8 "
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Transmit"
               }
             ]
           }
@@ -283,233 +480,126 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 6,
-        "x": 13,
-        "y": 0
+        "w": 17,
+        "x": 0,
+        "y": 4
       },
-      "id": 4,
+      "id": 1,
       "options": {
-        "displayMode": "gradient",
-        "maxVizHeight": 300,
-        "minVizHeight": 16,
-        "minVizWidth": 8,
-        "namePlacement": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "values": false
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
-        "showUnfilled": false,
-        "sizing": "auto",
-        "text": {},
-        "valueMode": "color"
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
       },
-      "pluginVersion": "11.2.2",
+      "pluginVersion": "12.0.6",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "e68e5107-0b44-4438-870c-019649e85d2b"
           },
-          "exemplar": true,
-          "expr": "rate(tor_relay_exit_dns_query_total[1h])",
-          "interval": "",
-          "legendFormat": "Query  {{record}}",
+          "editorMode": "code",
+          "expr": "sum(irate(node_network_receive_bytes_total{job=\"tor\"}[$__rate_interval])) * 8 ",
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
           "refId": "A"
         },
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "e68e5107-0b44-4438-870c-019649e85d2b"
           },
-          "exemplar": true,
-          "expr": "sum by (record) (rate(tor_relay_exit_dns_error_total{reason!=\"success\"}[5m]))",
+          "editorMode": "code",
+          "expr": "sum(irate(node_network_transmit_bytes_total{job=\"tor\"}[$__rate_interval])) * 8 ",
           "hide": false,
-          "interval": "",
-          "legendFormat": "Error {{record}}",
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
           "refId": "B"
         }
       ],
-      "title": "DNS Query times/second",
-      "type": "bargauge"
+      "title": "Traffic",
+      "type": "timeseries"
     },
     {
       "datasource": {
+        "default": true,
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "e68e5107-0b44-4438-870c-019649e85d2b"
       },
-      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "thresholds"
           },
-          "mappings": [
-            {
-              "options": {
-                "0": {
-                  "text": "No"
-                },
-                "1": {
-                  "text": "Yes"
-                }
-              },
-              "type": "value"
-            }
-          ],
-          "noValue": "No data",
+          "fieldMinMax": false,
+          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 1
+                "color": "purple"
               }
             ]
-          }
+          },
+          "unit": "bps"
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
-        "w": 3,
-        "x": 0,
-        "y": 4
+        "h": 6,
+        "w": 7,
+        "x": 17,
+        "y": 6
       },
-      "id": 9,
+      "id": 11,
       "options": {
-        "colorMode": "background",
+        "colorMode": "value",
         "graphMode": "none",
         "justifyMode": "auto",
-        "orientation": "horizontal",
+        "orientation": "auto",
         "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
-            "last"
+            "lastNotNull"
           ],
           "fields": "",
           "values": false
         },
         "showPercentChange": false,
-        "text": {},
-        "textMode": "value_and_name",
+        "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.2.2",
+      "pluginVersion": "12.0.6",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "e68e5107-0b44-4438-870c-019649e85d2b"
           },
-          "exemplar": true,
-          "expr": "tor_relay_load_global_rate_limit_reached_total",
-          "format": "time_series",
+          "editorMode": "code",
+          "expr": "sum(irate(node_network_transmit_bytes_total{job=\"tor\"}[$__rate_interval])) * 8",
           "instant": false,
-          "interval": "",
-          "legendFormat": "{{side}}",
+          "legendFormat": "__auto",
+          "range": true,
           "refId": "A"
         }
       ],
-      "title": "Rate  Limit Reached",
+      "title": "Traffic currently (transmit)",
       "type": "stat"
     },
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "description": "OOM  per subsystem and TCP exaustion  in last 1 hour",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "noValue": "No data",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 1e-9
-              }
-            ]
-          },
-          "unit": "cps"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 5,
-        "x": 3,
-        "y": 4
-      },
-      "id": 7,
-      "options": {
-        "displayMode": "basic",
-        "maxVizHeight": 300,
-        "minVizHeight": 16,
-        "minVizWidth": 8,
-        "namePlacement": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showUnfilled": false,
-        "sizing": "auto",
-        "text": {},
-        "valueMode": "color"
-      },
-      "pluginVersion": "11.2.2",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "exemplar": true,
-          "expr": "rate(tor_relay_load_oom_bytes_total[1h])",
-          "interval": "",
-          "legendFormat": "OOM in {{subsys}}",
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "exemplar": true,
-          "expr": "rate(tor_relay_load_tcp_exhaustion_total[1h])",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "TCP Exaustion",
-          "refId": "B"
-        }
-      ],
-      "title": "OOM per subsystem last hour",
-      "type": "bargauge"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "e68e5107-0b44-4438-870c-019649e85d2b"
       },
       "description": "Onion Skins per second for last 1 hour",
       "fieldConfig": {
@@ -556,8 +646,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -587,10 +676,10 @@
         ]
       },
       "gridPos": {
-        "h": 8,
-        "w": 19,
+        "h": 14,
+        "w": 17,
         "x": 0,
-        "y": 8
+        "y": 12
       },
       "id": 12,
       "options": {
@@ -603,16 +692,17 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "7.5.1",
+      "pluginVersion": "12.0.6",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "e68e5107-0b44-4438-870c-019649e85d2b"
           },
           "exemplar": true,
           "expr": "rate(tor_relay_load_onionskins_total[5m])",
@@ -627,261 +717,164 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "e68e5107-0b44-4438-870c-019649e85d2b"
       },
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "Errors",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
+            "mode": "thresholds"
           },
           "mappings": [],
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "reqps"
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": "/successful/"
-            },
-            "properties": [
-              {
-                "id": "custom.axisPlacement",
-                "value": "right"
-              },
-              {
-                "id": "custom.axisLabel",
-                "value": "Success"
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 19,
-        "x": 0,
-        "y": 16
-      },
-      "id": 2,
-      "options": {
-        "legend": {
-          "calcs": [
-            "max"
-          ],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "7.5.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "exemplar": true,
-          "expr": "sum by (reason) (rate(tor_relay_exit_dns_error_total{reason!=\"success\"}[5m]))",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "Failed - {{reason}}",
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "exemplar": true,
-          "expr": "sum(rate(tor_relay_exit_dns_error_total{reason=\"success\"}[5m]))",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "successful",
-          "refId": "B"
-        }
-      ],
-      "title": "DNS Stat",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "description": "OOM per subsystem 5 min average",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "min": 0,
+          "noValue": "No data",
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
                 "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
-          },
-          "unit": "cps"
+          }
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 6,
-        "w": 19,
-        "x": 0,
-        "y": 25
+        "h": 14,
+        "w": 7,
+        "x": 17,
+        "y": 12
       },
       "id": 13,
       "options": {
-        "legend": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
           "calcs": [
-            "max"
+            "last"
           ],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
+          "fields": "",
+          "values": false
         },
-        "tooltip": {
-          "mode": "multi",
-          "sort": "none"
-        }
+        "showPercentChange": false,
+        "text": {},
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "7.5.1",
+      "pluginVersion": "12.0.6",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "e68e5107-0b44-4438-870c-019649e85d2b"
           },
-          "exemplar": true,
-          "expr": "rate(tor_relay_load_oom_bytes_total[5m])",
-          "interval": "",
-          "legendFormat": "OOM {{subsys}}",
-          "refId": "A"
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "tor_relay_circuits_total",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "{{instance}}",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        }
+      ],
+      "title": "Opened Sokets",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "default": true,
+        "type": "prometheus",
+        "uid": "e68e5107-0b44-4438-870c-019649e85d2b"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "purple"
+              }
+            ]
+          },
+          "unit": "bps"
         },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 24,
+        "x": 0,
+        "y": 26
+      },
+      "id": 10,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.0.6",
+      "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "e68e5107-0b44-4438-870c-019649e85d2b"
           },
-          "exemplar": true,
-          "expr": "rate(tor_relay_load_tcp_exhaustion_total[5m])",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "TCP exhaustion",
-          "refId": "B"
+          "editorMode": "code",
+          "expr": "sum(rate(node_network_receive_bytes_total{job=\"tor\" }[$__rate_interval])) without (device, job)*8",
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
         }
       ],
-      "title": "OOM per subsystem and TCP exaustion ",
-      "type": "timeseries"
+      "title": "Traffic currently (Reseive)",
+      "type": "stat"
     }
   ],
-  "refresh": "1m",
-  "schemaVersion": 39,
+  "preload": false,
+  "refresh": "10s",
+  "schemaVersion": 41,
   "tags": [],
   "templating": {
     "list": []
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-12h",
     "to": "now"
   },
-  "timepicker": {},
-  "timezone": "",
-  "title": "Tor Metrics - Health",
-  "uid": "ae0kolup33dvkc",
-  "version": 2,
-  "weekStart": "",
-  "gnetId": 22067
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m"
+    ]
+  },
+  "timezone": "browser",
+  "title": "Tor Relays_dev",
+  "uid": "cdyy9ajcti0hsas",
+  "version": 1
 }

@@ -21,7 +21,7 @@
       protocol rpki routinator2 {
         roa4 { table rpki4; };
         roa6 { table rpki6; };
-        remote "rpki.zotan.network" port 3323;
+        remote "rtr.as214958.net" port 3323;
         retry keep 90;
         refresh keep 900;
         expire keep 172800;

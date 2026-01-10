@@ -4,10 +4,11 @@
 }:
 {
   hardware.graphics.enable = true;
-  services.xserver.enable = true;
   services = {
-    xserver.xkb.variant = "";
-    xserver.xkb.layout = "de";
+    xserver = {
+      enable = true;
+      xkb.layout = "de";
+    };
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
 
@@ -18,6 +19,7 @@
 
     };
   };
+
   environment.gnome.excludePackages = with pkgs; [
     gnome-tour
     gnome-user-docs
@@ -31,6 +33,13 @@
     gnome-decoder
     geary
     epiphany
+    papers
+    decibels
+    simple-scan
+    showtime
+    baobab
+    seahorse
+    gnome-system-monitor
   ];
 
   environment.systemPackages = with pkgs; [

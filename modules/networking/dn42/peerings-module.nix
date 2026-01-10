@@ -33,7 +33,7 @@ let
         '';
         example = "echonet";
         type = lib.types.str;
-      };  
+      };
       publicWireguardEndpoint = lib.mkOption {
         type = lib.types.nullOr lib.types.str;
         description = ''

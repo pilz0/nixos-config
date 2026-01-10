@@ -177,8 +177,8 @@
         graceful restart on;
         long lived graceful restart on;
         ipv4 {
-          import table;
           extended next hop on;
+          import keep filtered;
           import limit 9000 action block;
           import filter {
             reject_invalid_net4_dn42();
@@ -192,8 +192,8 @@
        };
       ipv6 {
           extended next hop on;
+          import keep filtered;
           import limit 9000 action block;
-          import table; 
           import filter {
             reject_invalid_net6_dn42();
             reject_ownnetset6_dn42();

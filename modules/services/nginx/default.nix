@@ -20,10 +20,10 @@
   services = {
     nginx = {
       enable = true;
-      recommendedGzipSettings = true;
-      recommendedOptimisation = true;
-      recommendedProxySettings = true;
-      recommendedTlsSettings = true;
+      recommendedGzipSettings = lib.mkDefault true;
+      recommendedOptimisation = lib.mkDefault true;
+      recommendedProxySettings = lib.mkDefault true;
+      recommendedTlsSettings = lib.mkDefault true;
       commonHttpConfig =
         let
           realIpsFromList = lib.strings.concatMapStringsSep "\n" (x: "set_real_ip_from  ${x};");

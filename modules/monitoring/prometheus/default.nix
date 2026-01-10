@@ -6,6 +6,7 @@
   services.prometheus = {
     enable = true;
     port = 1312;
+    retentionTime = "7d";
     scrapeConfigs = [
       {
         job_name = "nodes";

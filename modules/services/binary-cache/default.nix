@@ -1,9 +1,14 @@
 {
+  inputs,
   config,
   ...
 }:
 
 {
+
+  imports = [
+    inputs.harmonia.nixosModules.harmonia
+  ];
 
   age.secrets."harmonia-signing-key".file = ../../../secrets/harmonia.age;
 

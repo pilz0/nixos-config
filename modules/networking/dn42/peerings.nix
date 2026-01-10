@@ -13,7 +13,7 @@
           peerLinkLocal = "fe80::ade0";
           ownLinkLocal = "fe80::ade1";
           asNumber = "4242423914";
-          publicWireguardEndpoint = "116.203.141.239:20663";
+          publicWireguardEndpoint = "de2.g-load.eu:20663";
           publicWireguardKey = "B1xSG/XTJRLd+GrWDsB06BqnIq8Xud93YVh/LYYYtUY=";
         };
 
@@ -21,7 +21,7 @@
           peerLinkLocal = "fe80::acab";
           ownLinkLocal = "fe80::1312";
           asNumber = "4242421403";
-          publicWireguardEndpoint = "167.235.154.30:1";
+          publicWireguardEndpoint = "kashenblade.antibuild.ing:1";
           publicWireguardKey = "4UTrN0YlflDPRhH9ak5nwrZrL0IrJiZUkEUiSuboRUc=";
         };
 
@@ -29,7 +29,7 @@
           peerLinkLocal = "fe80::3035:131";
           ownLinkLocal = "fe80::1312";
           asNumber = "4242423035";
-          publicWireguardEndpoint = "77.90.28.219:20663";
+          publicWireguardEndpoint = "de01.dn42.lare.cc:20663";
           publicWireguardKey = "dwtxXvpgWCGtX/QKFDaLXsWYRPd08Tg1JGsvzLudgjw=";
         };
 
@@ -37,7 +37,7 @@
           peerLinkLocal = "fe80::497a";
           ownLinkLocal = "fe80::1312";
           asNumber = "4242420575";
-          publicWireguardEndpoint = "37.120.168.131:42422";
+          publicWireguardEndpoint = "hortorum.eukaryote.eu:42422";
           publicWireguardKey = "EsLAjyP7oYoPqMDO0nmfC3DxpyER+7yPFBaGIntr0lA=";
         };
 
@@ -58,19 +58,19 @@
           publicWireguardPort = "420";
         };
 
-        ernst_is_dn42 = {
-          peerLinkLocal = "fe80::1312";
-          ownLinkLocal = "fe80::acab";
-          asNumber = "4242420064";
-          publicWireguardEndpoint = "157.90.129.252:51832";
-          publicWireguardKey = "PK8cQ3ghSNYPMurgTPXGXoHkYvqseRZgBa9oGVO+dzM=";
-        };
+        # ernst_is_dn42 = {
+        #   peerLinkLocal = "fe80::1312";
+        #   ownLinkLocal = "fe80::acab";
+        #   asNumber = "4242420064";
+        #   publicWireguardEndpoint = "bm-a8a15955396b.nodes.ernst.is:51832";
+        #   publicWireguardKey = "PK8cQ3ghSNYPMurgTPXGXoHkYvqseRZgBa9oGVO+dzM=";
+        # };
 
         ETWAS_DN42 = {
           peerLinkLocal = "fe80::1312";
           ownLinkLocal = "fe80::acab";
           asNumber = "4242422264";
-          publicWireguardEndpoint = "188.68.37.215:22265";
+          publicWireguardEndpoint = "swagger.bahnapi.etwas.me:22265";
           publicWireguardKey = "iYyFQsmCqaDB1XVmAkYPvG4cRWcYiEmIauVTolX8vlU=";
         };
 
@@ -86,7 +86,7 @@
           peerLinkLocal = "fe80::6766";
           ownLinkLocal = "fe80::21:4958";
           asNumber = "4242421084";
-          publicWireguardEndpoint = "v4.dn42-router1.darmstadt.freifunk.net:20663";
+          publicWireguardEndpoint = "dn42-router1.darmstadt.freifunk.net:20663";
           publicWireguardKey = "AgxBVyDU2WyHRe+SdZLQhmq96TGFGRb+ZRjeQDYaw0Q=";
         };
 
@@ -94,7 +94,7 @@
           peerLinkLocal = "fe80::6766";
           ownLinkLocal = "fe80::21:4958";
           asNumber = "4242421084";
-          publicWireguardEndpoint = "v4.dn42-router2.darmstadt.freifunk.net:20663";
+          publicWireguardEndpoint = "dn42-router2.darmstadt.freifunk.net:20663";
           publicWireguardKey = "8WRX+ED+mWOVirSlLx8To8QycVudUri7VhrxLBLgARo=";
         };
 
@@ -111,7 +111,7 @@
           peerLinkLocal = "fe80::d311";
           ownLinkLocal = "fe80::acab";
           asNumber = "4242420020";
-          publicWireguardEndpoint = "v4.dn42.iputils.de:20663";
+          publicWireguardEndpoint = "dn42.iputils.de:20663";
           publicWireguardKey = "MJd3RQEM6+uFx1376rpIC99XWanD9e3iE3aFS2wa9TI=";
           publicWireguardPort = "20";
         };
@@ -120,7 +120,7 @@
           peerLinkLocal = "fe80::2225";
           ownLinkLocal = "fe80::acab";
           asNumber = "4242422225";
-          publicWireguardEndpoint = "37.120.175.249:20663";
+          publicWireguardEndpoint = "dn42-de.maraun.de:20663";
           publicWireguardKey = "uS1AYe7zTGAP48XeNn0vppNjg7q0hawyh8Y0bvvAWhk=";
         };
 

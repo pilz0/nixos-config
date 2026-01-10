@@ -9,8 +9,9 @@
       dnssec = "false";
       fallbackDns = [
         "2606:4700:4700::1111"
-        "2606:4700:4700::1001"
+        "2001:4860:4860::8888"
         "1.1.1.1"
+        "8.8.8.8"
       ];
       llmnr = "false";
       extraConfig = ''
@@ -23,16 +24,6 @@
         MulticastDNS=no
       '';
     };
-    pipewire = {
-      enable = true;
-      alsa = {
-        enable = true;
-        support32Bit = true;
-      };
-      pulse = {
-        enable = true;
-      };
-    };
   };
 
   nix = {
@@ -43,12 +34,13 @@
         "03:45"
       ];
     };
-    extraOptions = ''
-      experimental-features = nix-command flakes cgroups
-    '';
+    settings.experimental-features = [
+      "nix-command"
+      "flakes"
+      "cgroups"
+      "pipe-operator"
+    ];
   };
-
-  services.openssh.enable = true;
 
   security = {
     acme = {
