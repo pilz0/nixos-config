@@ -5,6 +5,7 @@
   imports = [
     ../../modules/container
     ../../modules/services/nginx
+    ../../modules/services/testfile
     ../../modules/services/as214958-net
     ../../modules/container/network.nix
     ../../modules/services/bird-lg-frontend
@@ -14,9 +15,14 @@
   ];
 
   pilz = {
-    deployment.targetHost = "web1.ams1.as214958.net";
-    lxc.enable = true;
-    lxc.ctID = "100";
+    deployment = {
+      targetHost = "web1.ams1.as214958.net";
+      tags = [ "infra" ];
+    };
+    lxc = {
+      enable = true;
+      ctID = "100";
+    };
   };
 
   networking = {

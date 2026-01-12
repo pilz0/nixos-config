@@ -1,5 +1,7 @@
 {
   pkgs,
+  lib,
+  inputs,
   ...
 }:
 {
@@ -83,6 +85,15 @@
           email = "marie0@riseup.net";
         };
       };
+    };
+  };
+
+  system.activationScripts = {
+    nixos-needsreboot = {
+      supportsDryActivation = true;
+      text = "${
+        lib.getExe inputs.nixos-needsreboot.packages.${pkgs.system}.default
+      } \"$systemConfig\" || true";
     };
   };
 

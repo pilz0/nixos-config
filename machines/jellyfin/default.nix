@@ -11,9 +11,14 @@
   ];
 
   pilz = {
-    deployment.targetHost = "jellyfin.ams1.as214958.net";
-    lxc.enable = true;
-    lxc.ctID = "102";
+    deployment = {
+      targetHost = "jellyfin.ams1.as214958.net";
+      tags = [ "infra" ];
+    };
+    lxc = {
+      enable = true;
+      ctID = "102";
+    };
   };
 
   networking = {

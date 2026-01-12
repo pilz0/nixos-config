@@ -32,11 +32,6 @@
           proxyPass = "http://localhost:15000";
         };
       };
-      "testfile.as214958.net" = {
-        enableACME = true;
-        forceSSL = true;
-        root = "/var/lib/test/";
-      };
       "netbox.as214958.net" = {
         enableACME = true;
         forceSSL = true;

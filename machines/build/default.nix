@@ -13,9 +13,14 @@
   ];
 
   pilz = {
-    deployment.targetHost = "build.ams1.as214958.net";
-    lxc.enable = true;
-    lxc.ctID = "106";
+    deployment = {
+      targetHost = "build.ams1.as214958.net";
+      tags = [ "infra" ];
+    };
+    lxc = {
+      enable = true;
+      ctID = "106";
+    };
   };
 
   # if a build uses a lot of tmp storage ram will overflow

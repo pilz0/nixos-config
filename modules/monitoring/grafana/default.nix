@@ -7,7 +7,7 @@ let
   grafanaPlugin = pkgs.callPackage (
     pkgs.path + "/pkgs/servers/monitoring/grafana/plugins/grafana-plugin.nix"
   ) { };
-  netsage-sankey-panel = pkgs.callPackage ../../../custom_pkgs/netsage-sankey-panel.nix {
+  netsage-sankey-panel = pkgs.callPackage ../../../pkgs/netsage-sankey-panel.nix {
     inherit grafanaPlugin;
   };
 in

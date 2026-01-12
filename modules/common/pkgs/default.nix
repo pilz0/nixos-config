@@ -1,9 +1,9 @@
 {
   pkgs,
+  inputs,
   ...
 }:
 {
-
   environment.systemPackages = with pkgs; [
     ansible
     tmux
@@ -29,5 +29,6 @@
     wireguard-tools
     direnv
     colmena
+    inputs.nixos-needsreboot.packages.${pkgs.system}.default
   ];
 }

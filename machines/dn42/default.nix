@@ -10,9 +10,14 @@
     ../../modules/nixos-builder-client
   ];
   pilz = {
-    deployment.targetHost = "dn42.ams1.as214958.net";
-    lxc.enable = true;
-    lxc.ctID = "104";
+    deployment = {
+      targetHost = "dn42.ams1.as214958.net";
+      tags = [ "infra" ];
+    };
+    lxc = {
+      enable = true;
+      ctID = "104";
+    };
   };
 
   networking = {

@@ -15,4 +15,4 @@ jobs:
           persist-credentials: false
 
       - name: build with colmena
-        run: cd nixos-config && nix run nixpkgs#colmena -- build --impure
+        run: nix develop . && ./colmena-wrapped.sh build "*"

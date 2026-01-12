@@ -14,9 +14,14 @@
   ];
 
   pilz = {
-    deployment.targetHost = "grafana.ams1.as214958.net";
-    lxc.enable = true;
-    lxc.ctID = "101";
+    deployment = {
+      targetHost = "grafana.ams1.as214958.net";
+      tags = [ "infra" ];
+    };
+    lxc = {
+      enable = true;
+      ctID = "101";
+    };
   };
 
   networking = {

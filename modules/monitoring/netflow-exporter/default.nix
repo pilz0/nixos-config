@@ -4,7 +4,7 @@
 }:
 let
   # flow exporter is currently broken upstream with newer kafka versions (https://github.com/neptune-networks/flow-exporter/pull/21#issuecomment-3272158539)
-  flow-exporter-custom = pkgs.callPackage ../../../custom_pkgs/flow-exporter.nix { };
+  flow-exporter-custom = pkgs.callPackage ../../../pkgs/flow-exporter.nix { };
 in
 {
   # https://discourse.nixos.org/t/how-to-setup-kafka-server-on-nixos/45055
@@ -48,7 +48,7 @@ in
 
   # port 9590
   systemd.services.flow-exporter = {
-    enable = true;  
+    enable = true;
     description = "Prometheus Flow Exporter";
     after = [
       "network.target"

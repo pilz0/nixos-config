@@ -11,6 +11,7 @@
     {
       self,
       nixpkgs,
+      nixos-needsreboot,
       flake-utils,
       ...
     }@inputs:
@@ -37,9 +38,9 @@
       {
         formatter = nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;
         devShells.default = pkgs.mkShell {
-          packages = [
-            pkgs.colmena
-            pkgs.agenix-cli
+          packages = with pkgs; [
+            colmena
+            agenix-cli
           ];
         };
       }
@@ -53,13 +54,12 @@
     nixarr.url = "github:rasmus-kirk/nixarr";
     catppuccin.url = "github:catppuccin/nix";
     srvos.url = "github:nix-community/srvos";
-    harmonia = {
-      url = "github:nix-community/harmonia?ref=47d447dd3392dc97ea24d3368dfd84b14d2c5f09";
+    harmonia.url = "github:nix-community/harmonia";
+    colmena.url = "github:zhaofengli/colmena";
+    nixos-needsreboot = {
+      url = "github:thefossguy/nixos-needsreboot";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    colmena = {
-      url = "github:poly2it/colmena?ref=51db9b8b829ab8ebc047121f18f80204f17c3233";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+
   };
 }

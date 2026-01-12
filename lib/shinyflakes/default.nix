@@ -8,12 +8,12 @@ let
 
   genColmenaCfg = name: host: {
     deployment = {
-      allowLocalDeployment = builtins.any (hostName: hostName == name) [ "framwok" ];
+      allowLocalDeployment = host.config.pilz.deployment.allowLocalDeployment;
       buildOnTarget = false;
       targetHost = host.config.pilz.deployment.targetHost;
-      targetPort = 22;
-      targetUser = "root";
-      #  tags = host.config.pilz.deployment.tags;
+      targetPort = host.config.pilz.deployment.targetPort;
+      targetUser = host.config.pilz.deployment.targetUser;
+      tags = host.config.pilz.deployment.tags;
     };
     imports = host._module.args.modules;
     nixpkgs.system = host.config.nixpkgs.system;

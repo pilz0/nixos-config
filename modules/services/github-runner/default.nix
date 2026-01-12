@@ -39,7 +39,6 @@
           curl
           wget
           cacert
-          #androidenv.androidPkgs.androidsdk
           jetbrains.jdk
         ];
         user = "github-runner";

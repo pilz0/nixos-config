@@ -11,9 +11,14 @@
   ];
 
   pilz = {
-    deployment.targetHost = "netbox.ams1.as214958.net";
-    lxc.enable = true;
-    lxc.ctID = "105";
+    deployment = {
+      targetHost = "netbox.ams1.as214958.net";
+      tags = [ "infra" ];
+    };
+    lxc = {
+      enable = true;
+      ctID = "105";
+    };
   };
 
   networking = {

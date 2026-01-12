@@ -24,6 +24,7 @@
   ];
 
   pilz.deployment.targetHost = null;
+  pilz.deployment.allowLocalDeployment = true;
 
   nixpkgs = {
     config = {
