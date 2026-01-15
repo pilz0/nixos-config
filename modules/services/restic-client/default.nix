@@ -3,6 +3,7 @@
   ...
 }:
 {
+
   age.secrets.rcloneconfig = {
     file = ../../secrets/rclone.age;
     owner = "root";
@@ -20,16 +21,6 @@
       repository = "rclone:onedrive:/backup/server";
       initialize = true;
       passwordFile = config.age.secrets.restic.path;
-      paths = [
-        "/home/marie"
-      ];
-      exclude = [
-        "*cache*"
-        "*/.local/share/Trash/*"
-        "*/.steam/*"
-        "*monero*"
-        "*.android*"
-      ];
     };
   };
 }

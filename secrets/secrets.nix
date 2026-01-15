@@ -83,16 +83,12 @@ in
   "restic.age".publicKeys = Laptop ++ marielap ++ serva ++ grafana;
   "smtp.age".publicKeys = marielap ++ serva ++ grafana;
   "grafana.age".publicKeys = marielap ++ serva ++ grafana;
-  "writefreely.age".publicKeys = marielap ++ serva;
-  "nextcloud-exporter.age".publicKeys = marielap ++ serva ++ grafana;
   "wg.age".publicKeys = marielap ++ serva ++ dn42;
   "nixarr-wg.age".publicKeys = marielap ++ serva ++ jellyfin;
   "HashedPassword.age".publicKeys = marielap ++ Laptop ++ serva;
-  "traewelling.age".publicKeys = marielap ++ serva ++ grafana;
   "cloudflare_cert.age".publicKeys = marielap ++ serva ++ web1_host ++ grafana;
   "cloudflare_key.age".publicKeys = marielap ++ serva ++ web1_host ++ grafana;
   "s3-mastodon.age".publicKeys = marielap ++ serva;
-  "wg-dus1.age".publicKeys = marielap ++ serva;
   "netbox.age".publicKeys = marielap ++ netbox;
   "harmonia.age".publicKeys = marielap ++ build;
   "nixbuildssh.age".publicKeys = all_hosts;

@@ -28,6 +28,7 @@ let
       specialArgs = { inherit inputs; };
       modules = [
         ../deployment
+        ../lxc
         ../../modules/common
         ../../machines/${hostname}
         inputs.agenix.nixosModules.default

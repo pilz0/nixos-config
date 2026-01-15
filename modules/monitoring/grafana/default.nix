@@ -12,7 +12,6 @@ let
   };
 in
 {
-
   age.secrets = {
     smtp = {
       file = ../../../secrets/smtp.age;
@@ -25,14 +24,15 @@ in
       group = "grafana";
     };
   };
+
   environment.etc = {
     "grafana-alerts" = {
-      source = ./grafana-alerts;
+      source = ./alerts;
       group = "grafana";
       user = "grafana";
     };
     "grafana-dashboards" = {
-      source = ./grafana-dashboards;
+      source = ./dashboards;
       group = "grafana";
       user = "grafana";
     };
@@ -90,7 +90,6 @@ in
           };
         };
       };
-
       settings = {
         analytics = {
           reporting_enabled = false;

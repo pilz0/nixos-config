@@ -20,11 +20,15 @@
     ../../modules/common/pkgs
     ../../modules/nixos-builder-client
     ./android-studio.nix
-    #   ./no-standby.nix
+    # ./no-standby.nix
   ];
 
-  pilz.deployment.targetHost = null;
-  pilz.deployment.allowLocalDeployment = true;
+  pilz.deployment = {
+    targetHost = null;
+    allowLocalDeployment = true;
+  };
+
+  security.sudo.wheelNeedsPassword = false;
 
   nixpkgs = {
     config = {
