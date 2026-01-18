@@ -20,6 +20,11 @@ with lib;
       default = false;
       description = "allow colmena local deployment";
     };
+    buildOnTarget = mkOption {
+      type = with types; nullOr bool;
+      default = false;
+      description = "build on target host";
+    };
     targetUser = mkOption {
       type = with types; nullOr str;
       default = "root";

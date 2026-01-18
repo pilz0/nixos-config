@@ -8,6 +8,7 @@
     ../../modules/container/network.nix
     ../../modules/nixos-builder-client
     ../../modules/services/routinator
+    ../../modules/common
   ];
 
   pilz = {

@@ -8,6 +8,7 @@
     ../../modules/container/network.nix
     ../../modules/networking/dn42
     ../../modules/nixos-builder-client
+    ../../modules/common
   ];
   pilz = {
     deployment = {

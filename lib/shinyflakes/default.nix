@@ -9,7 +9,7 @@ let
   genColmenaCfg = name: host: {
     deployment = {
       allowLocalDeployment = host.config.pilz.deployment.allowLocalDeployment;
-      buildOnTarget = false;
+      buildOnTarget = host.config.pilz.deployment.buildOnTarget;
       targetHost = host.config.pilz.deployment.targetHost;
       targetPort = host.config.pilz.deployment.targetPort;
       targetUser = host.config.pilz.deployment.targetUser;
@@ -28,7 +28,6 @@ let
       specialArgs = { inherit inputs; };
       modules = [
         ../deployment
-        ../../modules/common
         ../../machines/${hostname}
         inputs.agenix.nixosModules.default
         (

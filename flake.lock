@@ -76,6 +76,31 @@
         "type": "github"
       }
     },
+    "cuda-legacy": {
+      "inputs": {
+        "flake-parts": [
+          "jetpack",
+          "cuda-legacy"
+        ],
+        "nixpkgs": [
+          "jetpack",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1762806692,
+        "narHash": "sha256-JhgQIwJe0U2vxj+pu+Sgm+VLgNqucpXtZYGKZOgkQdc=",
+        "owner": "nixos-cuda",
+        "repo": "cuda-legacy",
+        "rev": "9856d70acc3e2ae9081930b33d946326e07f1482",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos-cuda",
+        "repo": "cuda-legacy",
+        "type": "github"
+      }
+    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -211,6 +236,28 @@
         "type": "github"
       }
     },
+    "jetpack": {
+      "inputs": {
+        "cuda-legacy": "cuda-legacy",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1768614201,
+        "narHash": "sha256-0dD7G4P8LCivLUKp0AT4iWFhn0mIlUZGId8qKB4I1HU=",
+        "owner": "anduril",
+        "repo": "jetpack-nixos",
+        "rev": "73a6f722154285d457e5778180262567911596fd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "anduril",
+        "ref": "master",
+        "repo": "jetpack-nixos",
+        "type": "github"
+      }
+    },
     "nix": {
       "flake": false,
       "locked": {
@@ -224,6 +271,27 @@
       "original": {
         "owner": "nixos",
         "repo": "nix",
+        "type": "github"
+      }
+    },
+    "nix-darwin": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1767634391,
+        "narHash": "sha256-owcSz2ICqTSvhBbhPP+1eWzi88e54rRZtfCNE5E/wwg=",
+        "owner": "lnl7",
+        "repo": "nix-darwin",
+        "rev": "08585aacc3d6d6c280a02da195fdbd4b9cf083c2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lnl7",
+        "ref": "nix-darwin-25.11",
+        "repo": "nix-darwin",
         "type": "github"
       }
     },
@@ -248,6 +316,27 @@
         "type": "github"
       }
     },
+    "nix-rosetta-builder": {
+      "inputs": {
+        "nixos-generators": "nixos-generators",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1756177999,
+        "narHash": "sha256-aSbB7/jrt7ujiJ55f2uGhOo+usGxVSkqbAMVgg2jDls=",
+        "owner": "cpick",
+        "repo": "nix-rosetta-builder",
+        "rev": "ebb7162a975074fb570a2c3ac02bc543ff2e9df4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "cpick",
+        "repo": "nix-rosetta-builder",
+        "type": "github"
+      }
+    },
     "nixarr": {
       "inputs": {
         "nixpkgs": "nixpkgs_5",
@@ -265,6 +354,43 @@
       "original": {
         "owner": "rasmus-kirk",
         "repo": "nixarr",
+        "type": "github"
+      }
+    },
+    "nixlib": {
+      "locked": {
+        "lastModified": 1736643958,
+        "narHash": "sha256-tmpqTSWVRJVhpvfSN9KXBvKEXplrwKnSZNAoNPf/S/s=",
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "rev": "1418bc28a52126761c02dd3d89b2d8ca0f521181",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "type": "github"
+      }
+    },
+    "nixos-generators": {
+      "inputs": {
+        "nixlib": "nixlib",
+        "nixpkgs": [
+          "nix-rosetta-builder",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1737057290,
+        "narHash": "sha256-3Pe0yKlCc7EOeq1X/aJVDH0CtNL+tIBm49vpepwL1MQ=",
+        "owner": "nix-community",
+        "repo": "nixos-generators",
+        "rev": "d002ce9b6e7eb467cd1c6bb9aef9c35d191b5453",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nixos-generators",
         "type": "github"
       }
     },
@@ -423,6 +549,9 @@
         "colmena": "colmena",
         "flake-utils": "flake-utils_2",
         "harmonia": "harmonia",
+        "jetpack": "jetpack",
+        "nix-darwin": "nix-darwin",
+        "nix-rosetta-builder": "nix-rosetta-builder",
         "nixarr": "nixarr",
         "nixos-hardware": "nixos-hardware",
         "nixos-needsreboot": "nixos-needsreboot",

@@ -5,7 +5,7 @@
     owner = "root";
     group = "root";
   };
-    age.secrets.restic = {
+  age.secrets.restic = {
     file = ../../secrets/restic.age;
     owner = "root";
     group = "root";

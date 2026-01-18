@@ -13,12 +13,21 @@
       nixpkgs,
       nixos-needsreboot,
       flake-utils,
+      jetpack,
+      nix-darwin,
+      nix-rosetta-builder,
       ...
     }@inputs:
     let
       sf = import ./lib/shinyflakes inputs;
     in
     {
+      darwinConfigurations."magbook" = nix-darwin.lib.darwinSystem {
+        modules = [
+          ./machines/magbook
+          nix-rosetta-builder.darwinModules.default
+        ];
+      };
       colmena = sf.mapColmenaMerge self.nixosConfigurations {
         meta = {
           nixpkgs = nixpkgs.legacyPackages.x86_64-linux;
@@ -27,6 +36,8 @@
       };
       nixosConfigurations = sf.mapNixosCfg {
         hosts = sf.mapHostsMerge ./machines {
+          magbook.system = "aarch64-darwin";
+          jetson.system = "aarch64-linux";
         };
       };
     }
@@ -60,6 +71,17 @@
       url = "github:thefossguy/nixos-needsreboot";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    jetpack = {
+      url = "github:anduril/jetpack-nixos/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-darwin = {
+      url = "github:lnl7/nix-darwin/nix-darwin-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-rosetta-builder = {
+      url = "github:cpick/nix-rosetta-builder";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }

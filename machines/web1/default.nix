@@ -12,6 +12,7 @@
     ../../modules/nixos-builder-client
     ./proxys.nix
     ./promtail-nginx.nix
+    ../../modules/common
   ];
 
   pilz = {

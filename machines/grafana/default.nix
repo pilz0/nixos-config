@@ -11,6 +11,7 @@
     ../../modules/monitoring/grafana
     ../../modules/monitoring/netflow-exporter
     ../../modules/monitoring/loki
+    ../../modules/common
   ];
 
   pilz = {

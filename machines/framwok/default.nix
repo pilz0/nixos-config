@@ -20,6 +20,7 @@
     ../../modules/common/pkgs
     ../../modules/nixos-builder-client
     ./android-studio.nix
+    ../../modules/common
     #   ./no-standby.nix
   ];
 

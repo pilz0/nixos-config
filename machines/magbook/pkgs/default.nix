@@ -1,0 +1,30 @@
+{
+  pkgs,
+  ...
+}:
+{
+  environment.systemPackages = with pkgs; [
+    ansible
+    tmux
+    vim
+    neofetch
+    zsh
+    nmap
+    git
+    btop
+    wget
+    rclone
+    restic
+    gtop
+    freerdp
+    killall
+    picocom
+    gnumake
+    curl
+    dig
+    devenv
+    wireguard-tools
+    direnv
+    colmena
+  ];
+}

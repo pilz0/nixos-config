@@ -10,6 +10,7 @@
     ../../modules/services/nixos-builder
     ../../modules/services/binary-cache
     ../../modules/services/forgejo-runner
+    ../../modules/common
   ];
 
   pilz = {
