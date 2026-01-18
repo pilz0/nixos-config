@@ -12,7 +12,7 @@ lib.mapAttrs (system: platform: lib.systems.elaborate platform) {
     system = "aarch64-linux";
   };
 
-    "aarch64-darwin" = {
+  "aarch64-darwin" = {
     system = "aarch64-darwin";
   };
 }

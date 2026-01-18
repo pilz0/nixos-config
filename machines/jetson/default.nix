@@ -17,24 +17,25 @@
   pilz = {
     deployment = {
       targetHost = "192.168.1.242";
-      buildOnTarget = true;
+      #   buildOnTarget = true;
     };
   };
 
-networking.firewall.allowedTCPPorts = [ 22 ];
+  networking.firewall.allowedTCPPorts = [ 22 ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   hardware = {
     nvidia-container-toolkit.enable = true;
+    nvidia-jetpack.enable = true;
+    nvidia-jetpack.som = "xavier-agx";
+    nvidia-jetpack.carrierBoard = "devkit";
+  };
   virtualisation = {
     docker.enable = true;
     podman.enable = true;
   };
-
-  nvidia-jetpack.enable = true;
-  nvidia-jetpack.som = "xavier-agx";
-  nvidia-jetpack.carrierBoard = "devkit";
-};
+  
+  system.stateVersion = "25.05";
 }

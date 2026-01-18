@@ -3,7 +3,7 @@
   ...
 }:
 {
-  
+
   services = {
     xserver = {
       enable = true;
@@ -12,7 +12,7 @@
     desktopManager.gnome.enable = true;
     displayManager = {
       gdm.enable = true;
-      wayland = false;
+      gdm.wayland = false;
     };
     gnome = {
       gnome-online-accounts.enable = false;

@@ -15,7 +15,7 @@
       flake-utils,
       jetpack,
       nix-darwin,
-      nix-rosetta-builder,
+#      nix-rosetta-builder,
       ...
     }@inputs:
     let
@@ -25,7 +25,7 @@
       darwinConfigurations."magbook" = nix-darwin.lib.darwinSystem {
         modules = [
           ./machines/magbook
-          nix-rosetta-builder.darwinModules.default
+        #  nix-rosetta-builder.darwinModules.default
         ];
       };
       colmena = sf.mapColmenaMerge self.nixosConfigurations {
@@ -36,7 +36,6 @@
       };
       nixosConfigurations = sf.mapNixosCfg {
         hosts = sf.mapHostsMerge ./machines {
-          magbook.system = "aarch64-darwin";
           jetson.system = "aarch64-linux";
         };
       };
@@ -72,16 +71,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     jetpack = {
-      url = "github:anduril/jetpack-nixos/master";
+      url = "github:pilz0/jetpack-nixos/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-darwin = {
       url = "github:lnl7/nix-darwin/nix-darwin-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-rosetta-builder = {
-      url = "github:cpick/nix-rosetta-builder";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+  #  nix-rosetta-builder = {
+  #    url = "github:pilz0/nix-rosetta-builder";
+  #    inputs.nixpkgs.follows = "nixpkgs";
+  #  };
   };
 }
