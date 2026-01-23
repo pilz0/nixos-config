@@ -15,7 +15,9 @@
       flake-utils,
       jetpack,
       nix-darwin,
-#      nix-rosetta-builder,
+      nix-rosetta-builder,
+      determinate,
+      disko,
       ...
     }@inputs:
     let
@@ -25,7 +27,7 @@
       darwinConfigurations."magbook" = nix-darwin.lib.darwinSystem {
         modules = [
           ./machines/magbook
-        #  nix-rosetta-builder.darwinModules.default
+          nix-rosetta-builder.darwinModules.default
         ];
       };
       colmena = sf.mapColmenaMerge self.nixosConfigurations {
@@ -36,7 +38,7 @@
       };
       nixosConfigurations = sf.mapNixosCfg {
         hosts = sf.mapHostsMerge ./machines {
-          jetson.system = "aarch64-linux";
+          jetson-warcrime.system = "aarch64-linux";
         };
       };
     }
@@ -66,21 +68,27 @@
     srvos.url = "github:nix-community/srvos";
     harmonia.url = "github:nix-community/harmonia";
     colmena.url = "github:zhaofengli/colmena";
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
+    vscode-server.url = "github:nix-community/nixos-vscode-server";
     nixos-needsreboot = {
       url = "github:thefossguy/nixos-needsreboot";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     jetpack = {
-      url = "github:pilz0/jetpack-nixos/master";
+      url = "github:anduril/jetpack-nixos/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-darwin = {
       url = "github:lnl7/nix-darwin/nix-darwin-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-  #  nix-rosetta-builder = {
-  #    url = "github:pilz0/nix-rosetta-builder";
-  #    inputs.nixpkgs.follows = "nixpkgs";
-  #  };
+    nix-rosetta-builder = {
+      url = "github:pilz0/nix-rosetta-builder";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }

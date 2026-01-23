@@ -98,7 +98,6 @@
   };
 
   nixpkgs.config.allowUnfree = true;
-  environment.sessionVariables.NIXPKGS_ALLOW_UNFREE = "1";
 
   nixpkgs.overlays = [
     (final: prev: {
@@ -110,5 +109,5 @@
     })
   ];
 
-  nix.package = pkgs.lixPackageSets.stable.lix;
+   nix.package = lib.mkDefault pkgs.lixPackageSets.stable.lix;
 }
