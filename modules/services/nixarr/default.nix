@@ -3,7 +3,6 @@
   inputs,
   ...
 }:
-
 {
   imports = [
     inputs.nixarr.nixosModules.default
@@ -27,19 +26,11 @@
     transmission = {
       enable = true;
       vpn.enable = true;
-      peerPort = 63993; # Set this to the port forwarded by your VPN
+      peerPort = 63993;
       extraSettings = {
       };
     };
-
-    #    bazarr.enable = true;
-    #    lidarr.enable = true;
-    #    prowlarr.enable = true;
-    #    radarr.enable = true;
-    #    readarr.enable = true;
-    #    sonarr.enable = true; # I FUCKING HATE SONARR
   };
-  #  recyclarr.enable = false;
 
   services = {
     jellyfin = {

@@ -24,8 +24,12 @@
     #   ./no-standby.nix
   ];
 
-  pilz.deployment.targetHost = null;
-  pilz.deployment.allowLocalDeployment = true;
+  pilz.deployment = {
+    targetHost = null;
+    allowLocalDeployment = true;
+  };
+
+  security.sudo.wheelNeedsPassword = false;
 
   nixpkgs = {
     config = {

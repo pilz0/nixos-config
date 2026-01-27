@@ -4,8 +4,8 @@
 }:
 {
   imports = [
-    ../../modules/services/nginx
     ../../modules/container
+    ../../modules/services/nginx
     ../../modules/container/network.nix
     ../../modules/monitoring/prometheus
     ../../modules/monitoring/grafana
