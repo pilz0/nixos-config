@@ -69,7 +69,6 @@
       openssh.authorizedKeys.keys = [
         "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC5EyuXr+Uet0qxmQMOECuFSTHPBU7w3F9HglKN5DeZ6GU93dn2KCD9oD3ZWk4pSR7hzWiBYy0Mdcv1Bu3OQLDGBlYSPp7xUHd6XvZpR/grf4L3cUtuKBzIaUQi5Ehv3drJKhfkJUZoiJZbApNneLpn7Avy4xr/wa7azabqXsFeKimblBrhWookyPmT3E1VU8L0vad0yt0y44+tlVK6AoRlEqIRJbzhlCu1ws/lFIWswHbrbhIAiMRbEK+Wr7muERd0UZ96madAyvtixwbPx+qnpxnQjo0vw6Le4pT8ouF8jivcFJbeGGS0ZqdatOiawq/MP4oNqofCuF9Lk1jSL4N9OVaQ9mS6emqq3KKAZsxUSh7UTdTrZI50GRbgM0xLJr4zDa1Ic//jLGisXc/sE5k/LWHCwYc2QojHqRvkiJmPfquWjX7M9FVu2u4VUI9Ki1O7C5rCkn0jr8HStth7WqgjgAvUFUpmNKTl1LKDt/vuL9Xj+FMDocirbPvAM4qpgGGo5yuM9Dk9NKzIIjDHKO1cy86ZIS3W7YJaw1XjS6sKc9htDs+MMBJ9QZLvOCK4GG0dfl0SvQiOpEE8uwQau6NrUuhmB84P1hGiIGiM1Mfgjd4gQ4SqSB3n2OTILuYjZMzWXvbgWqe+plyeZB0NVu1afr6LoGxRjCXV3iC2WQvh3Q=="
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICz3LrNuJ1sS6w0ksY6lztpk/aegcLk9xyszDB6Q9sz7"
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII1mECV9Etr/nLIgg1E2mpFvAW1RexhhsRKrF7XcDEZI marie@framwok"
       ];
     };
     ellie = {

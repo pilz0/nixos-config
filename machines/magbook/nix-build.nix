@@ -22,7 +22,7 @@
   nix = {
     distributedBuilds = true;
     buildMachines = [
-        {
+      {
         sshUser = "root";
         hostName = "build-aarch64.as214958.net";
         system = "aarch64-linux";
