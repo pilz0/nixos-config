@@ -23,7 +23,7 @@
 
   pilz = {
     deployment = {
-      targetHost = "172.20.64.94";
+      targetHost = "da-home.as214958.net";
     };
   };
 
@@ -65,7 +65,7 @@
         "03:45"
       ];
     };
-    settings.experimental-features =  [
+    settings.experimental-features = [
       "nix-command"
       "flakes"
       "cgroups"

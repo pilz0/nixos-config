@@ -109,5 +109,5 @@
     })
   ];
 
-   nix.package = lib.mkDefault pkgs.lixPackageSets.stable.lix;
+  nix.package = lib.mkDefault pkgs.lixPackageSets.stable.lix;
 }

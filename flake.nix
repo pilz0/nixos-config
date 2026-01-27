@@ -18,6 +18,7 @@
       nix-rosetta-builder,
       determinate,
       disko,
+      home-manager,
       ...
     }@inputs:
     let
@@ -28,6 +29,14 @@
         modules = [
           ./machines/magbook
           nix-rosetta-builder.darwinModules.default
+          home-manager.darwinModules.home-manager
+          {
+          home-manager = {
+          useGlobalPkgs = true;
+          useUserPackages = true;
+          users.pilz = ./machines/magbook/home.nix;
+        };
+          }
         ];
       };
       colmena = sf.mapColmenaMerge self.nixosConfigurations {
@@ -70,6 +79,10 @@
     colmena.url = "github:zhaofengli/colmena";
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixos-needsreboot = {
       url = "github:thefossguy/nixos-needsreboot";
       inputs.nixpkgs.follows = "nixpkgs";

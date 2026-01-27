@@ -15,8 +15,8 @@
   };
 
   services.xserver.displayManager.defaultSession = "none+i3";
-  users.groups.debug = {};
-  services.xserver.videoDrivers = ["nvidia"];
+  users.groups.debug = { };
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   services.xserver.displayManager.lightdm.extraConfig = ''
     logind-check-graphical = false

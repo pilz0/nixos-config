@@ -7,6 +7,12 @@
     ./nix-build.nix
   ];
 
+  programs = {
+    zsh = {
+      enable = true;
+    };
+  };
+
   # enable on setup for rosetta builder
   # nix.linux-builder.enable = true;
   nix-rosetta-builder = {
@@ -14,7 +20,7 @@
     onDemandLingerMinutes = 60;
     cores = 10;
     jobs = 8;
-    speedFactor = 4;
+    #  speedFactor = 4;
     memory = "16GiB";
   };
 
