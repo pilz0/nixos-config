@@ -20,7 +20,8 @@
     ../../modules/common/pkgs
     ../../modules/nixos-builder-client
     ./android-studio.nix
-    # ./no-standby.nix
+    ../../modules/common
+    #   ./no-standby.nix
   ];
 
   pilz.deployment = {

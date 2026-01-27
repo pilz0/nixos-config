@@ -1,59 +1,31 @@
 {
   pkgs,
+  lib,
+  inputs,
   ...
 }:
 {
   imports = [
-    ../../modules/container
-    ../../modules/container/network.nix
-    ../../modules/services/github-runner
+    inputs.disko.nixosModules.disko
     ../../modules/services/nixos-builder
-    ../../modules/services/binary-cache
-    ../../modules/services/forgejo-runner
+    # ../../modules/services/binary-cache
     ../../modules/common
+    ../../modules/ssh
+    ../../modules/ssh-users
+    ../../modules/shell
+    ../../modules/monitoring/node-exporter
+    ../../modules/common/pkgs
+    ./hardware-configuration.nix
+    ./disk-config.nix
   ];
 
   pilz = {
     deployment = {
-      targetHost = "build.ams1.as214958.net";
+      targetHost = "89.168.97.129";
       tags = [ "infra" ];
     };
-    lxc = {
-      enable = true;
-      ctID = "106";
-    };
   };
 
-  services.nginx = {
-    enable = true;
-    recommendedTlsSettings = true;
-    virtualHosts."cache.as214958.net" = {
-      enableACME = true;
-      forceSSL = true;
-      locations."/".extraConfig = ''
-        proxy_pass http://127.0.0.1:5000;
-        proxy_set_header Host $host;
-        proxy_redirect http:// https://;
-        proxy_http_version 1.1;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection $connection_upgrade;
-      '';
-    };
-  };
-
-  # if a build uses a lot of tmp storage ram will overflow
-  boot.tmp.useTmpfs = false;
-
-  virtualisation.docker.enable = true;
-
-  environment.systemPackages = with pkgs; [
-    containerlab
-    tmux
-    screen
-  ];
-
-  nix.settings.extra-sandbox-paths = [ "/var/cache/ccache" ];
   users.users = {
     root = {
       openssh.authorizedKeys.keys = [
@@ -84,27 +56,60 @@
     };
   };
 
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelParams = [ "net.ifnames=0" ];
+
+  systemd.network.networks = {
+    "10-eth0" = {
+      networkConfig = {
+        IPv6AcceptRA = true;
+      };
+      matchConfig.Name = "eth0";
+      linkConfig.RequiredForOnline = "routable";
+      address = [
+        "10.0.0.45/24"
+      ];
+      routes = [
+        {
+          Gateway = "10.0.0.1";
+          Destination = "0.0.0.0/0";
+          GatewayOnLink = true;
+        }
+      ];
+    };
+  };
+  networking.useDHCP = false;
+
   nix.settings = {
-    max-jobs = 10;
-    cores = 36;
+    max-jobs = 4;
+    cores = 4;
   };
 
   networking = {
-    hostName = "build";
-    hostId = "12163e34";
+    useNetworkd = true;
+    nameservers = lib.mkAfter [
+      "2606:4700:4700::1111"
+      "1.1.1.1"
+      "2606:4700:4700::1001"
+      "1.0.0.1"
+    ];
   };
 
-  systemd.network.networks."10-eth0".address = [
-    "10.10.10.8/24"
-    "2a0e:8f02:f017::8/48"
-  ];
+  networking = {
+    hostName = "build-aarch64";
+    hostId = "13243e34";
+  };
 
   networking.firewall = {
+    allowPing = true;
     allowedTCPPorts = [
+      22
       80
       443
     ];
     allowedUDPPorts = [
     ];
   };
+  system.stateVersion = "23.11";
 }

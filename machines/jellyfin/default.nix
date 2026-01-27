@@ -8,6 +8,7 @@
     ../../modules/container/network.nix
     ../../modules/services/nixarr
     ../../modules/nixos-builder-client
+    ../../modules/common
   ];
 
   pilz = {

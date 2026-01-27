@@ -12,8 +12,7 @@
       role = "relay";
     };
     settings = {
-      ContactInfo = "darmstadt@fridaysforfuture.de";
-      Nickname = "as214958${config.networking.hostName}";
+      ContactInfo = "tor@as214958.net";
       BandWidthRate = "7 MBytes";
       RelayBandwidthBurst = "12 MBytes";
       ExitRelay = false;

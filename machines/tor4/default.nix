@@ -1,4 +1,6 @@
 {
+  config,
+
   ...
 }:
 {
@@ -7,6 +9,7 @@
     ../../modules/services/tor-relay
     ../../modules/services/tor-relay/network-pve.nix
     ../../lib/lxc
+    ../../modules/common
   ];
 
   pilz = {
@@ -23,6 +26,7 @@
   services.tor = {
     settings = {
       address = "94.142.241.153";
+      Nickname = "as214958tor4";
       ORPort = 80;
     };
   };
