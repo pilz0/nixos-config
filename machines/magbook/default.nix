@@ -1,4 +1,5 @@
 {
+  pkgs,
   ...
 }:
 {
@@ -7,11 +8,11 @@
     ./nix-build.nix
   ];
 
-  programs = {
-    zsh = {
-      enable = true;
-    };
-  };
+  # programs = {
+  #  zsh = {
+  #    enable = true;
+  #  };
+  #};
 
   # enable on setup for rosetta builder
   # nix.linux-builder.enable = true;
@@ -29,12 +30,13 @@
   system.stateVersion = 6;
 
   nix = {
+    package = pkgs.lix;
     settings.extra-trusted-users = [ "pilz" ];
     settings.experimental-features = [
       "nix-command"
       "flakes"
       "cgroups"
-      "pipe-operators"
+      "pipe-operator"
     ];
   };
   nixpkgs.config.allowUnfree = true;

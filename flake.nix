@@ -29,14 +29,14 @@
         modules = [
           ./machines/magbook
           nix-rosetta-builder.darwinModules.default
-          home-manager.darwinModules.home-manager
-          {
-          home-manager = {
-          useGlobalPkgs = true;
-          useUserPackages = true;
-          users.pilz = ./machines/magbook/home.nix;
-        };
-          }
+          #home-manager.darwinModules.home-manager
+          # {
+          # home-manager = {
+          # useGlobalPkgs = true;
+          # useUserPackages = true;
+          # users.pilz = ./machines/magbook/home.nix;
+          #};
+          # }
         ];
       };
       colmena = sf.mapColmenaMerge self.nixosConfigurations {
@@ -48,6 +48,7 @@
       nixosConfigurations = sf.mapNixosCfg {
         hosts = sf.mapHostsMerge ./machines {
           jetson-warcrime.system = "aarch64-linux";
+          build-aarch64.system = "aarch64-linux";
         };
       };
     }

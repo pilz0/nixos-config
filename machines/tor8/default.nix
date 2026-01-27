@@ -1,4 +1,5 @@
 {
+  config,
   ...
 }:
 {
@@ -24,6 +25,7 @@
   services.tor = {
     settings = {
       address = "94.142.241.153";
+      Nickname = "as214958tor8";
       ORPort = 3306;
     };
   };

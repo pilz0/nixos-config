@@ -22,9 +22,10 @@
     gnumake
     curl
     dig
-    devenv
     wireguard-tools
     direnv
     colmena
+    jellyfin-mpv-shim
+    mpv-unwrapped
   ];
 }

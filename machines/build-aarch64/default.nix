@@ -1,28 +1,31 @@
 {
   pkgs,
   lib,
+  inputs,
   ...
 }:
 {
   imports = [
+    inputs.disko.nixosModules.disko
     ../../modules/services/nixos-builder
-    ../../modules/services/binary-cache
+    # ../../modules/services/binary-cache
     ../../modules/common
     ../../modules/ssh
     ../../modules/ssh-users
     ../../modules/shell
     ../../modules/monitoring/node-exporter
     ../../modules/common/pkgs
+    ./hardware-configuration.nix
+    ./disk-config.nix
   ];
 
   pilz = {
     deployment = {
-      targetHost = "130.61.129.215";
+      targetHost = "89.168.97.129";
       tags = [ "infra" ];
     };
   };
 
-  nix.settings.extra-sandbox-paths = [ "/var/cache/ccache" ];
   users.users = {
     root = {
       openssh.authorizedKeys.keys = [
@@ -53,6 +56,31 @@
     };
   };
 
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelParams = [ "net.ifnames=0" ];
+
+  systemd.network.networks = {
+    "10-eth0" = {
+      networkConfig = {
+        IPv6AcceptRA = true;
+      };
+      matchConfig.Name = "eth0";
+      linkConfig.RequiredForOnline = "routable";
+      address = [
+        "10.0.0.45/24"
+      ];
+      routes = [
+        {
+          Gateway = "10.0.0.1";
+          Destination = "0.0.0.0/0";
+          GatewayOnLink = true;
+        }
+      ];
+    };
+  };
+  networking.useDHCP = false;
+
   nix.settings = {
     max-jobs = 4;
     cores = 4;
@@ -68,19 +96,20 @@
     ];
   };
 
-  system.stateVersion = "23.11"; # Did you read the comment?
-
   networking = {
     hostName = "build-aarch64";
-    hostId = "12163e34";
+    hostId = "13243e34";
   };
 
   networking.firewall = {
+    allowPing = true;
     allowedTCPPorts = [
+      22
       80
       443
     ];
     allowedUDPPorts = [
     ];
   };
+  system.stateVersion = "23.11";
 }
