@@ -16,7 +16,6 @@
       gnome-online-accounts.enable = false;
       core-developer-tools.enable = false;
       games.enable = false;
-
     };
   };
 

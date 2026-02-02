@@ -5,11 +5,6 @@
   ...
 }:
 {
-  imports = [
-    inputs.srvos.nixosModules.roles-github-actions-runner
-    inputs.srvos.nixosModules.server
-  ];
-
   age.secrets.github-runner = {
     file = ../../../secrets/github-runner.age;
     owner = "github-runner";

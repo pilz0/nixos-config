@@ -12,7 +12,7 @@
     ./graphics.nix
     ./users.nix
     ./restic.nix
-    ./audio.nix
+    ../../modules/audio.nix
     ./network.nix
     ../../modules/ssh
     ../../modules/shell
@@ -20,7 +20,6 @@
     ../../modules/common/pkgs
     ../../modules/nixos-builder-client
     ./android-studio.nix
-    ../../modules/common
     #   ./no-standby.nix
   ];
 

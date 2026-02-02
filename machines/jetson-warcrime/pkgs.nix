@@ -27,11 +27,16 @@
     vlc
   ];
 
+  services = {
+    vscode-server.enable = true;
+  };
+
   virtualisation = {
     docker.enable = true;
   };
 
   programs = {
+    nix-ld.enable = true;
     firefox.policies = {
       DisablePocket = true;
       DisableTelemetry = true;

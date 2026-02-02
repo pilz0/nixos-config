@@ -14,9 +14,9 @@
     ../../modules/ssh-users
     ../../modules/shell
     ../../modules/common/pkgs
+    ../../modules/audio.nix
     ./nvidia.nix
     ./graphics.nix
-    ./audio.nix
     ./pkgs.nix
     ./hardware-configuration.nix
   ];
@@ -27,11 +27,10 @@
     };
   };
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  networking.hostName = "jetson-warcrime";
-  networking.firewall.allowedTCPPorts = [ 22 ];
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
 
   services.vscode-server.enable = true;
   programs.nix-ld.enable = true;

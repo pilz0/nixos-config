@@ -87,7 +87,5 @@ in
       device = "rpool/data/subvol-${cfg.ctID}-disk-0";
       fsType = "zfs";
     };
-
-    nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   };
 }

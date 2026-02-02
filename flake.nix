@@ -28,15 +28,16 @@
       darwinConfigurations."magbook" = nix-darwin.lib.darwinSystem {
         modules = [
           ./machines/magbook
-          nix-rosetta-builder.darwinModules.default
-          #home-manager.darwinModules.home-manager
-          # {
-          # home-manager = {
-          # useGlobalPkgs = true;
-          # useUserPackages = true;
-          # users.pilz = ./machines/magbook/home.nix;
-          #};
-          # }
+          home-manager.darwinModules.home-manager
+          {
+            users.users.pilz.home = /Users/pilz;
+            home-manager = {
+              backupFileExtension = "bck";
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.pilz = ./machines/magbook/home.nix;
+            };
+          }
         ];
       };
       colmena = sf.mapColmenaMerge self.nixosConfigurations {
@@ -75,13 +76,12 @@
     agenix.url = "github:ryantm/agenix";
     nixarr.url = "github:rasmus-kirk/nixarr";
     catppuccin.url = "github:catppuccin/nix";
-    srvos.url = "github:nix-community/srvos";
     harmonia.url = "github:nix-community/harmonia";
     colmena.url = "github:zhaofengli/colmena";
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-needsreboot = {
