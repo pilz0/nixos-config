@@ -4,10 +4,13 @@
 }:
 {
   imports = [
-    ./nix-build.nix
-    ../../modules/darwin/rosetta-builder
     ../../modules/darwin/pkgs
+    ../../modules/darwin/rosetta-builder
   ];
+
+  nixpkgs.system = "aarch64-darwin";
+  system.stateVersion = 6;
+  nixpkgs.config.allowUnfree = true;
 
   nix = {
     package = pkgs.lix;
@@ -19,8 +22,4 @@
       "pipe-operator"
     ];
   };
-
-  nixpkgs.system = "aarch64-darwin";
-  system.stateVersion = 6;
-  nixpkgs.config.allowUnfree = true;
 }

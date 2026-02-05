@@ -5,14 +5,14 @@
   };
 
   hardware = {
-  nvidia-container-toolkit.enable = true;
-  nvidia-jetpack = {
-    enable = true;
-    configureCuda = true;
-    som = "xavier-agx";
-    carrierBoard = "devkit";
-    modesetting.enable = false;
-  };
+    nvidia-container-toolkit.enable = true;
+    nvidia-jetpack = {
+      enable = true;
+      configureCuda = true;
+      som = "xavier-agx";
+      carrierBoard = "devkit";
+      modesetting.enable = false;
+    };
   };
 
   # use hdmi port

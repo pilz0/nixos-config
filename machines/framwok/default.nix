@@ -12,7 +12,7 @@
     ./graphics.nix
     ./users.nix
     ./restic.nix
-    ../../modules/audio.nix
+    ../../modules/audio
     ./network.nix
     ../../modules/ssh
     ../../modules/shell

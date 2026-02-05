@@ -1,7 +1,5 @@
 {
   inputs,
-  lib,
-  pkgs,
   ...
 }:
 {
@@ -14,7 +12,7 @@
     ../../modules/ssh-users
     ../../modules/shell
     ../../modules/common/pkgs
-    ../../modules/audio.nix
+    ../../modules/audio
     ./nvidia.nix
     ./graphics.nix
     ./pkgs.nix

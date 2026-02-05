@@ -54,6 +54,9 @@ let
   ];
   tor8 = [
   ];
+  macbook-work = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExU28oRh+stgLtfgqUejL601PPV8OKqoVni9W6dna9a"
+  ];
 
   all_hosts =
     Laptop
@@ -73,7 +76,8 @@ let
     ++ tor5
     ++ tor6
     ++ tor7
-    ++ tor8;
+    ++ tor8
+    ++ macbook-work;
 in
 
 {
@@ -94,4 +98,5 @@ in
   "nixbuildssh.age".publicKeys = all_hosts;
   "forgejo-runner-token.age".publicKeys = marielap ++ build;
   "github-runner.age".publicKeys = marielap ++ build;
+  "work-bw-session.age".publicKeys = marielap ++ macbook-work;
 }
