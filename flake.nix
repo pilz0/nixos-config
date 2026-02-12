@@ -29,10 +29,20 @@
     {
       darwinConfigurations = {
         "magbook" = nix-darwin.lib.darwinSystem {
-          specialArgs = { inherit inputs; };
+          specialArgs = {
+            inherit inputs;
+            pkgs-unstable = import nixpkgs-unstable {
+              system = "aarch64-darwin"; # Change to x86_64-darwin if on Intel
+              config.allowUnfree = true;
+            };
+          };
           modules = [
             ./machines/magbook
             home-manager.darwinModules.home-manager
+            agenix.nixosModules.default
+            {
+              environment.systemPackages = [ agenix.packages.aarch64-darwin.default ];
+            }
             {
               users.users.pilz.home = /Users/pilz;
               home-manager = {

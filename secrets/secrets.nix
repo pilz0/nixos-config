@@ -1,6 +1,4 @@
 let
-  #marieyubi = "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIBTGgUYUsIAtcbZBqk5Mq0LH2T5KGFjdjAgNIwUf+/LBAAAABHNzaDo= pilz@framewok";
-  #marietoken2 = "ecdsa-sha2-nistp256@openssh.com AAAAInNrLWVjZHNhLXNoYTItbmlzdHAyNTZAb3BlbnNzaC5jb20AAAAIbmlzdHAyNTYAAABBBAGgIgZKjLpJFdYK1+Ovd1IHQZhdCy2ZIz1Sf8qVGErkNVPkYOU3iJRoK2pJKrotZTo/2oTaSTzxewXKKJQ98toAAAAEc3NoOg== pilz@token2";
   marielap = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII1mECV9Etr/nLIgg1E2mpFvAW1RexhhsRKrF7XcDEZI marie@framwok"
   ];
@@ -81,22 +79,23 @@ let
 in
 
 {
-  "nextcloud.age".publicKeys = marielap ++ serva;
-  "nextcloud-secrets.age".publicKeys = marielap ++ serva;
-  "rclone.age".publicKeys = Laptop ++ marielap ++ serva ++ grafana;
-  "restic.age".publicKeys = Laptop ++ marielap ++ serva ++ grafana;
-  "smtp.age".publicKeys = marielap ++ serva ++ grafana;
-  "grafana.age".publicKeys = marielap ++ serva ++ grafana;
-  "wg.age".publicKeys = marielap ++ serva ++ dn42;
-  "nixarr-wg.age".publicKeys = marielap ++ serva ++ jellyfin;
-  "HashedPassword.age".publicKeys = marielap ++ Laptop ++ serva;
-  "cloudflare_cert.age".publicKeys = marielap ++ serva ++ web1_host ++ grafana;
-  "cloudflare_key.age".publicKeys = marielap ++ serva ++ web1_host ++ grafana;
-  "s3-mastodon.age".publicKeys = marielap ++ serva;
-  "netbox.age".publicKeys = marielap ++ netbox;
-  "harmonia.age".publicKeys = marielap ++ build;
+  "nextcloud.age".publicKeys = marielap ++ serva ++ macbook-work;
+  "nextcloud-secrets.age".publicKeys = marielap ++ serva ++ macbook-work;
+  "rclone.age".publicKeys = Laptop ++ marielap ++ serva ++ grafana ++ macbook-work;
+  "restic.age".publicKeys = Laptop ++ marielap ++ serva ++ grafana ++ macbook-work;
+  "smtp.age".publicKeys = marielap ++ serva ++ grafana ++ macbook-work;
+  "grafana.age".publicKeys = marielap ++ serva ++ grafana ++ macbook-work;
+  "wg.age".publicKeys = marielap ++ serva ++ dn42 ++ macbook-work;
+  "nixarr-wg.age".publicKeys = marielap ++ serva ++ jellyfin ++ macbook-work;
+  "HashedPassword.age".publicKeys = marielap ++ Laptop ++ serva ++ macbook-work;
+  "cloudflare_cert.age".publicKeys = marielap ++ serva ++ web1_host ++ grafana ++ macbook-work;
+  "cloudflare_key.age".publicKeys = marielap ++ serva ++ web1_host ++ grafana ++ macbook-work;
+  "s3-mastodon.age".publicKeys = marielap ++ serva ++ macbook-work;
+  "netbox.age".publicKeys = marielap ++ netbox ++ macbook-work;
+  "harmonia.age".publicKeys = marielap ++ build ++ macbook-work;
   "nixbuildssh.age".publicKeys = all_hosts;
-  "forgejo-runner-token.age".publicKeys = marielap ++ build;
-  "github-runner.age".publicKeys = marielap ++ build;
+  "forgejo-runner-token.age".publicKeys = marielap ++ build ++ macbook-work;
+  "github-runner.age".publicKeys = marielap ++ build ++ macbook-work;
   "work-bw-session.age".publicKeys = marielap ++ macbook-work;
+  "wg-key-ams1-dn42.age".publicKeys = marielap ++ macbook-work ++ dn42;
 }

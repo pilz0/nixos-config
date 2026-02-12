@@ -1,6 +1,8 @@
 {
   pkgs,
+  lib,
   inputs,
+  config,
   ...
 }:
 {
@@ -8,13 +10,12 @@
     inputs.nix-rosetta-builder.darwinModules.default
   ];
   # enable on setup for rosetta builder
-  #
   # nix.linux-builder.enable = true;
   nix-rosetta-builder = {
     onDemand = true;
     onDemandLingerMinutes = 60;
-    cores = 8;
-    jobs = 8;
-    memory = "32GiB";
+    cores = lib.mkDefault 8;
+    jobs = config.nix-rosetta-builder.cores;
+    memory = lib.mkDefault "16GiB";
   };
 }
