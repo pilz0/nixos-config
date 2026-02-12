@@ -20,6 +20,10 @@
     ];
   };
 
+  nix-rosetta-builder = {
+    cores = 10;
+  };
+
   nixpkgs.system = "aarch64-darwin";
   system.stateVersion = 6;
   nixpkgs.config.allowUnfree = true;

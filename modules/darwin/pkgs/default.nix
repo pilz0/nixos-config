@@ -41,26 +41,23 @@
       firefox
       google-chrome
       jetbrains.phpstorm
-      docker
-      docker-compose
       openvpn
       bitwarden-desktop
       istat-menus
       dash
       spotify
-      element-desktop
       nil
       nixd
       bitwarden-cli
-      colima
       python314
       gh
       pre-commit
-      antigravity
+      # antigravity
     ])
     ++ (with pkgs-unstable; [
       # caffeine on stable does not support aarch64-darwin
       caffeine
+      # element-desktop
     ]);
 
   # why is docker aahhh

@@ -9,6 +9,7 @@
     ../../modules/networking/dn42
     ../../modules/nixos-builder-client
     ../../modules/common
+    ./wireguard.nix
   ];
   pilz = {
     deployment = {

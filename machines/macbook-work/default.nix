@@ -1,6 +1,5 @@
 {
   pkgs,
-  inputs,
   ...
 }:
 {
@@ -12,6 +11,10 @@
   nixpkgs.system = "aarch64-darwin";
   system.stateVersion = 6;
   nixpkgs.config.allowUnfree = true;
+
+  nix-rosetta-builder = {
+    memory = "48GiB";
+  };
 
   nix = {
     package = pkgs.lix;

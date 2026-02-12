@@ -1,5 +1,9 @@
 # modified version of https://woof.rip/emily/nixfiles/src/branch/main/lib/shinyflakes/default.nix
-{ nixpkgs, ... }@inputs:
+{
+  nixpkgs,
+  nix-darwin,
+  ...
+}@inputs:
 let
   inherit (nixpkgs) lib;
   inherit (builtins) mapAttrs;
@@ -19,6 +23,30 @@ let
     nixpkgs.system = host.config.nixpkgs.system;
   };
 
+  genDarwinCfg =
+    {
+      hostname,
+      system ? "aarch64-darwin",
+    }:
+    nix-darwin.lib.darwinSystem {
+      specialArgs = {
+        inherit inputs;
+        pkgs-unstable = import inputs.nixpkgs-unstable {
+          system = "aarch64-darwin";
+          config.allowUnfree = true;
+        };
+      };
+      modules = [
+        ../../machines/${hostname}
+        inputs.agenix.darwinModules.default
+        (
+          { ... }:
+          {
+            nixpkgs.system = system;
+          }
+        )
+      ];
+    };
   genNixosCfg =
     {
       hostname,
@@ -43,7 +71,7 @@ in
   mapHostsMerge =
     hdir: extraCfg:
     builtins.readDir hdir
-    |> lib.filterAttrs (n: t: t == "directory" && n != "_minimal")
+    |> lib.filterAttrs (n: t: t == "directory")
     |> builtins.attrNames
     |> (
       dir:
@@ -58,6 +86,12 @@ in
     lib.filterAttrs (name: _: !(lib.hasSuffix "-minimal" name)) nixosCfg
     |> mapAttrs genColmenaCfg
     |> mergeWith extraCfg;
+
+  mapDarwinCfg =
+    {
+      darwinHosts,
+    }:
+    mapAttrs (_: v: genDarwinCfg v) darwinHosts;
 
   mapNixosCfg =
     {
