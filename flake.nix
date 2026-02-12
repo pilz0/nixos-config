@@ -48,24 +48,26 @@
           specialArgs = {
             inherit inputs;
             pkgs-unstable = import nixpkgs-unstable {
-              system = "aarch64-darwin"; # Change to x86_64-darwin if on Intel
+              system = "aarch64-darwin";
               config.allowUnfree = true;
             };
           };
           modules = [
             ./machines/macbook-work
             home-manager.darwinModules.home-manager
-            agenix.nixosModules.default
-            {
-              environment.systemPackages = [ agenix.packages.aarch64-darwin.default ];
-            }
+            agenix.darwinModules.default
             {
               users.users.pilz.home = /Users/pilz;
               home-manager = {
                 backupFileExtension = "bck";
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                users.pilz = ./machines/macbook-work/home.nix;
+                users.pilz = {
+                  imports = [
+                    agenix.homeManagerModules.default
+                    ./machines/macbook-work/home.nix
+                  ];
+                };
               };
             }
           ];

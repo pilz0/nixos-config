@@ -66,7 +66,7 @@
   # why is docker aahhh
   # https://github.com/nix-darwin/nix-darwin/issues/1182
   launchd.agents."colima.default" = {
-    command = "${pkgs.colima}/bin/colima start --foreground";
+    command = "${pkgs.colima}/bin/colima start --cpu 6 --memory 16 --foreground";
     serviceConfig = {
       Label = "com.colima.default";
       RunAtLoad = true;
