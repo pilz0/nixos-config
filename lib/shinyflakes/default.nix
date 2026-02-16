@@ -39,6 +39,7 @@ let
       modules = [
         ../../machines/${hostname}
         inputs.agenix.darwinModules.default
+        inputs.home-manager.darwinModules.home-manager
         (
           { ... }:
           {

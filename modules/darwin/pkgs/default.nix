@@ -52,12 +52,14 @@
       python314
       gh
       pre-commit
-      # antigravity
+      docker
+      docker
+      docker-compose
+      colima
     ])
     ++ (with pkgs-unstable; [
       # caffeine on stable does not support aarch64-darwin
       caffeine
-      # element-desktop
     ]);
 
   # why is docker aahhh

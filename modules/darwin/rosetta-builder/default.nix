@@ -1,5 +1,6 @@
 {
   inputs,
+  lib,
   ...
 }:
 {
@@ -10,10 +11,10 @@
 
   # nix.linux-builder.enable = true;
   nix-rosetta-builder = {
-    onDemand = true;
-    onDemandLingerMinutes = 60;
-    cores = 8;
-    jobs = 8;
-    memory = "16GiB";
+    onDemand = lib.mkDefault true;
+    onDemandLingerMinutes = lib.mkDefault 60;
+    cores = lib.mkDefault 8;
+    jobs = lib.mkDefault 8;
+    memory = lib.mkDefault "16GiB";
   };
 }

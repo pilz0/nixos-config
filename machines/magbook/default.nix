@@ -1,5 +1,6 @@
 {
   pkgs,
+  inputs,
   ...
 }:
 {
@@ -8,6 +9,16 @@
     ../../modules/darwin/rosetta-builder
     ../../modules/darwin/pkgs
   ];
+
+  environment.systemPackages = [ inputs.agenix.packages.aarch64-darwin.default ];
+
+  users.users.pilz.home = /Users/pilz;
+  home-manager = {
+    backupFileExtension = "bck";
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users.pilz = ./home.nix;
+  };
 
   nix = {
     package = pkgs.lix;
