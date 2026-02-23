@@ -1,4 +1,8 @@
 {
+  inputs,
+  ...
+}:
+{
   imports = [
     ../../modules/darwin/shell
   ];

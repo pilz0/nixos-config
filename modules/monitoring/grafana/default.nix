@@ -4,6 +4,8 @@
   ...
 }:
 let
+  cfg = config.pilz.services.grafana;
+
   grafanaPlugin = pkgs.callPackage (
     pkgs.path + "/pkgs/servers/monitoring/grafana/plugins/grafana-plugin.nix"
   ) { };
@@ -12,6 +14,33 @@ let
   };
 in
 {
+  options.pilz.services.grafana = {
+    enable = lib.mkEnableOption;
+    prometheus.url = lib.mkOption {
+      type = lib.types.str;
+      default = "http://localhost:${toString config.services.prometheus.port}";
+    };
+    loki.url = lib.mkOption {
+      type = lib.types.str;
+      default = "http://localhost:3100";
+    };
+    smtp = {
+      email = {
+      type = lib.types.str;
+      default = "t3st1ng1312@cock.li";
+    };
+    password = {
+      type = lib.types.str;
+      default = "$__file{${toString config.age.secrets.smtp.path}}";
+    };
+    host = {
+      type = lib.types.str;
+      default = "mail.cock.li:465";
+    };
+    };
+  };
+config = lib.mkIf cfg.enable {
+
   age.secrets = {
     smtp = {
       file = ../../../secrets/smtp.age;
@@ -59,13 +88,13 @@ in
                 type = "prometheus";
                 isDefault = true;
                 name = "prometheus";
-                url = "http://localhost:${toString config.services.prometheus.port}";
+                url = cfg.prometheus.url;
                 uid = "e68e5107-0b44-4438-870c-019649e85d2b";
               }
               {
                 type = "loki";
                 name = "Loki";
-                url = "http://localhost:3100";
+                url = cfg.loki.url;
                 uid = "5e20af34-8d96-4035-9830-19a7e3cbb200";
               }
             ];
@@ -97,10 +126,10 @@ in
         smtp = {
           enable = true;
           enabled = true;
-          user = "t3st1ng1312@cock.li";
+          user = cfg.smtp.email;
           startTLS_policy = "MandatoryStartTLS";
-          password = "$__file{${toString config.age.secrets.smtp.path}}";
-          host = "mail.cock.li:465";
+          password = cfg.smtp.password;
+          host = cfg.smtp.host;
           from_name = config.services.grafana.settings.server.domain;
           from_address = config.services.grafana.settings.smtp.user;
         };
@@ -123,4 +152,5 @@ in
       };
     };
   };
+};
 }

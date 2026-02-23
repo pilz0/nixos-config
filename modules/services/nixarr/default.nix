@@ -28,6 +28,7 @@
       vpn.enable = true;
       peerPort = 63993;
       extraSettings = {
+        peer-limit-global = 1000;
       };
     };
   };

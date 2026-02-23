@@ -5,11 +5,11 @@
 }:
 {
   imports = [
-    ../../modules/darwin/pkgs
-    ../../modules/darwin/rosetta-builder
+    ../../modules/darwin
     inputs.home-manager.darwinModules.home-manager
   ];
 
+  #pilz.services.darwin.colima.enable = true;
   users.users.pilz.home = /Users/pilz;
   home-manager = {
     backupFileExtension = "bck";

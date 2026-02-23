@@ -2,7 +2,18 @@
   lib,
   ...
 }:
+let
+  cfg = config.pilz.services.bird;
+in
 {
+   options.pilz.services.bird = {
+    dn42 = lib.mkOption {
+      type = lib.types.str;
+      default = "pilz";
+    };
+  };
+
+config = { 
   services.prometheus = {
     exporters = {
       bird = {
@@ -64,4 +75,5 @@
     '';
 
   };
+};
 }
