@@ -20,6 +20,10 @@
       hostNames = [ "eu.nixbuild.net" ];
       publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPIQCZc54poJ8vqawd8TraNryQeJnvH1eLpIDgbiqymM";
     };
+    "build-aarch64.as214958.net" = {
+      hostNames = [ "build-aarch64.as214958.net" ];
+      publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO0EFs09dJ7b2VHRxaqlIIJZdJskEPAqzDIyf0/W1oGZ";
+    };
   };
 
   nix = {
@@ -39,7 +43,7 @@
       {
         hostName = "eu.nixbuild.net";
         system = "i686-linux";
-        maxJobs = 4;
+        maxJobs = 100;
         speedFactor = 1;
         supportedFeatures = [
           "benchmark"
@@ -49,7 +53,7 @@
       {
         hostName = "eu.nixbuild.net";
         system = "aarch64-linux";
-        maxJobs = 4;
+        maxJobs = 100;
         speedFactor = 1;
         supportedFeatures = [
           "benchmark"

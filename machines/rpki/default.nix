@@ -6,12 +6,15 @@
   imports = [
     ../../modules/container
     ../../modules/container/network.nix
-    ../../modules/nixos-builder-client
     ../../modules/services/routinator
     ../../modules/common
   ];
 
   pilz = {
+    services.routinator.enable = true;
+    services.pve-container.network = {
+      enable = true;
+    };
     deployment = {
       targetHost = "rpki.ams1.as214958.net";
       tags = [ "infra" ];

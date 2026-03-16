@@ -9,13 +9,18 @@
     ../../modules/services/as214958-net
     ../../modules/container/network.nix
     ../../modules/services/bird-lg-frontend
-    ../../modules/nixos-builder-client
     ./proxys.nix
     ./promtail-nginx.nix
     ../../modules/common
   ];
 
   pilz = {
+    services.testfile.enable = true;
+    services.as214958Net.enable = true;
+    services.birdLg.frontend.enable = true;
+      services.pve-container.network = {
+      enable = true;
+    };
     deployment = {
       targetHost = "web1.ams1.as214958.net";
       tags = [ "infra" ];

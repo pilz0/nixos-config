@@ -7,11 +7,14 @@
     ../../modules/container
     ../../modules/container/network.nix
     ../../modules/services/nixarr
-    ../../modules/nixos-builder-client
     ../../modules/common
   ];
 
   pilz = {
+    services.nixarr.enable = true;
+    services.pve-container.network = {
+      enable = true;
+    };
     deployment = {
       targetHost = "jellyfin.ams1.as214958.net";
       tags = [ "infra" ];

@@ -15,6 +15,12 @@
   ];
 
   pilz = {
+    services.grafana.enable = true;
+    services.loki.enable = true;
+    services.netflow-exporter = true;
+    services.pve-container.network = {
+      enable = true;
+    };
     deployment = {
       targetHost = "grafana.ams1.as214958.net";
       tags = [ "infra" ];
@@ -22,6 +28,19 @@
     lxc = {
       enable = true;
       ctID = "101";
+    };
+  };
+
+  age.secrets = {
+    smtp = {
+      file = ../../secrets/smtp.age;
+      owner = "grafana";
+      group = "grafana";
+    };
+    grafana = {
+      file = ../../secrets/grafana.age;
+      owner = "grafana";
+      group = "grafana";
     };
   };
 

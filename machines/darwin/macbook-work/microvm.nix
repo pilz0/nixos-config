@@ -8,11 +8,6 @@
   ];
 
   microvm = {
-    hypervisor = "vfkit";
-    vfkit.rosetta = {
-      enable = true;
-      install = true;
-    };
     vms = {
       vm1 = {
         interfaces = [

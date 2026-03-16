@@ -116,7 +116,7 @@ in
     builtins.readDir ../../tests
     |> lib.filterAttrs (n: t: t == "regular" && lib.hasSuffix ".nix" n)
     |> builtins.attrNames
-    |> (
+    |> (3
       files:
       lib.genAttrs (map (lib.removeSuffix ".nix") files) (test: {
         testname = test;

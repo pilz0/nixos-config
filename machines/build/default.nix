@@ -14,6 +14,9 @@
   ];
 
   pilz = {
+    services.pve-container.network = {
+      enable = true;
+    };
     deployment = {
       targetHost = "build.ams1.as214958.net";
       tags = [ "infra" ];

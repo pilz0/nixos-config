@@ -7,11 +7,13 @@
     ../../modules/container
     ../../modules/container/network.nix
     ../../modules/networking/dn42
-    ../../modules/nixos-builder-client
     ../../modules/common
     ./wireguard.nix
   ];
   pilz = {
+          services.pve-container.network = {
+      enable = true;
+    };
     deployment = {
       targetHost = "dn42.ams1.as214958.net";
       tags = [ "infra" ];

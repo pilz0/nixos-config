@@ -20,4 +20,6 @@
     privileged = false;
     manageHostName = false;
   };
+  pilz.services.nixosBuilderClient.enable = true;
+  pilz.services.promtail.enable = true;
 }

@@ -7,11 +7,13 @@
     ../../modules/container
     ../../modules/container/network.nix
     ../../modules/services/netbox
-    ../../modules/nixos-builder-client
     ../../modules/common
   ];
 
   pilz = {
+          services.pve-container.network = {
+      enable = true;
+    };
     deployment = {
       targetHost = "netbox.ams1.as214958.net";
       tags = [ "infra" ];
