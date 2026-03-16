@@ -1,6 +1,6 @@
 {
   pkgs,
-  pkgs-unstable, # You must add this to the arguments
+  pkgs-unstable,
   ...
 }:
 {

@@ -3,7 +3,6 @@
   ...
 }:
 {
-
   age.secrets.rcloneconfig = {
     file = ../../secrets/rclone.age;
     owner = "root";

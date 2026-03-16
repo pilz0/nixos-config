@@ -5,11 +5,11 @@
 }:
 {
   imports = [
-    ../../modules/darwin
-    inputs.home-manager.darwinModules.home-manager
+    ./nix-build.nix
+    ../../../modules/darwin
   ];
 
-  #pilz.services.darwin.colima.enable = true;
+  environment.systemPackages = [ inputs.agenix.packages.aarch64-darwin.default ];
   users.users.pilz.home = /Users/pilz;
   home-manager = {
     backupFileExtension = "bck";
@@ -23,16 +23,6 @@
     };
   };
 
-  environment.systemPackages = [ inputs.agenix.packages.aarch64-darwin.default ];
-
-  nixpkgs.system = "aarch64-darwin";
-  system.stateVersion = 6;
-  nixpkgs.config.allowUnfree = true;
-
-  nix-rosetta-builder = {
-    memory = "48GiB";
-  };
-
   nix = {
     package = pkgs.lix;
     settings.extra-trusted-users = [ "pilz" ];
@@ -43,4 +33,13 @@
       "pipe-operator"
     ];
   };
+
+  pilz.services.darwin.rosetta-builder = {
+    cores = 10;
+    jobs = 10;
+  };
+
+  nixpkgs.system = "aarch64-darwin";
+  system.stateVersion = 6;
+  nixpkgs.config.allowUnfree = true;
 }

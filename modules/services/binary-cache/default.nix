@@ -3,9 +3,7 @@
   config,
   ...
 }:
-
 {
-
   imports = [
     inputs.harmonia.nixosModules.harmonia
   ];
@@ -17,7 +15,8 @@
     signKeyPaths = [ config.age.secrets."harmonia-signing-key".path ];
   };
 
-  systemd.services.harmonia-dev.serviceConfig.Nice = "-15";
-
-  systemd.services.nginx.serviceConfig.SupplementaryGroups = [ "harmonia" ];
+  systemd.services = {
+    harmonia-dev.serviceConfig.Nice = "-15";
+    nginx.serviceConfig.SupplementaryGroups = [ "harmonia" ];
+  };
 }

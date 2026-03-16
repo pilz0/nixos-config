@@ -1,70 +1,95 @@
 {
-  services.loki = {
-    enable = true;
-
-    configuration = {
-      auth_enabled = false;
-      server = {
-        http_listen_port = 3100;
-        grpc_listen_port = 9096;
-        log_level = "debug";
-        grpc_server_max_concurrent_streams = 1000;
-      };
-      common = {
-        instance_addr = "127.0.0.1";
-        path_prefix = "/tmp/loki";
-        storage = {
-          filesystem = {
-            chunks_directory = "/tmp/loki/chunks";
-            rules_directory = "/tmp/loki/rules";
-          };
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+let
+  cfg = config.pilz.services.loki;
+in
+{
+  options.pilz.services.loki = {
+    enable = lib.mkEnableOption "enable loki configuration";
+    http_listen_port = lib.mkOption {
+      type = lib.types.int;
+      default = 3100;
+    };
+    grpc_listen_port = lib.mkOption {
+      type = lib.types.int;
+      default = 9096;
+    };
+    address = lib.mkOption {
+      type = lib.types.str;
+      default = "127.0.0.1";
+    };
+  };
+  config = lib.mkIf cfg.enable {
+    services.loki = {
+      enable = cfg.enable;
+      configuration = {
+        auth_enabled = false;
+        server = {
+          http_listen_port = cfg.http_listen_port;
+          grpc_listen_port = cfg.grpc_listen_port;
+          log_level = "debug";
+          grpc_server_max_concurrent_streams = 1000;
         };
-        replication_factor = 1;
-        ring = {
-          kvstore = {
-            store = "inmemory";
+        common = {
+          instance_addr = cfg.address;
+          path_prefix = "/tmp/loki";
+          storage = {
+            filesystem = {
+              chunks_directory = "/tmp/loki/chunks";
+              rules_directory = "/tmp/loki/rules";
+            };
           };
-        };
-      };
-      query_range = {
-        results_cache = {
-          cache = {
-            embedded_cache = {
-              enabled = true;
-              max_size_mb = 100;
+          replication_factor = 1;
+          ring = {
+            kvstore = {
+              store = "inmemory";
             };
           };
         };
-      };
-      limits_config = {
-        metric_aggregation_enabled = true;
-        enable_multi_variant_queries = true;
-      };
-      schema_config = {
-        configs = [
-          {
-            from = "2020-10-24";
-            store = "tsdb";
-            object_store = "filesystem";
-            schema = "v13";
-            index = {
-              prefix = "index_";
-              period = "24h";
+        query_range = {
+          results_cache = {
+            cache = {
+              embedded_cache = {
+                enabled = true;
+                max_size_mb = 100;
+              };
             };
-          }
-        ];
-      };
-      pattern_ingester = {
-        enabled = true;
-        metric_aggregation = {
-          loki_address = "localhost:3100";
+          };
         };
-      };
-      ruler = {
-        alertmanager_url = "http://localhost:9093";
-      };
-      frontend = {
-        encoding = "protobuf";
+        limits_config = {
+          metric_aggregation_enabled = true;
+          enable_multi_variant_queries = true;
+        };
+        schema_config = {
+          configs = [
+            {
+              from = "2020-10-24";
+              store = "tsdb";
+              object_store = "filesystem";
+              schema = "v13";
+              index = {
+                prefix = "index_";
+                period = "24h";
+              };
+            }
+          ];
+        };
+        pattern_ingester = {
+          enabled = true;
+          metric_aggregation = {
+            loki_address = "localhost:${toString cfg.http_listen_port}";
+          };
+        };
+        ruler = {
+          alertmanager_url = "http://localhost:9093";
+        };
+        frontend = {
+          encoding = "protobuf";
+        };
       };
     };
   };

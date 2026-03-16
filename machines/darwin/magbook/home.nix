@@ -4,7 +4,7 @@
 }:
 {
   imports = [
-    ../../modules/darwin/shell
+    ../../../modules/darwin/shell
   ];
   home.stateVersion = "25.11";
 }

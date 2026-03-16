@@ -38,6 +38,16 @@
       }
       {
         hostName = "eu.nixbuild.net";
+        system = "i686-linux";
+        maxJobs = 4;
+        speedFactor = 1;
+        supportedFeatures = [
+          "benchmark"
+          "big-parallel"
+        ];
+      }
+      {
+        hostName = "eu.nixbuild.net";
         system = "aarch64-linux";
         maxJobs = 4;
         speedFactor = 1;
