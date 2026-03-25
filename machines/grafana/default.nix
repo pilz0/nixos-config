@@ -17,7 +17,7 @@
   pilz = {
     services.grafana.enable = true;
     services.loki.enable = true;
-    services.netflow-exporter = true;
+    services.netflow-exporter.enable = true;
     services.pve-container.network = {
       enable = true;
     };

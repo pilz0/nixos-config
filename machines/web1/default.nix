@@ -18,7 +18,7 @@
     services.testfile.enable = true;
     services.as214958Net.enable = true;
     services.birdLg.frontend.enable = true;
-      services.pve-container.network = {
+    services.pve-container.network = {
       enable = true;
     };
     deployment = {

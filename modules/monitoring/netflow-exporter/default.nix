@@ -17,33 +17,33 @@ in
         type = lib.types.str;
         default = "1312xxxxxxxxxxxxxxacab";
       };
-      outsidePort = {
+      outsidePort = lib.mkOption {
         type = lib.types.int;
         default = 9092;
       };
-      controllerPort = {
+      controllerPort = lib.mkOption {
         type = lib.types.int;
         default = 9093;
       };
-      insidePort = {
+      insidePort = lib.mkOption {
         type = lib.types.int;
         default = 19092;
       };
-      domain = {
-        type = lib.types.int;
-        default = "";
+      domain = lib.mkOption {
+        type = lib.types.str;
+        default = "localhost";
       };
     };
     exporter = {
-      asn = {
+      asn = lib.mkOption {
         type = lib.types.int;
         default = 214958;
       };
-      kafkaPort = {
+      kafkaPort = lib.mkOption {
         type = lib.types.int;
         default = 9092;
       };
-      kafkaTopic = {
+      kafkaTopic = lib.mkOption {
         type = lib.types.str;
         default = "pmacctd.acct";
       };
@@ -58,17 +58,17 @@ in
       formatLogDirs = true;
       settings = {
         listeners = [
-          "INSIDE://:${toString cfg.kakfa.insidePort}"
-          "OUTSIDE://:${toString cfg.kakfa.outsidePort}"
-          "CONTROLLER://:${toString cfg.kakfa.controllerPort}"
+          "INSIDE://:${toString cfg.kafka.insidePort}"
+          "OUTSIDE://:${toString cfg.kafka.outsidePort}"
+          "CONTROLLER://:${toString cfg.kafka.controllerPort}"
         ];
 
         "delete.topic.enable" = true;
         "log.retention.bytes" = 1000000000;
         "auto.create.topics.enable" = true;
         "advertised.listeners" = [
-          "INSIDE://:${toString cfg.kakfa.insidePort}"
-          "OUTSIDE://${cfg.kafka.domain}:${toString cfg.kakfa.outsidePort}"
+          "INSIDE://:${toString cfg.kafka.insidePort}"
+          "OUTSIDE://${cfg.kafka.domain}:${toString cfg.kafka.outsidePort}"
         ];
         "listener.security.protocol.map" = [
           "INSIDE:PLAINTEXT"
@@ -77,7 +77,7 @@ in
         ];
         "inter.broker.listener.name" = "INSIDE";
         "controller.quorum.voters" = [
-          "1@127.0.0.1:${toString cfg.kakfa.controllerPort}"
+          "1@127.0.0.1:${toString cfg.kafka.controllerPort}"
         ];
         "controller.listener.names" = [ "CONTROLLER" ];
         "log.dirs" = [ "/tmp/apache-kafka" ];

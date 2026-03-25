@@ -111,20 +111,20 @@ in
     }:
     mapAttrs (_: v: genNixosCfg v) hosts |> mergeWith extraHosts;
 
-  mapTestCfg =
-    pkgs:
-    builtins.readDir ../../tests
-    |> lib.filterAttrs (n: t: t == "regular" && lib.hasSuffix ".nix" n)
-    |> builtins.attrNames
-    |> (3
-      files:
-      lib.genAttrs (map (lib.removeSuffix ".nix") files) (test: {
-        testname = test;
-        inherit pkgs;
-      })
-    )
-    |> mapAttrs (_: v: genTestCfg v)
-    |> mergeWith { };
+  # mapTestCfg =
+  #   pkgs:
+  #   builtins.readDir ../../tests
+  #   |> lib.filterAttrs (n: t: t == "regular" && lib.hasSuffix ".nix" n)
+  #   |> builtins.attrNames
+  #   |> (3
+  #     files:
+  #     lib.genAttrs (map (lib.removeSuffix ".nix") files) (test: {
+  #       testname = test;
+  #       inherit pkgs;
+  #     })
+  #   )
+  #   |> mapAttrs (_: v: genTestCfg v)
+  #   |> mergeWith { };
 
   eachSystem = func: lib.mapAttrs func (import ./platforms.nix inputs);
 

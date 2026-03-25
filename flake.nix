@@ -41,7 +41,9 @@
         pkgs = sf.importPkgs system;
       in
       {
-        checks."test-grafana" = pkgs.callPackage ./tests/grafana.nix { };
+        checks."grafana" = pkgs.callPackage ./tests/grafana.nix { };
+        checks."drupal" = pkgs.callPackage ./tests/drupal.nix { };
+        checks."as214958net" = pkgs.callPackage ./tests/as214958net.nix { };
         # packages = sf.eachSystem (system: sf.mapTestCfg pkgs);
         formatter = nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;
         devShells.default = pkgs.mkShell {

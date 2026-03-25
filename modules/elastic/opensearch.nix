@@ -11,7 +11,7 @@ in
       type = lib.types.str;
       default = "test-cluster";
     };
-    httpPort = lib.mkOption {
+     = lib.mkOption {
       type = lib.types.int;
       default = 9200;
     };

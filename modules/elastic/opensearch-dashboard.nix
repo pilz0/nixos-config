@@ -8,11 +8,18 @@ in
 {
   options.pilz.services.opensearchDashboard = {
     enable = lib.mkEnableOption;
+    server = {
+      host = lib.mkOption {
+        type = lib.types.str;
+        default = "http://localhost:9200";
+      };
+      
+    };
   };
   environment.etc.opensearch = {
     text = ''
       server.name: opensearch_dashboards
-      server.host: "0.0.0.0"
+      server.host: ${cfg.server.host}
       server.customResponseHeaders : { "Access-Control-Allow-Credentials" : "true" }
 
       # Disabling HTTPS on OpenSearch Dashboards

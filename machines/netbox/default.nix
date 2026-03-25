@@ -11,7 +11,7 @@
   ];
 
   pilz = {
-          services.pve-container.network = {
+    services.pve-container.network = {
       enable = true;
     };
     deployment = {
