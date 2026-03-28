@@ -11,7 +11,9 @@
   ];
 
   pilz = {
-    services.nixarr.enable = true;
+    services.nixarr = {
+      enable = true;
+    };
     services.pve-container.network = {
       enable = true;
     };

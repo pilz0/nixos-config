@@ -31,14 +31,14 @@ in
   config = lib.mkIf cfg.enable {
     age.secrets.nixarr-wg = {
       file = cfg.wgConfSecretFile;
-      owner = "nixarr";
-      group = "nixarr";
+      #owner = "nixarr";
+      #group = "nixarr";
     };
 
     nixarr = {
       enable = true;
       mediaDir = cfg.dir;
-      stateDir = "${cfg.dir}/.state/nixarr";
+      stateDir = "${cfg.dir}.state/nixarr";
 
       vpn = {
         enable = true;
@@ -50,7 +50,11 @@ in
         vpn.enable = true;
         peerPort = cfg.peerPort;
         extraSettings = {
-          peer-limit-global = 1000;
+          peer-limit-global = 1500;
+          speed_limit_up = 24000; # 192mbit
+          speed_limit_up_enabled = true;
+          upload_slots_per_torrent = 200;
+          peer_limit_per_torrent  = 300;
         };
       };
     };
@@ -60,7 +64,7 @@ in
         enable = true;
       };
       jellyseerr = {
-        enable = true;
+        enable = false;
       };
     };
   };

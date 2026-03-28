@@ -22,7 +22,11 @@ in
       default = 12;
     };
     MetricsPort = lib.mkOption {
-      type = 
+      type = lib.types.string;
+      default = "[::]:9052";
+    };
+    MyFamily = lib.mkOption {
+      type = lib.types.
     };
 };
 config = lib.mkIf cfg.enable {

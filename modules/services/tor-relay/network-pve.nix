@@ -1,4 +1,9 @@
 {
+  networking.firewall = {
+    extraCommands = ''
+      ${pkgs.iptables}/bin/ip6tables -A INPUT -p tcp --dport 9052 -s 2a0e:8f02:f017::3 -j ACCEPT
+    '';
+  };
   systemd.network = {
     enable = true;
     networks = {
