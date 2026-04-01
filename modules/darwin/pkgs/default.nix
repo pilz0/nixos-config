@@ -56,6 +56,7 @@
       docker-compose
       colima
       vagrant
+      dbeaver-bin
     ])
     ++ (with pkgs-unstable; [
       # caffeine on stable does not support aarch64-darwin

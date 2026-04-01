@@ -11,7 +11,6 @@
     # ../../modules/services/binary-cache
     ../../modules/common
     ../../modules/ssh
-    ../../modules/ssh-users
     ../../modules/shell
     ../../modules/monitoring/node-exporter
     ../../modules/common/pkgs

@@ -14,9 +14,13 @@ in
 
   options.pilz.services.nixarr = {
     enable = lib.mkEnableOption "enable nixarr configuration";
-    dir = lib.mkOption {
+    mediaDir = lib.mkOption {
       type = lib.types.str;
       default = "/srv/";
+    };
+    stateDir = lib.mkOption {
+      type = lib.types.str;
+      default = "/srv/media/.state/nixarr";
     };
     wgConfSecretFile = lib.mkOption {
       type = lib.types.path;
@@ -37,8 +41,8 @@ in
 
     nixarr = {
       enable = true;
-      mediaDir = cfg.dir;
-      stateDir = "${cfg.dir}.state/nixarr";
+      mediaDir = cfg.mediaDir;
+      stateDir = cfg.stateDir;
 
       vpn = {
         enable = true;
@@ -54,7 +58,7 @@ in
           speed_limit_up = 24000; # 192mbit
           speed_limit_up_enabled = true;
           upload_slots_per_torrent = 200;
-          peer_limit_per_torrent  = 300;
+          peer_limit_per_torrent = 300;
         };
       };
     };

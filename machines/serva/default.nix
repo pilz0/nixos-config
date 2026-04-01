@@ -4,7 +4,6 @@
 {
   imports = [
     ../../modules/ssh
-    ../../modules/ssh-users
     ../../modules/shell
     ../../modules/common
     ../../modules/common/pkgs

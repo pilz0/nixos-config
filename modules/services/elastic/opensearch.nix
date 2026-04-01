@@ -6,12 +6,12 @@ let
 in
 {
   options.pilz.services.opensearch = {
-    enable = lib.mkEnableOption;
+    enable = lib.mkEnableOption "";
     clusterName = lib.mkOption {
       type = lib.types.str;
       default = "test-cluster";
     };
-     = lib.mkOption {
+    httpPort = lib.mkOption {
       type = lib.types.int;
       default = 9200;
     };

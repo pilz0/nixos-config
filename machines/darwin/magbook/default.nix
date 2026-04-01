@@ -6,7 +6,7 @@
 {
   imports = [
     ./nix-build.nix
-    ../../../modules/darwin
+    ../../../profiles/darwin
   ];
 
   environment.systemPackages = [ inputs.agenix.packages.aarch64-darwin.default ];

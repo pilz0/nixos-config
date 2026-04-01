@@ -16,19 +16,17 @@
     deployment.targetHost = "tor3.ams1.as214958.net";
     lxc.enable = true;
     lxc.ctID = "109";
+    services.tor = {
+      enable = true;
+      address = "94.142.241.153";
+      nickname = "as214958tor3";
+      orPort = 143;
+    };
   };
 
   networking = {
     hostName = "tor3";
     hostId = "2166b432";
-  };
-
-  services.tor = {
-    settings = {
-      address = "94.142.241.153";
-      Nickname = "as214958tor3";
-      ORPort = 143;
-    };
   };
 
   systemd.network.networks = {

@@ -51,22 +51,21 @@ in
       };
     };
   };
-  config = lib.mkIf cfg.enable {
-    environment.etc = {
-      "grafana-alerts" = {
-        source = ./alerts;
-        group = "grafana";
-        user = "grafana";
-      };
-      "grafana-dashboards" = {
-        source = ./dashboards;
-        group = "grafana";
-        user = "grafana";
-      };
-    };
+config = lib.mkIf cfg.enable {
 
-    services = {
-      grafana = {
+  age.secrets = {
+    smtp = {
+      file = ../../../secrets/smtp.age;
+      owner = "grafana";
+      group = "grafana";
+    };
+    grafana = {
+      file = ../../../secrets/grafana.age;
+      owner = "grafana";
+      group = "grafana";
+    };
+  };
+    services.grafana = {
         enable = cfg.enable;
         declarativePlugins = with pkgs.grafanaPlugins; [
           grafana-github-datasource
@@ -148,7 +147,6 @@ in
             admin_email = "marie0@riseup.net";
           };
         };
-      };
     };
   };
 }

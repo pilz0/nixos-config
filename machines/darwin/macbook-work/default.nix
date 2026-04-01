@@ -6,7 +6,7 @@
 {
   imports = [
     inputs.home-manager.darwinModules.home-manager
-    ../../../modules/darwin
+    ../../../profiles/darwin
     ./nix-build.nix
   ];
 
