@@ -16,7 +16,11 @@
     deployment.targetHost = "tor5.ams1.as214958.net";
     lxc.enable = true;
     lxc.ctID = "111";
-    services.tor = {
+    networking.tor-relay = {
+      eth0.address = "2a0e:8f02:f017::13/48";
+      eth1.address = "10.0.0.6/24";
+    };
+    services.tor-relay = {
       enable = true;
       address = "94.142.241.153";
       nickname = "as214958tor5";
@@ -27,14 +31,5 @@
   networking = {
     hostName = "tor5";
     hostId = "2166b435";
-  };
-
-  systemd.network.networks = {
-    "10-eth0".address = [
-      "2a0e:8f02:f017::13/48"
-    ];
-    "20-eth1".address = [
-      "10.0.0.6/24"
-    ];
   };
 }

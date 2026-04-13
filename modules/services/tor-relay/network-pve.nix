@@ -1,13 +1,14 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 let
   cfg = config.pilz.networking.tor-relay;
 in
 {
-  options.pilz.netwokring.tor-relay = {
+  options.pilz.networking.tor-relay = {
       enable = lib.mkEnableOption "";
       prometheusServer = lib.mkOption {
         type = lib.types.string;

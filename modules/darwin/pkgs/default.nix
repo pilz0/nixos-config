@@ -57,6 +57,11 @@
       colima
       vagrant
       dbeaver-bin
+      zerotierone
+      metasploit
+      postgresql_18
+      mitmproxy
+      wireshark
     ])
     ++ (with pkgs-unstable; [
       # caffeine on stable does not support aarch64-darwin
