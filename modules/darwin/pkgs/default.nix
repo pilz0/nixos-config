@@ -25,10 +25,7 @@
       curl
       dig
       wireguard-tools
-      direnv
       colmena
-      jellyfin-mpv-shim
-      mpv-unwrapped
       stats
       git-lfs
       openssl
@@ -62,9 +59,12 @@
       postgresql_18
       mitmproxy
       wireshark
+      jellyfin-mpv-shim
     ])
     ++ (with pkgs-unstable; [
       # caffeine on stable does not support aarch64-darwin
       caffeine
+      direnv
+      mpv-unwrapped
     ]);
 }

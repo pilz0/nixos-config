@@ -35,7 +35,6 @@
   };
 
   nix = {
-    package = pkgs.lix;
     settings.extra-trusted-users = [ "pilz" ];
     settings.experimental-features = [
       "nix-command"

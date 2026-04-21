@@ -5,6 +5,9 @@
   ...
 }:
 {
+  imports = [
+    
+  ];
   services = {
     resolved = {
       #enable = true;
@@ -98,16 +101,4 @@
   };
 
   nixpkgs.config.allowUnfree = true;
-
-  nixpkgs.overlays = [
-    (final: prev: {
-      inherit (prev.lixPackageSets.stable)
-        nixpkgs-review
-        nix-eval-jobs
-        nix-fast-build
-        ;
-    })
-  ];
-
-  nix.package = lib.mkDefault pkgs.lixPackageSets.stable.lix;
 }

@@ -17,6 +17,9 @@ in
       type = lib.types.str;
       default = "2a0e:8f02:f017::1";
     };
+    address = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+    };
   };
   config = lib.mkIf cfg.enable {
     systemd.network = {
@@ -27,6 +30,7 @@ in
             IPv6AcceptRA = true;
           };
           matchConfig.Name = "eth0";
+          address = cfg.address;
           routes = [
             {
               Gateway = cfg.ipv4.gateway;
