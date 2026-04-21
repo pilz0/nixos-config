@@ -40,7 +40,7 @@
       "nix-command"
       "flakes"
       "cgroups"
-      "pipe-operator"
-    ];
+      "pipe-operators"
+      ];
   };
 }

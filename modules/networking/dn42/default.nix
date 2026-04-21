@@ -51,7 +51,7 @@
       networks.cybertrash = {
         matchConfig.Name = "cybertrash";
         address = [
-          "fd49:d69f:6::1337/48"
+          "fd49:d69f:6::1337/64"
           "172.22.179.129/27"
         ];
         networkConfig = {

@@ -27,7 +27,7 @@ in
       networks = {
         "10-eth0" = {
           networkConfig = {
-            IPv6AcceptRA = true;
+            IPv6AcceptRA = false;
           };
           matchConfig.Name = "eth0";
           address = cfg.address;
@@ -40,6 +40,7 @@ in
             {
               Gateway = cfg.ipv6.gateway;
               Destination = "::/0";
+              GatewayOnLink = true;
             }
           ];
           linkConfig.RequiredForOnline = "routable";

@@ -13,7 +13,7 @@
     lxc.enable = true;
     lxc.ctID = "109";
     networking.tor-relay = {
-      eth0.address = "2a0e:8f02:f017::11/48";
+      eth0.address = "2a0e:8f02:f017::11/64";
       eth1.address = "10.0.0.4/24";
     };
     services.tor-relay = {

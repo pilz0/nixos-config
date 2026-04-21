@@ -13,7 +13,7 @@
       enable = true;
       address = [
         "10.10.10.7/24"
-        "2a0e:8f02:f017::7/48"
+        "2a0e:8f02:f017::7/64"
       ];
     };
     deployment = {
