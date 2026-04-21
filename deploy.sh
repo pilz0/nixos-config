@@ -13,5 +13,6 @@ elif [[ "$1" == "exec" ]]; then
     [[ "$1" == "--" ]] && shift
     colmena exec --impure --nix-option "experimental-features" "pipe-operators pipe-operator flakes nix-command" --on "*$on*" --verbose -- "$@"
 else
-    colmena $1 --impure --nix-option "experimental-features" "pipe-operators pipe-operator flakes nix-command" --on "*$2*" --verbose
+    colmena $1 --impure --nix-option "experimental-features" "pipe-operators pipe-operator flakes nix-command" --nix-option "extra-substituters" "https://install.determinate.systems" --nix-option "extra-trusted-public-keys" "cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM=" --on "*$2*" --verbose
 fi
+ 

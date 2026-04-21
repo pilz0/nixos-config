@@ -11,24 +11,24 @@ in
   options.pilz.networking.tor-relay = {
     enable = lib.mkEnableOption "";
     prometheusServer = lib.mkOption {
-      type = lib.types.string;
+      type = lib.types.str;
       default = "2a0e:8f02:f017::3";
     };
     eth0 = {
       address = lib.mkOption {
-        type = lib.types.listOf lib.types.string;
+        type = lib.types.listOf lib.types.str;
       };
       gateway = lib.mkOption {
-        type = lib.types.string;
+        type = lib.types.str;
         default = "2a0e:8f02:f017::1";
       };
     };
     eth1 = {
       address = lib.mkOption {
-        type = lib.types.listOf lib.types.string;
+        type = lib.types.listOf lib.types.str;
       };
       gateway = lib.mkOption {
-        type = lib.types.string;
+        type = lib.types.str;
         default = "10.0.0.1";
       };
     };
@@ -45,13 +45,14 @@ in
         "10-eth0" = {
           address = cfg.eth0.address;
           networkConfig = {
-            IPv6AcceptRA = true;
+            IPv6AcceptRA = false;
           };
           matchConfig.Name = "eth0";
           routes = [
             {
               Gateway = cfg.eth0.gateway;
               Destination = "::/0";
+              GatewayOnLink = true;
             }
           ];
           linkConfig.RequiredForOnline = "routable";
