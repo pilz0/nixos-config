@@ -60,7 +60,7 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     agenix.url = "github:ryantm/agenix";
-    nixarr.url = "github:rasmus-kirk/nixarr";
+    nixarr.url = "github:nix-media-server/nixarr";
     catppuccin.url = "github:catppuccin/nix";
     harmonia.url = "github:nix-community/harmonia";
     colmena.url = "github:zhaofengli/colmena";

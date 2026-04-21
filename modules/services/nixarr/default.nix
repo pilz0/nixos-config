@@ -14,9 +14,13 @@ in
 
   options.pilz.services.nixarr = {
     enable = lib.mkEnableOption "enable nixarr configuration";
-    dir = lib.mkOption {
+    mediaDir = lib.mkOption {
       type = lib.types.str;
       default = "/srv/";
+    };
+    stateDir = lib.mkOption {
+      type = lib.types.str;
+      default = "/srv/media/.state/nixarr";
     };
     wgConfSecretFile = lib.mkOption {
       type = lib.types.path;
@@ -31,14 +35,14 @@ in
   config = lib.mkIf cfg.enable {
     age.secrets.nixarr-wg = {
       file = cfg.wgConfSecretFile;
-      owner = "nixarr";
-      group = "nixarr";
+      #owner = "nixarr";
+      #group = "nixarr";
     };
 
     nixarr = {
       enable = true;
-      mediaDir = cfg.dir;
-      stateDir = "${cfg.dir}/.state/nixarr";
+      mediaDir = cfg.mediaDir;
+      stateDir = cfg.stateDir;
 
       vpn = {
         enable = true;
@@ -50,7 +54,11 @@ in
         vpn.enable = true;
         peerPort = cfg.peerPort;
         extraSettings = {
-          peer-limit-global = 1000;
+          peer-limit-global = 1500;
+          speed-limit-up = 24000; # 192mbit
+          speed-limit-up-enabled = true;
+          upload-slots-per-torrent = 200;
+          peer-limit-per-torrent = 300;
         };
       };
     };
@@ -60,7 +68,7 @@ in
         enable = true;
       };
       jellyseerr = {
-        enable = true;
+        enable = false;
       };
     };
   };

@@ -4,14 +4,14 @@
   ...
 }:
 let
-  cfg = config.services.pilz.relay;
+  cfg = config.pilz.services.tor-relay;
 in
 {
-  options.servides.pilz.tor-relay = {
+  options.pilz.services.tor-relay = {
     enable = lib.mkEnableOption "enable tor configuration";
     openFirewall = lib.mkOption {
       type = lib.types.bool;
-      defualt = true;
+      default = true;
     };
     bandWidth = lib.mkOption {
       type = lib.types.int;
@@ -21,27 +21,46 @@ in
       type = lib.types.int;
       default = 12;
     };
-    MetricsPort = lib.mkOption {
-      type = 
+    metricsPort = lib.mkOption {
+      type = lib.types.str;
+      default = "[::]:9052";
     };
-};
-config = lib.mkIf cfg.enable {
-  services.tor = {
-    enable = cfg.enable;
-    openFirewall = cfg.openFirewall;
-    relay = {
-      enable = cfg.enable;
-      role = "relay";
+    myFamily = lib.mkOption {
+      type = lib.types.str;
+      default = "2D3BC9AD2530644BBC6A57A92565D08B76AC7DEB, 2FDB1719E6A5E6110F93CE3AC5E841F9B3A2B726, 385486EC538186581947C5DAB4B33ED927DC4E98, 9DBF6C9C640F19E26431B4D272165F3622895AAC, DD068520C3C34EA4223DBD82A111E5AADC419EB7, 0C5083448219CEB1BE2D6F05DA5344455AA3A86F, 06CA78B2BFCF3F5EB336C56D2DE7B816F8F17662, FBC5D08F536D7437469B6959D463D5D3AEC0AD37, BDC63B4DFC74F55882F1387F65259D6468215D2F, 6EFB931BC0E80D50A4F9D23245B853DB001BBDDE, C0C6DA86E0A6C991B21668F777D8E648F3718674, EB9EBA51B56A87697C3DD4134590792090CE4565, 74C1BF20D992007F410FBF3C085214EF60F43BBD, 053ED0352F49F5D974DE17EA980CFEACAD869982";
     };
-    settings = {
-      ContactInfo = "tor@as214958.net";
-      BandWidthRate = "${toString cfg.bandWidth} MBytes";
-      RelayBandwidthBurst = "${toString cfg.bandWidth} MBytes";
-      ExitRelay = false;
-      MetricsPort = "[::]:9052";
-      MetricsPortPolicy = "accept *";
-      MyFamily = "2D3BC9AD2530644BBC6A57A92565D08B76AC7DEB, 2FDB1719E6A5E6110F93CE3AC5E841F9B3A2B726, 385486EC538186581947C5DAB4B33ED927DC4E98, 9DBF6C9C640F19E26431B4D272165F3622895AAC, DD068520C3C34EA4223DBD82A111E5AADC419EB7, 0C5083448219CEB1BE2D6F05DA5344455AA3A86F, 06CA78B2BFCF3F5EB336C56D2DE7B816F8F17662, FBC5D08F536D7437469B6959D463D5D3AEC0AD37, BDC63B4DFC74F55882F1387F65259D6468215D2F, 6EFB931BC0E80D50A4F9D23245B853DB001BBDDE, C0C6DA86E0A6C991B21668F777D8E648F3718674, EB9EBA51B56A87697C3DD4134590792090CE4565, 74C1BF20D992007F410FBF3C085214EF60F43BBD, 053ED0352F49F5D974DE17EA980CFEACAD869982";
+    address = lib.mkOption {
+      type = lib.types.str;
+      default = "94.142.241.153";
+    };
+    nickname = lib.mkOption {
+      type = lib.types.str;
+      default = config.networking.hostName;
+    };
+    orPort = lib.mkOption {
+      type = lib.types.int;
     };
   };
-};
+  config = lib.mkIf cfg.enable {
+    services.tor = {
+      enable = cfg.enable;
+      openFirewall = cfg.openFirewall;
+      relay = {
+        enable = cfg.enable;
+        role = "relay";
+      };
+      settings = {
+        ContactInfo = "tor@as214958.net";
+        BandWidthRate = "${toString cfg.bandWidth} MBytes";
+        RelayBandwidthBurst = "${toString cfg.bandWidth} MBytes";
+        ExitRelay = false;
+        address = cfg.address;
+        Nickname = cfg.nickname;
+        ORPort = cfg.orPort;
+        MetricsPort = cfg.metricsPort;
+        MetricsPortPolicy = "accept *";
+        MyFamily = cfg.myFamily;
+      };
+    };
+  };
 }

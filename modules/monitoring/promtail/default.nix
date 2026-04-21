@@ -8,24 +8,28 @@ let
 in
 {
   options.pilz.services.promtail = {
-    enable = lib.mkEnableOption "enable promtail configuration";
-    httpPort = lib.mkOption {
+    enable = lib.mkEnableOption "";
+    listenPort = lib.mkOption {
       type = lib.types.int;
       default = 9080;
     };
-    clients = lib.mkOption {
-      type = lib.types.listOf lib.types.attrs;
-      default = [ { url = "http://loki.as214958.net:3100/loki/api/v1/push"; } ];
+    serverUrl = {
+      type = lib.types.string;
+      default = "http://loki.as214958.net:3100/loki/api/v1/push";
     };
   };
   config = lib.mkIf cfg.enable {
     services.promtail = {
-      enable = cfg.enable;
+      enable = true;
       configuration = {
         server = {
-          http_listen_port = cfg.httpPort;
+          http_listen_port = cfg.listenPort;
         };
-        clients = cfg.clients;
+        clients = [
+          {
+            url = "http://loki.as214958.net:3100/loki/api/v1/push";
+          }
+        ];
         positions = {
           filename = "/tmp/positions.yaml";
         };

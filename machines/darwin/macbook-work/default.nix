@@ -6,7 +6,7 @@
 {
   imports = [
     inputs.home-manager.darwinModules.home-manager
-    ../../../modules/darwin
+    ../../../profiles/darwin
     ./nix-build.nix
   ];
 
@@ -35,7 +35,6 @@
   };
 
   nix = {
-    package = pkgs.lix;
     settings.extra-trusted-users = [ "pilz" ];
     settings.experimental-features = [
       "nix-command"

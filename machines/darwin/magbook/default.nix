@@ -6,7 +6,7 @@
 {
   imports = [
     ./nix-build.nix
-    ../../../modules/darwin
+    ../../../profiles/darwin
   ];
 
   environment.systemPackages = [ inputs.agenix.packages.aarch64-darwin.default ];
@@ -23,8 +23,13 @@
     };
   };
 
+  nixpkgs.config.permittedInsecurePackages = [
+  "lima-1.2.2"
+    "lima-full-1.2.2"
+    "lima-additional-guestagents-1.2.2"
+  ];
   nix = {
-    package = pkgs.lix;
+  #  package = pkgs.lix;
     settings.extra-trusted-users = [ "pilz" ];
     settings.experimental-features = [
       "nix-command"

@@ -52,101 +52,99 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
-    environment.etc = {
-      "grafana-alerts" = {
-        source = ./alerts;
+
+    age.secrets = {
+      smtp = {
+        file = ../../../secrets/smtp.age;
+        owner = "grafana";
         group = "grafana";
-        user = "grafana";
       };
-      "grafana-dashboards" = {
-        source = ./dashboards;
+      grafana = {
+        file = ../../../secrets/grafana.age;
+        owner = "grafana";
         group = "grafana";
-        user = "grafana";
       };
     };
-
-    services = {
-      grafana = {
-        enable = cfg.enable;
-        declarativePlugins = with pkgs.grafanaPlugins; [
-          grafana-github-datasource
-          grafana-clock-panel
-          grafana-oncall-app
-          grafana-piechart-panel
-          grafana-polystat-panel
-          netsage-sankey-panel
-          yesoreyeram-infinity-datasource
-        ];
-        provision = {
-          enable = true;
-          datasources = {
-            settings = {
-              datasources = [
-                {
-                  type = "prometheus";
-                  isDefault = true;
-                  name = "prometheus";
-                  url = cfg.prometheus.url;
-                  uid = "e68e5107-0b44-4438-870c-019649e85d2b";
-                }
-                {
-                  type = "loki";
-                  name = "Loki";
-                  url = cfg.loki.url;
-                  uid = "5e20af34-8d96-4035-9830-19a7e3cbb200";
-                }
-              ];
-            };
-          };
-          dashboards = {
-            settings = {
-              providers = [
-                {
-                  name = "My Dashboards";
-                  options.path = "/etc/grafana-dashboards";
-                }
-              ];
-            };
-          };
-          alerting = {
-            rules = {
-              path = "/etc/grafana-alerts/alert.yaml"; # its way easyer to export them from the webinterface then manually rewrite them in nix
-            };
-            contactPoints = {
-              path = "/etc/grafana-alerts/contacts.yaml";
-            };
+    services.grafana = {
+      enable = cfg.enable;
+      declarativePlugins = with pkgs.grafanaPlugins; [
+        grafana-github-datasource
+        grafana-clock-panel
+        grafana-oncall-app
+        grafana-piechart-panel
+        grafana-polystat-panel
+        netsage-sankey-panel
+        yesoreyeram-infinity-datasource
+      ];
+      provision = {
+        enable = true;
+        datasources = {
+          settings = {
+            datasources = [
+              {
+                type = "prometheus";
+                isDefault = true;
+                name = "prometheus";
+                url = cfg.prometheus.url;
+                uid = "e68e5107-0b44-4438-870c-019649e85d2b";
+              }
+              {
+                type = "loki";
+                name = "Loki";
+                url = cfg.loki.url;
+                uid = "5e20af34-8d96-4035-9830-19a7e3cbb200";
+              }
+            ];
           };
         };
-        settings = {
-          analytics = {
-            reporting_enabled = false;
+        dashboards = {
+          settings = {
+            providers = [
+              {
+                name = "My Dashboards";
+                options.path = "/etc/grafana-dashboards";
+              }
+            ];
           };
-          smtp = {
-            enable = true;
-            enabled = true;
-            user = cfg.smtp.email;
-            startTLS_policy = "MandatoryStartTLS";
-            password = cfg.smtp.password;
-            host = cfg.smtp.host;
-            from_name = config.services.grafana.settings.server.domain;
-            from_address = config.services.grafana.settings.smtp.user;
+        };
+        alerting = {
+          rules = {
+            path = "/etc/grafana-alerts/alert.yaml"; # its way easyer to export them from the webinterface then manually rewrite them in nix
           };
-          server = {
-            domain = cfg.domain;
-            root_url = "https://${cfg.domain}/";
-            http_port = cfg.port;
-            http_addr = "";
+          contactPoints = {
+            path = "/etc/grafana-alerts/contacts.yaml";
           };
-          "auth.anonymous" = {
-            enabled = true;
-            org_name = "Main Org.";
-            org_role = "Viewer";
-          };
-          security = {
-            admin_password = cfg.adminPassword;
-            admin_user = "admin";
-            admin_email = "marie0@riseup.net";
-          };
+        };
+      };
+      settings = {
+        analytics = {
+          reporting_enabled = false;
+        };
+        smtp = {
+          enable = true;
+          enabled = true;
+          user = cfg.smtp.email;
+          startTLS_policy = "MandatoryStartTLS";
+          password = cfg.smtp.password;
+          host = cfg.smtp.host;
+          from_name = config.services.grafana.settings.server.domain;
+          from_address = config.services.grafana.settings.smtp.user;
+        };
+        server = {
+          domain = cfg.domain;
+          root_url = "https://${cfg.domain}/";
+          http_port = cfg.port;
+          http_addr = "";
+        };
+        "auth.anonymous" = {
+          enabled = true;
+          org_name = "Main Org.";
+          org_role = "Viewer";
+        };
+        security = {
+          admin_password = cfg.adminPassword;
+          admin_user = "admin";
+          admin_email = "marie0@riseup.net";
         };
       };
     };

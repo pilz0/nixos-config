@@ -6,11 +6,10 @@
   imports = [
     "${modulesPath}/virtualisation/proxmox-lxc.nix"
     ../ssh
-    ../ssh-users
     ../shell
     ../common
     ../monitoring/node-exporter
-    ../promtail
+    ../monitoring/promtail
     ../common/pkgs
     ../nixos-builder-client
     ../../lib/lxc
