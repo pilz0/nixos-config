@@ -29,7 +29,8 @@
     "lima-additional-guestagents-1.2.2"
   ];
   nix = {
-  #  package = pkgs.lix;
+    enable = false;
+    settings.allowSubstitutes = true;
     settings.extra-trusted-users = [ "pilz" ];
     settings.experimental-features = [
       "nix-command"

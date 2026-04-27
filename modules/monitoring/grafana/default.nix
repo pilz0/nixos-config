@@ -52,19 +52,19 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
-
-    age.secrets = {
-      smtp = {
-        file = ../../../secrets/smtp.age;
-        owner = "grafana";
-        group = "grafana";
-      };
-      grafana = {
-        file = ../../../secrets/grafana.age;
-        owner = "grafana";
-        group = "grafana";
-      };
+  environment.etc = {
+    "grafana-alerts" = {
+      source = ./alerts;
+      group = "grafana";
+      user = "grafana";
     };
+    "grafana-dashboards" = {
+      source = ./dashboards;
+      group = "grafana";
+      user = "grafana";
+    };
+  };
+
     services.grafana = {
       enable = cfg.enable;
       declarativePlugins = with pkgs.grafanaPlugins; [

@@ -21,13 +21,14 @@
   };
 
   services = {
+  displayManager = {
+    defaultSession = "none+i3";
+    };
     xserver = {
       enable = true;
       xkb.layout = "de";
       videoDrivers = [ "nvidia" ];
       displayManager = {
-        gdm.enable = false;
-        defaultSession = "none+i3";
         lightdm = {
           enable = true;
           greeters.slick.enable = true;

@@ -37,7 +37,6 @@
       yq
       firefox
       google-chrome
-      jetbrains.phpstorm
       openvpn
       bitwarden-desktop
       istat-menus
@@ -48,13 +47,12 @@
       bitwarden-cli
       python314
       gh
-      pre-commit
+      #pre-commit
       docker
       docker-compose
       colima
       vagrant
       dbeaver-bin
-      zerotierone
       metasploit
       postgresql_18
       mitmproxy

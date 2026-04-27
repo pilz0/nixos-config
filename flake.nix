@@ -4,7 +4,7 @@
     experimental-features = [
       "nix-command"
       "flakes"
-      "pipe-operator"
+      "pipe-operators"
     ];
   };
   outputs =
@@ -56,7 +56,7 @@
 
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
-    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     agenix.url = "github:ryantm/agenix";
@@ -64,7 +64,7 @@
     catppuccin.url = "github:catppuccin/nix";
     harmonia.url = "github:nix-community/harmonia";
     colmena.url = "github:zhaofengli/colmena";
-    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
     microvm.url = "github:microvm-nix/microvm.nix";
     home-manager = {

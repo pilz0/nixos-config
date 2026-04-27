@@ -1,8 +1,11 @@
 if [[ "$1" == "apply-local" ]]; then
     colmena $1 --impure --sudo --nix-option "experimental-features" "pipe-operator pipe-operators flakes nix-command" --verbose
 elif [[ "$1" == "mac" ]]; then
-    sudo env NIX_CONFIG=$'accept-flake-config = true\nexperimental-features = nix-command flakes pipe-operator pipe-operators' \
-         darwin-rebuild $2 --flake . --impure
+    sudo env NIX_CONFIG=$'accept-flake-config = true\nexperimental-features = nix-command flakes\nextra-experimental-features = pipe-operators' \
+         darwin-rebuild $2 --flake . --impure --verbose
+elif [[ "$1" == "mac-setup" ]]; then
+    sudo env NIX_CONFIG=$'accept-flake-config = true\nexperimental-features = nix-command flakes\nextra-experimental-features = pipe-operators' \
+         nix run nix-darwin/master#darwin-rebuild -- $2 --flake . --impure
 elif [[ "$1" == "fix-rosetta" ]]; then
     sudo launchctl bootout system/org.nixos.rosetta-builderd
     sleep 10
