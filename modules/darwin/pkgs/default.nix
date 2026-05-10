@@ -57,12 +57,14 @@
       postgresql_18
       mitmproxy
       wireshark
+      devenv
       #jellyfin-mpv-shim
     ])
     ++ (with pkgs-unstable; [
       # caffeine on stable does not support aarch64-darwin
       caffeine
       direnv
+      github-copilot-cli
       #mpv-unwrapped
     ]);
 }

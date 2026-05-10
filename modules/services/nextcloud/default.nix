@@ -27,7 +27,7 @@
   services.nextcloud = {
     enable = true;
     configureRedis = true;
-    package = pkgs.nextcloud31;
+    package = pkgs.nextcloud32;
     hostName = "cloud.pilz.foo";
     appstoreEnable = true;
     autoUpdateApps.enable = true;
