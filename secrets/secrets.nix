@@ -94,7 +94,6 @@ in
   "netbox.age".publicKeys = marielap ++ netbox ++ macbook-work;
   "harmonia.age".publicKeys = marielap ++ build ++ macbook-work;
   "nixbuildssh.age".publicKeys = all_hosts;
-  "forgejo-runner-token.age".publicKeys = marielap ++ build ++ macbook-work;
   "github-runner.age".publicKeys = marielap ++ build ++ macbook-work;
   "work-bw-session.age".publicKeys = marielap ++ macbook-work;
   "wg-key-ams1-dn42.age".publicKeys = marielap ++ macbook-work ++ dn42;

@@ -7,10 +7,10 @@
     PubkeyAcceptedKeyTypes ssh-ed25519
     ServerAliveInterval 60
     IPQoS throughput
-    IdentityFile /Users/pilz/.ssh/id_ed25519
+    IdentityFile /Users/pilz/.ssh/work_ssh
 
     Host build-aarch64.as214958.net
-    IdentityFile /Users/pilz/.ssh/id_ed25519
+    IdentityFile /Users/pilz/.ssh/work_ssh
     ServerAliveInterval 60
     IPQoS throughput
   '';
@@ -19,6 +19,10 @@
     nixbuild = {
       hostNames = [ "eu.nixbuild.net" ];
       publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPIQCZc54poJ8vqawd8TraNryQeJnvH1eLpIDgbiqymM";
+    };
+    "build-aarch64.as214958.net" = {
+      hostNames = [ "build-aarch64.as214958.net" ];
+      publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO0EFs09dJ7b2VHRxaqlIIJZdJskEPAqzDIyf0/W1oGZ";
     };
   };
 
@@ -38,8 +42,18 @@
       }
       {
         hostName = "eu.nixbuild.net";
+        system = "i686-linux";
+        maxJobs = 100;
+        speedFactor = 1;
+        supportedFeatures = [
+          "benchmark"
+          "big-parallel"
+        ];
+      }
+      {
+        hostName = "eu.nixbuild.net";
         system = "aarch64-linux";
-        maxJobs = 4;
+        maxJobs = 100;
         speedFactor = 1;
         supportedFeatures = [
           "benchmark"

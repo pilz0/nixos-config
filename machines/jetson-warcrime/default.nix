@@ -6,10 +6,8 @@
   imports = [
     inputs.jetpack.nixosModules.default
     inputs.determinate.nixosModules.default
-    inputs.catppuccin.nixosModules.catppuccin
     inputs.vscode-server.nixosModules.default
     ../../modules/ssh
-    ../../modules/ssh-users
     ../../modules/shell
     ../../modules/common/pkgs
     ../../modules/audio

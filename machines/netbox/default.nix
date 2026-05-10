@@ -4,14 +4,18 @@
 }:
 {
   imports = [
-    ../../modules/container
-    ../../modules/container/network.nix
+    ../../profiles/container
     ../../modules/services/netbox
-    ../../modules/nixos-builder-client
-    ../../modules/common
   ];
 
   pilz = {
+    services.pve-container.network = {
+      enable = true;
+      address = [
+        "10.10.10.7/24"
+        "2a0e:8f02:f017::7/64"
+      ];
+    };
     deployment = {
       targetHost = "netbox.ams1.as214958.net";
       tags = [ "infra" ];
@@ -26,11 +30,6 @@
     hostName = "netbox";
     hostId = "10163434";
   };
-
-  systemd.network.networks."10-eth0".address = [
-    "10.10.10.7/24"
-    "2a0e:8f02:f017::7/48"
-  ];
 
   networking.firewall = {
     allowedTCPPorts = [

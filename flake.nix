@@ -4,7 +4,7 @@
     experimental-features = [
       "nix-command"
       "flakes"
-      "pipe-operator"
+      "pipe-operators"
     ];
   };
   outputs =
@@ -19,7 +19,7 @@
     in
     {
       darwinConfigurations = sf.mapDarwinCfg {
-        darwinHosts = sf.mapHostsMerge ./machines {
+        darwinHosts = sf.mapHostsMerge ./machines/darwin {
         };
       };
       colmena = sf.mapColmenaMerge self.nixosConfigurations {
@@ -41,6 +41,9 @@
         pkgs = sf.importPkgs system;
       in
       {
+        checks."grafana" = pkgs.callPackage ./tests/grafana.nix { };
+        checks."as214958net" = pkgs.callPackage ./tests/as214958net.nix { };
+        # packages = sf.eachSystem (system: sf.mapTestCfg pkgs);
         formatter = nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
@@ -57,12 +60,16 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     agenix.url = "github:ryantm/agenix";
-    nixarr.url = "github:rasmus-kirk/nixarr";
+    nixarr = {
+      url = "github:nix-media-server/nixarr";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     catppuccin.url = "github:catppuccin/nix";
     harmonia.url = "github:nix-community/harmonia";
     colmena.url = "github:zhaofengli/colmena";
-    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
+    microvm.url = "github:microvm-nix/microvm.nix";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -80,7 +87,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-rosetta-builder = {
-      url = "github:pilz0/nix-rosetta-builder";
+      url = "github:cpick/nix-rosetta-builder";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     disko = {

@@ -4,14 +4,18 @@
 }:
 {
   imports = [
-    ../../modules/container
-    ../../modules/container/network.nix
+    ../../profiles/container
     ../../modules/networking/dn42
-    ../../modules/nixos-builder-client
-    ../../modules/common
     ./wireguard.nix
   ];
   pilz = {
+    services.pve-container.network = {
+      enable = true;
+      address = [
+        "10.10.10.6/24"
+        "2a0e:8f02:f017::6/64"
+      ];
+    };
     deployment = {
       targetHost = "dn42.ams1.as214958.net";
       tags = [ "infra" ];
@@ -26,11 +30,6 @@
     hostName = "dn42";
     hostId = "40163434";
   };
-
-  systemd.network.networks."10-eth0".address = [
-    "10.10.10.6/24"
-    "2a0e:8f02:f017::6/48"
-  ];
 
   networking.firewall = {
     allowedTCPPorts = [

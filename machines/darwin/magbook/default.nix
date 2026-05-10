@@ -6,33 +6,43 @@
 {
   imports = [
     ./nix-build.nix
-    ../../modules/darwin/rosetta-builder
-    ../../modules/darwin/pkgs
+    ../../../profiles/darwin
   ];
 
   environment.systemPackages = [ inputs.agenix.packages.aarch64-darwin.default ];
-
   users.users.pilz.home = /Users/pilz;
   home-manager = {
     backupFileExtension = "bck";
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.pilz = ./home.nix;
+    users.pilz = {
+      imports = [
+        inputs.agenix.homeManagerModules.default
+        ./home.nix
+      ];
+    };
   };
 
+  nixpkgs.config.permittedInsecurePackages = [
+  "lima-1.2.2"
+    "lima-full-1.2.2"
+    "lima-additional-guestagents-1.2.2"
+  ];
   nix = {
-    package = pkgs.lix;
+    enable = false;
+    settings.allowSubstitutes = true;
     settings.extra-trusted-users = [ "pilz" ];
     settings.experimental-features = [
       "nix-command"
       "flakes"
       "cgroups"
-      "pipe-operator"
+      "pipe-operators"
     ];
   };
 
-  nix-rosetta-builder = {
+  pilz.services.darwin.rosetta-builder = {
     cores = 10;
+    jobs = 10;
   };
 
   nixpkgs.system = "aarch64-darwin";

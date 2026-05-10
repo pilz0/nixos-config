@@ -4,14 +4,19 @@
 }:
 {
   imports = [
-    ../../modules/container
-    ../../modules/container/network.nix
-    ../../modules/nixos-builder-client
+    ../../profiles/container
     ../../modules/services/routinator
-    ../../modules/common
   ];
 
   pilz = {
+    services.routinator.enable = true;
+    services.pve-container.network = {
+      enable = true;
+      address = [
+        "10.10.10.5/24"
+        "2a0e:8f02:f017::5/64"
+      ];
+    };
     deployment = {
       targetHost = "rpki.ams1.as214958.net";
       tags = [ "infra" ];
@@ -26,11 +31,6 @@
     hostName = "rpki";
     hostId = "4066312d";
   };
-
-  systemd.network.networks."10-eth0".address = [
-    "10.10.10.5/24"
-    "2a0e:8f02:f017::5/48"
-  ];
 
   networking.firewall = {
     allowedTCPPorts = [

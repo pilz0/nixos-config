@@ -6,7 +6,7 @@
 {
   imports = [
     inputs.nixos-hardware.nixosModules.framework-12th-gen-intel
-    inputs.catppuccin.nixosModules.catppuccin
+    #inputs.catppuccin.nixosModules.catppuccin
     ./hardware-configuration-framwok.nix
     ./framwok-pkgs.nix
     ./graphics.nix

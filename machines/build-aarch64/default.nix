@@ -8,10 +8,8 @@
   imports = [
     inputs.disko.nixosModules.disko
     ../../modules/services/nixos-builder
-    # ../../modules/services/binary-cache
     ../../modules/common
     ../../modules/ssh
-    ../../modules/ssh-users
     ../../modules/shell
     ../../modules/monitoring/node-exporter
     ../../modules/common/pkgs

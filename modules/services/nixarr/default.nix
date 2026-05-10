@@ -1,43 +1,75 @@
 {
   config,
   inputs,
+  lib,
   ...
 }:
+let
+  cfg = config.pilz.services.nixarr;
+in
 {
   imports = [
     inputs.nixarr.nixosModules.default
   ];
-  age.secrets.nixarr-wg = {
-    file = ../../../secrets/nixarr-wg.age;
-    owner = "nixarr";
-    group = "nixarr";
+
+  options.pilz.services.nixarr = {
+    enable = lib.mkEnableOption "enable nixarr configuration";
+    mediaDir = lib.mkOption {
+      type = lib.types.str;
+      default = "/srv/";
+    };
+    stateDir = lib.mkOption {
+      type = lib.types.str;
+      default = "/srv/media/.state/nixarr";
+    };
+    wgConfSecretFile = lib.mkOption {
+      type = lib.types.path;
+      default = ../../../secrets/nixarr-wg.age;
+    };
+    peerPort = lib.mkOption {
+      type = lib.types.int;
+      default = 63993;
+    };
   };
 
-  nixarr = {
-    enable = true;
-    mediaDir = "/srv/";
-    stateDir = "/srv/media/.state/nixarr";
-
-    vpn = {
-      enable = true;
-      wgConf = config.age.secrets.nixarr-wg.path;
+  config = lib.mkIf cfg.enable {
+    age.secrets.nixarr-wg = {
+      file = cfg.wgConfSecretFile;
+      #owner = "nixarr";
+      #group = "nixarr";
     };
 
-    transmission = {
+    nixarr = {
       enable = true;
-      vpn.enable = true;
-      peerPort = 63993;
-      extraSettings = {
+      mediaDir = cfg.mediaDir;
+      stateDir = cfg.stateDir;
+
+      vpn = {
+        enable = true;
+        wgConf = config.age.secrets.nixarr-wg.path;
+      };
+
+      transmission = {
+        enable = true;
+        vpn.enable = true;
+        peerPort = cfg.peerPort;
+        extraSettings = {
+          peer-limit-global = 1500;
+          speed-limit-up = 37500; # 300mbit
+          speed-limit-up-enabled = true;
+          upload-slots-per-torrent = 200;
+          peer-limit-per-torrent = 300;
+        };
       };
     };
-  };
 
-  services = {
-    jellyfin = {
-      enable = true;
-    };
-    jellyseerr = {
-      enable = true;
+    services = {
+      jellyfin = {
+        enable = true;
+      };
+      jellyseerr = {
+        enable = false;
+      };
     };
   };
 }

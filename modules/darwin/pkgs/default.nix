@@ -1,6 +1,6 @@
 {
   pkgs,
-  pkgs-unstable, # You must add this to the arguments
+  pkgs-unstable,
   ...
 }:
 {
@@ -25,10 +25,7 @@
       curl
       dig
       wireguard-tools
-      direnv
       colmena
-      jellyfin-mpv-shim
-      mpv-unwrapped
       stats
       git-lfs
       openssl
@@ -40,7 +37,6 @@
       yq
       firefox
       google-chrome
-      jetbrains.phpstorm
       openvpn
       bitwarden-desktop
       istat-menus
@@ -51,30 +47,24 @@
       bitwarden-cli
       python314
       gh
-      pre-commit
-      docker
+      #pre-commit
       docker
       docker-compose
       colima
+      vagrant
+      dbeaver-bin
+      metasploit
+      postgresql_18
+      mitmproxy
+      wireshark
+      devenv
+      #jellyfin-mpv-shim
     ])
     ++ (with pkgs-unstable; [
       # caffeine on stable does not support aarch64-darwin
       caffeine
+      direnv
+      github-copilot-cli
+      #mpv-unwrapped
     ]);
-
-  # why is docker aahhh
-  # https://github.com/nix-darwin/nix-darwin/issues/1182
-  launchd.agents."colima.default" = {
-    command = "${pkgs.colima}/bin/colima start --cpu 6 --memory 16 --foreground";
-    serviceConfig = {
-      Label = "com.colima.default";
-      RunAtLoad = true;
-      KeepAlive = true;
-      StandardOutPath = "/Users/pilz/.colima/default/daemon/launchd.stdout.log";
-      StandardErrorPath = "/Users/pilz/.colima/default/daemon/launchd.stderr.log";
-      EnvironmentVariables = {
-        PATH = "${pkgs.colima}/bin:${pkgs.docker}/bin:/usr/bin:/bin:/usr/sbin:/sbin";
-      };
-    };
-  };
 }

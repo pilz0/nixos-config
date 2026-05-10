@@ -6,11 +6,10 @@
   imports = [
     "${modulesPath}/virtualisation/proxmox-lxc.nix"
     ../ssh
-    ../ssh-users
     ../shell
     ../common
     ../monitoring/node-exporter
-    ../promtail
+    ../monitoring/promtail
     ../common/pkgs
     ../nixos-builder-client
     ../../lib/lxc
@@ -20,4 +19,6 @@
     privileged = false;
     manageHostName = false;
   };
+  pilz.services.nixosBuilderClient.enable = true;
+  pilz.services.promtail.enable = true;
 }

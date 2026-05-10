@@ -4,17 +4,25 @@
 }:
 {
   imports = [
-    ../../modules/container
+    ../../profiles/container
     ../../modules/services/nginx
-    ../../modules/container/network.nix
     ../../modules/monitoring/prometheus
     ../../modules/monitoring/grafana
     ../../modules/monitoring/netflow-exporter
     ../../modules/monitoring/loki
-    ../../modules/common
   ];
 
   pilz = {
+    services.grafana.enable = true;
+    services.loki.enable = true;
+    services.netflow-exporter.enable = true;
+    services.pve-container.network = {
+      enable = true;
+      address = [
+        "10.10.10.3/24"
+        "2a0e:8f02:f017::3/64"
+      ];
+    };
     deployment = {
       targetHost = "grafana.ams1.as214958.net";
       tags = [ "infra" ];
@@ -25,15 +33,23 @@
     };
   };
 
+  age.secrets = {
+    smtp = {
+      file = ../../secrets/smtp.age;
+      owner = "grafana";
+      group = "grafana";
+    };
+    grafana = {
+      file = ../../secrets/grafana.age;
+      owner = "grafana";
+      group = "grafana";
+    };
+  };
+
   networking = {
     hostName = "grafana";
     hostId = "4066b432";
   };
-
-  systemd.network.networks."10-eth0".address = [
-    "10.10.10.3/24"
-    "2a0e:8f02:f017::3/48"
-  ];
 
   networking.firewall = {
     allowedTCPPorts = [
