@@ -54,7 +54,13 @@ let
       system ? "x86_64-linux",
     }:
     lib.nixosSystem {
-      specialArgs = { inherit inputs; };
+      specialArgs = {
+        inherit inputs;
+        pkgs-unstable = import inputs.nixpkgs-unstable {
+          inherit system;
+          config.allowUnfree = true;
+        };
+      };
       modules = [
         ../deployment
         ../../machines/${hostname}

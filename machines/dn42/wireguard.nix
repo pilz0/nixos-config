@@ -29,6 +29,10 @@
           method = "static";
           interface = "wg0";
         };
+        "2a0e:8f02:f017::25/128" = {
+          method = "static";
+          interface = "wg0";
+        };
       };
     };
   };
@@ -75,6 +79,14 @@
           AllowedIPs = [
             "2a0e:8f02:f017::18/128"
             "10.100.0.2/32"
+          ];
+          PersistentKeepalive = 25;
+        }
+        {
+          PublicKey = "YTEQtuJITt/D01hruWD4FnbZmG81qOSw1Aqf89S07C8=";
+          AllowedIPs = [
+            "2a0e:8f02:f017::25/128"
+            "10.100.0.3/32"
           ];
           PersistentKeepalive = 25;
         }

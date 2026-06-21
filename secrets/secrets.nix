@@ -5,9 +5,6 @@ let
   Laptop = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINxK1XaK+2oivpGVJ/vYRrqbWhaYE6hEgmDOfkGvde8L root@framwok"
   ];
-  serva = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOFNa2EBrRNnGMjGSNjlD1pXo9YRuq6rOsC3v+6VAg2F root@nixos"
-  ];
   grafana = [
     "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDYuCqvjPnagrUSiRaw8pug/5E9i99pc2VHWkt43fRQI2c78k9TATdf2fTZw0hQYD2iNfUjLBD4ModnBR3QKDyzqhfQjVCUTtNmmEyCboYicDiTXAh3U5i41dWMh4lZjpNwbYrciXDAWIBY++kpmicG2Gt8tWDLkPMSoFVO1cOMlXuViDcAJx+YxzL38ufaolRsUNrP0ZYOcNAA7W3PtDyZ1KGkb/fxf3Irrp2QquWF2V3xfY8eFx282mbUP/1JFxob6xkVw0QsEjDlVo05fX7PX+XCwzIWgmWhFFQWygSZN9qE02YDbDTW1kq25yJCLBVHJG79WBbleIxyX0HpXvewKAQC2+FLiXiMfHcpLt6DrSLEKOPfHhijaOoMlyoM6bJli14Zqjv5R8IG0ytJ2QDcVFWcX9XK9cYGPv1ZLfqoV7HY6gvJOiCyuzdiECF2nMsbL/YaKtMO59Bg2Iiv7D4Tcj9+rmAQZE4lx5h1WKSvHwUCVhav1NsMXT/UZwp+wvhE7KZvkHGSfDKTFNvqdBdCe6Xzih2fAhH97chS0qPdlpG4nnOq2kv9A/PRDteZNOX233UE8E7LFQF95eFb6Hyk3cVnfjSVbah976ZAQlrGDI3Jg/Fh7Ocx17UcNcEB4Jpec8zEvyBMziEYhCMIxGGtDzsQS7DuDTclTHz2eNVvqQ== root@grafana"
   ];
@@ -51,15 +48,21 @@ let
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILBJuIu8Xovd9h2oSltlzMYHYY5aE+L8xMU1YYxfNpQs root@tor7"
   ];
   tor8 = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAYdoA2HeJBzSnUyOkvEsd2YOK/9VVT4rWAlp69WOdC4 root@tor8"
   ];
-  macbook-work = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExU28oRh+stgLtfgqUejL601PPV8OKqoVni9W6dna9a"
+  nextcloud = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILdszpxb5Z3YnEasCLKT2i/IiSFNfP/Z3241QZdUlD7J root@CT124"
+  ];
+  snakii = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA/+iN407+HsfHbbC3tfdA8Yf4TZ08qXQMb4tb/SDAs+"
+  ];
+  fedi-bot = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPjqRp9g0aeaUjRIG8r6qB8kFdvDUYFV+6DzRQBEYw0Z root@fedi-bot"
   ];
 
   all_hosts =
     Laptop
     ++ marielap
-    ++ serva
     ++ grafana
     ++ web1_host
     ++ jellyfin
@@ -75,26 +78,26 @@ let
     ++ tor6
     ++ tor7
     ++ tor8
-    ++ macbook-work;
+    ++ nextcloud
+    ++ fedi-bot;
 in
-
 {
-  "nextcloud.age".publicKeys = marielap ++ serva ++ macbook-work;
-  "nextcloud-secrets.age".publicKeys = marielap ++ serva ++ macbook-work;
-  "rclone.age".publicKeys = Laptop ++ marielap ++ serva ++ grafana ++ macbook-work;
-  "restic.age".publicKeys = Laptop ++ marielap ++ serva ++ grafana ++ macbook-work;
-  "smtp.age".publicKeys = marielap ++ serva ++ grafana ++ macbook-work;
-  "grafana.age".publicKeys = marielap ++ serva ++ grafana ++ macbook-work;
-  "wg.age".publicKeys = marielap ++ serva ++ dn42 ++ macbook-work;
-  "nixarr-wg.age".publicKeys = marielap ++ serva ++ jellyfin ++ macbook-work;
-  "HashedPassword.age".publicKeys = marielap ++ Laptop ++ serva ++ macbook-work;
-  "cloudflare_cert.age".publicKeys = marielap ++ serva ++ web1_host ++ grafana ++ macbook-work;
-  "cloudflare_key.age".publicKeys = marielap ++ serva ++ web1_host ++ grafana ++ macbook-work;
-  "s3-mastodon.age".publicKeys = marielap ++ serva ++ macbook-work;
-  "netbox.age".publicKeys = marielap ++ netbox ++ macbook-work;
-  "harmonia.age".publicKeys = marielap ++ build ++ macbook-work;
+  "nextcloud-secrets.age".publicKeys = marielap ++ nextcloud;
+  "rclone.age".publicKeys = Laptop ++ marielap ++ grafana ;
+  "restic.age".publicKeys = Laptop ++ marielap ++ grafana ;
+  "smtp.age".publicKeys = marielap ++ grafana ++ nextcloud;
+  "grafana.age".publicKeys = marielap ++ grafana ;
+  "wg.age".publicKeys = marielap ++ dn42 ;
+  "nixarr-wg.age".publicKeys = marielap  ++ jellyfin ;
+  "HashedPassword.age".publicKeys = marielap ++ Laptop  ;
+  "cloudflare_cert.age".publicKeys = marielap  ++ web1_host ++ grafana ;
+  "cloudflare_key.age".publicKeys = marielap ++ web1_host ++ grafana ;
+  "s3-mastodon.age".publicKeys = marielap ;
+  "netbox.age".publicKeys = marielap ++ netbox ;
+  "harmonia.age".publicKeys = marielap ++ build ;
   "nixbuildssh.age".publicKeys = all_hosts;
-  "github-runner.age".publicKeys = marielap ++ build ++ macbook-work;
-  "work-bw-session.age".publicKeys = marielap ++ macbook-work;
-  "wg-key-ams1-dn42.age".publicKeys = marielap ++ macbook-work ++ dn42;
+  "github-runner.age".publicKeys = marielap ++ build ;
+  "wg-key-ams1-dn42.age".publicKeys = marielap  ++ dn42;
+  "fedi-bot-hfToken.age".publicKeys = marielap ++ jellyfin ++ snakii ++ fedi-bot;
+  "fedi-bot-fediToken.age".publicKeys = marielap ++ jellyfin ++ snakii ++ fedi-bot;
 }

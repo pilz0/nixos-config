@@ -30,8 +30,6 @@
       git-lfs
       openssl
       pwgen
-      php
-      ddev
       uv
       jq
       yq
@@ -44,7 +42,6 @@
       spotify
       nil
       nixd
-      bitwarden-cli
       python314
       gh
       #pre-commit
@@ -52,7 +49,6 @@
       docker-compose
       colima
       vagrant
-      dbeaver-bin
       metasploit
       postgresql_18
       mitmproxy

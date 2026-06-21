@@ -28,7 +28,7 @@ in
   };
   config = {
   # enable on setup for rosetta builder
-   # nix.linux-builder.enable = true;
+  # nix.linux-builder.enable = true;
 #    nix-rosetta-builder = {
 #      onDemand = true;
 #      onDemandLingerMinutes = 60;

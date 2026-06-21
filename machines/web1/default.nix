@@ -9,7 +9,7 @@
     ../../modules/services/as214958-net
     ../../modules/services/bird-lg-frontend
     ./proxys.nix
-    ./promtail-nginx.nix
+   # ./promtail-nginx.nix
   ];
 
   pilz = {

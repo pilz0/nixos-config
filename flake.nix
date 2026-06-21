@@ -56,7 +56,8 @@
 
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
+    fedi-bot.url = "git+ssh://git@github.com/pilz0/fedi-bot.git";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     agenix.url = "github:ryantm/agenix";
@@ -71,7 +72,7 @@
     vscode-server.url = "github:nix-community/nixos-vscode-server";
     microvm.url = "github:microvm-nix/microvm.nix";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-needsreboot = {
@@ -83,7 +84,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-darwin = {
-      url = "github:lnl7/nix-darwin/nix-darwin-25.11";
+      url = "github:lnl7/nix-darwin/nix-darwin-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-rosetta-builder = {

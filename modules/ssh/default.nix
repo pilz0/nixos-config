@@ -10,7 +10,7 @@
       PermitRootLogin = "prohibit-password";
       KbdInteractiveAuthentication = false;
     };
-    banner = ''
+    settings.Banner = builtins.toFile "ssh-banner" ''
       <p><div class='plussize'>
       "MRX hatte drei Regeln:
       <BR>Erstens: Kein System ist sicher

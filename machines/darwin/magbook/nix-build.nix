@@ -28,13 +28,13 @@
     };
   };
 
-  environment.etc."nix/machines".text = ''
-    ssh://root@build-aarch64.as214958.net aarch64-linux - 4 2 benchmark,big-parallel,kvm - -
-    ssh://root@eu.nixbuild.net x86_64-linux - 100 1 benchmark,big-parallel,kvm - -
-    ssh://root@build.ams1.as214958.net x86_64-linux - 100 3 benchmark,big-parallel - -
-    ssh://root@eu.nixbuild.net i686-linux - 100 1 benchmark,big-parallel - -
-    ssh://root@eu.nixbuild.net aarch64-linux - 100 1 benchmark,big-parallel - -
-  '';
+#  environment.etc."nix/machines".text = ''
+#    ssh://root@build-aarch64.as214958.net aarch64-linux - 4 2 benchmark,big-parallel,kvm - -
+#    ssh://root@eu.nixbuild.net x86_64-linux - 100 1 benchmark,big-parallel,kvm - -
+#    ssh://root@build.ams1.as214958.net x86_64-linux - 100 3 benchmark,big-parallel - -
+#    ssh://root@eu.nixbuild.net i686-linux - 100 1 benchmark,big-parallel - -
+#    ssh://root@eu.nixbuild.net aarch64-linux - 100 1 benchmark,big-parallel - -
+#  '';
 
   environment.etc."nix/nix.custom.conf".text = ''
     builders = @/etc/nix/machines

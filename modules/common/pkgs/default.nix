@@ -8,7 +8,7 @@
     ansible
     tmux
     vim
-    neofetch
+    fastfetch
     zsh
     nmap
     traceroute

@@ -19,15 +19,15 @@
         "8.8.8.8"
       ];
       llmnr = "false";
-      extraConfig = ''
-        Cache=yes
-        CacheFromLocalhost=no
-        DNSStubListener=yes
-        ReadEtcHosts=yes
-        ResolveUnicastSingleLabel=no
-        DNSDefaultRoute=yes
-        MulticastDNS=no
-      '';
+      settings.Resolve = {
+        Cache = true;
+        CacheFromLocalhost = "no";
+        DNSStubListener = "yes";
+        ReadEtcHosts = "yes";
+        ResolveUnicastSingleLabel = "no";
+        DNSDefaultRoute = "yes";
+        MulticastDNS = "no";
+      };
     };
   };
 

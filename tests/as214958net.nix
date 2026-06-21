@@ -1,5 +1,4 @@
 { pkgs, testers, ... }:
-
 pkgs.testers.runNixOSTest {
   name = "as214958net-test";
   nodes = {

@@ -1,5 +1,21 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
+let
+  cfg = config.pilz.services.nextcloud;
+in
 {
+  options.pilz.services.nextcloud = {
+    enable = lib.mkEnableOption "enable nextcloud";
+    package = lib.mkOption {
+      type = lib.types.package;
+      default = pkgs.nextcloud33;
+    };
+    hostName = lib.mkOption {
+      type = lib.types.str;
+    };
+    extraTrustedProxies = {
+      type = lib.types.listOf lib.types.str;
+    };
+  };
   imports = [
     "${
       fetchTarball {
@@ -13,11 +29,6 @@
     owner = "nextcloud";
     group = "nextcloud";
   };
-  age.secrets.nextcloud = {
-    file = ../../../secrets/nextcloud.age;
-    owner = "nextcloud";
-    group = "nextcloud";
-  };
   age.secrets.nextcloud-secrets = {
     file = ../../../secrets/nextcloud-secrets.age;
     owner = "nextcloud";
@@ -25,10 +36,10 @@
   };
 
   services.nextcloud = {
-    enable = true;
+    enable = cfg.enable;
     configureRedis = true;
-    package = pkgs.nextcloud32;
-    hostName = "cloud.pilz.foo";
+    package = cfg.package;
+    hostName = cfg.hostName;
     appstoreEnable = true;
     autoUpdateApps.enable = true;
     database.createLocally = true;
@@ -69,19 +80,13 @@
         "localhost"
         "127.0.0.1"
         "[::1]"
+        ++ cfg.extraTrustedProxies
       ];
       extraTrustedDomains = [
-        "${config.services.nextcloud.hostName}"
+        "${cfg.hostName}"
         "localhost"
       ];
       overwriteProtocol = "https";
-    };
-  };
-
-  services.nginx = {
-    virtualHosts.${config.services.nextcloud.hostName} = {
-      sslCertificate = config.age.secrets.cloudflare_cert.path;
-      sslCertificateKey = config.age.secrets.cloudflare_key.path;
     };
   };
 }
