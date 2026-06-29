@@ -205,11 +205,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1782728200,
-        "narHash": "sha256-+yr2/7lI+TW03BtQuYgoCPCenYV0Z67zWM3jT5Gk7rI=",
+        "lastModified": 1782735007,
+        "narHash": "sha256-9+tlhgJTnuMll6MW9ZdUm5rn85kDei6RHaz294iHeXI=",
         "ref": "refs/heads/master",
-        "rev": "bd8c7b68e4d0d54b3d2a45194b089c9f613ac3ff",
-        "revCount": 77,
+        "rev": "4d2b3567487607e720715e2c162e435f56b21995",
+        "revCount": 78,
         "type": "git",
         "url": "ssh://git@github.com/pilz0/fedi-bot.git"
       },
