@@ -205,11 +205,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1782049154,
-        "narHash": "sha256-K51MfJQjUyPhA/bmBfHI61N16M35LT+MWHr0kr0NxUI=",
+        "lastModified": 1782728200,
+        "narHash": "sha256-+yr2/7lI+TW03BtQuYgoCPCenYV0Z67zWM3jT5Gk7rI=",
         "ref": "refs/heads/master",
-        "rev": "ded74f4c41d0899e160f2776e930f21f550a812b",
-        "revCount": 75,
+        "rev": "bd8c7b68e4d0d54b3d2a45194b089c9f613ac3ff",
+        "revCount": 77,
         "type": "git",
         "url": "ssh://git@github.com/pilz0/fedi-bot.git"
       },
@@ -415,22 +415,17 @@
       "inputs": {
         "cuda-legacy": "cuda-legacy",
         "nixpkgs": [
-          "nixpkgs"
+          "nixpkgs-2511"
         ]
       },
       "locked": {
-        "lastModified": 1780334549,
-        "narHash": "sha256-SVmtu81BtkU+3+6CQvarnijlwLunY64CVH+e3GsSl8s=",
-        "owner": "anduril",
-        "repo": "jetpack-nixos",
-        "rev": "4a4e93a7b3fbe1915870ec54002c616f01367195",
-        "type": "github"
+        "narHash": "sha256-CfrHA7vP5QsBnBZNpfxbUhhoEinaOpMZubzZ35skWUQ=",
+        "path": "/Users/pilz/Documents/jetpack-nixos",
+        "type": "path"
       },
       "original": {
-        "owner": "anduril",
-        "ref": "master",
-        "repo": "jetpack-nixos",
-        "type": "github"
+        "path": "/Users/pilz/Documents/jetpack-nixos",
+        "type": "path"
       }
     },
     "microvm": {
@@ -645,6 +640,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-2511": {
+      "locked": {
+        "lastModified": 1782335603,
+        "narHash": "sha256-sZkQH1CkiZtdvcaLx4sGQD9Q9h+A8qB04DRpqQCN530=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "03c72920da828594fae523aaef96f33dff10b340",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-25.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-regression": {
       "locked": {
         "lastModified": 1643052045,
@@ -845,6 +856,7 @@
         "nixos-hardware": "nixos-hardware",
         "nixos-needsreboot": "nixos-needsreboot",
         "nixpkgs": "nixpkgs_10",
+        "nixpkgs-2511": "nixpkgs-2511",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "vscode-server": "vscode-server"
       }
