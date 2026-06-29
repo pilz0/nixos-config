@@ -18,21 +18,30 @@
   age.secrets.hfToken = {
     file = ../../secrets/fedi-bot-hfToken.age;
   };
-
   services.fedi-bot-inference = {
-    #enable = true;
+    enable = true;
     threads = 64;
     contextSize = 4096;
     model.localPath = "/var/lib/fedi-models/fedi-persona-q6_k.gguf";
-    #package = pkgs-unstable.llama-cpp;
+    # Qwen3.6 is a hybrid arch — use the same recent llama.cpp the GGUF was built
+    # with (Task 3). If Task 3 used a non-default LLAMA_FLAKE rev, pin it here too.
+    package = pkgs-unstable.llama-cpp;
   };
 
   services.fedi-bot = {
-    #enable = true;
+    enable = true;
     inferenceUrl = "http://127.0.0.1:8080/v1";
-    instanceUrl = "https://girldick.gay";
+    instanceUrl = "https://florp.social";
     accessTokenFile = config.age.secrets.fediToken.path;
-    post.perDay = 100;
+
+    # Replies-only: never auto-post, never auto-boost/follow/like. The only
+    # outbound actions are replies to mentions and MANUAL posts via
+    # `systemctl start fedi-post`.
+    post.enable = false;
+    reply.enable = true;
+    social.autoFollow = false;
+    social.likeReplies = false;
+    social.boost.enable = false;
   };
 
   pilz = {
