@@ -6,27 +6,30 @@
 }:
 {
   imports = [
-    
+    ./pkgs
   ];
+
+  boot.tmp.cleanOnBoot = lib.mkDefault true;
+
   services = {
     resolved = {
-      #enable = true;
-      dnssec = "false";
-      fallbackDns = [
-        "2606:4700:4700::1111"
-        "2001:4860:4860::8888"
-        "1.1.1.1"
-        "8.8.8.8"
-      ];
-      llmnr = "false";
+      enable = lib.mkDefault true;
       settings.Resolve = {
-        Cache = true;
+        Cache = lib.mkDefault true;
         CacheFromLocalhost = "no";
         DNSStubListener = "yes";
         ReadEtcHosts = "yes";
         ResolveUnicastSingleLabel = "no";
         DNSDefaultRoute = "yes";
         MulticastDNS = "no";
+        dnssec = "false";
+        FallbackDNS = [
+          "2606:4700:4700::1111"
+          "2001:4860:4860::8888"
+          "1.1.1.1"
+          "8.8.8.8"
+        ];
+        llmnr = "false";
       };
     };
   };
@@ -39,6 +42,10 @@
         "03:45"
       ];
     };
+    gc = {
+      automatic = true;
+      options = "--delete-older-than 7d";
+    };
     settings.experimental-features = [
       "nix-command"
       "flakes"
@@ -46,6 +53,15 @@
       "pipe-operators"
     ];
   };
+
+  nixpkgs.config.allowUnfree = true;
+
+  security.sudo-rs = {
+    enable = false;
+    execWheelOnly = true;
+    wheelNeedsPassword = false;
+  };
+  users.mutableUsers = lib.mkDefault false;
 
   security = {
     acme = {
@@ -99,6 +115,4 @@
       } \"$systemConfig\" || true";
     };
   };
-
-  nixpkgs.config.allowUnfree = true;
 }

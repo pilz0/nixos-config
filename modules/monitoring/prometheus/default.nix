@@ -16,7 +16,8 @@
             targets = [
               "[2a0e:8f02:f017::1]:${toString config.services.prometheus.exporters.node.port}"
               "[2a0e:8f02:f017::1]:${toString config.services.prometheus.exporters.bird.port}"
-              "web1.web1.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
+              "web1.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
+              "web1.ams1.as214958.net:${toString config.services.prometheus.exporters.nginx.port}"
               "grafana.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
               "jellyfin.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
               "rpki.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
@@ -24,6 +25,7 @@
               "netbox.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
               "build.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
               "grafana.ams1.as214958.net:9590" # netflow exporter
+              "anodyne.wiki:9100"
             ];
           }
         ];
@@ -57,6 +59,32 @@
               "tor1.catgirl.dog:${toString config.services.prometheus.exporters.node.port}"
               "tor2.catgirl.dog:${toString config.services.prometheus.exporters.node.port}"
             ];
+          }
+        ];
+      }
+      {
+        job_name = "blackbox_http";
+        metrics_path = "/probe";
+        params.module = [ "anodyne-probe" ];
+        static_configs = [
+          {
+            targets = [
+              "https://anodyne.wiki"
+            ];
+          }
+        ];
+        relabel_configs = [
+          {
+            source_labels = [ "__address__" ];
+            target_label = "__param_target";
+          }
+          {
+            source_labels = [ "__param_target" ];
+            target_label = "instance";
+          }
+          {
+            target_label = "__address__";
+            replacement = "localhost:9115";
           }
         ];
       }

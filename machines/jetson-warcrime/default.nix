@@ -17,9 +17,28 @@
     ./hardware-configuration.nix
   ];
 
+  users.users = {
+    snakii = {
+      extraGroups = [
+        "wheel"
+      ];
+      isNormalUser = true;
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA/+iN407+HsfHbbC3tfdA8Yf4TZ08qXQMb4tb/SDAs+"
+      ];
+    };
+  };
+
+  age.secrets.fediToken = {
+    file = ../../secrets/fedi-bot-fediToken.age;
+  };
+  age.secrets.hfToken = {
+    file = ../../secrets/fedi-bot-hfToken.age;
+  };
+
   pilz = {
     deployment = {
-      targetHost = "da-home.as214958.net";
+      targetHost = "192.168.0.225";
     };
   };
 

@@ -9,7 +9,7 @@
     ../shell
     ../common
     ../monitoring/node-exporter
-   # ../monitoring/promtail
+    # ../monitoring/promtail
     ../common/pkgs
     ../nixos-builder-client
     ../../lib/lxc
@@ -19,6 +19,15 @@
     privileged = false;
     manageHostName = false;
   };
+
+  documentation.man.generateCaches = false;
+
+  security.sudo = {
+    enable = true;
+    execWheelOnly = true;
+    wheelNeedsPassword = false;
+  };
+
   pilz.services.nixosBuilderClient.enable = true;
   #pilz.services.promtail.enable = true;
 }

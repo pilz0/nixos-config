@@ -10,12 +10,12 @@
     group = "netbox";
   };
   services.netbox = {
-    package = pkgs.netbox_4_3;
+    package = pkgs.netbox_4_4;
     enable = true;
     secretKeyFile = config.age.secrets.netbox.path;
   };
   nixpkgs.config.permittedInsecurePackages = [
-    "netbox-4.3.7"
+    "netbox-4.4.10"
   ];
   services.nginx = {
     enable = true;

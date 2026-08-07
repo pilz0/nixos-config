@@ -52,18 +52,18 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
-  environment.etc = {
-    "grafana-alerts" = {
-      source = ./alerts;
-      group = "grafana";
-      user = "grafana";
+    environment.etc = {
+      "grafana-alerts" = {
+        source = ./alerts;
+        group = "grafana";
+        user = "grafana";
+      };
+      "grafana-dashboards" = {
+        source = ./dashboards;
+        group = "grafana";
+        user = "grafana";
+      };
     };
-    "grafana-dashboards" = {
-      source = ./dashboards;
-      group = "grafana";
-      user = "grafana";
-    };
-  };
 
     services.grafana = {
       enable = cfg.enable;
@@ -145,6 +145,7 @@ in
           admin_password = cfg.adminPassword;
           admin_user = "admin";
           admin_email = "marie0@riseup.net";
+          secret_key = "SW2YcwTIb9zpOOhoPsMm";
         };
       };
     };

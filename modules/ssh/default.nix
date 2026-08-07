@@ -2,9 +2,50 @@
   lib,
   ...
 }:
+# partly from https://woof.rip/emily/nixfiles/src/branch/main/config/common/openssh.nix
+with lib;
+let
+  ciphers = [
+    "chacha20-poly1305@openssh.com"
+    "aes256-gcm@openssh.com"
+    "aes128-gcm@openssh.com"
+  ];
+
+  sigAlgorithms = [
+    "ssh-ed25519-cert-v01@openssh.com"
+    "ssh-ed25519"
+    "sk-ssh-ed25519-cert-v01@openssh.com"
+    "sk-ssh-ed25519@openssh.com"
+  ];
+
+  kexAlgorithms = [
+    "sntrup761x25519-sha512@openssh.com"
+    "curve25519-sha256"
+    "curve25519-sha256@libssh.org"
+  ];
+
+  macs = [
+    "umac-128-etm@openssh.com"
+    "hmac-sha2-512-etm@openssh.com"
+    "hmac-sha2-256-etm@openssh.com"
+  ];
+in
 {
+  programs.ssh = {
+    startAgent = true;
+    inherit ciphers kexAlgorithms macs;
+    hostKeyAlgorithms = sigAlgorithms;
+    pubkeyAcceptedKeyTypes = sigAlgorithms;
+  };
+
   services.openssh = {
     enable = true;
+    hostKeys = mkDefault [
+      {
+        type = "ed25519";
+        path = "/etc/keys/ssh_host_ed25519_key";
+      }
+    ];
     settings = {
       PasswordAuthentication = lib.mkDefault false;
       PermitRootLogin = "prohibit-password";
@@ -20,6 +61,14 @@
       _____________________________________________________________________
       <p><div class='plussize'>"Du musst nur dreist genug sein, dann liegt Dir die Welt zu Füßen."</div>
     '';
+    settings.Ciphers = ciphers;
+    settings.Macs = macs;
+
+    settings.KexAlgorithms = kexAlgorithms;
+    settings.HostKeyAlgorithms = concatStringsSep "," sigAlgorithms;
+    settings.PubkeyAcceptedAlgorithms = concatStringsSep "," sigAlgorithms;
+
+    settings.StreamLocalBindUnlink = true;
   };
   users.users = {
     marie = {
@@ -46,5 +95,4 @@
       ];
     };
   };
-
 }

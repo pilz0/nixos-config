@@ -35,8 +35,6 @@ in
   config = lib.mkIf cfg.enable {
     age.secrets.nixarr-wg = {
       file = cfg.wgConfSecretFile;
-      #owner = "nixarr";
-      #group = "nixarr";
     };
 
     nixarr = {

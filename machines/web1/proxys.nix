@@ -4,6 +4,8 @@
       "grafana.pilz.foo" = {
         enableACME = true;
         forceSSL = true;
+        http3 = true;
+        quic = true;
         locations."/" = {
           proxyPass = "http://grafana.ams1.as214958.net:3001";
           proxyWebsockets = true;
@@ -12,6 +14,8 @@
       "jellyfin.pilz.foo" = {
         enableACME = true;
         forceSSL = true;
+        http3 = true;
+        quic = true;
         locations."/" = {
           proxyPass = "http://jellyfin.ams1.as214958.net:8096";
           proxyWebsockets = true;

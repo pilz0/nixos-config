@@ -1,0 +1,38 @@
+$TTL 1h
+$ORIGIN pilz.foo.
+@    IN    SOA    ns1.as214958.net. ns2.as214958.net. (
+                2026080300 ; Serial - date by convention
+                1h         ; Refresh
+                3m         ; Retry
+                1w         ; Expire
+                1m         ; Negative cache TTL
+)
+
+;; NS Records
+      86400 NS    ns1.as214958.net.
+      86400 NS    ns2.as214958.net.
+
+;; CNAME Records
+blog.pilz.foo.	IN	CNAME	blog-5jo.pages.dev. 
+cloud2.pilz.foo.	IN	CNAME	pilz.foo.
+cloud.pilz.foo.	IN	CNAME	pilz.foo.
+db.pilz.foo.	IN	CNAME	db-7au.pages.dev.
+grafana.pilz.foo.	IN	CNAME	web1.ams1.as214958.net. 
+hrt.pilz.foo.	IN	CNAME	diyhrt.pages.dev.
+jellyfin.pilz.foo.	IN	CNAME	web1.ams1.as214958.net. 
+lf8.pilz.foo.	IN	CNAME	public.r2.dev.
+medical.pilz.foo.	IN	CNAME	medical-9xt.pages.dev.
+pages.pilz.foo.	IN	CNAME	pilz0.github.io.
+
+;; MX Records
+pilz.foo.	IN	MX	23 route3.mx.cloudflare.net.
+pilz.foo.	IN	MX	97 route2.mx.cloudflare.net.
+pilz.foo.	IN	MX	9 route1.mx.cloudflare.net.
+
+;; TXT Records
+_atproto.pilz.foo.	IN	TXT	"did=did:plc:bu4jpnbfcslunaegxq2k4a5w"
+cf2024-1._domainkey.pilz.foo.	IN	TXT	"v=DKIM1; h=sha256; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAiweykoi+o48IOGuP7GR3X0MOExCUDY/BCRHoWBnh3rChl7WhdyCxW3jgq1daEjPPqoi7sJvdg5hEQVsgVRQP4DcnQDVjGMbASQtrY4WmB1VebF+RPJB2ECPsEDTpeiI5ZyUAwJaVX7r6bznU67g7LvFq35yIo4sdlmtZGV+i0H4cpYH9+3JJ78k" "m4KXwaf9xUJCWF6nxeD+qG6Fyruw1Qlbds2r85U9dkNDVAS3gioCvELryh1TxKGiVTkg4wqHTyHfWsp7KD3WQHYJn0RyfJJu6YEmL77zonn7p2SRMvTMP3ZEXibnC9gz3nnhR6wcYL8Q7zXypKTMD58bTixDSJwIDAQAB"
+_dmarc.pilz.foo.	IN	TXT	"v=DMARC1; p=none; rua=mailto:c3c1f756b0434163949cbafce4952c43@dmarc-reports.cloudflare.net"
+pilz.foo.	IN	TXT	"oa1:xmr recipient_address=48nTdwjw3Aj9Be7DX4XCoc3TcfLrrTBmwWgEkxuFVEWWdWH8tYZKANwgWHowePHJEyBscXYdChW2vP9YEQhN5HfS88gqgH6; recipient_name=Pilz;"
+pilz.foo.	3600	IN	TXT	"google-site-verification=36fBw5yxwc9068wo1K1fAgubNRHKgWgjVkN0rjA-Hn4"
+pilz.foo.	IN	TXT	"v=spf1 include:_spf.mx.cloudflare.net ~all"

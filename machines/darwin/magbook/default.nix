@@ -24,9 +24,10 @@
   };
 
   nixpkgs.config.permittedInsecurePackages = [
-  "lima-1.2.2"
+    "lima-1.2.2"
     "lima-full-1.2.2"
     "lima-additional-guestagents-1.2.2"
+    "electron-39.8.10"
   ];
   nix = {
     enable = false;
@@ -38,11 +39,6 @@
       "cgroups"
       "pipe-operators"
     ];
-  };
-
-  pilz.services.darwin.rosetta-builder = {
-    cores = 10;
-    jobs = 10;
   };
 
   nixpkgs.system = "aarch64-darwin";

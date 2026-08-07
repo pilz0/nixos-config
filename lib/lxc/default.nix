@@ -59,6 +59,7 @@ in
       '';
     };
     boot = {
+      zfs.forceImportRoot = true;
       isContainer = true;
       kernel.sysctl = {
         "net.ipv6.conf.eth0.accept_dad" = false;

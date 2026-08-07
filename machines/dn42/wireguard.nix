@@ -12,6 +12,10 @@
 
   networking.nat = {
     enable = true;
+    externalIP = "94.142.241.1";
+    internalIPs = [
+      "10.100.0.1/24"
+    ];
     externalInterface = "eth0";
     internalInterfaces = [ "wg0" ];
   };
@@ -25,11 +29,7 @@
     enable = true;
     proxies = {
       "eth0".rules = {
-        "2a0e:8f02:f017::18/128" = {
-          method = "static";
-          interface = "wg0";
-        };
-        "2a0e:8f02:f017::25/128" = {
+        "2a0e:8f02:f017:1::/64" = {
           method = "static";
           interface = "wg0";
         };
@@ -75,18 +75,18 @@
       };
       wireguardPeers = [
         {
-          PublicKey = "MvTGDJYlXmFJWS7rUYu9k+r22ScMyPMn933+7zeOUnU=";
+          PublicKey = "YTEQtuJITt/D01hruWD4FnbZmG81qOSw1Aqf89S07C8=";
           AllowedIPs = [
-            "2a0e:8f02:f017::18/128"
-            "10.100.0.2/32"
+            "2a0e:8f02:f017:1::25/128"
+            "10.100.0.3/32"
           ];
           PersistentKeepalive = 25;
         }
         {
-          PublicKey = "YTEQtuJITt/D01hruWD4FnbZmG81qOSw1Aqf89S07C8=";
-          AllowedIPs = [
-            "2a0e:8f02:f017::25/128"
-            "10.100.0.3/32"
+          PublicKey = "MvTGDJYlXmFJWS7rUYu9k+r22ScMyPMn933+7zeOUnU=";       
+           AllowedIPs = [
+            "2a0e:8f02:f017:1::18/128"
+            "10.100.0.2/32"
           ];
           PersistentKeepalive = 25;
         }

@@ -32,7 +32,7 @@ let
       specialArgs = {
         inherit inputs;
         pkgs-unstable = import inputs.nixpkgs-unstable {
-          system = "aarch64-darwin";
+          inherit system;
           config.allowUnfree = true;
         };
       };
@@ -52,14 +52,11 @@ let
     {
       hostname,
       system ? "x86_64-linux",
+      nixpkgs ? inputs.nixpkgs,
     }:
-    lib.nixosSystem {
+    nixpkgs.lib.nixosSystem {
       specialArgs = {
         inherit inputs;
-        pkgs-unstable = import inputs.nixpkgs-unstable {
-          inherit system;
-          config.allowUnfree = true;
-        };
       };
       modules = [
         ../deployment
@@ -68,7 +65,15 @@ let
         (
           { ... }:
           {
+            # claude slop that needs to be cleaned
             nixpkgs.hostPlatform.system = system;
+            # Provide pkgs-unstable via _module.args (not specialArgs) so it is
+            # also available when colmena re-evaluates a node from its module
+            # list -- colmena only forwards `inputs` via meta.specialArgs.
+            _module.args.pkgs-unstable = import inputs.nixpkgs-unstable {
+              inherit system;
+              config.allowUnfree = true;
+            };
           }
         )
       ];

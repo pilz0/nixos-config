@@ -10,7 +10,7 @@
 
   age.secrets."harmonia-signing-key".file = ../../../secrets/harmonia.age;
 
-  services.harmonia-dev = {
+  services.harmonia-dev.cache = {
     enable = true;
     signKeyPaths = [ config.age.secrets."harmonia-signing-key".path ];
   };

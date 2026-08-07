@@ -1,0 +1,38 @@
+$TTL 1h
+$ORIGIN 7.1.0.f.2.0.f.8.e.0.a.2.ip6.arpa.
+@    IN    SOA    ns1.as214958.net. ns2.as214958.net. (
+                2026080300 ; Serial - date by convention
+                1h         ; Refresh
+                3m         ; Retry
+                1w         ; Expire
+                1m         ; Negative cache TTL
+)
+
+;; NS Records
+      86400 NS    ns1.as214958.net.
+      86400 NS    ns2.as214958.net.
+
+;; PTR Records
+0.1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.7.1.0.f.2.0.f.8.e.0.a.2.ip6.arpa.	IN	PTR	tor2.ams1.as214958.net.
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.7.1.0.f.2.0.f.8.e.0.a.2.ip6.arpa.	IN	PTR	ams1.as214958.net.
+1.1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.7.1.0.f.2.0.f.8.e.0.a.2.ip6.arpa.     IN	PTR	tor3.ams1.as214958.net.
+2.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.7.1.0.f.2.0.f.8.e.0.a.2.ip6.arpa.	IN	PTR	web1.ams1.as214958.net.
+2.1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.7.1.0.f.2.0.f.8.e.0.a.2.ip6.arpa.	IN	PTR	tor4.ams1.as214958.net.
+2.1.3.1.b.a.c.a.0.0.0.0.0.0.0.0.0.0.0.0.7.1.0.f.2.0.f.8.e.0.a.2.ip6.arpa.	IN	PTR	fuck.the.police.as214958.net.
+3.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.7.1.0.f.2.0.f.8.e.0.a.2.ip6.arpa.	IN	PTR	grafana.ams1.as214958.net.
+3.1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.7.1.0.f.2.0.f.8.e.0.a.2.ip6.arpa.	IN	PTR	tor5.ams1.as214958.net.
+4.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.7.1.0.f.2.0.f.8.e.0.a.2.ip6.arpa.	IN	PTR	jellyfin.ams1.as214958.net.
+4.1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.7.1.0.f.2.0.f.8.e.0.a.2.ip6.arpa.	IN	PTR	tor6.ams1.as214958.net.
+5.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.7.1.0.f.2.0.f.8.e.0.a.2.ip6.arpa.	IN	PTR	rpki.ams1.as214958.net.
+5.1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.7.1.0.f.2.0.f.8.e.0.a.2.ip6.arpa.	IN	PTR	tor7.ams1.as214958.net.
+6.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.7.1.0.f.2.0.f.8.e.0.a.2.ip6.arpa.	IN	PTR	dn42.ams1.as214958.net.
+6.1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.7.1.0.f.2.0.f.8.e.0.a.2.ip6.arpa.	IN	PTR	tor8.ams1.as214958.net.
+7.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.7.1.0.f.2.0.f.8.e.0.a.2.ip6.arpa.	IN	PTR	netbox.ams1.as214958.net.
+7.1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.7.1.0.f.2.0.f.8.e.0.a.2.ip6.arpa.	IN	PTR	gateway.vpn.ams1.as214958.net.
+8.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.7.1.0.f.2.0.f.8.e.0.a.2.ip6.arpa.	IN	PTR	build.ams1.as214958.net.
+8.1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1.0.0.0.7.1.0.f.2.0.f.8.e.0.a.2.ip6.arpa.	IN	PTR	magbook.vpn.ams1.as214958.net.
+9.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.7.1.0.f.2.0.f.8.e.0.a.2.ip6.arpa.	IN	PTR	tor1.ams1.as214958.net.
+9.1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.7.1.0.f.2.0.f.8.e.0.a.2.ip6.arpa.	IN	PTR	kube-control1.ams1.as214958.net.
+
+;; TXT Records
+7.1.0.f.2.0.f.8.e.0.a.2.ip6.arpa.	IN	TXT	"oa1:xmr recipient_address=88WLJBRCnJcbVXP4xPvHoSVskZqAUGYJLJz1bF2m1G9dWykoPFQP7uAF1ybobfuBQQ8UgyDBYzPPc7iTP3oyAKTk3czZCPr; recipient_name=Pilz;"

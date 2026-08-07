@@ -31,7 +31,7 @@ in
       };
       domain = lib.mkOption {
         type = lib.types.str;
-        default = "localhost";
+        default = "kafka.as214958.net";
       };
     };
     exporter = {

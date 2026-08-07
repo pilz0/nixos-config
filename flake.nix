@@ -25,12 +25,22 @@
       colmena = sf.mapColmenaMerge self.nixosConfigurations {
         meta = {
           nixpkgs = nixpkgs.legacyPackages.x86_64-linux;
+          nodeNixpkgs = {
+            jetson-warcrime = import inputs.nixpkgs-2511 {
+              system = "aarch64-linux";
+              config.allowUnfree = true;
+            };
+          };
           specialArgs = { inherit inputs; };
         };
       };
       nixosConfigurations = sf.mapNixosCfg {
         hosts = sf.mapHostsMerge ./machines {
-          jetson-warcrime.system = "aarch64-linux";
+          jetson-warcrime = {
+            system = "aarch64-linux";
+            # jetpack-nixos only supports this channel (see inputs.nixpkgs-2511).
+            nixpkgs = inputs.nixpkgs-2511;
+          };
           build-aarch64.system = "aarch64-linux";
         };
       };
@@ -57,6 +67,7 @@
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
+    nixpkgs-2511.url = "github:nixos/nixpkgs/nixos-25.11";
     fedi-bot.url = "git+ssh://git@github.com/pilz0/fedi-bot.git";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
@@ -80,8 +91,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     jetpack = {
-      url = "github:anduril/jetpack-nixos/master";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "path:/Users/pilz/Documents/jetpack-nixos";
+      inputs.nixpkgs.follows = "nixpkgs-2511";
     };
     nix-darwin = {
       url = "github:lnl7/nix-darwin/nix-darwin-26.05";

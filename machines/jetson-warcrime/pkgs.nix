@@ -1,31 +1,36 @@
 {
   pkgs,
+  pkgs-unstable,
+  config,
   ...
 }:
 {
-  environment.systemPackages = with pkgs; [
-    thunderbird
-    firefox
-    neofetch
-    alacritty
-    signal-desktop
-    libreoffice
-    python3
-    vlc
-    nixfmt-rfc-style
-    cmatrix
-    btop
-    wget
-    restic
-    helvum
-    rclone
-    pavucontrol
-    openconnect
-    spotifyd
-    killall
-    gnupg
-    vlc
-  ];
+  environment.systemPackages =
+    (with pkgs; [
+      firefox
+      fastfetch
+      alacritty
+      signal-desktop
+      libreoffice
+      python3
+      vlc
+      nixfmt-rfc-style
+      cmatrix
+      btop
+      wget
+      restic
+      rclone
+      pavucontrol
+      openconnect
+      spotifyd
+      killall
+      gnupg
+      vlc
+    ])
+    ++ (with pkgs-unstable; [
+      ollama
+      crosspipe
+    ]);
 
   services = {
     vscode-server.enable = true;
@@ -33,6 +38,7 @@
 
   virtualisation = {
     docker.enable = true;
+    docker.package = pkgs.docker_29;
   };
 
   programs = {

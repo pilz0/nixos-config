@@ -15,6 +15,7 @@
     ../../modules/common/pkgs
     ./hardware-configuration.nix
     ./disk-config.nix
+    ./dns.nix
   ];
 
   pilz = {

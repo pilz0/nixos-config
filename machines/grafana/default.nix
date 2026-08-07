@@ -10,6 +10,7 @@
     ../../modules/monitoring/grafana
     ../../modules/monitoring/netflow-exporter
     ../../modules/monitoring/loki
+    ../../modules/monitoring/blackbox-exporter
   ];
 
   pilz = {

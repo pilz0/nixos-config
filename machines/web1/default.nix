@@ -9,10 +9,14 @@
     ../../modules/services/as214958-net
     ../../modules/services/bird-lg-frontend
     ./proxys.nix
-   # ./promtail-nginx.nix
+    ./tiles.nix
   ];
 
   pilz = {
+    services.nginx = {
+      enable = true;
+      enableMonitoring = true;
+    };
     services.testfile.enable = true;
     services.as214958Net.enable = true;
     services.birdLg.frontend.enable = true;

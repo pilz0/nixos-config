@@ -9,7 +9,7 @@
       ansible
       tmux
       vim
-      neofetch
+      fastfetch
       zsh
       nmap
       git
@@ -36,10 +36,9 @@
       firefox
       google-chrome
       openvpn
-      bitwarden-desktop
-      istat-menus
+      # bitwarden-desktop
       dash
-      spotify
+      #spotify
       nil
       nixd
       python314
@@ -48,19 +47,23 @@
       docker
       docker-compose
       colima
-      vagrant
       metasploit
       postgresql_18
       mitmproxy
       wireshark
       devenv
-      #jellyfin-mpv-shim
+      zotero
+      androidenv.androidPkgs.ndk-bundle
+      cargo-ndk
+      rustc
+      rustup
     ])
     ++ (with pkgs-unstable; [
       # caffeine on stable does not support aarch64-darwin
       caffeine
       direnv
+      #istat-menus
       github-copilot-cli
-      #mpv-unwrapped
+      mpv-unwrapped
     ]);
 }

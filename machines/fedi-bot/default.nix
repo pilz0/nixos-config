@@ -82,7 +82,6 @@
     ];
     allowedUDPPorts = [
     ];
-    extraCommands = ''
-    '';
+    extraCommands = "";
   };
 }

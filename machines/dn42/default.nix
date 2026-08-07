@@ -7,17 +7,19 @@
     ../../profiles/container
     ../../modules/networking/dn42
     ./wireguard.nix
+    ./dns.nix
   ];
   pilz = {
     services.pve-container.network = {
       enable = true;
       address = [
         "10.10.10.6/24"
+        "94.142.241.1/32"
         "2a0e:8f02:f017::6/64"
       ];
     };
     deployment = {
-      targetHost = "dn42.ams1.as214958.net";
+      targetHost = "ns1.as214958.net";
       tags = [ "infra" ];
     };
     lxc = {

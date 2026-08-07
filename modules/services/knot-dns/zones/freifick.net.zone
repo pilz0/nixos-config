@@ -1,0 +1,25 @@
+$TTL 1h
+$ORIGIN freifick.net.
+@    IN    SOA    ns1.as214958.net. ns2.as214958.net. (
+                2026080300 ; Serial - date by convention
+                1h         ; Refresh
+                3m         ; Retry
+                1w         ; Expire
+                1m         ; Negative cache TTL
+)
+
+@           A     94.142.241.152
+            AAAA  2a0e:8f02:f017::2
+
+;; NS Records
+      86400 NS    ns1.as214958.net.
+      86400 NS    ns2.as214958.net.
+
+;; MX Records
+freifick.net.	IN	MX	35 route3.mx.cloudflare.net.
+freifick.net.	IN	MX	46 route2.mx.cloudflare.net.
+freifick.net.	IN	MX	60 route1.mx.cloudflare.net.
+
+;; TXT Records
+cf2024-1._domainkey.freifick.net.	IN	TXT	"v=DKIM1; h=sha256; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAiweykoi+o48IOGuP7GR3X0MOExCUDY/BCRHoWBnh3rChl7WhdyCxW3jgq1daEjPPqoi7sJvdg5hEQVsgVRQP4DcnQDVjGMbASQtrY4WmB1VebF+RPJB2ECPsEDTpeiI5ZyUAwJaVX7r6bznU67g7LvFq35yIo4sdlmtZGV+i0H4cpYH9+3JJ78k" "m4KXwaf9xUJCWF6nxeD+qG6Fyruw1Qlbds2r85U9dkNDVAS3gioCvELryh1TxKGiVTkg4wqHTyHfWsp7KD3WQHYJn0RyfJJu6YEmL77zonn7p2SRMvTMP3ZEXibnC9gz3nnhR6wcYL8Q7zXypKTMD58bTixDSJwIDAQAB"
+freifick.net.	IN	TXT	"v=spf1 include:_spf.mx.cloudflare.net ~all"

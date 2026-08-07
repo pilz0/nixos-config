@@ -1,9 +1,24 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }:
+let
+cfg = config.pilz.services.nginx;
+in
 {
+  options.pilz.services.nginx = {
+    enable = lib.mkEnableOption "enable pilz nginx service";
+    enableMonitoring = lib.mkEnableOption "enable monitoring";
+  };
+
+  config = lib.mkIf cfg.enable {
+
+  services.prometheus.exporters.nginx = {
+    enable = cfg.enableMonitoring;
+  };
+
   age.secrets = {
     cloudflare_cert = {
       file = ../../../secrets/cloudflare_cert.age;
@@ -17,8 +32,13 @@
     };
   };
 
+  networking.firewall.extraCommands = lib.mkIf cfg.enableMonitoring ''
+      ${pkgs.iptables}/bin/ip6tables -A INPUT -p tcp --dport ${toString config.services.prometheus.exporters.nginx.port } -s 2a0e:8f02:f017::3 -j ACCEPT
+  '';
+
   services = {
     nginx = {
+      statusPage = cfg.enableMonitoring;
       enable = true;
       recommendedGzipSettings = lib.mkDefault true;
       recommendedOptimisation = lib.mkDefault true;
@@ -47,5 +67,6 @@
           real_ip_header CF-Connecting-IP;
         '';
     };
+  };
   };
 }

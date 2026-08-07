@@ -1,0 +1,77 @@
+$TTL 1h
+$ORIGIN ketamin.trade.
+@    IN    SOA    ns1.as214958.net. ns2.as214958.net. (
+                2026080300 ; Serial - date by convention
+                1h         ; Refresh
+                3m         ; Retry
+                1w         ; Expire
+                1m         ; Negative cache TTL
+)
+
+;; NS Records
+      86400 NS    ns1.as214958.net.
+      86400 NS    ns2.as214958.net.
+
+;; MX Records
+10.ketamin.trade.	IN	MX	89 route3.mx.cloudflare.net.
+10.ketamin.trade.	IN	MX	12 route2.mx.cloudflare.net.
+10.ketamin.trade.	IN	MX	37 route1.mx.cloudflare.net.
+1.ketamin.trade.	IN	MX	89 route3.mx.cloudflare.net.
+1.ketamin.trade.	IN	MX	12 route2.mx.cloudflare.net.
+1.ketamin.trade.	IN	MX	37 route1.mx.cloudflare.net.
+2.ketamin.trade.	IN	MX	89 route3.mx.cloudflare.net.
+2.ketamin.trade.	IN	MX	12 route2.mx.cloudflare.net.
+2.ketamin.trade.	IN	MX	37 route1.mx.cloudflare.net.
+3.ketamin.trade.	IN	MX	89 route3.mx.cloudflare.net.
+3.ketamin.trade.	IN	MX	12 route2.mx.cloudflare.net.
+3.ketamin.trade.	IN	MX	37 route1.mx.cloudflare.net.
+4.ketamin.trade.	IN	MX	89 route3.mx.cloudflare.net.
+4.ketamin.trade.	IN	MX	12 route2.mx.cloudflare.net.
+4.ketamin.trade.	IN	MX	37 route1.mx.cloudflare.net.
+5.ketamin.trade.	IN	MX	89 route3.mx.cloudflare.net.
+5.ketamin.trade.	IN	MX	12 route2.mx.cloudflare.net.
+5.ketamin.trade.	IN	MX	37 route1.mx.cloudflare.net.
+6.ketamin.trade.	IN	MX	89 route3.mx.cloudflare.net.
+6.ketamin.trade.	IN	MX	12 route2.mx.cloudflare.net.
+6.ketamin.trade.	IN	MX	37 route1.mx.cloudflare.net.
+7.ketamin.trade.	IN	MX	89 route3.mx.cloudflare.net.
+7.ketamin.trade.	IN	MX	12 route2.mx.cloudflare.net.
+7.ketamin.trade.	IN	MX	37 route1.mx.cloudflare.net.
+8.ketamin.trade.	IN	MX	89 route3.mx.cloudflare.net.
+8.ketamin.trade.	IN	MX	12 route2.mx.cloudflare.net.
+8.ketamin.trade.	IN	MX	37 route1.mx.cloudflare.net.
+9.ketamin.trade.	IN	MX	89 route3.mx.cloudflare.net.
+9.ketamin.trade.	IN	MX	12 route2.mx.cloudflare.net.
+9.ketamin.trade.	IN	MX	37 route1.mx.cloudflare.net.
+handel.ketamin.trade.	IN	MX	89 route3.mx.cloudflare.net.
+handel.ketamin.trade.	IN	MX	12 route2.mx.cloudflare.net.
+handel.ketamin.trade.	IN	MX	37 route1.mx.cloudflare.net.
+ich.will.ketamin.kaufen.ketamin.trade.	IN	MX	89 route3.mx.cloudflare.net.
+ich.will.ketamin.kaufen.ketamin.trade.	IN	MX	12 route2.mx.cloudflare.net.
+ich.will.ketamin.kaufen.ketamin.trade.	IN	MX	37 route1.mx.cloudflare.net.
+ketamin.trade.	IN	MX	89 route3.mx.cloudflare.net.
+ketamin.trade.	IN	MX	12 route2.mx.cloudflare.net.
+ketamin.trade.	IN	MX	37 route1.mx.cloudflare.net.
+
+;; TXT Records
+10.ketamin.trade.	IN	TXT	"v=spf1 include:_spf.mx.cloudflare.net ~all"
+1.ketamin.trade.	IN	TXT	"v=spf1 include:_spf.mx.cloudflare.net ~all"
+2.ketamin.trade.	IN	TXT	"v=spf1 include:_spf.mx.cloudflare.net ~all"
+3.ketamin.trade.	IN	TXT	"v=spf1 include:_spf.mx.cloudflare.net ~all"
+4.ketamin.trade.	IN	TXT	"v=spf1 include:_spf.mx.cloudflare.net ~all"
+5.ketamin.trade.	IN	TXT	"v=spf1 include:_spf.mx.cloudflare.net ~all"
+6.ketamin.trade.	IN	TXT	"v=spf1 include:_spf.mx.cloudflare.net ~all"
+7.ketamin.trade.	IN	TXT	"v=spf1 include:_spf.mx.cloudflare.net ~all"
+8.ketamin.trade.	IN	TXT	"v=spf1 include:_spf.mx.cloudflare.net ~all"
+9.ketamin.trade.	IN	TXT	"v=spf1 include:_spf.mx.cloudflare.net ~all"
+_atproto.ketamin.trade.	IN	TXT	"did=did:plc:bu4jpnbfcslunaegxq2k4a5w"
+cf2024-1._domainkey.ich.will.ketamin.kaufen.ketamin.trade.	IN	TXT	"v=DKIM1; h=sha256; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAiweykoi+o48IOGuP7GR3X0MOExCUDY/BCRHoWBnh3rChl7WhdyCxW3jgq1daEjPPqoi7sJvdg5hEQVsgVRQP4DcnQDVjGMbASQtrY4WmB1VebF+RPJB2ECPsEDTpeiI5ZyUAwJaVX7r6bznU67g7LvFq35yIo4sdlmtZGV+i0H4cpYH9+3JJ78k" "m4KXwaf9xUJCWF6nxeD+qG6Fyruw1Qlbds2r85U9dkNDVAS3gioCvELryh1TxKGiVTkg4wqHTyHfWsp7KD3WQHYJn0RyfJJu6YEmL77zonn7p2SRMvTMP3ZEXibnC9gz3nnhR6wcYL8Q7zXypKTMD58bTixDSJwIDAQAB"
+cf2024-1._domainkey.ketamin.trade.	IN	TXT	"v=DKIM1; h=sha256; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAiweykoi+o48IOGuP7GR3X0MOExCUDY/BCRHoWBnh3rChl7WhdyCxW3jgq1daEjPPqoi7sJvdg5hEQVsgVRQP4DcnQDVjGMbASQtrY4WmB1VebF+RPJB2ECPsEDTpeiI5ZyUAwJaVX7r6bznU67g7LvFq35yIo4sdlmtZGV+i0H4cpYH9+3JJ78k" "m4KXwaf9xUJCWF6nxeD+qG6Fyruw1Qlbds2r85U9dkNDVAS3gioCvELryh1TxKGiVTkg4wqHTyHfWsp7KD3WQHYJn0RyfJJu6YEmL77zonn7p2SRMvTMP3ZEXibnC9gz3nnhR6wcYL8Q7zXypKTMD58bTixDSJwIDAQAB"
+_discord.ketamin.trade.	IN	TXT	"dh=03f5195ad843593163e7872117e65bce0473a995"
+_dmarc.ketamin.trade.	IN	TXT	"v=DMARC1;  p=quarantine; rua=mailto:5f4ef458ada649448066feceba9a5b02@dmarc-reports.cloudflare.net"
+_github-pages-challenge-pilz0.ketamin.trade.	IN	TXT	"9a54e656f0bc5d5304b7067b4f9592"
+handel.ketamin.trade.	IN	TXT	"v=spf1 include:_spf.mx.cloudflare.net ~all"
+ich.will.ketamin.kaufen.ketamin.trade.	IN	TXT	"v=spf1 include:_spf.mx.cloudflare.net ~all"
+ketamin.trade.	IN	TXT	"dh=03f5195ad843593163e7872117e65bce0473a995"
+ketamin.trade.	IN	TXT	"v=spf1 include:_spf.mx.cloudflare.net ~all"
+ketamin.trade.	IN	TXT	"zieh auf die bahamas wegen kokain"
