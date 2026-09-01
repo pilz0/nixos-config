@@ -13,10 +13,10 @@ buildGoModule (finalAttrs: {
     repo = "flow-exporter";
     rev = "multiple_metrics";
     # haschisch rauchen !!!!
-    hash = "sha256-D0Jc0BQbsitw4SE0F914UHnEdrc3eZFtCI0hNxSyJeE=";
+    hash = "sha256-f9LdOGKE+h9JyBc5EyyFWU4SeEsBgcfWRY5VuPTsAdc=";
   };
 
-  vendorHash = "sha256-fTV6hO7IGxoAOF7xzKz+jR6Gwaq5f24rlc7wiT4zCKg=";
+  vendorHash = "sha256-HwQt+PZxtftMuIULTgohYpIsGM6+mX0fku5xcU7rmn0=";
 
   meta = with lib; {
     description = "Export network flows from kafka to Prometheus";

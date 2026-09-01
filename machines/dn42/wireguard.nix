@@ -83,8 +83,8 @@
           PersistentKeepalive = 25;
         }
         {
-          PublicKey = "MvTGDJYlXmFJWS7rUYu9k+r22ScMyPMn933+7zeOUnU=";       
-           AllowedIPs = [
+          PublicKey = "MvTGDJYlXmFJWS7rUYu9k+r22ScMyPMn933+7zeOUnU=";
+          AllowedIPs = [
             "2a0e:8f02:f017:1::18/128"
             "10.100.0.2/32"
           ];

@@ -5,7 +5,7 @@
   ...
 }:
 let
-  cfg = config.pilz.services.grafana;
+  cfg = config.pilz.monitoring.grafana;
   grafanaPlugin = pkgs.callPackage (
     pkgs.path + "/pkgs/servers/monitoring/grafana/plugins/grafana-plugin.nix"
   ) { };
@@ -14,7 +14,7 @@ let
   };
 in
 {
-  options.pilz.services.grafana = {
+  options.pilz.monitoring.grafana = {
     enable = lib.mkEnableOption "Enable Grafana";
     domain = lib.mkOption {
       type = lib.types.str;

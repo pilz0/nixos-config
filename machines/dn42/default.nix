@@ -5,6 +5,7 @@
 {
   imports = [
     ../../profiles/container
+    ../../profiles/importAll
     ../../modules/networking/dn42
     ./wireguard.nix
     ./dns.nix

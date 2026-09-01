@@ -1,4 +1,11 @@
 {
+  config,
+  lib,
+  ...
+}:
+{
+  options.pilz.services.nixos-builder.enable = lib.mkEnableOption "";
+  config = lib.mkIf config.pilz.services.nixos-builder.enable {
   nix = {
     # nrBuildUsers = 16;
     gc.automatic = true;
@@ -20,5 +27,6 @@
       ];
       use-cgroups = true;
     };
+  };
   };
 }

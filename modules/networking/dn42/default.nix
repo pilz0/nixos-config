@@ -6,25 +6,34 @@
 {
   imports = [
     ./peerings.nix
-    ./bird-lg.nix
     ./rpki-dn42.nix
     ../bgp-filters
     ../bird-templates
     ../bird-default
     ../rpki
   ];
+
   age.secrets.wg = {
     file = ../../../secrets/wg.age;
     owner = "systemd-network";
     group = "systemd-network";
   };
 
-# networking.nameservers = [
-#    "fd42:4242:2601:ac53::1"
-#    "172.20.129.1"
-#    "fd00:913e:130::400"
-#    "172.20.132.105"
-#  ];
+  # networking.nameservers = [
+  #    "fd42:4242:2601:ac53::1"
+  #    "172.20.129.1"
+  #    "fd00:913e:130::400"
+  #    "172.20.132.105"
+  #  ];
+
+  services = {
+    bird-lg = {
+      proxy = {
+        enable = true;
+        listenAddresses = [ "18000" ];
+      };
+    };
+  };
 
   environment.systemPackages = with pkgs; [
     wireguard-tools

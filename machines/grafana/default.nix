@@ -5,18 +5,17 @@
 {
   imports = [
     ../../profiles/container
-    ../../modules/services/nginx
-    ../../modules/monitoring/prometheus
-    ../../modules/monitoring/grafana
-    ../../modules/monitoring/netflow-exporter
-    ../../modules/monitoring/loki
-    ../../modules/monitoring/blackbox-exporter
+    ../../profiles/importAll
   ];
 
   pilz = {
-    services.grafana.enable = true;
-    services.loki.enable = true;
-    services.netflow-exporter.enable = true;
+    monitoring = {
+      blackbox-anodyne.enable = true;
+      grafana.enable = true;
+      loki.enable = true;
+      netflow-exporter.enable = true;
+      prometheus.enable = true;
+    };
     services.pve-container.network = {
       enable = true;
       address = [

@@ -1,15 +1,20 @@
 {
-  lib, 
-  config, 
+  lib,
+  config,
   pkgs,
   ...
 }:
 {
+  options.pilz.services.knot-dns = {
+    enable = lib.mkEnableOption "";
+  };
+  config = lib.mkIf config.pilz.services.knot-dns.enable {
+
   environment.etc = {
     "dns-zones" = {
       source = ./zones;
-        user = "knot";
-        group = "knot";
+      user = "knot";
+      group = "knot";
     };
   };
 
@@ -42,5 +47,5 @@
     owner = "knot";
     group = "knot";
   };
+  };
 }
-

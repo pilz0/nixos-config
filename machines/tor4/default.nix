@@ -6,6 +6,7 @@
 {
   imports = [
     ../../profiles/tor-relay-pve
+    ../../profiles/importAll
   ];
 
   pilz = {

@@ -7,8 +7,8 @@
 }:
 {
   imports = [
+    ../../profiles/importAll
     ../../profiles/container
-    ../../modules/services/nixarr
     inputs.fedi-bot.nixosModules.default
   ];
 

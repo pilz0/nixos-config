@@ -1,8 +1,8 @@
 {
-  lib, 
-  config, 
+  lib,
+  config,
   pkgs,
-  ... 
+  ...
 }:
 {
   pilz.deployment.tags = [ "dns" ];
@@ -14,9 +14,9 @@
     settings.Resolve.DNSStubListener = false;
   };
 
-  networking.nameservers = [ "1.1.1.1" "8.8.8.8" ];
-
-  imports = [
-    ../../modules/services/knot-dns
+  networking.nameservers = [
+    "1.1.1.1"
+    "8.8.8.8"
   ];
+  pilz.services.knot-dns.enable = true;
 }

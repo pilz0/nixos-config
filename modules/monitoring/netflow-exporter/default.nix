@@ -7,10 +7,10 @@
 let
   # flow exporter is currently broken upstream with newer kafka versions (https://github.com/neptune-networks/flow-exporter/pull/21#issuecomment-3272158539)
   flow-exporter-custom = pkgs.callPackage ../../../pkgs/flow-exporter.nix { };
-  cfg = config.pilz.services.netflow-exporter;
+  cfg = config.pilz.monitoring.netflow-exporter;
 in
 {
-  options.pilz.services.netflow-exporter = {
+  options.pilz.monitoring.netflow-exporter = {
     enable = lib.mkEnableOption "enable netflow exporter configuration";
     kafka = {
       clusterId = lib.mkOption {

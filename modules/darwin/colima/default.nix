@@ -5,17 +5,18 @@
   ...
 }:
 let
-  cfg = config.pilz.services.darwin.colima;
+  cfg = config.pilz.darwin.services.colima;
 in
 {
-  options.pilz.services.darwin.colima = {
+  options.pilz.darwin.services.colima = {
+    enable = lib.mkEnableOption "";
     user = lib.mkOption {
       type = lib.types.str;
       default = "pilz";
     };
   };
 
-  config = {
+  config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       docker
       docker-compose

@@ -21,7 +21,7 @@ let
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBNFGU7d/tmjOL7yOR6LHPKM2S6EWeBIy4RHzaRCWjpM root@netbox"
   ];
   build = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAy+DchMGEo5Q9Fuu02KERSabQ055pY6VjCqoX+DlZBn root@build"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOaCOf4RpWomwnwTIMvFWO0MmtBIyY79SfJL8DRSlaGy root@CT106"
   ];
   rpki = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJWxHkhwJPhT0hL1TGWjIxWSRPzMvGleKE9Jq9mCUXOI root@rpki"
@@ -49,9 +49,6 @@ let
   ];
   tor8 = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAYdoA2HeJBzSnUyOkvEsd2YOK/9VVT4rWAlp69WOdC4 root@tor8"
-  ];
-  nextcloud = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILdszpxb5Z3YnEasCLKT2i/IiSFNfP/Z3241QZdUlD7J root@CT124"
   ];
   snakii = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA/+iN407+HsfHbbC3tfdA8Yf4TZ08qXQMb4tb/SDAs+"
@@ -84,26 +81,24 @@ let
     ++ tor6
     ++ tor7
     ++ tor8
-    ++ nextcloud
     ++ jetson-warcrime
     ++ build-aarch64
     ++ fedi-bot;
 in
 {
-  "nextcloud-secrets.age".publicKeys = marielap ++ nextcloud;
   "rclone.age".publicKeys = Laptop ++ marielap ++ grafana;
   "restic.age".publicKeys = Laptop ++ marielap ++ grafana;
-  "smtp.age".publicKeys = marielap ++ grafana ++ nextcloud;
+  "smtp.age".publicKeys = marielap ++ grafana;
   "grafana.age".publicKeys = marielap ++ grafana;
   "wg.age".publicKeys = marielap ++ dn42;
   "nixarr-wg.age".publicKeys = marielap ++ jellyfin;
   "HashedPassword.age".publicKeys = marielap ++ Laptop;
-  "cloudflare_cert.age".publicKeys = marielap ++ web1_host ++ grafana;
-  "cloudflare_key.age".publicKeys = marielap ++ web1_host ++ grafana;
+  "cloudflare_cert.age".publicKeys = marielap ++ web1_host ++ grafana ++ snakii;
+  "cloudflare_key.age".publicKeys = marielap ++ web1_host ++ grafana ++ snakii;
   "s3-mastodon.age".publicKeys = marielap;
   "netbox.age".publicKeys = marielap ++ netbox;
   "harmonia.age".publicKeys = marielap ++ build;
-  "nixbuildssh.age".publicKeys = all_hosts;
+  "nixbuildssh.age".publicKeys = all_hosts ++ snakii;
   "github-runner.age".publicKeys = marielap ++ build;
   "wg-key-ams1-dn42.age".publicKeys = marielap ++ dn42;
   "fedi-bot-hfToken.age".publicKeys = marielap ++ jellyfin ++ snakii ++ fedi-bot ++ jetson-warcrime;

@@ -4,18 +4,22 @@
 }:
 {
   imports = [
+    ../../profiles/importAll
     inputs.jetpack.nixosModules.default
     inputs.determinate.nixosModules.default
     inputs.vscode-server.nixosModules.default
-    ../../modules/ssh
-    ../../modules/shell
-    ../../modules/common/pkgs
-    ../../modules/audio
     ./nvidia.nix
     ./graphics.nix
     ./pkgs.nix
     ./hardware-configuration.nix
   ];
+
+  pilz = {
+    common.enable = true;
+    audio.enable = true;
+    services.ssh.enable = true;
+    shell.enable = true;
+  };
 
   users.users = {
     snakii = {

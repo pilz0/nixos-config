@@ -23,8 +23,24 @@
     };
   };
 
+  systemd.services.flow-exporter-vyos = {
+    enable = true;
+    description = "Prometheus Flow Exporter";
+    after = [
+      "network.target"
+      "apache-kafka.service"
+    ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      RuntimeMaxSec = "24h";
+      ExecStart = "${flow-exporter-custom}/bin/flow-exporter --brokers=kafka.as214958.net:9092--topic=pmacctdAS203819.acct --asn=203819";
+      Restart = "on-failure";
+    };
+  };
+
   environment.etc."pmacct-netflow-vyos/nfacctd.conf".text = ''
     nfacctd_port: 9995
+    nfacctd_ip: 0.0.0.0
     !
     aggregate: src_host, dst_host, src_port, dst_port, tcpflags, proto, label
     !
@@ -37,5 +53,15 @@
     kafka_history: 5m
     kafka_history_roundoff: m
     kafka_topic: pmacctdAS203819.acct
+    !
+    bgp_daemon: true
+    bgp_daemon_ip: 
+    bgp_daemon_port: 179
+    bgp_daemon_max_peers: 10
+    bgp_agent_map: /etc/pmacct-netflow-vyos/bgp_agent.map
+  '';
+
+  environment.etc."pmacct-netflow-vyos/bgp_agent.map".text = ''
+    bgp_ip=  ip=0.0.0.0/0
   '';
 }

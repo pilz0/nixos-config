@@ -5,7 +5,6 @@
 {
   imports = [
     ../../profiles/container
-    ../../modules/services/routinator
   ];
 
   pilz = {

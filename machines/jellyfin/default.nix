@@ -5,7 +5,7 @@
 {
   imports = [
     ../../profiles/container
-    ../../modules/services/nixarr
+    ../../profiles/importAll
   ];
 
   pilz = {

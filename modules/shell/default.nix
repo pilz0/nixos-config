@@ -1,10 +1,14 @@
 {
   pkgs,
+  lib,
+  config,
   ...
 }:
 {
-  users.defaultUserShell = pkgs.zsh;
+  options.pilz.shell.enable = lib.mkEnableOption "";
+  config = lib.mkIf config.pilz.shell.enable {
 
+  users.defaultUserShell = pkgs.zsh;
   programs = {
     zsh = {
       enable = true;
@@ -26,5 +30,6 @@
         };
       };
     };
+  };
   };
 }

@@ -1,8 +1,11 @@
 {
   config,
+  lib,
   ...
 }:
 {
+  options.pilz.services.restic-client.enable = lib.mkEnableOption "";
+  config = lib.mkIf config.pilz.services.restic-client.enable {
   age.secrets.rcloneconfig = {
     file = ../../secrets/rclone.age;
     owner = "root";
@@ -21,5 +24,6 @@
       initialize = true;
       passwordFile = config.age.secrets.restic.path;
     };
+  };
   };
 }

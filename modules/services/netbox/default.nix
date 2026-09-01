@@ -1,9 +1,14 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }:
 {
+  options.pilz.services.netbox = {
+    enable = lib.mkEnableOption "";
+  };
+  config = lib.mkIf config.pilz.services.netbox.enable {
   age.secrets.netbox = {
     file = ../../../secrets/netbox.age;
     owner = "netbox";
@@ -31,5 +36,6 @@
         };
       };
     };
+  };
   };
 }

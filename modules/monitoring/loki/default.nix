@@ -5,10 +5,10 @@
   ...
 }:
 let
-  cfg = config.pilz.services.loki;
+  cfg = config.pilz.monitoring.loki;
 in
 {
-  options.pilz.services.loki = {
+  options.pilz.monitoring.loki = {
     enable = lib.mkEnableOption "enable loki configuration";
     http_listen_port = lib.mkOption {
       type = lib.types.int;

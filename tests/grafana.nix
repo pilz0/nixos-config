@@ -15,7 +15,7 @@ pkgs.testers.runNixOSTest {
         imports = [
           ../modules/monitoring/grafana/default.nix
         ];
-        pilz.services.grafana = {
+        pilz.monitoring.grafana = {
           enable = true;
           port = 3000;
           smtp = {
