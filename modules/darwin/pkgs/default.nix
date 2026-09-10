@@ -43,7 +43,6 @@ in
         uv
         jq
         yq
-        firefox
         google-chrome
         openvpn
         # bitwarden-desktop
@@ -67,6 +66,8 @@ in
         cargo-ndk
         rustc
         rustup
+        xld
+        cyberduck
       ])
       ++ (with pkgs-unstable; [
         # caffeine on stable does not support aarch64-darwin
@@ -75,6 +76,7 @@ in
         #istat-menus
         github-copilot-cli
         mpv-unwrapped
+        firefox
       ]);
   };
 }

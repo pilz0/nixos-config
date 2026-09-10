@@ -43,6 +43,20 @@
           proxyPass = "http://netbox.ams1.as214958.net:80";
         };
       };
+      "anodyne.wiki" = {
+        enableACME = true;
+        forceSSL = true;
+        locations."/" = {
+          proxyPass = "http://anodyne.as214958.net";
+        };
+      };
+      "anodyne-debug.as214958.net" = {
+        enableACME = true;
+        forceSSL = true;
+        locations."/" = {
+          proxyPass = "http://anodyne.as214958.net";
+        };
+      };
     };
   };
 }

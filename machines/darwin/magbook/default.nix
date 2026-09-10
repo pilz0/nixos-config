@@ -5,7 +5,6 @@
 }:
 {
   imports = [
-    ../../profiles/importAll
     ./nix-build.nix
     ../../../profiles/darwin
   ];

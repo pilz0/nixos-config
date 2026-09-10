@@ -7,6 +7,7 @@
     ../../profiles/importAll
     ./proxys.nix
     ./nextcloud.nix
+    ./time-machine.nix
   ];
 
   pilz = {

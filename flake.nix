@@ -27,7 +27,7 @@
           nixpkgs = nixpkgs.legacyPackages.x86_64-linux;
           nodeNixpkgs = {
             jetson-warcrime = import inputs.nixpkgs {
-            #jetson-warcrime = import inputs.nixpkgs-2511 {
+              #jetson-warcrime = import inputs.nixpkgs-2511 {
               system = "aarch64-linux";
               config.allowUnfree = true;
             };
@@ -83,7 +83,7 @@
     colmena.url = "github:zhaofengli/colmena";
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
-    microvm.url = "github:microvm-nix/microvm.nix";
+    #    microvm.url = "github:microvm-nix/microvm.nix";
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";

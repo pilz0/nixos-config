@@ -17,7 +17,7 @@
     shell.enable = true;
     services.ssh.enable = true;
     monitoring.node-exporter.enable = true;
-    services.nixosBuilderClient.enable = true;
+    #services.nixosBuilderClient.enable = true;
     #services.promtail.enable = true;
     common.enable = true;
   };

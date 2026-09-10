@@ -5,7 +5,7 @@
 }:
 {
   imports = [
-    ../../profiles/tor-relay-pve
+    ../../profiles/container
     ../../profiles/importAll
   ];
 

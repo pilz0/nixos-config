@@ -26,6 +26,19 @@ let
   rpki = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJWxHkhwJPhT0hL1TGWjIxWSRPzMvGleKE9Jq9mCUXOI root@rpki"
   ];
+  snakii = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA/+iN407+HsfHbbC3tfdA8Yf4TZ08qXQMb4tb/SDAs+"
+  ];
+  fedi-bot = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPjqRp9g0aeaUjRIG8r6qB8kFdvDUYFV+6DzRQBEYw0Z root@fedi-bot"
+  ];
+  jetson-warcrime = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOessry4YtF08jzZv2EeNEnsLz36Un7SQ7tBDmSq0ec7 root@nixos"
+  ];
+  build-aarch64 = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFmKUILzb3kuLq4g3MD7NJEIXIZghQqozqRa/SdYoYzK root@build-aarch64"
+  ];
+
   tor1 = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA2lst0kq6NAlb+Cc3qMHiRck8m6TxsbIY1xw4c2Uy6+ root@tor1"
   ];
@@ -50,18 +63,6 @@ let
   tor8 = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAYdoA2HeJBzSnUyOkvEsd2YOK/9VVT4rWAlp69WOdC4 root@tor8"
   ];
-  snakii = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA/+iN407+HsfHbbC3tfdA8Yf4TZ08qXQMb4tb/SDAs+"
-  ];
-  fedi-bot = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPjqRp9g0aeaUjRIG8r6qB8kFdvDUYFV+6DzRQBEYw0Z root@fedi-bot"
-  ];
-  jetson-warcrime = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOessry4YtF08jzZv2EeNEnsLz36Un7SQ7tBDmSq0ec7 root@nixos"
-  ];
-  build-aarch64 = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFmKUILzb3kuLq4g3MD7NJEIXIZghQqozqRa/SdYoYzK root@build-aarch64"
-  ];
 
   all_hosts =
     Laptop
@@ -84,6 +85,8 @@ let
     ++ jetson-warcrime
     ++ build-aarch64
     ++ fedi-bot;
+
+  tor = tor1 ++ tor2 ++ tor3 ++ tor4 ++ tor5 ++ tor6 ++ tor7 ++ tor8;
 in
 {
   "rclone.age".publicKeys = Laptop ++ marielap ++ grafana;
@@ -104,4 +107,5 @@ in
   "fedi-bot-hfToken.age".publicKeys = marielap ++ jellyfin ++ snakii ++ fedi-bot ++ jetson-warcrime;
   "fedi-bot-fediToken.age".publicKeys = marielap ++ jellyfin ++ snakii ++ fedi-bot ++ jetson-warcrime;
   "tsig_ns.age".publicKeys = marielap ++ netbox ++ dn42 ++ build-aarch64;
+  "tor-familiy.age".publicKeys = marielap ++ tor;
 }

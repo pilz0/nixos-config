@@ -42,6 +42,29 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
+    age.secrets.tor-familiy = {
+      file = ../../../secrets/tor-familiy.age;
+      owner = "tor";
+      group = "tor";
+    };
+    age.identityPaths = [
+      "/etc/ssh/ssh_host_ed25519_key"
+      "/etc/keys/ssh_host_ed25519_key"
+    ];
+    services.openssh = {
+      startWhenNeeded = lib.mkForce false;
+      hostKeys = lib.mkForce [
+        {
+          type = "ed25519";
+          path = "/etc/ssh/ssh_host_ed25519_key";
+        }
+      ];
+    };
+    systemd.services."sshd@".restartIfChanged = false;
+
+    systemd.tmpfiles.rules = [
+      "C /var/lib/tor/keys/as214958.secret_family_key - - - - ${config.age.secrets.tor-familiy.path}"
+    ];
     services.tor = {
       enable = cfg.enable;
       openFirewall = cfg.openFirewall;
@@ -60,6 +83,7 @@ in
         MetricsPort = cfg.metricsPort;
         MetricsPortPolicy = "accept *";
         MyFamily = cfg.myFamily;
+        FamilyId = "kZWGAkuBnSBzKnsejP6LEFK39lEs001IZB26YUibo80";
       };
     };
   };
