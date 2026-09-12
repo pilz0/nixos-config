@@ -6,7 +6,6 @@
 {
   imports = [
     ../../profiles/container
-    ../../profiles/importAll
   ];
 
   pilz = {

@@ -4,14 +4,13 @@
 {
   imports = [
     ../../profiles/container
-    ../../profiles/importAll
     ./proxys.nix
-    ./nextcloud.nix
-    ./time-machine.nix
   ];
 
   pilz = {
     services = {
+      timemachine-server.enable = true;
+      nextcloud.enable = true;
       tilesproxy.enable = true;
       nginx = {
         enable = true;
@@ -44,7 +43,7 @@
   };
 
   users.users = {
-    snakii = {
+    emily = {
       extraGroups = [
         "wheel"
       ];

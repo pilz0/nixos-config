@@ -22,7 +22,7 @@
   };
 
   users.users = {
-    snakii = {
+    emily = {
       extraGroups = [
         "wheel"
       ];

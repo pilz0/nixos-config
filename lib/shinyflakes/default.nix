@@ -61,11 +61,12 @@ let
       modules = [
         ../deployment
         ../../machines/${hostname}
+        ../../profiles/importAll
         inputs.agenix.nixosModules.default
         (
           { ... }:
           {
-            # claude slop that needs to be cleaned
+            # claude slop that needs to be cleaned up
             nixpkgs.hostPlatform.system = system;
             # Provide pkgs-unstable via _module.args (not specialArgs) so it is
             # also available when colmena re-evaluates a node from its module

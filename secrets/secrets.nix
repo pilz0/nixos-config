@@ -26,7 +26,7 @@ let
   rpki = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJWxHkhwJPhT0hL1TGWjIxWSRPzMvGleKE9Jq9mCUXOI root@rpki"
   ];
-  snakii = [
+  emily = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA/+iN407+HsfHbbC3tfdA8Yf4TZ08qXQMb4tb/SDAs+"
   ];
   fedi-bot = [
@@ -96,16 +96,16 @@ in
   "wg.age".publicKeys = marielap ++ dn42;
   "nixarr-wg.age".publicKeys = marielap ++ jellyfin;
   "HashedPassword.age".publicKeys = marielap ++ Laptop;
-  "cloudflare_cert.age".publicKeys = marielap ++ web1_host ++ grafana ++ snakii;
-  "cloudflare_key.age".publicKeys = marielap ++ web1_host ++ grafana ++ snakii;
+  "cloudflare_cert.age".publicKeys = marielap ++ web1_host ++ grafana ++ emily;
+  "cloudflare_key.age".publicKeys = marielap ++ web1_host ++ grafana ++ emily;
   "s3-mastodon.age".publicKeys = marielap;
   "netbox.age".publicKeys = marielap ++ netbox;
   "harmonia.age".publicKeys = marielap ++ build;
-  "nixbuildssh.age".publicKeys = all_hosts ++ snakii;
+  "nixbuildssh.age".publicKeys = all_hosts ++ emily;
   "github-runner.age".publicKeys = marielap ++ build;
   "wg-key-ams1-dn42.age".publicKeys = marielap ++ dn42;
-  "fedi-bot-hfToken.age".publicKeys = marielap ++ jellyfin ++ snakii ++ fedi-bot ++ jetson-warcrime;
-  "fedi-bot-fediToken.age".publicKeys = marielap ++ jellyfin ++ snakii ++ fedi-bot ++ jetson-warcrime;
+  "fedi-bot-hfToken.age".publicKeys = marielap ++ jellyfin ++ emily ++ fedi-bot ++ jetson-warcrime;
+  "fedi-bot-fediToken.age".publicKeys = marielap ++ jellyfin ++ emily ++ fedi-bot ++ jetson-warcrime;
   "tsig_ns.age".publicKeys = marielap ++ netbox ++ dn42 ++ build-aarch64;
   "tor-familiy.age".publicKeys = marielap ++ tor;
 }

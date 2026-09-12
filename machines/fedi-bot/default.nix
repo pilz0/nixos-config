@@ -7,7 +7,6 @@
 }:
 {
   imports = [
-    ../../profiles/importAll
     ../../profiles/container
     inputs.fedi-bot.nixosModules.default
   ];
@@ -62,7 +61,7 @@
     };
   };
   users.users = {
-    snakii = {
+    emily = {
       extraGroups = [
         "wheel"
       ];

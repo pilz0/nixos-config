@@ -77,6 +77,7 @@ in
         github-copilot-cli
         mpv-unwrapped
         firefox
+        daisydisk
       ]);
   };
 }

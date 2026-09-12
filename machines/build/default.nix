@@ -5,7 +5,6 @@
 }:
 {
   imports = [
-    ../../profiles/importAll
     ../../profiles/container
     ../../profiles/builder
   ];

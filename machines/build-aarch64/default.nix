@@ -6,7 +6,6 @@
 }:
 {
   imports = [
-    ../../profiles/importAll
     inputs.disko.nixosModules.disko
     inputs.determinate.nixosModules.default
     ../../profiles/builder

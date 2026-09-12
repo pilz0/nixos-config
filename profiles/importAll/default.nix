@@ -26,6 +26,8 @@
     ../../modules/services/nixos-builder
     ../../modules/services/knot-dns
     ../../modules/services/binary-cache
+    ../../modules/services/timemachine-server
+    ../../modules/services/nextcloud
     ../../modules/shell
   ];
 }

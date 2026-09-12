@@ -5,7 +5,6 @@
 }:
 {
   imports = [
-    ../importAll
     ./network.nix
     inputs.determinate.nixosModules.default
     "${modulesPath}/virtualisation/proxmox-lxc.nix"
