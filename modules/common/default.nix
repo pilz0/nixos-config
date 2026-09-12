@@ -46,12 +46,15 @@
         automatic = true;
         options = "--delete-older-than 7d";
       };
-      settings.experimental-features = [
-        "nix-command"
-        "flakes"
-        "cgroups"
-        "pipe-operators"
-      ];
+      settings = {
+        trusted-users = [ "root" "@wheel" ];
+        experimental-features = [
+          "nix-command"
+          "flakes"
+          "cgroups"
+          "pipe-operators"
+        ];
+      };
     };
 
     nixpkgs.config.allowUnfree = true;
