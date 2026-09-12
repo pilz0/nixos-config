@@ -1,31 +1,40 @@
-{ config, inputs, lib, ... }: let
+{
+  config,
+  inputs,
+  lib,
+  ...
+}:
+let
   cfg = config.mira.services.vaultwarden;
-in {
+in
+{
   imports = [
     inputs.sops-nix.nixosModules.sops
     inputs.emily-nixfiles.nixosModules.restic
     inputs.emily-nixfiles.nixosModules.nginx
   ];
 
-  options.mira.services.vaultwarden = let
-    inherit (lib) mkOption types;
-  in {
-    enable = lib.mkEnableOption "Enable miras vaultwarden";
-    domain = mkOption {
-      description = "domain";
-      type = types.nonEmptyStr;
-      default = "vault.kyouma.net";
-    };
-    snmpHost = mkOption {
-      type = types.nonEmptyStr;
-      default = "mail.kyouma.net";
-    };
-    snmpFrom = mkOption {
-      type = types.nonEmptyStr;
-      default = "vault@kyouma.net";
-    };
+  options.mira.services.vaultwarden =
+    let
+      inherit (lib) mkOption types;
+    in
+    {
+      enable = lib.mkEnableOption "Enable miras vaultwarden";
+      domain = mkOption {
+        description = "domain";
+        type = types.nonEmptyStr;
+        default = "vault.kyouma.net";
+      };
+      snmpHost = mkOption {
+        type = types.nonEmptyStr;
+        default = "mail.kyouma.net";
+      };
+      snmpFrom = mkOption {
+        type = types.nonEmptyStr;
+        default = "vault@kyouma.net";
+      };
 
-  };
+    };
 
   config = lib.mkIf cfg.enable {
     sops.secrets."services/vaultwarden/environmentFile" = {
@@ -75,7 +84,7 @@ in {
         basicAuthFile = config.sops.secrets."services/vaultwarden/basicAuth".path;
       };
     };
-    security.acme.certs.${cfg.domain} = {};
+    security.acme.certs.${cfg.domain} = { };
 
     kyouma.restic.paths = [
       config.services.vaultwarden.backupDir

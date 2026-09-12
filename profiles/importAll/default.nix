@@ -12,6 +12,7 @@
     ../../modules/monitoring/promtail
     ../../modules/nixos-builder-client
     ../../modules/services/as214958-net
+    ../../modules/services/diyhrt-web
     ../../modules/services/bird-lg-frontend
     ../../modules/services/github-runner
     ../../modules/services/nginx

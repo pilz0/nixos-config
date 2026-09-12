@@ -5,7 +5,6 @@
       "nix-command"
       "flakes"
       "pipe-operators"
-      "pipe-operator"
     ];
   };
   outputs =

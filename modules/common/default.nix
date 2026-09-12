@@ -47,7 +47,10 @@
         options = "--delete-older-than 7d";
       };
       settings = {
-        trusted-users = [ "root" "@wheel" ];
+        trusted-users = [
+          "root"
+          "@wheel"
+        ];
         experimental-features = [
           "nix-command"
           "flakes"

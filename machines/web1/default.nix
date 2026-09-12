@@ -4,12 +4,13 @@
 {
   imports = [
     ../../profiles/container
-    #../../modules/services/vaultwarden slop
+    ../../modules/services/vaultwarden
     ./proxys.nix
   ];
 
   pilz = {
     services = {
+      diyhrt-web.enable = true;
       timemachine-server.enable = true;
       nextcloud.enable = true;
       tilesproxy.enable = true;
@@ -17,16 +18,16 @@
         enable = true;
         enableMonitoring = true;
       };
-    };
-    services.testfile.enable = true;
-    services.as214958Net.enable = true;
-    services.birdLg.frontend.enable = true;
-    services.pve-container.network = {
-      enable = true;
-      address = [
-        "94.142.241.152/31"
-        "2a0e:8f02:f017::2/64"
-      ];
+      testfile.enable = true;
+      as214958Net.enable = true;
+      birdLg.frontend.enable = true;
+      pve-container.network = {
+        enable = true;
+        address = [
+          "94.142.241.152/31"
+          "2a0e:8f02:f017::2/64"
+        ];
+      };
     };
     deployment = {
       targetHost = "web1.ams1.as214958.net";
@@ -38,15 +39,15 @@
     };
   };
 
-  #mira.services.vaultwarden.enable = true;
-  #kyouma.restic = {
-  #  enable = true;
-  #  remoteUser = "zh3485s3";
-  #  timerConfig = {
-  #    OnCalender = "0,6,12,18:00:00";
-  #    Persistent = true;
-  #  };
-  #};
+  mira.services.vaultwarden.enable = true;
+  kyouma.restic = {
+    enable = true;
+    remoteUser = "zh3485s3";
+    timerConfig = {
+      OnCalender = "0,6,12,18:00:00";
+      Persistent = true;
+    };
+  };
 
   networking = {
     hostName = "web1";
