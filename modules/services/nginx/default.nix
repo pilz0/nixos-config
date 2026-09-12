@@ -67,6 +67,9 @@ in
             ${realIpsFromList cfipv4}
             ${realIpsFromList cfipv6}
             real_ip_header CF-Connecting-IP;
+            map $scheme $hsts_header {
+              https   "max-age=31536000; includeSubdomains; preload";
+            }
           '';
       };
     };
