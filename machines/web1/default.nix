@@ -4,6 +4,7 @@
 {
   imports = [
     ../../profiles/container
+    ../../modules/services/vaultwarden
     ./proxys.nix
   ];
 
@@ -34,6 +35,16 @@
     lxc = {
       enable = true;
       ctID = "100";
+    };
+  };
+
+  mira.services.vaultwarden.enable = true;
+  kyouma.restic = {
+    enable = true;
+    remoteUser = "zh3485s3";
+    timerConfig = {
+      OnCalender = "0,6,12,18:00:00";
+      Persistent = true;
     };
   };
 
