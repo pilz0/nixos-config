@@ -5,6 +5,7 @@
       "nix-command"
       "flakes"
       "pipe-operators"
+      "pipe-operator"
     ];
   };
   outputs =
@@ -84,6 +85,7 @@
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
     #    microvm.url = "github:microvm-nix/microvm.nix";
+    emily-nixfiles.url = "git+https://woof.rip/emily/nixfiles.git";
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -106,6 +108,10 @@
     };
     disko = {
       url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
