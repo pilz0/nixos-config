@@ -37,7 +37,7 @@
   nix.settings.trusted-users = [
     "emily"
     "marie"
-    "root"    
+    "root"
   ];
 
   users.users = {

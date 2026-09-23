@@ -71,6 +71,6 @@ in
       jellyfin = {
         enable = true;
       };
-      };
     };
+  };
 }

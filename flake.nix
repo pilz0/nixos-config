@@ -1,12 +1,12 @@
 {
   description = "Pilz's nixos-based infra";
-   nixConfig = {
+  nixConfig = {
     experimental-features = [
-    #  "nix-command"
-    #  "flakes"
+      #  "nix-command"
+      #  "flakes"
       "pipe-operators"
     ];
-  }; 
+  };
   outputs =
     {
       self,

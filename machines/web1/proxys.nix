@@ -21,14 +21,6 @@
           proxyWebsockets = true;
         };
       };
-      "flohannes.de" = {
-        enableACME = true;
-        forceSSL = true;
-        locations."/" = {
-          proxyPass = "http://localhost:8081";
-          proxyWebsockets = true;
-        };
-      };
       "lg.as214958.net" = {
         enableACME = true;
         forceSSL = true;

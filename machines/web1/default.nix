@@ -52,6 +52,7 @@
 
   networking = {
     hostName = "web1";
+    domain = "ams1.as214958.net";
     hostId = "4066b435";
   };
 
