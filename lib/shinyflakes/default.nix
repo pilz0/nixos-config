@@ -63,6 +63,7 @@ let
         ../../machines/${hostname}
         ../../profiles/importAll
         inputs.agenix.nixosModules.default
+        inputs.sops-nix.nixosModules.sops
         (
           { ... }:
           {

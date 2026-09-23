@@ -4,7 +4,7 @@
 {
   imports = [
     ../../profiles/container
-    ../../modules/services/vaultwarden
+    ../../profiles/mira
     ./proxys.nix
   ];
 
@@ -54,18 +54,6 @@
     hostName = "web1";
     domain = "ams1.as214958.net";
     hostId = "4066b435";
-  };
-
-  users.users = {
-    emily = {
-      extraGroups = [
-        "wheel"
-      ];
-      isNormalUser = true;
-      openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA/+iN407+HsfHbbC3tfdA8Yf4TZ08qXQMb4tb/SDAs+"
-      ];
-    };
   };
 
   networking.firewall = {

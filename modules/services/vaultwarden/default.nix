@@ -8,12 +8,6 @@ let
   cfg = config.mira.services.vaultwarden;
 in
 {
-  imports = [
-    inputs.sops-nix.nixosModules.sops
-    inputs.emily-nixfiles.nixosModules.restic
-    inputs.emily-nixfiles.nixosModules.nginx
-  ];
-
   options.mira.services.vaultwarden =
     let
       inherit (lib) mkOption types;

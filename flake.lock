@@ -375,7 +375,9 @@
         "florp-about": "florp-about",
         "florp-branding": "florp-branding",
         "florp-moderation": "florp-moderation",
-        "home-manager": "home-manager",
+        "home-manager": [
+          "home-manager"
+        ],
         "hydra": "hydra",
         "kyouma-www": "kyouma-www",
         "nixos-hardware": "nixos-hardware",
@@ -770,27 +772,6 @@
       }
     },
     "home-manager": {
-      "inputs": {
-        "nixpkgs": [
-          "emily-nixfiles",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1786031233,
-        "narHash": "sha256-TIDlLTLI1/pB7IqgjzcKQjpODQsZE2oII4XGG9B6KjI=",
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "rev": "7834e82588860aaf780cec1366524456a70898d7",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "type": "github"
-      }
-    },
-    "home-manager_2": {
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
@@ -1609,7 +1590,7 @@
         "disko": "disko",
         "emily-nixfiles": "emily-nixfiles",
         "flake-utils": "flake-utils_2",
-        "home-manager": "home-manager_2",
+        "home-manager": "home-manager",
         "homebrew-cask": "homebrew-cask",
         "homebrew-core": "homebrew-core",
         "jetpack": "jetpack",

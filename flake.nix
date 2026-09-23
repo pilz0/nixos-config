@@ -100,7 +100,10 @@
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
     #    microvm.url = "github:microvm-nix/microvm.nix";
-    emily-nixfiles.url = "git+https://woof.rip/emily/nixfiles.git";
+    emily-nixfiles = {
+      url = "git+https://woof.rip/emily/nixfiles.git";
+      inputs.home-manager.follows = "home-manager";
+    };
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
