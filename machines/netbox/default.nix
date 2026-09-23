@@ -37,7 +37,6 @@
     allowedUDPPorts = [
     ];
     extraCommands = ''
-      ${pkgs.iptables}/bin/ip6tables -A INPUT -p tcp --dport 9100 -s 2a0e:8f02:f017::3 -j ACCEPT
       ${pkgs.iptables}/bin/iptables -A INPUT -p tcp --dport 80 -s 94.142.241.152 -j ACCEPT
       ${pkgs.iptables}/bin/ip6tables -A INPUT -p tcp --dport 80 -s 2a0e:8f02:f017::2 -j ACCEPT
       ${pkgs.iptables}/bin/iptables -A INPUT -p tcp --dport 443 -s 94.142.241.152 -j ACCEPT

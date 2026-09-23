@@ -8,6 +8,7 @@
     ../../modules/monitoring/loki
     ../../modules/monitoring/netflow-exporter
     ../../modules/monitoring/node-exporter
+    ../../modules/monitoring/systemd-exporter
     ../../modules/monitoring/prometheus
     ../../modules/monitoring/promtail
     ../../modules/nixos-builder-client

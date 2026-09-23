@@ -6,7 +6,7 @@ contactPoints:
         - uid: ddygmh6y7orggf
           type: email
           settings:
-            addresses: marie0@riseup.net
+            addresses: alert@pilz.foo
             disableResolveMessage: false
             singleEmail: false
           disableResolveMessage: false

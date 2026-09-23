@@ -16,8 +16,7 @@
     shell.enable = true;
     services.ssh.enable = true;
     monitoring.node-exporter.enable = true;
-    #services.nixosBuilderClient.enable = true;
-    #services.promtail.enable = true;
+    monitoring.systemd-exporter.enable = true;
     common.enable = true;
   };
 
@@ -27,8 +26,8 @@
     manageHostName = false;
   };
 
-  documentation.man.generateCaches = false;
-
+  documentation.man.cache.enable = false;
+  
   security.sudo = {
     enable = true;
     execWheelOnly = true;

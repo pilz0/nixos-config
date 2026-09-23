@@ -8,7 +8,7 @@
     nvidia-container-toolkit.enable = true;
     nvidia-jetpack = {
       enable = true;
-      configureCuda = true;
+      configureCuda = false;
       som = "xavier-agx";
       carrierBoard = "devkit";
       modesetting.enable = false;

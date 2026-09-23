@@ -4,10 +4,10 @@
   ...
 }:
 let
-  cfg = config.pilz.monitoring.node-exporter;
+  cfg = config.pilz.monitoring.systemd-exporter;
 in
 {
-  options.pilz.monitoring.node-exporter = {
+  options.pilz.monitoring.systemd-exporter = {
     enable = lib.mkEnableOption "";
     monitoring-servers = lib.mkOption {
       type = lib.types.str;
@@ -17,15 +17,13 @@ in
   config = lib.mkIf cfg.enable {
     services.prometheus = {
       exporters = {
-        node = {
+        systemd = {
           enable = true;
-          openFirewall = false;
-          enabledCollectors = [ "systemd" ];
         };
       };
     };
     networking.firewall.extraCommands = ''
-      ip6tables -I nixos-fw -p tcp -s ${cfg.monitoring-servers} -m tcp --dport 9100 -j nixos-fw-accept
+      ip6tables -I nixos-fw -p tcp -s ${cfg.monitoring-servers} -m tcp --dport 9558 -j nixos-fw-accept
     '';
   };
 }

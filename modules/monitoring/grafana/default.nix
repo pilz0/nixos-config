@@ -144,7 +144,7 @@ in
         security = {
           admin_password = cfg.adminPassword;
           admin_user = "admin";
-          admin_email = "marie0@riseup.net";
+          admin_email = "f@pilz.foo";
           secret_key = "SW2YcwTIb9zpOOhoPsMm";
         };
       };

@@ -33,6 +33,10 @@ $ORIGIN 7.1.0.f.2.0.f.8.e.0.a.2.ip6.arpa.
 8.1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1.0.0.0.7.1.0.f.2.0.f.8.e.0.a.2.ip6.arpa.	IN	PTR	magbook.vpn.ams1.as214958.net.
 9.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.7.1.0.f.2.0.f.8.e.0.a.2.ip6.arpa.	IN	PTR	tor1.ams1.as214958.net.
 9.1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.7.1.0.f.2.0.f.8.e.0.a.2.ip6.arpa.	IN	PTR	kube-control1.ams1.as214958.net.
+8.2.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.7.1.0.f.2.0.f.8.e.0.a.2.ip6.arpa.	IN	PTR	anodyne.as214958.net.
+5.2.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.7.1.0.f.2.0.f.8.e.0.a.2.ip6.arpa.     IN    PTR   router.vpn.ams1.as214958.net.
+8.1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.7.1.0.f.2.0.f.8.e.0.a.2.ip6.arpa.     IN    PTR   magbook.vpn.ams1.as214958.net.
+
 
 ;; TXT Records
 7.1.0.f.2.0.f.8.e.0.a.2.ip6.arpa.	IN	TXT	"oa1:xmr recipient_address=88WLJBRCnJcbVXP4xPvHoSVskZqAUGYJLJz1bF2m1G9dWykoPFQP7uAF1ybobfuBQQ8UgyDBYzPPc7iTP3oyAKTk3czZCPr; recipient_name=Pilz;"

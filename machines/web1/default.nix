@@ -6,6 +6,7 @@
     ../../profiles/container
     ../../modules/services/vaultwarden
     ./proxys.nix
+    ./wordpress.nix
   ];
 
   pilz = {

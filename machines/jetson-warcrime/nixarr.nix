@@ -9,7 +9,7 @@ let
 in
 {
   imports = [
-    inputs.nixarr.nixosModules.default
+    inputs.nixarr-jetson.nixosModules.default
   ];
 
   options.pilz.services.nixarr = {
@@ -33,7 +33,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-
     age.secrets.nixarr-wg = {
       file = cfg.wgConfSecretFile;
     };
@@ -71,6 +70,6 @@ in
       jellyfin = {
         enable = true;
       };
-      };
     };
+  };
 }

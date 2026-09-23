@@ -107,7 +107,7 @@
         config = {
           user = {
             name = "pilz0";
-            email = "marie0@riseup.net";
+            email = "48645439+pilz0@users.noreply.github.com";
           };
         };
       };
@@ -117,7 +117,7 @@
       nixos-needsreboot = {
         supportsDryActivation = true;
         text = "${
-          lib.getExe inputs.nixos-needsreboot.packages.${pkgs.system}.default
+          lib.getExe inputs.nixos-needsreboot.packages.${pkgs.stdenv.hostPlatform.system}.default
         } \"$systemConfig\" || true";
       };
     };

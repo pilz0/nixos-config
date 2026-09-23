@@ -49,9 +49,6 @@ in
 
       firewall = {
         allowedTCPPorts = [ 22 ];
-        extraCommands = ''
-          ${pkgs.iptables}/bin/ip6tables -A INPUT -p tcp --dport 9100 -s 2a0e:8f02:f017::3 -j ACCEPT
-        '';
       };
       extraHosts = ''
         ::1 ${config.networking.fqdn}

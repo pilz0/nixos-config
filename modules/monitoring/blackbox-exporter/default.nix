@@ -15,16 +15,19 @@
           listenAddress = "[::]";
           configFile = builtins.toFile "blackbox-config" ''
             modules:
-              anodyne-probe:
+              http-2xx:
                 prober: http
                 timeout: 10s
                 http:
                   method: GET
                   fail_if_not_ssl: true
-                  fail_if_body_not_matches_regexp:
-                    - "Welcome to AnodyneWiki"
+                  valid_status_codes: []
                   headers:
-                    User-Agent: "blackbox-exporter (AS214958; contact: noc@as214958.net)"        
+                    User-Agent: "blackbox-exporter (AS214958; contact: noc@as214958.net)"
+              icmp:
+                prober: icmp
+                timeout: 10s
+                icmp:
           '';
         };
       };

@@ -1,11 +1,11 @@
 {
   pkgs,
+  inputs,
   ...
 }:
 {
   imports = [
     ../../profiles/container
-    ../../profiles/importAll
   ];
 
   pilz = {

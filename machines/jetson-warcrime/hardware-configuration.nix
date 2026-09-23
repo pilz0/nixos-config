@@ -12,13 +12,21 @@
   ];
 
   boot = {
-    initrd.availableKernelModules = [
-      "nvme"
-      "ahci"
-      "usbhid"
-      "usb_storage"
-    ];
-    initrd.kernelModules = [ ];
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = false;
+    };
+
+    initrd = {
+      systemd.tpm2.enable = false;
+      availableKernelModules = [
+        "nvme"
+        "ahci"
+        "usbhid"
+        "usb_storage"
+      ];
+      kernelModules = [ ];
+    };
     kernelModules = [ ];
     extraModulePackages = [ ];
   };

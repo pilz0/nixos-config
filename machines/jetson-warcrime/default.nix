@@ -1,10 +1,15 @@
 {
+  config,
   inputs,
+  lib,
   ...
 }:
 {
+  disabledModules = [
+    ../../modules/services/nixarr
+  ];
+
   imports = [
-    ../../profiles/importAll
     inputs.jetpack.nixosModules.default
     inputs.determinate.nixosModules.default
     inputs.vscode-server.nixosModules.default
@@ -12,6 +17,8 @@
     ./graphics.nix
     ./pkgs.nix
     ./hardware-configuration.nix
+    ./nixarr.nix
+    ./networking.nix
   ];
 
   pilz = {
@@ -19,9 +26,27 @@
     audio.enable = true;
     services.ssh.enable = true;
     shell.enable = true;
+    services.nixarr = {
+      enable = true;
+      wgConfSecretFile = ../../secrets/wg-jetson.age;
+      peerPort = 63077;
+    };
   };
+  security.sudo.wheelNeedsPassword = false;
+
+  nix.settings.trusted-users = [
+    "emily"
+    "marie"
+    "root"    
+  ];
 
   users.users = {
+    marie = {
+      extraGroups = [
+        "wheel"
+      ];
+      isNormalUser = true;
+    };
     emily = {
       extraGroups = [
         "wheel"
@@ -33,22 +58,20 @@
     };
   };
 
-  age.secrets.fediToken = {
-    file = ../../secrets/fedi-bot-fediToken.age;
-  };
-  age.secrets.hfToken = {
-    file = ../../secrets/fedi-bot-hfToken.age;
-  };
-
   pilz = {
     deployment = {
+      targetUser = "marie";
       targetHost = "192.168.0.225";
+      buildOnTarget = true;
     };
   };
 
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
+  systemd.services.transmission.serviceConfig.RootDirectory = lib.mkForce "";
+
+  networking.nat = {
+    enable = true;
+    externalInterface = "end0";
+    internalInterfaces = [ "wg-br" ];
   };
 
   services.vscode-server.enable = true;
@@ -75,14 +98,28 @@
     keyMap = "de";
   };
 
+  programs.ssh.knownHosts."eu.nixbuild.net".publicKey =
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPIQCZc54poJ8vqawd8TraNryQeJnvH1eLpIDgbiqymM";
+
   nix = {
-    optimise = {
-      automatic = true;
-      randomizedDelaySec = "0";
-      dates = [
-        "03:45"
-      ];
-    };
+    distributedBuilds = true;
+    buildMachines = [
+      {
+        hostName = "eu.nixbuild.net";
+        protocol = "ssh";
+        sshUser = "root";
+        sshKey = "/home/marie/nixbuild"; # registered on nixbuild.net
+        system = "aarch64-linux";
+        maxJobs = 100;
+        speedFactor = 10;
+        supportedFeatures = [
+          "benchmark"
+          "big-parallel"
+        ];
+      }
+    ];
+
+    settings.builders-use-substitutes = true;
     settings.experimental-features = [
       "nix-command"
       "flakes"

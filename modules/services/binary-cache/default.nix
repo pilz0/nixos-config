@@ -2,25 +2,26 @@
   inputs,
   lib,
   config,
+  options,
   ...
 }:
 {
-  imports = [
-    inputs.harmonia.nixosModules.harmonia
-  ];
   options.pilz.services.binary-cache.enable = lib.mkEnableOption "";
-  config = lib.mkIf config.pilz.services.binary-cache.enable {
+  config =
+    if options ? services && options.services ? harmonia && options.services.harmonia ? cache then
+      lib.mkIf config.pilz.services.binary-cache.enable {
+        age.secrets."harmonia-signing-key".file = ../../../secrets/harmonia.age;
 
-    age.secrets."harmonia-signing-key".file = ../../../secrets/harmonia.age;
+        services.harmonia.cache = {
+          enable = true;
+          signKeyPaths = [ config.age.secrets."harmonia-signing-key".path ];
+        };
 
-    services.harmonia-dev.cache = {
-      enable = true;
-      signKeyPaths = [ config.age.secrets."harmonia-signing-key".path ];
-    };
-
-    systemd.services = {
-      harmonia-dev.serviceConfig.Nice = "-15";
-      nginx.serviceConfig.SupplementaryGroups = [ "harmonia" ];
-    };
-  };
+        systemd.services = {
+          harmonia.serviceConfig.Nice = "-15";
+          nginx.serviceConfig.SupplementaryGroups = [ "harmonia" ];
+        };
+      }
+    else
+      { };
 }

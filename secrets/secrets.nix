@@ -12,7 +12,7 @@ let
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAk5vEQRmYmmUmWEhh6lLnip/mEu4E52RcnuubaG09qO root@web1"
   ];
   jellyfin = [
-    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC5p8m0YGdCVu6GLnfTcvKczx9FQ6qkBiGLHgYB4F/rIjqZmS9WTeu1a/UdmibBEAqKONSv2Er1lfvNtCDqbtv07a+RKw23VnS23WLWmUNk2ivgqg/Q4z6IwZFcGAcOwdNzB2PlFruJgLQJcfPsqPQ6akRmwgxJaK7CEjzz6wmB0eqNRdN4NgTBBgoukG8jQOr+MvUaB+DS6AEwZMzXLVyW3jsCRDdrry7Fm1XLQYdu/jUvWaNfA4B+jj9EWcVKrfq66iv4q8s4rxoN2Rs+11+txvp9P+wwgl8S1w7CxC49NFI6HX5ubVgoypzJhL7RIz//AZw5BwTeKlvl31O+R6Ft96krt5wS6LEauUdVMUf9xshNQMH5kuquOZwBoTcUww2H0RY/K6Hb1ehq1yfjnSp74OUfk/ouCM+Z7emeq5QwJ5eueJxDy0FI/cp140w2LXLZJYzJaixBXPJwvlGxBAqUZQd8HbgY/m3CuF2yNbepKeuXEOfVb5BAA4ZDVQze/iK2iwesXvV2axi09u5hcW+/Q1WWVv/ablvOxBUQOn6b1+mSaVO9CVALrs25nMT9MGsIdhBZCvLxZleXM7g/lOfOi4GZYSEIiyghIFHl5Ce/npHVJbhJFGsAI+HrSWH8R80hJS70JbP5GZ8Zn184y5alIi5Qn4FhGF/yhjoIrZWDEQ== root@jellyfin"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL9oSm2h9Grq49CTX8MfRMn7vFPWPFdpyu9e1btshv93 root@jellyfin"
   ];
   dn42 = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEk0MhPUq/EcX8+X2zepDSl7t3Eluv0YkOIilGFkFv8p root@dn42"
@@ -33,7 +33,7 @@ let
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPjqRp9g0aeaUjRIG8r6qB8kFdvDUYFV+6DzRQBEYw0Z root@fedi-bot"
   ];
   jetson-warcrime = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOessry4YtF08jzZv2EeNEnsLz36Un7SQ7tBDmSq0ec7 root@nixos"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMwN/bH7k75m4f2RwdeNsnnNRhCKQVtfZsbgR1zVvVAH root@jetson-warcrime"
   ];
   build-aarch64 = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFmKUILzb3kuLq4g3MD7NJEIXIZghQqozqRa/SdYoYzK root@build-aarch64"
@@ -86,7 +86,7 @@ let
     ++ build-aarch64
     ++ fedi-bot;
 
-  tor = tor1 ++ tor2 ++ tor3 ++ tor4 ++ tor5 ++ tor6 ++ tor7 ++ tor8;
+  tor = tor1 ++ tor2 ++ tor3 ++ tor4 ++ tor5 ++ tor6 ++ tor7 ++ tor8 ++ build-aarch64;
 in
 {
   "rclone.age".publicKeys = Laptop ++ marielap ++ grafana;
@@ -100,12 +100,13 @@ in
   "cloudflare_key.age".publicKeys = marielap ++ web1_host ++ grafana ++ emily;
   "s3-mastodon.age".publicKeys = marielap;
   "netbox.age".publicKeys = marielap ++ netbox;
-  "harmonia.age".publicKeys = marielap ++ build;
+  "harmonia.age".publicKeys = marielap ++ build ++ build-aarch64;
   "nixbuildssh.age".publicKeys = all_hosts ++ emily;
   "github-runner.age".publicKeys = marielap ++ build;
   "wg-key-ams1-dn42.age".publicKeys = marielap ++ dn42;
-  "fedi-bot-hfToken.age".publicKeys = marielap ++ jellyfin ++ emily ++ fedi-bot ++ jetson-warcrime;
+  "fedi-bot-hfToken.age".publicKeys = marielap ++ jellyfin ++ emily ++ fedi-bot;
   "fedi-bot-fediToken.age".publicKeys = marielap ++ jellyfin ++ emily ++ fedi-bot ++ jetson-warcrime;
   "tsig_ns.age".publicKeys = marielap ++ netbox ++ dn42 ++ build-aarch64;
   "tor-familiy.age".publicKeys = marielap ++ tor;
+  "wg-jetson.age".publicKeys = marielap ++ jetson-warcrime;
 }

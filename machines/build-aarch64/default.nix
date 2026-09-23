@@ -15,9 +15,17 @@
   ];
 
   pilz = {
+    services.tor-relay = {
+      #enable = true;
+      address = "89.168.97.129";
+      nickname = "as214958tor9";
+      orPort = 8443;
+      bandWidth = 3;
+    };
     services.ssh.enable = true;
     shell.enable = true;
     monitoring.node-exporter.enable = true;
+    monitoring.systemd-exporter.enable = true;
     common.enable = true;
     deployment = {
       targetHost = "89.168.97.129";
@@ -82,8 +90,7 @@
       22
       80
       443
-    ];
-    allowedUDPPorts = [
+      8443
     ];
   };
   system.stateVersion = "23.11";

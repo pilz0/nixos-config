@@ -34,8 +34,17 @@
                 "dn42.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
                 "netbox.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
                 "build.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
+                "web1.ams1.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
+                "grafana.ams1.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
+                "jellyfin.ams1.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
+                "rpki.ams1.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
+                "dn42.ams1.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
+                "netbox.ams1.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
+                "build.ams1.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
                 "grafana.ams1.as214958.net:9590" # netflow exporter
-                "anodyne.wiki:9100"
+                "anodyne.wiki:${toString config.services.prometheus.exporters.node.port}"
+                "build-aarch64.as214958.net:${toString config.services.prometheus.exporters.node.port}"
+                "build-aarch64.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
               ];
             }
           ];
@@ -46,10 +55,6 @@
           static_configs = [
             {
               targets = [
-                "tor1.ketamin.trade:${toString config.services.prometheus.exporters.node.port}"
-                "tor2.ketamin.trade:${toString config.services.prometheus.exporters.node.port}"
-                "tor3.ketamin.trade:${toString config.services.prometheus.exporters.node.port}"
-                "tor4.ketamin.trade:${toString config.services.prometheus.exporters.node.port}"
                 "tor1.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
                 "tor2.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
                 "tor3.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
@@ -58,6 +63,14 @@
                 "tor6.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
                 "tor7.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
                 "tor8.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
+                "tor1.ams1.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
+                "tor2.ams1.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
+                "tor3.ams1.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
+                "tor4.ams1.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
+                "tor5.ams1.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
+                "tor6.ams1.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
+                "tor7.ams1.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
+                "tor8.ams1.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
                 "tor1.ams1.as214958.net:9052" # tor
                 "tor2.ams1.as214958.net:9052" # tor
                 "tor3.ams1.as214958.net:9052" # tor
@@ -73,13 +86,44 @@
           ];
         }
         {
-          job_name = "blackbox_http";
+          job_name = "blackbox";
           metrics_path = "/probe";
-          params.module = [ "anodyne-probe" ];
+          params.module = [ "http-2xx" ];
           static_configs = [
             {
               targets = [
                 "https://anodyne.wiki"
+                "https://watch.kyouma.net"
+                "https://jellyfin.pilz.foo"
+                "https://cocaine.trade"
+                "https://flohannes.de"
+                "https://florp.social"
+              ];
+            }
+          ];
+          relabel_configs = [
+            {
+              source_labels = [ "__address__" ];
+              target_label = "__param_target";
+            }
+            {
+              source_labels = [ "__param_target" ];
+              target_label = "instance";
+            }
+            {
+              target_label = "__address__";
+              replacement = "localhost:9115";
+            }
+          ];
+        }
+        {
+          job_name = "ping-probe";
+          metrics_path = "/probe";
+          params.module = [ "icmp" ];
+          static_configs = [
+            {
+              targets = [
+                "tomate.kyouma.net"
               ];
             }
           ];

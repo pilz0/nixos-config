@@ -47,7 +47,6 @@ in
         openvpn
         # bitwarden-desktop
         dash
-        #spotify
         nil
         nixd
         python314
@@ -78,6 +77,7 @@ in
         mpv-unwrapped
         firefox
         daisydisk
+        spotify
       ]);
   };
 }

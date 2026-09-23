@@ -26,6 +26,8 @@
       killall
       gnupg
       vlc
+      yt-dlp
+      supertuxkart
     ])
     ++ (with pkgs-unstable; [
       ollama
@@ -55,7 +57,7 @@
       config = {
         user = {
           name = "pilz0";
-          email = "marie0@riseup.net";
+          email = "48645439+pilz0@users.noreply.github.com";
         };
       };
     };
