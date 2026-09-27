@@ -40,10 +40,14 @@
     };
   };
 
-  mira.services.vaultwarden.enable = true;
+  mira.services = {
+    vaultwarden.enable = true;
+    forgejo.enable = true;
+  };
   kyouma.restic = {
     enable = true;
     remoteUser = "zh3485s3";
+    backupPostgresql = true;
     timerConfig = {
       OnCalender = "0,6,12,18:00:00";
       Persistent = true;
