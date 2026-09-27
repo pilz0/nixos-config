@@ -33,14 +33,14 @@
   determinateNix = {
     enable = true;
     customSettings = {
-    extra-trusted-users = [ "pilz" ];
-    use-case-hack = false;
-    experimental-features = [
-      "nix-command"
-      "flakes"
-      "cgroups"
-      "pipe-operators"
-    ];
+      extra-trusted-users = [ "pilz" ];
+      use-case-hack = false;
+      experimental-features = [
+        "nix-command"
+        "flakes"
+        "cgroups"
+        "pipe-operators"
+      ];
     };
   };
 

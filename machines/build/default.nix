@@ -39,7 +39,12 @@
   };
 
   nix.settings = {
-    system-features = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
+    system-features = [
+      "nixos-test"
+      "benchmark"
+      "big-parallel"
+      "kvm"
+    ];
     max-jobs = 10;
     cores = 36;
   };

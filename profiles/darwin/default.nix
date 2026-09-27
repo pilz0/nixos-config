@@ -15,7 +15,7 @@
 
   nix.extraOptions = ''
     	  builders-use-substitutes = true
-    '';
+  '';
   nix.settings = {
     substituters = lib.mkAfter [
       "https://nix-community.cachix.org"

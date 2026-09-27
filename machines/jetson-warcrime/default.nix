@@ -65,7 +65,6 @@
     };
   };
 
-
   systemd.services.transmission.serviceConfig.RootDirectory = lib.mkForce "";
 
   networking.nat = {

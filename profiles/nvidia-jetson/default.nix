@@ -56,6 +56,5 @@
 
   users.groups.debug = { };
 
-
   programs.dconf.enable = true;
 }

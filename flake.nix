@@ -17,10 +17,10 @@
       sf = import ./lib/shinyflakes inputs;
     in
     {
-    hydraJobs = {
-      inherit (self);
-      nixosConfigurations = sf.mapHydraHosts self.nixosConfigurations;
-    };
+      hydraJobs = {
+        inherit (self) ;
+        nixosConfigurations = sf.mapHydraHosts self.nixosConfigurations;
+      };
       darwinConfigurations = sf.mapDarwinCfg {
         darwinHosts = sf.mapHostsMerge ./machines/darwin {
         };
