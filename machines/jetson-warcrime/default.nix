@@ -41,12 +41,6 @@
 
   hardware.nvidia-jetpack.som = "xavier-agx";
 
-  nix.settings.trusted-users = [
-    "emily"
-    "marie"
-    "root"
-  ];
-
   users.users = {
     marie = {
       extraGroups = [
@@ -117,13 +111,19 @@
         ];
       }
     ];
-
-    settings.builders-use-substitutes = true;
-    settings.experimental-features = [
-      "nix-command"
-      "flakes"
-      "cgroups"
-    ];
+    settings = {
+      trusted-users = [
+        "emily"
+        "marie"
+        "root"
+      ];
+      builders-use-substitutes = true;
+      experimental-features = [
+        "nix-command"
+        "flakes"
+        "cgroups"
+      ];
+    };
   };
 
   nixpkgs.config.allowUnfree = true;
