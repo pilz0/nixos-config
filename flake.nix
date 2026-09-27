@@ -68,7 +68,7 @@
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-2511.url = "github:nixos/nixpkgs/nixos-25.11";
-    fedi-bot.url = "git+ssh://git@github.com/pilz0/fedi-bot.git";
+    #fedi-bot.url = "git+ssh://git@github.com/pilz0/fedi-bot.git";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     agenix.url = "github:ryantm/agenix";
