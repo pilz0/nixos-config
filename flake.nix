@@ -72,10 +72,14 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     agenix.url = "github:ryantm/agenix";
+    vpnconfinement-jetson = {
+      url = "git+ssh://git@github.com/pilz0/vpn-confinement-jetson.git";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixarr-jetson = {
       url = "github:nix-media-server/nixarr";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.vpnconfinement.url = "git+ssh://git@github.com/pilz0/vpn-confinement-jetson.git";
+      inputs.vpnconfinement.follows = "vpnconfinement-jetson";
     };
     nixarr.url = "github:nix-media-server/nixarr";
 

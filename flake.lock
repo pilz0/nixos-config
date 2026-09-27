@@ -1074,7 +1074,9 @@
           "nixpkgs"
         ],
         "treefmt-nix": "treefmt-nix_2",
-        "vpnconfinement": "vpnconfinement_2",
+        "vpnconfinement": [
+          "vpnconfinement-jetson"
+        ],
         "website-builder": "website-builder_2"
       },
       "locked": {
@@ -1111,7 +1113,7 @@
     },
     "nixos-hardware_2": {
       "inputs": {
-        "nixpkgs": "nixpkgs_12"
+        "nixpkgs": "nixpkgs_11"
       },
       "locked": {
         "lastModified": 1790321948,
@@ -1151,7 +1153,7 @@
     },
     "nixos-needsreboot_2": {
       "inputs": {
-        "nixpkgs": "nixpkgs_13"
+        "nixpkgs": "nixpkgs_12"
       },
       "locked": {
         "lastModified": 1790358934,
@@ -1310,22 +1312,6 @@
     },
     "nixpkgs_11": {
       "locked": {
-        "lastModified": 1790450978,
-        "narHash": "sha256-/eLCD/X9kaWJqPR47+fDozEC87Hjmm3i8gJbYmDAD7g=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "5e2305d577ca00acbba631b05cb1094d172b29f3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-26.05",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_12": {
-      "locked": {
         "lastModified": 1789546076,
         "narHash": "sha256-vWkSk5bbfTqdtMoSgD9FshACO8JCvXTFi+3cqEp0mH0=",
         "rev": "b1b875982b17dabde9b4a37f3e229e74913e6db3",
@@ -1337,7 +1323,7 @@
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
       }
     },
-    "nixpkgs_13": {
+    "nixpkgs_12": {
       "locked": {
         "lastModified": 1790185690,
         "narHash": "sha256-EZwz6sR6RLzbKiJJ9QQgXPZ/zA6P8ecfFr/6fwBRfes=",
@@ -1350,7 +1336,7 @@
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst"
       }
     },
-    "nixpkgs_14": {
+    "nixpkgs_13": {
       "locked": {
         "lastModified": 1790450978,
         "narHash": "sha256-/eLCD/X9kaWJqPR47+fDozEC87Hjmm3i8gJbYmDAD7g=",
@@ -1592,10 +1578,11 @@
         "nixarr-jetson": "nixarr-jetson",
         "nixos-hardware": "nixos-hardware_2",
         "nixos-needsreboot": "nixos-needsreboot_2",
-        "nixpkgs": "nixpkgs_14",
+        "nixpkgs": "nixpkgs_13",
         "nixpkgs-2511": "nixpkgs-2511",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "sops-nix": "sops-nix_2",
+        "vpnconfinement-jetson": "vpnconfinement-jetson",
         "vscode-server": "vscode-server",
         "wp4nix": "wp4nix"
       }
@@ -1904,9 +1891,11 @@
         "type": "github"
       }
     },
-    "vpnconfinement_2": {
+    "vpnconfinement-jetson": {
       "inputs": {
-        "nixpkgs": "nixpkgs_11"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1790518178,
