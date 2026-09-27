@@ -392,24 +392,6 @@
         "url": "https://woof.rip/emily/nixfiles.git"
       }
     },
-    "fedi-bot": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_10"
-      },
-      "locked": {
-        "lastModified": 1782735007,
-        "narHash": "sha256-9+tlhgJTnuMll6MW9ZdUm5rn85kDei6RHaz294iHeXI=",
-        "ref": "refs/heads/master",
-        "rev": "4d2b3567487607e720715e2c162e435f56b21995",
-        "revCount": 78,
-        "type": "git",
-        "url": "ssh://git@github.com/pilz0/fedi-bot.git"
-      },
-      "original": {
-        "type": "git",
-        "url": "ssh://git@github.com/pilz0/fedi-bot.git"
-      }
-    },
     "fernglas": {
       "inputs": {
         "communities": "communities",
@@ -1067,7 +1049,7 @@
     },
     "nixarr": {
       "inputs": {
-        "nixpkgs": "nixpkgs_11",
+        "nixpkgs": "nixpkgs_10",
         "treefmt-nix": "treefmt-nix",
         "vpnconfinement": "vpnconfinement",
         "website-builder": "website-builder"
@@ -1129,7 +1111,7 @@
     },
     "nixos-hardware_2": {
       "inputs": {
-        "nixpkgs": "nixpkgs_12"
+        "nixpkgs": "nixpkgs_11"
       },
       "locked": {
         "lastModified": 1790321948,
@@ -1169,7 +1151,7 @@
     },
     "nixos-needsreboot_2": {
       "inputs": {
-        "nixpkgs": "nixpkgs_13"
+        "nixpkgs": "nixpkgs_12"
       },
       "locked": {
         "lastModified": 1789753833,
@@ -1312,22 +1294,6 @@
     },
     "nixpkgs_10": {
       "locked": {
-        "lastModified": 1781577229,
-        "narHash": "sha256-lrp67w8AulE9Ks53n27I45ADSzbOCn4H+CNW1Ck8B+8=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "567a49d1913ce81ac6e9582e3553dd90a955875f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_11": {
-      "locked": {
         "lastModified": 1782847189,
         "narHash": "sha256-twXPFqFsrrY5r28Zh7Homgcp2gUMBgQ6WDS98Q/3xFI=",
         "owner": "nixos",
@@ -1342,7 +1308,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_12": {
+    "nixpkgs_11": {
       "locked": {
         "lastModified": 1789546076,
         "narHash": "sha256-vWkSk5bbfTqdtMoSgD9FshACO8JCvXTFi+3cqEp0mH0=",
@@ -1355,7 +1321,7 @@
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
       }
     },
-    "nixpkgs_13": {
+    "nixpkgs_12": {
       "locked": {
         "lastModified": 1789684949,
         "narHash": "sha256-TAKa57gfBM/9a4IZrFaIQZhnHs9mXIFPlZbYrvhnaMY=",
@@ -1368,7 +1334,7 @@
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst"
       }
     },
-    "nixpkgs_14": {
+    "nixpkgs_13": {
       "locked": {
         "lastModified": 1790218706,
         "narHash": "sha256-6e4Na3z008XpdVyOXgfasXIn1aN+z8AXFG+jXdQSyuI=",
@@ -1601,7 +1567,6 @@
         "determinate": "determinate",
         "disko": "disko",
         "emily-nixfiles": "emily-nixfiles",
-        "fedi-bot": "fedi-bot",
         "flake-utils": "flake-utils_2",
         "home-manager": "home-manager_3",
         "jetpack": "jetpack",
@@ -1611,7 +1576,7 @@
         "nixarr-jetson": "nixarr-jetson",
         "nixos-hardware": "nixos-hardware_2",
         "nixos-needsreboot": "nixos-needsreboot_2",
-        "nixpkgs": "nixpkgs_14",
+        "nixpkgs": "nixpkgs_13",
         "nixpkgs-2511": "nixpkgs-2511",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "sops-nix": "sops-nix_2",
