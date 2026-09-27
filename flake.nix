@@ -1,8 +1,9 @@
 {
   description = "Pilz's nixos infra";
   nixConfig = {
-    experimental-features = [
+    extra-experimental-features = [
       "pipe-operators"
+      "pipe-operator"
     ];
   };
   outputs =
