@@ -104,7 +104,7 @@ in
     hdir: extraCfg:
     builtins.readDir hdir
     |> lib.filterAttrs (n: t: t == "directory")
-    |> lib.filterAttrs (name: _: !(lib.hasInfix "darwin" name))
+    |> lib.filterAttrs (name: _: !(lib.hasInfix "darwin" name) && !(lib.hasInfix "offline" name))
     |> builtins.attrNames
     |> (
       dir:
