@@ -6,11 +6,11 @@
     ../../profiles/container
     ../../modules/services/vaultwarden
     ./proxys.nix
-    ./wordpress.nix
   ];
 
   pilz = {
     services = {
+      flohannes-de.enable = true;
       diyhrt-web.enable = true;
       timemachine-server.enable = true;
       nextcloud.enable = true;

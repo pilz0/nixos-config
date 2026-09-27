@@ -1,40 +1,22 @@
 {
-  pkgs,
   lib,
-  inputs,
   ...
 }:
 {
   imports = [
-    inputs.disko.nixosModules.disko
-    inputs.determinate.nixosModules.default
     ../../profiles/builder
+    ../../profiles/vm
     ./hardware-configuration.nix
-    ./disk-config.nix
     ./dns.nix
   ];
 
   pilz = {
-    services.tor-relay = {
-      #enable = true;
-      address = "89.168.97.129";
-      nickname = "as214958tor9";
-      orPort = 8443;
-      bandWidth = 3;
-    };
-    services.ssh.enable = true;
-    shell.enable = true;
-    monitoring.node-exporter.enable = true;
-    monitoring.systemd-exporter.enable = true;
-    common.enable = true;
     deployment = {
       targetHost = "89.168.97.129";
       tags = [ "infra" ];
     };
   };
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelParams = [ "net.ifnames=0" ];
 
   systemd.network.networks = {
@@ -70,23 +52,13 @@
   };
 
   networking = {
-    useNetworkd = true;
-    nameservers = lib.mkAfter [
-      "2606:4700:4700::1111"
-      "1.1.1.1"
-      "2606:4700:4700::1001"
-      "1.0.0.1"
-    ];
-  };
-
-  networking = {
     hostName = "build-aarch64";
     hostId = "13243e34";
   };
 
   networking.firewall = {
     allowPing = true;
-    allowedTCPPorts = [
+    allowedTCPPorts = lib.mkAfter [
       22
       80
       443

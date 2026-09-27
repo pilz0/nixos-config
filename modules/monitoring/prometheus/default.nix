@@ -30,6 +30,7 @@
                 "web1.ams1.as214958.net:${toString config.services.prometheus.exporters.nginx.port}"
                 "grafana.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
                 "jellyfin.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
+                "jellyfin.ams1.as214958.net:${toString config.services.prometheus.exporters.wireguard.port}"
                 "rpki.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
                 "dn42.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
                 "netbox.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"

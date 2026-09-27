@@ -1,18 +1,8 @@
 {
-  lib,
-  ...
-}:
-{
   users.users.marie.extraGroups = [
     "video"
     "audio"
   ];
-
-  hardware = {
-    graphics.enable = true;
-  };
-
-  users.groups.debug = { };
 
   environment.sessionVariables = rec {
     EDITOR = "nano";
@@ -42,7 +32,4 @@
       };
     };
   };
-  hardware.graphics.enable32Bit = lib.mkForce false;
-
-  programs.dconf.enable = true;
 }

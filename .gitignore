@@ -39,3 +39,4 @@ update-git-commits.txt
 /nixpkgs.iml
 pve.sh
 pmacctd.conf
+*.zst

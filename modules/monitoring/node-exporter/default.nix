@@ -9,7 +9,11 @@ in
 {
   options.pilz.monitoring.node-exporter = {
     enable = lib.mkEnableOption "";
-    monitoring-servers = lib.mkOption {
+    monitoring-servers-v4 = lib.mkOption {
+      type = lib.types.str;
+      default = "94.142.240.36";
+    };
+    monitoring-servers-v6 = lib.mkOption {
       type = lib.types.str;
       default = "2a0e:8f02:f017::3";
     };
@@ -20,12 +24,12 @@ in
         node = {
           enable = true;
           openFirewall = false;
-          enabledCollectors = [ "systemd" ];
         };
       };
     };
     networking.firewall.extraCommands = ''
-      ip6tables -I nixos-fw -p tcp -s ${cfg.monitoring-servers} -m tcp --dport 9100 -j nixos-fw-accept
+      iptables -I nixos-fw -p tcp -s ${cfg.monitoring-servers-v4} -m tcp --dport 9100 -j nixos-fw-accept
+      ip6tables -I nixos-fw -p tcp -s ${cfg.monitoring-servers-v6} -m tcp --dport 9100 -j nixos-fw-accept
     '';
   };
 }

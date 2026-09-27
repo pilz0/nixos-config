@@ -1,5 +1,4 @@
-{ pkgs, testers, ... }:
-pkgs.testers.runNixOSTest {
+{
   name = "as214958net-test";
   nodes = {
     client =
@@ -12,9 +11,6 @@ pkgs.testers.runNixOSTest {
     server =
       { lib, ... }:
       {
-        imports = [
-          ../modules/services/as214958-net/default.nix
-        ];
         pilz.services.as214958Net = {
           enable = true;
           domain = "server";

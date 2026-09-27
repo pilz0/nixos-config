@@ -26,6 +26,10 @@
       hostNames = [ "eu.nixbuild.net" ];
       publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPIQCZc54poJ8vqawd8TraNryQeJnvH1eLpIDgbiqymM";
     };
+    build-aarch64 = {
+      hostNames = [ "build-aarch64.as214958.net" ];
+      publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFmKUILzb3kuLq4g3MD7NJEIXIZghQqozqRa/SdYoYzK";
+    };
   };
 
   #    ssh://root@build-aarch64.as214958.net aarch64-linux - 4 2 benchmark,big-parallel,kvm - -
@@ -34,7 +38,8 @@
   #    ssh://root@eu.nixbuild.net i686-linux - 100 1 benchmark,big-parallel - -
 
   environment.etc."nix/machines".text = ''
-    ssh://root@eu.nixbuild.net aarch64-linux - 100 1 benchmark,big-parallel - -
+    ssh://root@build-aarch64.as214958.net aarch64-linux - 4 2 benchmark,big-parallel,kvm - -
+    ssh://root@eu.nixbuild.net i686-linux - 100 1 benchmark,big-parallel - -
   '';
 
   environment.etc."nix/nix.custom.conf".text = ''

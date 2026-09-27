@@ -41,6 +41,8 @@ in
       pubkeyAcceptedKeyTypes = sigAlgorithms;
     };
 
+    systemd.services."sshd@".restartIfChanged = false;
+
     services.openssh = {
       enable = true;
       hostKeys = mkDefault [
@@ -53,6 +55,8 @@ in
         PasswordAuthentication = lib.mkDefault false;
         PermitRootLogin = "prohibit-password";
         KbdInteractiveAuthentication = false;
+        AuthenticationMethods = "publickey";
+        X11Forwarding = false;
       };
       settings.Banner = builtins.toFile "ssh-banner" ''
         <p><div class='plussize'>

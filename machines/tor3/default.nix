@@ -5,13 +5,11 @@
 }:
 {
   imports = [
-    ../../profiles/container
+    ../../profiles/vm
   ];
 
   pilz = {
     deployment.targetHost = "tor3.ams1.as214958.net";
-    lxc.enable = true;
-    lxc.ctID = "109";
     networking.tor-relay = {
       enable = true;
       eth0.address = [ "2a0e:8f02:f017::11/64" ];
@@ -24,6 +22,8 @@
       orPort = 143;
     };
   };
+
+  system.stateVersion = "23.11";
 
   networking = {
     hostName = "tor3";

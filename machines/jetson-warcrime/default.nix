@@ -10,18 +10,22 @@
   ];
 
   imports = [
-    inputs.jetpack.nixosModules.default
     inputs.determinate.nixosModules.default
     inputs.vscode-server.nixosModules.default
-    ./nvidia.nix
     ./graphics.nix
     ./pkgs.nix
     ./hardware-configuration.nix
     ./nixarr.nix
     ./networking.nix
+    ../../profiles/nvidia-jetson
   ];
 
   pilz = {
+    deployment = {
+      targetUser = "marie";
+      targetHost = "192.168.0.225";
+      #buildOnTarget = true;
+    };
     common.enable = true;
     audio.enable = true;
     services.ssh.enable = true;
@@ -32,7 +36,10 @@
       peerPort = 63077;
     };
   };
+
   security.sudo.wheelNeedsPassword = false;
+
+  hardware.nvidia-jetpack.som = "xavier-agx";
 
   nix.settings.trusted-users = [
     "emily"
@@ -58,13 +65,6 @@
     };
   };
 
-  pilz = {
-    deployment = {
-      targetUser = "marie";
-      targetHost = "192.168.0.225";
-      buildOnTarget = true;
-    };
-  };
 
   systemd.services.transmission.serviceConfig.RootDirectory = lib.mkForce "";
 

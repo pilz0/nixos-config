@@ -15,7 +15,6 @@
     ../../modules/services/as214958-net
     ../../modules/services/diyhrt-web
     ../../modules/services/bird-lg-frontend
-    ../../modules/services/github-runner
     ../../modules/services/nginx
     ../../modules/services/nixarr
     ../../modules/services/routinator
@@ -25,12 +24,11 @@
     ../../modules/services/ssh
     ../../modules/services/restic-client
     ../../modules/services/netbox
-    ../../modules/services/nixos-builder
     ../../modules/services/knot-dns
-    ../../modules/services/binary-cache
     ../../modules/services/timemachine-server
     ../../modules/services/nextcloud
     ../../modules/shell
+    ../../modules/services/flohannes-de
   ];
 }
 # missing:

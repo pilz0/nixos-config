@@ -1,9 +1,7 @@
 {
-  description = "Pilz's nixos-based infra";
+  description = "Pilz's nixos infra";
   nixConfig = {
     experimental-features = [
-      #  "nix-command"
-      #  "flakes"
       "pipe-operators"
     ];
   };
@@ -18,6 +16,10 @@
       sf = import ./lib/shinyflakes inputs;
     in
     {
+    hydraJobs = {
+      inherit (self);
+      nixosConfigurations = sf.mapHydraHosts self.nixosConfigurations;
+    };
       darwinConfigurations = sf.mapDarwinCfg {
         darwinHosts = sf.mapHostsMerge ./machines/darwin {
         };
@@ -49,9 +51,6 @@
         pkgs = sf.importPkgs system;
       in
       {
-        checks."grafana" = pkgs.callPackage ./tests/grafana.nix { };
-        checks."as214958net" = pkgs.callPackage ./tests/as214958net.nix { };
-        # packages = sf.eachSystem (system: sf.mapTestCfg pkgs);
         formatter = pkgs.nixfmt-tree;
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
@@ -60,7 +59,10 @@
           ];
         };
       }
-    );
+    )
+    // flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" ] (system: {
+      checks = sf.mapTests (sf.importPkgs system);
+    });
 
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
@@ -73,12 +75,10 @@
     nixarr-jetson = {
       url = "github:nix-media-server/nixarr";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.vpnconfinement.url = "path:/Users/pilz/Documents/nixarr-jetsonslop";
+      inputs.vpnconfinement.url = "git+ssh://git@github.com/pilz0/vpn-confinement-jetson.git";
     };
-    nixarr = {
-      url = "github:nix-media-server/nixarr";
-      inputs.nixpkgs.follows = "nixpkgs-2511";
-    };
+    nixarr.url = "github:nix-media-server/nixarr";
+
     catppuccin.url = "github:catppuccin/nix";
     colmena.url = "github:zhaofengli/colmena";
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
@@ -92,7 +92,6 @@
     nixos-needsreboot.url = "https://codeberg.org/Mynacol/nixos-needsreboot/archive/HEAD.tar.gz";
     jetpack = {
       url = "github:anduril/jetpack-nixos/master";
-      #url = "path:/Users/pilz/Documents/jetpack-nixos";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-darwin = {
@@ -110,6 +109,10 @@
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    wp4nix = {
+      url = "git+https://git.helsinki.tools/helsinki-systems/wp4nix.git";
+      flake = false;
     };
   };
 }

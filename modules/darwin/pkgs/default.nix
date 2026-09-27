@@ -45,13 +45,11 @@ in
         yq
         google-chrome
         openvpn
-        # bitwarden-desktop
         dash
         nil
         nixd
         python314
         gh
-        #pre-commit
         docker
         docker-compose
         colima
@@ -69,7 +67,6 @@ in
         cyberduck
       ])
       ++ (with pkgs-unstable; [
-        # caffeine on stable does not support aarch64-darwin
         caffeine
         direnv
         #istat-menus
@@ -78,6 +75,8 @@ in
         firefox
         daisydisk
         spotify
+        antigravity-cli
+        claude-code
       ]);
   };
 }

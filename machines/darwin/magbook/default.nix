@@ -29,16 +29,19 @@
     "lima-additional-guestagents-1.2.2"
     "electron-39.8.10"
   ];
-  nix = {
-    enable = false;
-    settings.allowSubstitutes = true;
-    settings.extra-trusted-users = [ "pilz" ];
-    settings.experimental-features = [
+
+  determinateNix = {
+    enable = true;
+    customSettings = {
+    extra-trusted-users = [ "pilz" ];
+    use-case-hack = false;
+    experimental-features = [
       "nix-command"
       "flakes"
       "cgroups"
       "pipe-operators"
     ];
+    };
   };
 
   nixpkgs.system = "aarch64-darwin";

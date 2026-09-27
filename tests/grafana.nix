@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-pkgs.testers.runNixOSTest {
+{
   name = "grafana-test";
   nodes = {
     client =
@@ -12,9 +11,6 @@ pkgs.testers.runNixOSTest {
     server =
       { lib, ... }:
       {
-        imports = [
-          ../modules/monitoring/grafana/default.nix
-        ];
         pilz.monitoring.grafana = {
           enable = true;
           port = 3000;

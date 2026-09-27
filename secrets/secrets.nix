@@ -95,18 +95,17 @@ in
   "grafana.age".publicKeys = marielap ++ grafana;
   "wg.age".publicKeys = marielap ++ dn42;
   "nixarr-wg.age".publicKeys = marielap ++ jellyfin;
-  "HashedPassword.age".publicKeys = marielap ++ Laptop;
   "cloudflare_cert.age".publicKeys = marielap ++ web1_host ++ grafana ++ emily;
   "cloudflare_key.age".publicKeys = marielap ++ web1_host ++ grafana ++ emily;
   "s3-mastodon.age".publicKeys = marielap;
   "netbox.age".publicKeys = marielap ++ netbox;
   "harmonia.age".publicKeys = marielap ++ build ++ build-aarch64;
   "nixbuildssh.age".publicKeys = all_hosts ++ emily;
-  "github-runner.age".publicKeys = marielap ++ build;
   "wg-key-ams1-dn42.age".publicKeys = marielap ++ dn42;
   "fedi-bot-hfToken.age".publicKeys = marielap ++ jellyfin ++ emily ++ fedi-bot;
   "fedi-bot-fediToken.age".publicKeys = marielap ++ jellyfin ++ emily ++ fedi-bot ++ jetson-warcrime;
   "tsig_ns.age".publicKeys = marielap ++ netbox ++ dn42 ++ build-aarch64;
   "tor-familiy.age".publicKeys = marielap ++ tor;
   "wg-jetson.age".publicKeys = marielap ++ jetson-warcrime;
+  "smtp-flohannes.age".publicKeys = marielap ++ web1_host ++ emily;
 }

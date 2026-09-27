@@ -9,7 +9,7 @@
     enable = lib.mkEnableOption "";
     package = lib.mkOption {
       type = lib.types.package;
-      default = pkgs.nextcloud34;
+      default = pkgs.nextcloud35;
     };
     domain = lib.mkOption {
       type = lib.types.str;

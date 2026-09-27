@@ -7,7 +7,6 @@
   options.pilz.monitoring.blackbox-anodyne.enable = lib.mkEnableOption "";
 
   config = lib.mkIf config.pilz.monitoring.blackbox-anodyne.enable {
-
     services.prometheus = {
       exporters = {
         blackbox = {

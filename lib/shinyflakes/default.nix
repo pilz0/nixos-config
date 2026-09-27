@@ -80,14 +80,24 @@ let
       ];
     };
 
-  genTestCfg =
-    {
-      testname,
-      pkgs,
-    }:
-    {
-      ${testname} = pkgs.callPackage ../../tests/${testname}.nix { };
-    };
+  # Every test sees the same module set as a real host (all pilz.* modules,
+  # agenix, inputs, pkgs-unstable); tests only flip pilz.* options.
+  testDefaults = {
+    node.specialArgs = { inherit inputs; };
+    defaults =
+      { pkgs, ... }:
+      {
+        imports = [
+          ../../profiles/importAll
+          inputs.agenix.nixosModules.default
+        ];
+        _module.args.pkgs-unstable = import inputs.nixpkgs-unstable {
+          inherit (pkgs.stdenv.hostPlatform) system;
+          config.allowUnfree = true;
+        };
+      };
+  };
+
 in
 {
   mapHostsMerge =
@@ -123,20 +133,22 @@ in
     }:
     mapAttrs (_: v: genNixosCfg v) hosts |> mergeWith extraHosts;
 
-  # mapTestCfg =
-  #   pkgs:
-  #   builtins.readDir ../../tests
-  #   |> lib.filterAttrs (n: t: t == "regular" && lib.hasSuffix ".nix" n)
-  #   |> builtins.attrNames
-  #   |> (3
-  #     files:
-  #     lib.genAttrs (map (lib.removeSuffix ".nix") files) (test: {
-  #       testname = test;
-  #       inherit pkgs;
-  #     })
-  #   )
-  #   |> mapAttrs (_: v: genTestCfg v)
-  #   |> mergeWith { };
+  # tests/<name>.nix are runNixOSTest modules, exposed as checks.<system>.<name>
+  mapTests =
+    pkgs:
+    builtins.readDir ../../tests
+    |> lib.filterAttrs (n: t: t == "regular" && lib.hasSuffix ".nix" n)
+    |> lib.mapAttrs' (
+      file: _:
+      lib.nameValuePair (lib.removeSuffix ".nix" file) (
+        pkgs.testers.runNixOSTest {
+          imports = [
+            testDefaults
+            ../../tests/${file}
+          ];
+        }
+      )
+    );
 
   eachSystem = func: lib.mapAttrs func (import ./platforms.nix inputs);
 
@@ -145,4 +157,5 @@ in
     import nixpkgs {
       inherit system;
     };
+  mapHydraHosts = hosts: mapAttrs (name: host: host.config.system.build.toplevel) hosts;
 }

@@ -65,6 +65,9 @@ in
     systemd.tmpfiles.rules = [
       "C /var/lib/tor/keys/as214958.secret_family_key - - - - ${config.age.secrets.tor-familiy.path}"
     ];
+
+    security.sudo.enable = false;
+
     services.tor = {
       enable = cfg.enable;
       openFirewall = cfg.openFirewall;

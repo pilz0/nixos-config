@@ -30,6 +30,14 @@ in
       type = lib.types.int;
       default = 63993;
     };
+    monitoring-servers-v4 = lib.mkOption {
+      type = lib.types.str;
+      default = "94.142.240.36";
+    };
+    monitoring-servers-v6 = lib.mkOption {
+      type = lib.types.str;
+      default = "2a0e:8f02:f017::3";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -53,6 +61,8 @@ in
         wgConf = config.age.secrets.nixarr-wg.path;
       };
 
+      exporters.enable = true;
+
       transmission = {
         enable = true;
         vpn.enable = true;
@@ -72,5 +82,9 @@ in
         enable = true;
       };
     };
+    networking.firewall.extraCommands = ''
+      iptables -I nixos-fw -p tcp -s ${cfg.monitoring-servers-v4} -m tcp --dport 9586 -j nixos-fw-accept
+      ip6tables -I nixos-fw -p tcp -s ${cfg.monitoring-servers-v6} -m tcp --dport 9586 -j nixos-fw-accept
+    '';
   };
 }

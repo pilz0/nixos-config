@@ -1,47 +1,61 @@
 {
   pkgs,
+  lib,
   ...
 }:
 {
-  pilz.services.binary-cache.enable = true;
-  pilz.services.nixos-builder.enable = true;
+  nix.settings = {
+    trusted-users = lib.mkAfter [ "nix-ssh" ];
 
-  nix.settings.extra-sandbox-paths = [ "/var/cache/ccache" ];
+    substituters = lib.mkAfter [
+      "https://nix-community.cachix.org"
+      "https://cache.nixos-cuda.org"
+      "https://cache.lix.systems"
+      "https://nixpkgs-update-cache.nix-community.org"
+      "https://cache.kyouma.net"
+    ];
+
+    trusted-public-keys = lib.mkAfter [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
+      "cache.kyouma.net:Frjwu4q1rnwE/MnSTmX9yx86GNA/z3p/oElGvucLiZg="
+      "nixpkgs-update-cache.nix-community.org-1:U8d6wiQecHUPJFSqHN9GSSmNkmdiFW7GW7WNAnHW0SM="
+      "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
+    ];
+  };
+  nix.extraOptions = ''
+    	    min-free = ${toString (16384 * 1024 * 1024)}
+    	    max-free = ${toString (32768 * 1024 * 1024)}
+    	    max-substitution-jobs = 48
+    	    http-connections = 64
+    	    max-silent-time = 14400
+  '';
+  nix.sshServe = {
+    enable = true;
+    write = true;
+    keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE/vCXM3IaxJP9v2Y+xcQrQD2IcffgdzqtWhpMjj9Xl5 hydra@seras"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII1mECV9Etr/nLIgg1E2mpFvAW1RexhhsRKrF7XcDEZI marie@framwok"
+    ];
+  };
+
   users.users = {
-    root = {
-      openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMV2aYEGk2+r506hk7+ogDwNWa1cuAJt/4o7nwBiYtnC"
-      ];
-    };
-    rhea = {
+    emily = {
       extraGroups = [
         "wheel"
       ];
       isNormalUser = true;
-      initialPassword = "foobar1312";
       openssh.authorizedKeys.keys = [
-        "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC5EyuXr+Uet0qxmQMOECuFSTHPBU7w3F9HglKN5DeZ6GU93dn2KCD9oD3ZWk4pSR7hzWiBYy0Mdcv1Bu3OQLDGBlYSPp7xUHd6XvZpR/grf4L3cUtuKBzIaUQi5Ehv3drJKhfkJUZoiJZbApNneLpn7Avy4xr/wa7azabqXsFeKimblBrhWookyPmT3E1VU8L0vad0yt0y44+tlVK6AoRlEqIRJbzhlCu1ws/lFIWswHbrbhIAiMRbEK+Wr7muERd0UZ96madAyvtixwbPx+qnpxnQjo0vw6Le4pT8ouF8jivcFJbeGGS0ZqdatOiawq/MP4oNqofCuF9Lk1jSL4N9OVaQ9mS6emqq3KKAZsxUSh7UTdTrZI50GRbgM0xLJr4zDa1Ic//jLGisXc/sE5k/LWHCwYc2QojHqRvkiJmPfquWjX7M9FVu2u4VUI9Ki1O7C5rCkn0jr8HStth7WqgjgAvUFUpmNKTl1LKDt/vuL9Xj+FMDocirbPvAM4qpgGGo5yuM9Dk9NKzIIjDHKO1cy86ZIS3W7YJaw1XjS6sKc9htDs+MMBJ9QZLvOCK4GG0dfl0SvQiOpEE8uwQau6NrUuhmB84P1hGiIGiM1Mfgjd4gQ4SqSB3n2OTILuYjZMzWXvbgWqe+plyeZB0NVu1afr6LoGxRjCXV3iC2WQvh3Q=="
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICz3LrNuJ1sS6w0ksY6lztpk/aegcLk9xyszDB6Q9sz7"
-      ];
-    };
-    ellie = {
-      extraGroups = [
-        "wheel"
-      ];
-      isNormalUser = true;
-      initialPassword = "foobar1312";
-      openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHDUfJiyMvMIo9hL482dkPq4DUy+tQZ69DyBSQNclvpc ellie@macbook"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA/+iN407+HsfHbbC3tfdA8Yf4TZ08qXQMb4tb/SDAs+"
       ];
     };
   };
+
   environment.systemPackages = with pkgs; [
     containerlab
     tmux
     screen
   ];
   boot.tmp.useTmpfs = false;
-
   virtualisation.docker.enable = true;
-
 }
