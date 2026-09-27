@@ -13,6 +13,7 @@
       builders-use-substitutes = true
     '';
     nix.settings = {
+      allowed-users = [ "@users" ];
       substituters = lib.mkAfter [
         "https://cache.nixos-cuda.org"
         "https://nix-community.cachix.org"
@@ -29,8 +30,6 @@
         "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
       ];
     };
-
-    nix.settings.allowed-users = [ "@users" ];
 
     boot.tmp.cleanOnBoot = lib.mkDefault true;
     pilz.pkgs.default.enable = true;
