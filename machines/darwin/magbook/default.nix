@@ -9,7 +9,6 @@
     ../../../profiles/darwin
   ];
 
-  environment.systemPackages = [ inputs.agenix.packages.aarch64-darwin.default ];
   users.users.pilz.home = /Users/pilz;
   home-manager = {
     backupFileExtension = "bck";
@@ -29,22 +28,4 @@
     "lima-additional-guestagents-1.2.2"
     "electron-39.8.10"
   ];
-
-  determinateNix = {
-    enable = true;
-    customSettings = {
-      extra-trusted-users = [ "pilz" ];
-      use-case-hack = false;
-      experimental-features = [
-        "nix-command"
-        "flakes"
-        "cgroups"
-        "pipe-operators"
-      ];
-    };
-  };
-
-  nixpkgs.system = "aarch64-darwin";
-  system.stateVersion = 6;
-  nixpkgs.config.allowUnfree = true;
 }

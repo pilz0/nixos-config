@@ -12,7 +12,7 @@
 
   pilz = {
     deployment = {
-      targetHost = "89.168.97.129";
+      targetHost = "build-aarch64.as214958.net";
       tags = [ "infra" ];
     };
   };

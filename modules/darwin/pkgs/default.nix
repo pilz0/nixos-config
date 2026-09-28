@@ -3,6 +3,7 @@
   pkgs-unstable,
   config,
   lib,
+  inputs,
   ...
 }:
 let
@@ -13,7 +14,6 @@ in
     enable = lib.mkEnableOption "";
   };
   config = lib.mkIf cfg.enable {
-
     environment.systemPackages =
       (with pkgs; [
         ansible
@@ -66,6 +66,9 @@ in
         xld
         cyberduck
       ])
+      ++ [
+        inputs.agenix.packages.aarch64-darwin.default
+      ]
       ++ (with pkgs-unstable; [
         caffeine
         direnv

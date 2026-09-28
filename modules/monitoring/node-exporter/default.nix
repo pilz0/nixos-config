@@ -23,7 +23,6 @@ in
       exporters = {
         node = {
           enable = true;
-          openFirewall = false;
         };
       };
     };
