@@ -10,6 +10,9 @@ let
   cfg = config.pilz.darwin.pkgs;
 in
 {
+  imports = [
+    inputs.nix-homebrew.darwinModules.nix-homebrew
+  ];
   options.pilz.darwin.pkgs = {
     enable = lib.mkEnableOption "";
   };
@@ -81,5 +84,21 @@ in
         antigravity-cli
         claude-code
       ]);
+          nix-homebrew = {
+            enable = true;
+            enableRosetta = true;
+            user = "pilz";
+            taps = {
+              "homebrew/homebrew-core" = inputs.homebrew-core;
+              "homebrew/homebrew-cask" = inputs.homebrew-cask;
+            };
+            mutableTaps = false;
+            trust = {
+              formulae = [ ];
+              casks = [ ];
+              commands = [ ];
+              taps = [ ];
+            };
+          };
   };
 }

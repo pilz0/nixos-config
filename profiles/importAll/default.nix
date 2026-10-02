@@ -28,7 +28,6 @@
     ../../modules/services/timemachine-server
     ../../modules/services/nextcloud
     ../../modules/shell
-    ../../modules/substituters
     ../../modules/services/flohannes-de
   ];
 }

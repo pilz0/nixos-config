@@ -12,17 +12,17 @@ in
   };
   config = lib.mkIf cfg.enable {
 
-  nix.settings = {
-    substituters = lib.mkAfter [
+  determinateNix.customSettings = {
+    extra-substituters = lib.mkAfter [
+      "https://cache.kyouma.net"
       "https://nix-community.cachix.org"
       "https://cache.nixos-cuda.org"
       "https://cache.lix.systems"
       "https://nixpkgs-update-cache.nix-community.org"
-      "https://cache.kyouma.net"
       "https://install.determinate.systems"
     ];
 
-    trusted-public-keys = lib.mkAfter [
+    extra-trusted-public-keys = lib.mkAfter [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
       "cache.kyouma.net:Frjwu4q1rnwE/MnSTmX9yx86GNA/z3p/oElGvucLiZg="

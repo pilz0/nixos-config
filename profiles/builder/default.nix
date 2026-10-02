@@ -4,8 +4,6 @@
   ...
 }:
 {
-  pilz.substituters.enable = true;
-
   nix = {
     settings = {
       trusted-users = lib.mkAfter [ "nix-ssh" ];

@@ -8,7 +8,7 @@
     inputs.determinate.darwinModules.default
     ../../modules/darwin/colima
     ../../modules/darwin/pkgs
-    ../../modules/substituters
+    ../../modules/darwin/substituters
     #    ../../modules/darwin/shell homemanager
   ];
   pilz = {
