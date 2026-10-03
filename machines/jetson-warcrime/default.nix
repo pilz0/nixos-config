@@ -19,6 +19,7 @@
     ./networking.nix
     ../../profiles/nvidia-jetson
     ./ollama.nix
+    ./jellyfin.nix
   ];
 
   pilz = {

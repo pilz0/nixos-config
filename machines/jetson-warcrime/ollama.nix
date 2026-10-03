@@ -35,12 +35,9 @@
     DeviceAllow = [
       "/dev/nvmap"
       "/dev/nvhost-ctrl"
-      "/dev/nvhost-ctrl-gpu"
-      "/dev/nvhost-gpu"
-      "/dev/nvhost-as-gpu"
-      "/dev/nvhost-tsg-gpu"
-      "/dev/nvhost-nvsched-gpu"
-      "/dev/nvhost-power-gpu"
+      "/dev/l3cache"
+      "/dev/nvgpu/igpu0/ctrl"
+      "/dev/nvgpu/igpu0/power"
     ];
     SupplementaryGroups = [ "video" ];
   };
