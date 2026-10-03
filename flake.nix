@@ -32,13 +32,7 @@
           nodeNixpkgs = {
             jetson-warcrime = import inputs.nixpkgs {
               system = "aarch64-linux";
-              # colmena ignores nixpkgs.config from modules, so this has to mirror
-              # what hardware.nvidia-jetpack.configureCuda sets
-              config = {
-                allowUnfree = true;
-                cudaSupport = true;
-                cudaCapabilities = [ "7.2" ];
-              };
+              config.allowUnfree = true;
             };
           };
           specialArgs = { inherit inputs; };

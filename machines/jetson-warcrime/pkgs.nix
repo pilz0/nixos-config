@@ -33,7 +33,6 @@ in
       yt-dlp
       supertuxkart
       tailscale
-      cudatoolkit
     ])
     ++ (with pkgs-unstable; [
       ollama
