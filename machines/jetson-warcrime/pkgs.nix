@@ -17,8 +17,6 @@ in
       signal-desktop
       libreoffice
       python3
-      vlc
-      nixfmt-rfc-style
       cmatrix
       btop
       wget
@@ -33,15 +31,11 @@ in
       yt-dlp
       supertuxkart
       tailscale
+      ollama
     ])
     ++ (with pkgs-unstable; [
-      ollama
       crosspipe
     ]);
-
-  services = {
-    vscode-server.enable = true;
-  };
 
   users.groups.jtop.members = [
     "marie"
@@ -78,7 +72,6 @@ in
   };
 
   programs = {
-    nix-ld.enable = true;
     firefox.policies = {
       DisablePocket = true;
       DisableTelemetry = true;

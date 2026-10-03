@@ -23,6 +23,8 @@ stdenv.mkDerivation {
   cmakeFlags = [
     "-DJETSON_MULTIMEDIA_API_DIR=${nvidia-jetpack.l4t-multimedia}"
     "-DJETSON_MULTIMEDIA_LIB_DIR=${nvidia-jetpack.l4t-multimedia}/lib"
+    # cmake drops the build rpath on install, without it nothing can link against libnvmpi
+    "-DCMAKE_INSTALL_RPATH=${nvidia-jetpack.l4t-multimedia}/lib"
   ];
 
   meta = with lib; {
