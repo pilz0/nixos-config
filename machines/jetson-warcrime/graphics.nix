@@ -1,4 +1,8 @@
 {
+  lib,
+  ...
+}:
+{
   users.users.marie.extraGroups = [
     "video"
     "audio"
@@ -12,7 +16,7 @@
 
   # use hdmi port
   # https://github.com/anduril/jetpack-nixos?tab=readme-ov-file#linux-console
-  boot.kernelParams = [ "fbcon=map:2" ];
+  boot.kernelParams = lib.mkAfter [ "fbcon=map:2" ];
 
   services = {
     displayManager = {

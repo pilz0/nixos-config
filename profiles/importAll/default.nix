@@ -29,6 +29,7 @@
     ../../modules/services/nextcloud
     ../../modules/shell
     ../../modules/services/flohannes-de
+    ../../modules/services/haos-vm
   ];
 }
 # missing:

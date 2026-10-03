@@ -32,7 +32,13 @@
           nodeNixpkgs = {
             jetson-warcrime = import inputs.nixpkgs {
               system = "aarch64-linux";
-              config.allowUnfree = true;
+              # colmena ignores nixpkgs.config from modules, so this has to mirror
+              # what hardware.nvidia-jetpack.configureCuda sets
+              config = {
+                allowUnfree = true;
+                cudaSupport = true;
+                cudaCapabilities = [ "7.2" ];
+              };
             };
           };
           specialArgs = { inherit inputs; };
@@ -65,7 +71,6 @@
     // flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" ] (system: {
       checks = sf.mapTests (sf.importPkgs system);
     });
-
 
   inputs = {
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";

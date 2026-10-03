@@ -67,6 +67,7 @@ in
         rustc
         rustup
         xld
+        firefox
         cyberduck
       ])
       ++ [
@@ -78,27 +79,26 @@ in
         #istat-menus
         github-copilot-cli
         mpv-unwrapped
-        firefox
         daisydisk
         spotify
         antigravity-cli
         claude-code
       ]);
-          nix-homebrew = {
-            enable = true;
-            enableRosetta = true;
-            user = "pilz";
-            taps = {
-              "homebrew/homebrew-core" = inputs.homebrew-core;
-              "homebrew/homebrew-cask" = inputs.homebrew-cask;
-            };
-            mutableTaps = false;
-            trust = {
-              formulae = [ ];
-              casks = [ ];
-              commands = [ ];
-              taps = [ ];
-            };
-          };
+    nix-homebrew = {
+      enable = true;
+      enableRosetta = true;
+      user = "pilz";
+      taps = {
+        "homebrew/homebrew-core" = inputs.homebrew-core;
+        "homebrew/homebrew-cask" = inputs.homebrew-cask;
+      };
+      mutableTaps = false;
+      trust = {
+        formulae = [ ];
+        casks = [ ];
+        commands = [ ];
+        taps = [ ];
+      };
+    };
   };
 }

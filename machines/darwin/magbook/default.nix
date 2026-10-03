@@ -9,6 +9,13 @@
     ../../../profiles/darwin
   ];
 
+  services.tailscale = {
+    enable = true;
+  };
+  environment.systemPackages = with pkgs; [
+    tailscale
+  ];
+
   users.users.pilz.home = /Users/pilz;
   home-manager = {
     backupFileExtension = "bck";

@@ -4,9 +4,13 @@
   config,
   ...
 }:
+let
+  jetson-stats = pkgs.callPackage ../../pkgs/jetson-stats.nix { };
+in
 {
   environment.systemPackages =
     (with pkgs; [
+      jetson-stats
       firefox
       fastfetch
       alacritty
@@ -28,6 +32,8 @@
       vlc
       yt-dlp
       supertuxkart
+      tailscale
+      cudatoolkit
     ])
     ++ (with pkgs-unstable; [
       ollama
@@ -36,6 +42,35 @@
 
   services = {
     vscode-server.enable = true;
+  };
+
+  users.groups.jtop.members = [
+    "marie"
+    "emily"
+  ];
+  systemd.services.jtop = {
+    description = "jtop service";
+    after = [ "systemd-modules-load.service" ];
+    wantedBy = [ "multi-user.target" ];
+    environment.JTOP_SERVICE = "True";
+    path =
+      (with pkgs.nvidia-jetpack; [
+        l4t-tools
+        l4t-nvpmodel
+        l4t-nvfancontrol
+      ])
+      ++ (with pkgs; [
+        util-linux
+        procps
+        which
+        bash
+      ]);
+    serviceConfig = {
+      ExecStart = "${jetson-stats}/bin/jtop --force";
+      StateDirectory = "jtop";
+      Restart = "on-failure";
+      RestartSec = "10s";
+    };
   };
 
   virtualisation = {

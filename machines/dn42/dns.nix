@@ -8,6 +8,7 @@
       remote = {
         remote_slave_ns = {
           address = [
+            "2603:c020:8028:ce67:4918::"
             "89.168.97.129"
           ];
           key = "tsig_ns";
@@ -18,6 +19,7 @@
         "acl_slave_ns" = {
           key = "tsig_ns";
           address = [
+            "2603:c020:8028:ce67:4918::"
             "89.168.97.129"
           ];
           action = "transfer";

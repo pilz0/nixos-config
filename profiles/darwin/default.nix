@@ -17,7 +17,7 @@
     darwin.pkgs.enable = true;
   };
 
-    determinateNix = {
+  determinateNix = {
     enable = true;
     customSettings = {
       extra-trusted-users = [ "pilz" ];

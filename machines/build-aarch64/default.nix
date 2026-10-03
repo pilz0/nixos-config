@@ -17,7 +17,7 @@
     };
   };
 
-  boot.kernelParams = [ "net.ifnames=0" ];
+  boot.kernelParams = lib.mkAfter [ "net.ifnames=0" ];
 
   systemd.network.networks = {
     "10-eth0" = {
@@ -28,6 +28,7 @@
       linkConfig.RequiredForOnline = "routable";
       address = [
         "10.0.0.45/24"
+        "2603:c020:8028:ce67:4918::/80"
       ];
       routes = [
         {
