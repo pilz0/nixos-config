@@ -25,5 +25,5 @@ jobs:
 
       - name: build and push darwin config
         run: |
-          nix build .#darwinConfigurations.magbook.config.system.build.toplevel
-          nix copy --to ssh://nix-ssh@cache.kyouma.net .#darwinConfigurations.magbook.config.system.build.toplevel
+          nix build .#darwinConfigurations.magbook.config.system.build.toplevel --accept-flake-config 
+          nix copy --to ssh://nix-ssh@cache.kyouma.net .#darwinConfigurations.magbook.config.system.build.toplevel --accept-flake-config
