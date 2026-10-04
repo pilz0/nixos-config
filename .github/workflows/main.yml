@@ -15,7 +15,7 @@ jobs:
       - uses: DeterminateSystems/determinate-nix-action@main
 
       - name: Save SSH Key for deployment
-        run: >
+        shell: |
           mkdir -p ~/.ssh &&
           echo "${{ secrets.GHA_DEPLOY_SSH_KEY }}" >
           ~/.ssh/deploy_key && chmod 600 ~/.ssh/deploy_key
@@ -23,6 +23,6 @@ jobs:
           ssh-keyscan cache.kyouma.net >> ~/.ssh/known_hosts
 
       - name: build and push darwin config
-      - run: >
+      - shell: |
          nix build .#darwinConfigurations.magbook.config.system.build.toplevel
          nix copy --to ssh://nix-ssh@cache.kyouma.net .#darwinConfigurations.magbook.config.system.build.toplevel
