@@ -1,4 +1,4 @@
-name: 
+name: Build and push Darwin configuration
 on:
   push:
     branches: [main]
@@ -6,7 +6,7 @@ on:
 jobs:
   build-and-p:
     name: Build and darwin config
-    runs-on: 	macos-latest
+    runs-on: macos-latest
     permissions:
       id-token: write
       contents: read
@@ -16,13 +16,14 @@ jobs:
 
       - name: Save SSH Key for deployment
         run: |
-          mkdir -p ~/.ssh &&
-          echo "${{ secrets.GHA_DEPLOY_SSH_KEY }}" >
-          ~/.ssh/deploy_key && chmod 600 ~/.ssh/deploy_key
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.GHA_DEPLOY_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          eval "$(ssh-agent -s)"
           ssh-add ~/.ssh/deploy_key
           ssh-keyscan cache.kyouma.net >> ~/.ssh/known_hosts
 
       - name: build and push darwin config
-      - shell: |
-         nix build .#darwinConfigurations.magbook.config.system.build.toplevel
-         nix copy --to ssh://nix-ssh@cache.kyouma.net .#darwinConfigurations.magbook.config.system.build.toplevel
+        run: |
+          nix build .#darwinConfigurations.magbook.config.system.build.toplevel
+          nix copy --to ssh://nix-ssh@cache.kyouma.net .#darwinConfigurations.magbook.config.system.build.toplevel
