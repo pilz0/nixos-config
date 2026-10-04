@@ -69,6 +69,7 @@ in
         xld
         firefox
         cyberduck
+        comma
       ])
       ++ [
         inputs.agenix.packages.aarch64-darwin.default

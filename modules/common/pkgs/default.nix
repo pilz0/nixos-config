@@ -34,6 +34,7 @@
       wireguard-tools
       direnv
       colmena
+      comma
       inputs.nixos-needsreboot.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
   };

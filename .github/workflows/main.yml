@@ -14,7 +14,7 @@ jobs:
       - uses: actions/checkout@v7.0.1
       - uses: DeterminateSystems/determinate-nix-action@main
 
-      - name: Save SSH Key for deployment
+      - name: build and push darwin config
         run: |
           mkdir -p ~/.ssh
           printf '%s\n' "${{ secrets.GHA_DEPLOY_SSH_KEY }}" > ~/.ssh/deploy_key
@@ -22,8 +22,5 @@ jobs:
           eval "$(ssh-agent -s)"
           ssh-add ~/.ssh/deploy_key
           ssh-keyscan cache.kyouma.net >> ~/.ssh/known_hosts
-
-      - name: build and push darwin config
-        run: |
           nix build .#darwinConfigurations.magbook.config.system.build.toplevel --accept-flake-config 
           nix copy --to ssh://nix-ssh@cache.kyouma.net .#darwinConfigurations.magbook.config.system.build.toplevel --accept-flake-config
