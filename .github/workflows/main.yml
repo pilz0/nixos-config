@@ -14,6 +14,42 @@ jobs:
       - uses: actions/checkout@v7.0.1
       - uses: DeterminateSystems/determinate-nix-action@main
 
+      - name: Clean up macOS runner storage
+        shell: bash
+        run: |
+          set -euxo pipefail
+
+          # Show disk usage before cleanup
+          df -h /
+
+          # Remove unused iOS/watchOS/tvOS simulator data
+          xcrun simctl delete unavailable || true
+
+          # Remove common Xcode build artifacts and caches
+          rm -rf ~/Library/Developer/Xcode/DerivedData/*
+          rm -rf ~/Library/Developer/Xcode/Archives/*
+          rm -rf ~/Library/Developer/Xcode/Products/*
+
+          # Remove Swift Package Manager caches
+          rm -rf ~/Library/Caches/org.swift.swiftpm
+          rm -rf ~/Library/org.swift.swiftpm
+
+          # Remove CocoaPods cache, if unused afterward
+          pod cache clean --all || true
+
+          # Remove Homebrew cache
+          brew cleanup -s || true
+          rm -rf "$(brew --cache)" || true
+
+          # Show disk usage after cleanup
+          df -h /
+
+      - name: Inspect runner storage
+        run: |
+          df -h /
+          du -sh "$HOME"/* 2>/dev/null | sort -h
+          du -sh "$HOME/Library"/* 2>/dev/null | sort -h
+
       - name: build and push darwin config
         run: |
           mkdir -p ~/.ssh
