@@ -3,7 +3,7 @@ on:
     branches: [main]
 
 jobs:
-  build-pkg:
+  build-config:
     name: Build Nix package
     runs-on: 	macos-latest
     permissions:
