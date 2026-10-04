@@ -1,0 +1,27 @@
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-pkg:
+    name: Build Nix package
+    runs-on: 	macos-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: DeterminateSystems/determinate-nix-action@main
+
+      - name: Save SSH Key for deployment
+        run: >
+          mkdir -p ~/.ssh &&
+          echo "${{ secrets.GHA_DEPLOY_SSH_KEY }}" >
+          ~/.ssh/deploy_key && chmod 600 ~/.ssh/deploy_key
+          ssh-add ~/.ssh/deploy_key
+          ssh-keyscan cache.kyouma.net >> ~/.ssh/known_hosts
+
+      - name: build and push darwin config
+      - run: |
+         nix build .#darwinConfigurations.magbook.config.system.build.toplevel
+         nix copy --to ssh://nix-ssh@cache.kyouma.net .#darwinConfigurations.magbook.config.system.build.toplevel

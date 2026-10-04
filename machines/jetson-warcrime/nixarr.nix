@@ -58,7 +58,7 @@ in
         peerPort = cfg.peerPort;
         extraSettings = {
           peer-limit-global = 1500;
-          speed-limit-up = 37500; # 300mbit
+          speed-limit-up = 375; # 3mbit
           speed-limit-up-enabled = true;
           upload-slots-per-torrent = 200;
           peer-limit-per-torrent = 300;
