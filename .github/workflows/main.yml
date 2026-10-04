@@ -1,10 +1,10 @@
-name: Build and darwin config
+name: 
 on:
   push:
     branches: [main]
 
 jobs:
-  build-and-push:
+  build-and-p:
     name: Build and darwin config
     runs-on: 	macos-latest
     permissions:
@@ -23,6 +23,6 @@ jobs:
           ssh-keyscan cache.kyouma.net >> ~/.ssh/known_hosts
 
       - name: build and push darwin config
-      - run: |
+      - run: >
          nix build .#darwinConfigurations.magbook.config.system.build.toplevel
          nix copy --to ssh://nix-ssh@cache.kyouma.net .#darwinConfigurations.magbook.config.system.build.toplevel
