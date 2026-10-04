@@ -1,10 +1,11 @@
+name: Build and darwin config
 on:
   push:
     branches: [main]
 
 jobs:
-  build-config:
-    name: Build Nix package
+  build-and-push:
+    name: Build and darwin config
     runs-on: 	macos-latest
     permissions:
       id-token: write
