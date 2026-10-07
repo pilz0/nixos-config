@@ -32,7 +32,11 @@
     extraModulePackages = [ ];
   };
 
-  swapDevices = [ ];
+  swapDevices = [{
+    device = "/var/lib/swapfile";
+    size = 16*1024; # 16 GiB
+  }];
+
   services.nvpmodel = {
     enable = true;
     profileNumber = 0;

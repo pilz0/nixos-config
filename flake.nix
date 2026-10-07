@@ -19,7 +19,7 @@
     in
     {
       hydraJobs = {
-        inherit (self) ;
+        inherit (self) images;
         nixosConfigurations = sf.mapHydraHosts self.nixosConfigurations;
       };
       darwinConfigurations = sf.mapDarwinCfg {
@@ -37,6 +37,9 @@
           };
           specialArgs = { inherit inputs; };
         };
+      };
+      images = {
+       ociImageBuildAarch64 = self.nixosConfigurations.build-aarch64.config.system.build.OCIImage;
       };
       nixosConfigurations = sf.mapNixosCfg {
         hosts = sf.mapHostsMerge ./machines {

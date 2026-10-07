@@ -1,5 +1,6 @@
 {
   lib,
+  modulesPath,
   ...
 }:
 {
@@ -8,7 +9,13 @@
     ../../profiles/vm
     ./hardware-configuration.nix
     ./dns.nix
+    "${modulesPath}/virtualisation/oci-image.nix"
   ];
+
+  swapDevices = [{
+    device = "/var/lib/swapfile";
+    size = 8*1024; # 8 GiB
+  }];
 
   pilz = {
     deployment = {
