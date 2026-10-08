@@ -69,10 +69,10 @@ in
     security.sudo.enable = false;
 
     services.tor = {
-      enable = cfg.enable;
-      openFirewall = cfg.openFirewall;
+      inherit (cfg) enable;
+      inherit (cfg) openFirewall;
       relay = {
-        enable = cfg.enable;
+        inherit (cfg) enable;
         role = "relay";
       };
       settings = {
@@ -80,7 +80,7 @@ in
         BandWidthRate = "${toString cfg.bandWidth} MBytes";
         RelayBandwidthBurst = "${toString cfg.bandWidth} MBytes";
         ExitRelay = false;
-        address = cfg.address;
+        inherit (cfg) address;
         Nickname = cfg.nickname;
         ORPort = cfg.orPort;
         MetricsPort = cfg.metricsPort;

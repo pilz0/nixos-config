@@ -44,7 +44,7 @@ in
         {
           hostName = cfg.builderHost;
           protocol = "ssh-ng";
-          sshUser = cfg.sshUser;
+          inherit (cfg) sshUser;
           sshKey = config.age.secrets.nixbuildssh.path;
           systems = [
             "i686-linux"

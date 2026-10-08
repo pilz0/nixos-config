@@ -41,7 +41,7 @@ let
         inputs.agenix.darwinModules.default
         inputs.home-manager.darwinModules.home-manager
         (
-          { ... }:
+          _:
           {
             nixpkgs.system = system;
           }
@@ -65,7 +65,7 @@ let
         inputs.agenix.nixosModules.default
         inputs.sops-nix.nixosModules.sops
         (
-          { ... }:
+          _:
           {
             # claude slop that needs to be cleaned up
             nixpkgs.hostPlatform.system = system;
@@ -125,14 +125,14 @@ in
     {
       darwinHosts,
     }:
-    mapAttrs (_: v: genDarwinCfg v) darwinHosts;
+    mapAttrs (_: genDarwinCfg) darwinHosts;
 
   mapNixosCfg =
     {
       hosts,
       extraHosts ? { },
     }:
-    mapAttrs (_: v: genNixosCfg v) hosts |> mergeWith extraHosts;
+    mapAttrs (_: genNixosCfg) hosts |> mergeWith extraHosts;
 
   # tests/<name>.nix are runNixOSTest modules, exposed as checks.<system>.<name>
   mapTests =

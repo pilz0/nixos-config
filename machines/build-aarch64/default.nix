@@ -12,10 +12,12 @@
     "${modulesPath}/virtualisation/oci-image.nix"
   ];
 
-  swapDevices = [{
-    device = "/var/lib/swapfile";
-    size = 8*1024; # 8 GiB
-  }];
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 8 * 1024; # 8 GiB
+    }
+  ];
 
   pilz = {
     deployment = {

@@ -25,12 +25,12 @@ in
   };
   config = lib.mkIf cfg.enable {
     services.loki = {
-      enable = cfg.enable;
+      inherit (cfg) enable;
       configuration = {
         auth_enabled = false;
         server = {
-          http_listen_port = cfg.http_listen_port;
-          grpc_listen_port = cfg.grpc_listen_port;
+          inherit (cfg) http_listen_port;
+          inherit (cfg) grpc_listen_port;
           log_level = "debug";
           grpc_server_max_concurrent_streams = 1000;
         };

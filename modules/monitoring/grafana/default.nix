@@ -66,7 +66,7 @@ in
     };
 
     services.grafana = {
-      enable = cfg.enable;
+      inherit (cfg) enable;
       declarativePlugins = with pkgs.grafanaPlugins; [
         grafana-github-datasource
         grafana-clock-panel
@@ -131,7 +131,7 @@ in
           from_address = config.services.grafana.settings.smtp.user;
         };
         server = {
-          domain = cfg.domain;
+          inherit (cfg) domain;
           root_url = "https://${cfg.domain}/";
           http_port = cfg.port;
           http_addr = "";

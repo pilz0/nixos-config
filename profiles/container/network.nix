@@ -30,7 +30,7 @@ in
             IPv6AcceptRA = false;
           };
           matchConfig.Name = "eth0";
-          address = cfg.address;
+          inherit (cfg) address;
           routes = [
             {
               Gateway = cfg.ipv4.gateway;

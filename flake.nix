@@ -12,6 +12,7 @@
       self,
       nixpkgs,
       flake-utils,
+      treefmt-nix,
       ...
     }@inputs:
     let
@@ -20,6 +21,7 @@
     {
       hydraJobs = {
         inherit (self) images;
+        inherit (self) checks;
         nixosConfigurations = sf.mapHydraHosts self.nixosConfigurations;
       };
       darwinConfigurations = sf.mapDarwinCfg {
@@ -39,7 +41,7 @@
         };
       };
       images = {
-       ociImageBuildAarch64 = self.nixosConfigurations.build-aarch64.config.system.build.OCIImage;
+        ociImageBuildAarch64 = self.nixosConfigurations.build-aarch64.config.system.build.OCIImage;
       };
       nixosConfigurations = sf.mapNixosCfg {
         hosts = sf.mapHostsMerge ./machines {
@@ -54,9 +56,10 @@
       system:
       let
         pkgs = sf.importPkgs system;
+        treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
       in
       {
-        formatter = pkgs.nixfmt-tree;
+        formatter = treefmtEval.config.build.wrapper;
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
             colmena
@@ -65,9 +68,19 @@
         };
       }
     )
-    // flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" ] (system: {
-      checks = sf.mapTests (sf.importPkgs system);
-    });
+    // flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" ] (
+      system:
+      let
+        pkgs = sf.importPkgs system;
+        treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
+      in
+      {
+        checks = {
+          formatting = treefmtEval.config.build.check self;
+        }
+        // sf.mapTests (sf.importPkgs system);
+      }
+    );
 
   inputs = {
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
@@ -85,6 +98,7 @@
     #fedi-bot.url = "git+ssh://git@github.com/pilz0/fedi-bot.git";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    treefmt-nix.url = "github:numtide/treefmt-nix";
     agenix.url = "github:ryantm/agenix";
     vpnconfinement-jetson = {
       url = "git+ssh://git@github.com/pilz0/vpn-confinement-jetson.git";
@@ -95,8 +109,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.vpnconfinement.follows = "vpnconfinement-jetson";
     };
-    nixarr.url = "github:nix-media-server/nixarr";
-
+    nixarr = {
+      url = "github:nix-media-server/nixarr";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     catppuccin.url = "github:catppuccin/nix";
     colmena.url = "github:zhaofengli/colmena";
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/3";

@@ -53,8 +53,8 @@ in
 
     nixarr = {
       enable = true;
-      mediaDir = cfg.mediaDir;
-      stateDir = cfg.stateDir;
+      inherit (cfg) mediaDir;
+      inherit (cfg) stateDir;
 
       vpn = {
         enable = true;
@@ -66,7 +66,7 @@ in
       transmission = {
         enable = true;
         vpn.enable = true;
-        peerPort = cfg.peerPort;
+        inherit (cfg) peerPort;
         extraSettings = {
           peer-limit-global = 1500;
           speed-limit-up = 37500; # 300mbit

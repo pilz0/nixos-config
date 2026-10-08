@@ -70,6 +70,7 @@ in
         firefox
         cyberduck
         comma
+        android-tools
       ])
       ++ [
         inputs.agenix.packages.aarch64-darwin.default
@@ -85,6 +86,12 @@ in
         antigravity-cli
         claude-code
       ]);
+    homebrew = {
+      taps = builtins.attrNames config.nix-homebrew.taps;
+      casks = [
+        "android-studio"
+      ];
+    };
     nix-homebrew = {
       enable = true;
       enableRosetta = true;

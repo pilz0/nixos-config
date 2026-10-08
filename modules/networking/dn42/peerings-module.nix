@@ -2,8 +2,7 @@
 { lib, config, ... }:
 let
   activePeerings = builtins.attrNames config.modules.dn42.peerings;
-in
-let
+
   dn42PeeringOpts = self: {
     options = {
       peerLinkLocal = lib.mkOption {
@@ -79,14 +78,14 @@ in
         let
           peering = config.modules.dn42.peerings.${networkName};
         in
-        (lib.mkMerge [
+        lib.mkMerge [
           {
             interfaces."${networkName}".allowedTCPPorts = [ 179 ];
           }
           (lib.mkIf (peering.publicWireguardPort != null) {
             allowedUDPPorts = [ (lib.strings.toInt peering.publicWireguardPort) ];
           })
-        ])
+        ]
       ) activePeerings
     );
 
@@ -104,16 +103,14 @@ in
                 Name = "${networkName}";
                 MTUBytes = "1420";
               };
-              wireguardConfig = (
-                lib.mkMerge [
-                  {
-                    PrivateKeyFile = config.age.secrets.wg.path;
-                  }
-                  (lib.mkIf (peering.publicWireguardPort != null) {
-                    ListenPort = lib.strings.toInt peering.publicWireguardPort;
-                  })
-                ]
-              );
+              wireguardConfig = lib.mkMerge [
+                {
+                  PrivateKeyFile = config.age.secrets.wg.path;
+                }
+                (lib.mkIf (peering.publicWireguardPort != null) {
+                  ListenPort = lib.strings.toInt peering.publicWireguardPort;
+                })
+              ];
               wireguardPeers = [
                 (lib.mkMerge [
                   {

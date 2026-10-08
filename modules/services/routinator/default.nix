@@ -19,7 +19,7 @@ in
   };
   config = lib.mkIf cfg.enable {
     services.routinator = {
-      enable = cfg.enable;
+      inherit (cfg) enable;
       settings = {
         enable-aspa = true;
         rtr-listen = cfg.listenAddresses;

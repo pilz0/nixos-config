@@ -1,6 +1,14 @@
-{ config, inputs, lib, pkgs, ... }: let
+{
+  config,
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
+let
   cfg = config.mira.services.forgejo;
-in {
+in
+{
   options.mira.services.forgejo = {
     enable = lib.mkEnableOption "";
   };
@@ -98,6 +106,6 @@ in {
     kyouma.restic.paths = [
       "/var/lib/forgejo"
     ];
-    security.acme.certs."woof.rip" = {};
+    security.acme.certs."woof.rip" = { };
   };
 }

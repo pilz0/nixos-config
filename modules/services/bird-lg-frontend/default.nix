@@ -33,15 +33,15 @@ in
     services = {
       bird-lg = {
         frontend = {
-          domain = cfg.domain;
+          inherit (cfg) domain;
           enable = true;
-          servers = cfg.servers;
+          inherit (cfg) servers;
           protocolFilter = [
             "bgp"
             "static"
           ];
-          listenAddresses = cfg.listenAddresses;
-          proxyPort = cfg.proxyPort;
+          inherit (cfg) listenAddresses;
+          inherit (cfg) proxyPort;
           navbar = {
             brand = "as214958";
           };
