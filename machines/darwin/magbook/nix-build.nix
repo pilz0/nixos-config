@@ -1,4 +1,3 @@
-_:
 {
   programs.ssh.extraConfig = ''
     Host eu.nixbuild.net

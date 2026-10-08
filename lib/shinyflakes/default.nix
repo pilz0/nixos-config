@@ -40,12 +40,9 @@ let
         ../../machines/darwin/${hostname}
         inputs.agenix.darwinModules.default
         inputs.home-manager.darwinModules.home-manager
-        (
-          _:
-          {
-            nixpkgs.system = system;
-          }
-        )
+        (_: {
+          nixpkgs.system = system;
+        })
       ];
     };
   genNixosCfg =
@@ -64,20 +61,17 @@ let
         ../../profiles/importAll
         inputs.agenix.nixosModules.default
         inputs.sops-nix.nixosModules.sops
-        (
-          _:
-          {
-            # claude slop that needs to be cleaned up
-            nixpkgs.hostPlatform.system = system;
-            # Provide pkgs-unstable via _module.args (not specialArgs) so it is
-            # also available when colmena re-evaluates a node from its module
-            # list -- colmena only forwards `inputs` via meta.specialArgs.
-            _module.args.pkgs-unstable = import inputs.nixpkgs-unstable {
-              inherit system;
-              config.allowUnfree = true;
-            };
-          }
-        )
+        (_: {
+          # claude slop that needs to be cleaned up
+          nixpkgs.hostPlatform.system = system;
+          # Provide pkgs-unstable via _module.args (not specialArgs) so it is
+          # also available when colmena re-evaluates a node from its module
+          # list -- colmena only forwards `inputs` via meta.specialArgs.
+          _module.args.pkgs-unstable = import inputs.nixpkgs-unstable {
+            inherit system;
+            config.allowUnfree = true;
+          };
+        })
       ];
     };
 
