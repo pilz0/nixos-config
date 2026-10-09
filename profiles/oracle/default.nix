@@ -37,8 +37,8 @@
     ];
   };
 
-    security.sudo = {
-      execWheelOnly = true;
-      wheelNeedsPassword = false;
-    };
+  security.sudo = {
+    execWheelOnly = true;
+    wheelNeedsPassword = false;
+  };
 }
