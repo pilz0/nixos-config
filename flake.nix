@@ -22,6 +22,7 @@
       hydraJobs = {
         inherit (self) images;
         inherit (self) checks;
+        inherit (self) packages;
         nixosConfigurations = sf.mapHydraHosts self.nixosConfigurations;
       };
       darwinConfigurations = sf.mapDarwinCfg {
@@ -59,6 +60,12 @@
         treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
       in
       {
+        packages = {
+          flow-exporter = pkgs.callPackage ./pkgs/flow-exporter.nix { };
+          jetson-stats = pkgs.callPackage ./pkgs/jetson-stats.nix { };
+          jetson-ffmpeg = pkgs.callPackage ./pkgs/jetson-ffmpeg.nix { };
+          netsage-sankey-panel = pkgs.callPackage ./pkgs/netsage-sankey-panel.nix { };
+        };
         formatter = treefmtEval.config.build.wrapper;
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [

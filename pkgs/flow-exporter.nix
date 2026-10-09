@@ -27,6 +27,5 @@ buildGoModule (finalAttrs: {
       kloenk
       pilz0
     ];
-    platforms = platforms.linux;
   };
 })
