@@ -25,7 +25,8 @@
   pilz = {
     deployment = {
       targetUser = "marie";
-      targetHost = "100.96.163.120";
+      targetHost = "192.168.0.225";
+      #targetHost = "100.96.163.120";
       #buildOnTarget = true;
     };
     common.enable = true;

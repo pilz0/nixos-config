@@ -6,17 +6,10 @@
 {
   imports = [
     ../../profiles/builder
-    ../../profiles/vm
+    ../../profiles/oracle
     ./hardware-configuration.nix
     ./dns.nix
     "${modulesPath}/virtualisation/oci-image.nix"
-  ];
-
-  swapDevices = [
-    {
-      device = "/var/lib/swapfile";
-      size = 8 * 1024; # 8 GiB
-    }
   ];
 
   pilz = {
@@ -25,8 +18,6 @@
       tags = [ "infra" ];
     };
   };
-
-  boot.kernelParams = lib.mkAfter [ "net.ifnames=0" ];
 
   systemd.network.networks = {
     "10-eth0" = {
@@ -48,18 +39,8 @@
       ];
     };
   };
-  networking.useDHCP = false;
 
-  nix.settings = {
-    max-jobs = 4;
-    cores = 4;
-  };
-
-  security.sudo = {
-    enable = true;
-    execWheelOnly = true;
-    wheelNeedsPassword = false;
-  };
+  boot.kernelParams = lib.mkAfter [ "net.ifnames=0" ];
 
   networking = {
     hostName = "build-aarch64";
