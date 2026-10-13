@@ -12,6 +12,9 @@
     ../container/network.nix
   ];
 
+  services.qemuGuest.enable = true;
+  services.spice-vdagentd.enable = true;
+
   proxmox = {
     cloudInit.enable = false;
     qemuConf = {
@@ -30,6 +33,9 @@
   };
 
   pilz = {
+    deployment.tags = lib.mkAfter [
+      "vm"
+    ];
     shell.enable = true;
     services.ssh.enable = true;
     common.enable = true;

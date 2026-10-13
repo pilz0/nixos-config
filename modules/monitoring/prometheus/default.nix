@@ -46,6 +46,8 @@
                 "anodyne.wiki:${toString config.services.prometheus.exporters.node.port}"
                 "build-aarch64.as214958.net:${toString config.services.prometheus.exporters.node.port}"
                 "build-aarch64.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
+                "build-aarch64-2.as214958.net:${toString config.services.prometheus.exporters.node.port}"
+                "build-aarch64-2.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
               ];
             }
           ];

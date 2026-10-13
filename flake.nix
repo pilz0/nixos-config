@@ -50,6 +50,7 @@
             system = "aarch64-linux";
           };
           build-aarch64.system = "aarch64-linux";
+          build-aarch64-2.system = "aarch64-linux";
         };
       };
     }
@@ -99,6 +100,10 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
+    anodyne-molpic.url = "github:pilz0/anodyne-molpic/add-nix-flake";
+    anodyne-api.url = "github:pilz0/anodyne-api/add-nix-flake";
+    anodyne-chrp.url = "github:pilz0/anodyne-chrp/add-nix-flake";
+    firefox.url = "git+ssh://forgejo@woof.rip/pilz0/firefox.git?ref=fix-darwin-build";
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-2511.url = "github:nixos/nixpkgs/nixos-25.11";

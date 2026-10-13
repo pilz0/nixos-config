@@ -1,6 +1,7 @@
 {
   lib,
   modulesPath,
+  inputs,
   ...
 }:
 {
@@ -9,7 +10,9 @@
     ../../profiles/oracle
     ./hardware-configuration.nix
     ./dns.nix
-    "${modulesPath}/virtualisation/oci-image.nix"
+    #"${modulesPath}/virtualisation/oci-image.nix"
+    inputs.disko.nixosModules.disko
+    ./disk-config.nix
   ];
 
   pilz = {
@@ -27,8 +30,8 @@
       matchConfig.Name = "eth0";
       linkConfig.RequiredForOnline = "routable";
       address = [
-        "10.0.0.45/24"
-        "2603:c020:8028:ce67:4918::/80"
+        "10.0.0.15/24"
+        "2603:c020:8028:ce67:0:995d:ae04:7a9a/128"
       ];
       routes = [
         {
@@ -40,6 +43,8 @@
     };
   };
 
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelParams = lib.mkAfter [ "net.ifnames=0" ];
 
   networking = {

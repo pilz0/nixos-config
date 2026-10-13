@@ -10,6 +10,7 @@
 
   pilz = {
     services = {
+      syncserver.enable = true;
       flohannes-de.enable = true;
       diyhrt-web.enable = true;
       timemachine-server.enable = true;

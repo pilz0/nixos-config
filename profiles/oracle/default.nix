@@ -10,8 +10,6 @@
     inputs.determinate.nixosModules.default
   ];
 
-  networking.useDHCP = false;
-
   nix.settings = {
     max-jobs = 4;
     cores = 4;
@@ -28,7 +26,8 @@
   networking = {
     usePredictableInterfaceNames = false;
     useNetworkd = true;
-    domain = "ams1.as214958.net";
+    useDHCP = false;
+    domain = "as214958.net";
     nameservers = lib.mkAfter [
       "2606:4700:4700::1111"
       "1.1.1.1"

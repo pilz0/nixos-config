@@ -108,4 +108,5 @@ in
   "tor-familiy.age".publicKeys = marielap ++ tor;
   "wg-jetson.age".publicKeys = marielap ++ jetson-warcrime;
   "smtp-flohannes.age".publicKeys = marielap ++ web1_host ++ emily;
+  "syncserver-secrets.age".publicKeys = marielap ++ emily ++ web1_host;
 }
