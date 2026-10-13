@@ -26,20 +26,20 @@ in
 
   config = lib.mkIf config.pilz.services.nextcloud.enable {
 
-  age.secrets.syncserver-secrets = {
-    file = ../../../secrets/syncserver-secrets.age;
-    mode = "640";
-    owner = "firefox-syncserver";
-    group = "firefox-syncserver";
-  };
+    age.secrets.syncserver-secrets = {
+      file = ../../../secrets/syncserver-secrets.age;
+      mode = "640";
+      owner = "firefox-syncserver";
+      group = "firefox-syncserver";
+    };
 
-  services.firefox-syncserver = {
-    enable = cfg.enable;
-    singleNode.enable = true;
-    singleNode.enableTLS = true;
-    singleNode.enableNginx = true;
-    singleNode.hostname = cfg.domain;
-    secrets = cfg.secretsFile;
-  };
+    services.firefox-syncserver = {
+      inherit (cfg) enable;
+      singleNode.enable = true;
+      singleNode.enableTLS = true;
+      singleNode.enableNginx = true;
+      singleNode.hostname = cfg.domain;
+      secrets = cfg.secretsFile;
+    };
   };
 }

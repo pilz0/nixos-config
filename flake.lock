@@ -576,11 +576,11 @@
         "nixpkgs": "nixpkgs_14"
       },
       "locked": {
-        "lastModified": 1791812443,
-        "narHash": "sha256-mM/WX/YZ0W+omyap5XI8dOmXFyh3de2+Ib/7HhlwziY=",
+        "lastModified": 1791877774,
+        "narHash": "sha256-o2H2Ps9xG31/MP8piOG1yYxTscrdRASYBSbsY2ogcqU=",
         "ref": "fix-darwin-build",
-        "rev": "74d756f559d45948e77e620ac6969b9ba63c72b5",
-        "revCount": 174,
+        "rev": "aad7d6c85a41a7060172d87443ba02141e4be1c3",
+        "revCount": 175,
         "type": "git",
         "url": "ssh://forgejo@woof.rip/pilz0/firefox.git"
       },
