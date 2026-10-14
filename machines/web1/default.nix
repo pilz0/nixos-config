@@ -3,7 +3,7 @@
 }:
 {
   imports = [
-    ../../profiles/container
+    ../../profiles/vm
     ../../profiles/mira
     ./proxys.nix
   ];
@@ -35,10 +35,6 @@
       targetHost = "web1.ams1.as214958.net";
       tags = [ "infra" ];
     };
-    lxc = {
-      enable = true;
-      ctID = "100";
-    };
   };
 
   mira.services = {
@@ -54,6 +50,8 @@
       Persistent = true;
     };
   };
+
+  system.stateVersion = "23.11";
 
   networking = {
     hostName = "web1";

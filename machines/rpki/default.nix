@@ -4,7 +4,7 @@
 }:
 {
   imports = [
-    ../../profiles/container
+    ../../profiles/vm
   ];
 
   pilz = {
@@ -20,11 +20,9 @@
       targetHost = "rpki.ams1.as214958.net";
       tags = [ "infra" ];
     };
-    lxc = {
-      enable = true;
-      ctID = "102";
-    };
   };
+
+  system.stateVersion = "23.11";
 
   networking = {
     hostName = "rpki";

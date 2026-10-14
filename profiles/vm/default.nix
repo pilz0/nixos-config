@@ -3,34 +3,47 @@
   modulesPath,
   config,
   lib,
+  pkgs,
   ...
 }:
 {
   imports = [
-    "${modulesPath}/virtualisation/proxmox-image.nix"
+    #"${modulesPath}/virtualisation/proxmox-image.nix"
     inputs.determinate.nixosModules.default
+    "${modulesPath}/virtualisation/disk-image.nix"
+    "${modulesPath}/profiles/qemu-guest.nix"
     ../container/network.nix
   ];
+
+  system.build.image = lib.mkForce (
+    import "${modulesPath}/../lib/make-disk-image.nix" {
+      inherit lib config pkgs;
+      inherit (config.virtualisation) diskSize;
+      inherit (config.image) baseName;
+      format = "qcow2-compressed";
+      partitionTableType = "efi";
+    }
+  );
 
   services.qemuGuest.enable = true;
   services.spice-vdagentd.enable = true;
 
-  proxmox = {
-    cloudInit.enable = false;
-    qemuConf = {
-      name = config.networking.hostName;
-      cores = lib.mkDefault 4;
-      memory = lib.mkDefault 8096;
-      additionalSpace = lib.mkDefault "8G";
-      net0 = lib.mkDefault "virtio,bridge=vmbr0";
-    };
-    qemuExtraConf = {
-      ide2 = lib.mkForce "none,media=cdrom";
-    }
-    // lib.optionalAttrs config.pilz.networking.tor-relay.enable {
-      net1 = "virtio,bridge=vmbr2";
-    };
-  };
+  #proxmox = {
+  #  cloudInit.enable = false;
+  #  qemuConf = {
+  #    name = config.networking.hostName;
+  #    cores = lib.mkDefault 4;
+  #    memory = lib.mkDefault 8096;
+  #    additionalSpace = lib.mkDefault "8G";
+  #    net0 = lib.mkDefault "virtio,bridge=vmbr0";
+  #  };
+  #  qemuExtraConf = {
+  #    ide2 = lib.mkForce "none,media=cdrom";
+  #  }
+  #  // lib.optionalAttrs config.pilz.networking.tor-relay.enable {
+  #    net1 = "virtio,bridge=vmbr2";
+  #  };
+  #};
 
   pilz = {
     deployment.tags = lib.mkAfter [

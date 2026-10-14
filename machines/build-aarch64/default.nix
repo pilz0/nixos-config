@@ -12,6 +12,13 @@
     inputs.disko.nixosModules.disko
   ];
 
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 64 * 1024; # 64 GiB
+    }
+  ];
+
   pilz = {
     deployment = {
       targetHost = "build-aarch64.as214958.net";

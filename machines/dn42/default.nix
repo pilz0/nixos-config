@@ -4,7 +4,7 @@
 }:
 {
   imports = [
-    ../../profiles/container
+    ../../profiles/vm
     ../../modules/networking/dn42
     ./wireguard.nix
     ./dns.nix
@@ -22,11 +22,9 @@
       targetHost = "ns1.as214958.net";
       tags = [ "infra" ];
     };
-    lxc = {
-      enable = true;
-      ctID = "104";
-    };
   };
+
+  system.stateVersion = "23.11";
 
   networking = {
     hostName = "dn42";

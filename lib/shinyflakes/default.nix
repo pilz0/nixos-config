@@ -115,6 +115,10 @@ in
     |> mapAttrs genColmenaCfg
     |> mergeWith extraCfg;
 
+  mapImagesMerge =
+    nixosCfg: hosts: extraCfg:
+    lib.genAttrs hosts (host: nixosCfg.${host}.config.system.build.image) |> mergeWith extraCfg;
+
   mapDarwinCfg =
     {
       darwinHosts,
@@ -128,7 +132,6 @@ in
     }:
     mapAttrs (_: genNixosCfg) hosts |> mergeWith extraHosts;
 
-  # tests/<name>.nix are runNixOSTest modules, exposed as checks.<system>.<name>
   mapTests =
     pkgs:
     builtins.readDir ../../tests

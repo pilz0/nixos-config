@@ -18,6 +18,13 @@
     };
   };
 
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 64 * 1024; # 64 GiB
+    }
+  ];
+
   systemd.network.networks = {
     "10-eth0" = {
       address = [

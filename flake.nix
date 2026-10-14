@@ -41,9 +41,9 @@
           specialArgs = { inherit inputs; };
         };
       };
-      images = {
-        #ociImageBuildAarch64 = self.nixosConfigurations.build-aarch64.config.system.build.OCIImage;
-      };
+
+      images = sf.mapImagesMerge self.nixosConfigurations [ "tor1" "tor2" "tor3" "tor4" "tor5" "tor6" "tor7" "tor8" "build" "anodyne" "dn42" "jellyfin" "rpki" "grafana" "web1" ] { };
+
       nixosConfigurations = sf.mapNixosCfg {
         hosts = sf.mapHostsMerge ./machines {
           jetson-warcrime = {
@@ -107,6 +107,7 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
+    anodyne-flake.url = "github:pilz0/anodyne-flake";
     anodyne-molpic.url = "github:pilz0/anodyne-molpic/add-nix-flake";
     anodyne-api.url = "github:pilz0/anodyne-api/add-nix-flake";
     anodyne-chrp.url = "github:pilz0/anodyne-chrp/add-nix-flake";

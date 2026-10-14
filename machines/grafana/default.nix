@@ -4,7 +4,7 @@
 }:
 {
   imports = [
-    ../../profiles/container
+    ../../profiles/vm
   ];
 
   pilz = {
@@ -26,10 +26,6 @@
       targetHost = "grafana.ams1.as214958.net";
       tags = [ "infra" ];
     };
-    lxc = {
-      enable = true;
-      ctID = "101";
-    };
   };
 
   age.secrets = {
@@ -44,6 +40,8 @@
       group = "grafana";
     };
   };
+
+  system.stateVersion = "23.11";
 
   networking = {
     hostName = "grafana";

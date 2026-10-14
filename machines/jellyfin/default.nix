@@ -5,7 +5,7 @@
 }:
 {
   imports = [
-    ../../profiles/container
+    ../../profiles/vm
   ];
 
   pilz = {
@@ -23,10 +23,6 @@
       targetHost = "jellyfin.ams1.as214958.net";
       tags = [ "infra" ];
     };
-    lxc = {
-      enable = true;
-      ctID = "102";
-    };
   };
 
   users.users = {
@@ -40,6 +36,8 @@
       ];
     };
   };
+
+  system.stateVersion = "23.11";
 
   networking = {
     hostName = "jellyfin";
