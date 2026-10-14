@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  pkgs,
   ...
 }:
 let
@@ -10,10 +9,6 @@ in
 {
   options.pilz.services.syncserver = {
     enable = lib.mkEnableOption "";
-    package = lib.mkOption {
-      type = lib.types.package;
-      default = pkgs.nextcloud35;
-    };
     domain = lib.mkOption {
       type = lib.types.str;
       default = "syncserver.as214958.net";
@@ -24,7 +19,7 @@ in
     };
   };
 
-  config = lib.mkIf config.pilz.services.nextcloud.enable {
+  config = lib.mkIf cfg.enable {
 
     age.secrets.syncserver-secrets = {
       file = ../../../secrets/syncserver-secrets.age;
@@ -34,12 +29,13 @@ in
     };
 
     services.firefox-syncserver = {
-      inherit (cfg) enable;
+      enable = true;
       singleNode.enable = true;
       singleNode.enableTLS = true;
       singleNode.enableNginx = true;
       singleNode.hostname = cfg.domain;
       secrets = cfg.secretsFile;
+      database.type = "mysql";
     };
   };
 }

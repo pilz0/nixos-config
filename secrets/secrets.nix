@@ -36,9 +36,8 @@ let
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMwN/bH7k75m4f2RwdeNsnnNRhCKQVtfZsbgR1zVvVAH root@jetson-warcrime"
   ];
   build-aarch64 = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFmKUILzb3kuLq4g3MD7NJEIXIZghQqozqRa/SdYoYzK root@build-aarch64"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICD2cFzEONuBlQhEEekHfcCMGcqTo48cuEjCRSBMG84q root@build-aarch64"
   ];
-
   tor1 = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA2lst0kq6NAlb+Cc3qMHiRck8m6TxsbIY1xw4c2Uy6+ root@tor1"
   ];

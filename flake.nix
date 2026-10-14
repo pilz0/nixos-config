@@ -42,7 +42,7 @@
         };
       };
       images = {
-        ociImageBuildAarch64 = self.nixosConfigurations.build-aarch64.config.system.build.OCIImage;
+        #ociImageBuildAarch64 = self.nixosConfigurations.build-aarch64.config.system.build.OCIImage;
       };
       nixosConfigurations = sf.mapNixosCfg {
         hosts = sf.mapHostsMerge ./machines {
@@ -61,12 +61,6 @@
         treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
       in
       {
-        packages = {
-          flow-exporter = pkgs.callPackage ./pkgs/flow-exporter.nix { };
-          jetson-stats = pkgs.callPackage ./pkgs/jetson-stats.nix { };
-          jetson-ffmpeg = pkgs.callPackage ./pkgs/jetson-ffmpeg.nix { };
-          netsage-sankey-panel = pkgs.callPackage ./pkgs/netsage-sankey-panel.nix { };
-        };
         formatter = treefmtEval.config.build.wrapper;
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
@@ -83,6 +77,19 @@
         treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
       in
       {
+        packages = {
+          flow-exporter = pkgs.callPackage ./pkgs/flow-exporter.nix { };
+          jetson-stats = pkgs.callPackage ./pkgs/jetson-stats.nix { };
+          netsage-sankey-panel = pkgs.callPackage ./pkgs/netsage-sankey-panel.nix {
+            inherit (pkgs.grafanaPlugins) grafanaPlugin;
+          };
+        }
+        // nixpkgs.lib.optionalAttrs (system == "aarch64-linux") {
+          # needs the nvidia-jetpack overlay, so use the jetson host's pkgs
+          jetson-ffmpeg =
+            self.nixosConfigurations.jetson-warcrime.pkgs.callPackage ./pkgs/jetson-ffmpeg.nix
+              { };
+        };
         checks = {
           formatting = treefmtEval.config.build.check self;
         }
@@ -105,8 +112,7 @@
     anodyne-chrp.url = "github:pilz0/anodyne-chrp/add-nix-flake";
     firefox.url = "git+ssh://forgejo@woof.rip/pilz0/firefox.git?ref=fix-darwin-build";
     flake-utils.url = "github:numtide/flake-utils";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
-    nixpkgs-2511.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     #fedi-bot.url = "git+ssh://git@github.com/pilz0/fedi-bot.git";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
@@ -135,7 +141,7 @@
       inputs.home-manager.follows = "home-manager";
     };
     home-manager = {
-      url = "github:nix-community/home-manager/release-26.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-needsreboot.url = "https://codeberg.org/Mynacol/nixos-needsreboot/archive/HEAD.tar.gz";
@@ -144,7 +150,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-darwin = {
-      url = "github:lnl7/nix-darwin/nix-darwin-26.05";
+      url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-rosetta-builder = {
