@@ -68,13 +68,20 @@ in
     services.grafana = {
       inherit (cfg) enable;
       declarativePlugins = with pkgs.grafanaPlugins; [
+        # no longer bundled since grafana 13, and declarativePlugins disables the preinstaller
+        prometheus
+        loki
         grafana-github-datasource
         grafana-clock-panel
         grafana-oncall-app
-        grafana-piechart-panel
         grafana-polystat-panel
         netsage-sankey-panel
-        yesoreyeram-infinity-datasource
+        # upstream re-published the 4.1.0 zip; drop once nixpkgs has the new hash
+        (yesoreyeram-infinity-datasource.overrideAttrs (old: {
+          src = old.src.overrideAttrs {
+            outputHash = "sha256-E3CBS3xVqdBJq4ylHaFmX75INZjI0fk6RX4yYNL1IhI=";
+          };
+        }))
       ];
       provision = {
         enable = true;
