@@ -156,6 +156,14 @@
           publicWireguardKey = "r38qvXqu26x4f6yUGxg44Ji4db/g2HK7RZwG7Boh+38=";
           publicWireguardPort = "163";
         };
+        slop_dn42 = {
+          peerLinkLocal = "fe80::125";
+          ownLinkLocal = "fe80::1312";
+          asNumber = "4242420125";
+          publicWireguardEndpoint = "45.150.123.24:20663";
+          publicWireguardKey = "sgYSxYeBQX9IMbcj7zv6UxYYq7QQPDfMdaxHFlTeckY=";
+          publicWireguardPort = "125";
+        };
       };
     };
   };
