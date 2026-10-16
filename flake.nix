@@ -42,7 +42,23 @@
         };
       };
 
-      images = sf.mapImagesMerge self.nixosConfigurations [ "tor1" "tor2" "tor3" "tor4" "tor5" "tor6" "tor7" "tor8" "build" "anodyne" "dn42" "jellyfin" "rpki" "grafana" "web1" ] { };
+      images = sf.mapImagesMerge self.nixosConfigurations [
+        "tor1"
+        "tor2"
+        "tor3"
+        "tor4"
+        "tor5"
+        "tor6"
+        "tor7"
+        "tor8"
+        "build"
+        "anodyne"
+        "dn42"
+        "jellyfin"
+        "rpki"
+        "grafana"
+        "web1"
+      ] { };
 
       nixosConfigurations = sf.mapNixosCfg {
         hosts = sf.mapHostsMerge ./machines {
@@ -90,10 +106,20 @@
             self.nixosConfigurations.jetson-warcrime.pkgs.callPackage ./pkgs/jetson-ffmpeg.nix
               { };
         };
+      }
+    )
+    // flake-utils.lib.eachSystem [ "x86_64-linux" ] (
+      system:
+      let
+        pkgs = sf.importPkgs system;
+        treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
+      in
+      {
         checks = {
           formatting = treefmtEval.config.build.check self;
         }
         // sf.mapTests (sf.importPkgs system);
+
       }
     );
 
