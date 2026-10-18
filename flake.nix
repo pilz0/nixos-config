@@ -13,6 +13,7 @@
       nixpkgs,
       flake-utils,
       treefmt-nix,
+      colmena,
       ...
     }@inputs:
     let
@@ -29,18 +30,20 @@
         darwinHosts = sf.mapHostsMerge ./machines/darwin {
         };
       };
-      colmena = sf.mapColmenaMerge self.nixosConfigurations {
-        meta = {
-          nixpkgs = nixpkgs.legacyPackages.x86_64-linux;
-          nodeNixpkgs = {
-            jetson-warcrime = import inputs.nixpkgs {
-              system = "aarch64-linux";
-              config.allowUnfree = true;
+      colmenaHive = colmena.lib.makeHive (
+        sf.mapColmenaMerge self.nixosConfigurations {
+          meta = {
+            nixpkgs = nixpkgs.legacyPackages.x86_64-linux;
+            nodeNixpkgs = {
+              jetson-warcrime = import inputs.nixpkgs {
+                system = "aarch64-linux";
+                config.allowUnfree = true;
+              };
             };
+            specialArgs = { inherit inputs; };
           };
-          specialArgs = { inherit inputs; };
-        };
-      };
+        }
+      );
 
       images = sf.mapImagesMerge self.nixosConfigurations [
         "tor1"
@@ -158,7 +161,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     catppuccin.url = "github:catppuccin/nix";
-    colmena.url = "github:zhaofengli/colmena";
+    colmena = {
+      url = "github:nix-community/colmena";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
     #    microvm.url = "github:microvm-nix/microvm.nix";

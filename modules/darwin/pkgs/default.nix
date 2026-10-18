@@ -78,7 +78,7 @@ in
         inputs.anodyne-api.packages.aarch64-darwin.default
         inputs.anodyne-chrp.packages.aarch64-darwin.default
         inputs.anodyne-molpic.packages.aarch64-darwin.default
-        inputs.firefox.packages.aarch64-darwin.default
+        #inputs.firefox.packages.aarch64-darwin.default
       ]
       ++ (with pkgs-unstable; [
         caffeine
