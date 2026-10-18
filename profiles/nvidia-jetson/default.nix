@@ -56,6 +56,29 @@
     };
   };
 
+  # nixpkgs renamed cudaPackages.cuda_cccl to cccl, but jetpack-nixos only
+  # replaces cuda_cccl with its deb build, leaving cccl unsupported on 11.4
+  nixpkgs.overlays = lib.mkAfter [
+    (final: prev: {
+      _cuda = prev._cuda.extend (
+        _: prevCuda: {
+          extensions = prevCuda.extensions ++ [
+            (finalCuda: prevCudaPkgs: {
+              cccl =
+                if prevCudaPkgs.cudaMajorMinorVersion == "11.4" then
+                  finalCuda.debWrapBuildRedist {
+                    sourceName = "cuda-thrust";
+                    drv = prevCudaPkgs.cccl;
+                  }
+                else
+                  prevCudaPkgs.cccl;
+            })
+          ];
+        }
+      );
+    })
+  ];
+
   users.groups.debug = { };
 
   programs.dconf.enable = true;

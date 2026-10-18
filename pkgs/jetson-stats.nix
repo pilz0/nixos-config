@@ -38,7 +38,6 @@ python3Packages.buildPythonApplication (finalAttrs: {
     mainProgram = "jtop";
     homepage = "https://github.com/rbonghi/jetson_stats";
     license = licenses.agpl3Only;
-    maintainers = with maintainers; [ pilz0 ];
     platforms = platforms.linux;
   };
 })

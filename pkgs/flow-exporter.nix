@@ -25,7 +25,7 @@ buildGoModule (finalAttrs: {
     license = licenses.mit;
     maintainers = with maintainers; [
       kloenk
-      pilz0
+      pilz
     ];
   };
 })
