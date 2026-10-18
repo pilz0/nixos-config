@@ -61,7 +61,7 @@ in
         mitmproxy
         wireshark
         devenv
-        zotero
+        #zotero
         androidenv.androidPkgs.ndk-bundle
         cargo-ndk
         rustc

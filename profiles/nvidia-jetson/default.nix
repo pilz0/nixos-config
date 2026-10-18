@@ -50,7 +50,7 @@
     nvidia-container-toolkit.enable = true;
     nvidia-jetpack = {
       enable = true;
-      configureCuda = false;
+      configureCuda = true;
       carrierBoard = "devkit";
       modesetting.enable = false;
     };

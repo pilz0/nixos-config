@@ -101,7 +101,6 @@
           };
         }
         // nixpkgs.lib.optionalAttrs (system == "aarch64-linux") {
-          # needs the nvidia-jetpack overlay, so use the jetson host's pkgs
           jetson-ffmpeg =
             self.nixosConfigurations.jetson-warcrime.pkgs.callPackage ./pkgs/jetson-ffmpeg.nix
               { };
