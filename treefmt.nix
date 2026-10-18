@@ -3,7 +3,7 @@
   programs = {
     nixfmt.enable = true; # nix formatter
     statix.enable = true; # nix static analysis
-    #shellcheck.enable = true; # bash/shell
+    shellcheck.enable = true; # bash/shell
     taplo.enable = true; # toml
     yamlfmt.enable = true; # yaml
     gofmt.enable = true;

@@ -31,7 +31,6 @@ in
       yt-dlp
       supertuxkart
       tailscale
-      ollama
     ])
     ++ (with pkgs-unstable; [
       crosspipe

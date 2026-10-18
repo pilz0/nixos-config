@@ -7,13 +7,14 @@
   };
   services.ollama = {
     enable = true;
-    package = pkgs.ollama.overrideAttrs (old: {
+    # nixpkgs ollama has no CUDA 11 backend; GPU support comes from the prebuilt jetpack5 runner below
+    package = (pkgs.ollama.override { acceleration = false; }).overrideAttrs (old: {
       nativeBuildInputs = old.nativeBuildInputs ++ [ pkgs.zstd ];
       postFixup = (old.postFixup or "") + ''
         tar --zstd -xf ${
           pkgs.fetchurl {
             url = "https://github.com/ollama/ollama/releases/download/v${old.version}/ollama-linux-arm64-jetpack5.tar.zst";
-            hash = "sha256-xEXJv/uUOJNKZPware3rDwOBQM/bB9EbxaMS557kp/Q=";
+            hash = "sha256-+xK+VwuWEZm91qnwhyuirx1uw7n4nQ1r4059jb1udg0=";
           }
         } -C $out
         for f in $out/lib/ollama/cuda_jetpack5/*.so*; do
