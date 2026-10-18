@@ -73,6 +73,17 @@
         }
       );
     })
+    # gcc10 (from cuda-legacy, used as nvcc host compiler for CUDA 11.4) fails to build
+    # libsanitizer against current kernel headers, which dropped linux/scc.h.
+    (final: prev: {
+      gccVersions = prev.gccVersions // {
+        gcc10 = prev.gccVersions.gcc10.override (o: {
+          cc = o.cc.overrideAttrs (a: {
+            configureFlags = a.configureFlags ++ [ "--disable-libsanitizer" ];
+          });
+        });
+      };
+    })
     (final: prev: {
       _cuda = prev._cuda.extend (
         _: prevCuda: {
