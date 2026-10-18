@@ -11,20 +11,13 @@ in
   environment.systemPackages =
     (with pkgs; [
       jetson-stats
-      firefox
       fastfetch
       alacritty
-      signal-desktop
-      libreoffice
       python3
       cmatrix
       btop
       wget
-      restic
-      rclone
       pavucontrol
-      openconnect
-      spotifyd
       killall
       gnupg
       vlc
@@ -71,13 +64,6 @@ in
   };
 
   programs = {
-    firefox.policies = {
-      DisablePocket = true;
-      DisableTelemetry = true;
-      PasswordManagerEnabled = false;
-      cookies = "reject";
-      DisableFirefoxStudies = true;
-    };
 
     git = {
       config = {
