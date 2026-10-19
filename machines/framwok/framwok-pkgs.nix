@@ -65,6 +65,10 @@
       claude-code
       zotero
       androidenv.androidPkgs.ndk-bundle
+      devenv
+      rustc
+      rustup
+      xld
     ])
     ++
       [
