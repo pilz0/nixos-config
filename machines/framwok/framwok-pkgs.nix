@@ -1,61 +1,85 @@
 {
   pkgs,
+  inputs,
   ...
 }:
 {
-  environment.systemPackages = with pkgs; [
-    mitmproxy
-    ledger-live-desktop
-    gimp
-    thunderbird
-    firefox
-    alacritty
-    signal-desktop
-    nil
-    speedtest-cli
-    filezilla
-    docker
-    libreoffice
-    python3
-    obs-studio
-    wireshark
-    vlc
-    terraform
-    prusa-slicer
-    nixfmt
-    cmatrix
-    btop
-    wget
-    restic
-    chromium
-    helvum
-    rclone
-    woeusb
-    pavucontrol
-    tor-browser
-    drawio
-    google-chrome
-    spotify
-    openconnect
-    killall
-    android-studio
-    gnome-tweaks
-    vesktop
-    gnupg
-    vlc
-    pinentry-gnome3
-    docker-compose
-    telegram-desktop
-    gnumake
-    wireshark
-    kubernetes
-    kind
-    networkmanager-openvpn
-    # Google Cloud SDK with additional components
-    (google-cloud-sdk.withExtraComponents [
-      google-cloud-sdk.components.gke-gcloud-auth-plugin
+  environment.systemPackages =
+    (with pkgs; [
+      mitmproxy
+      ledger-live-desktop
+      gimp
+      thunderbird
+      alacritty
+      signal-desktop
+      nil
+      speedtest-cli
+      filezilla
+      docker
+      libreoffice
+      python3
+      obs-studio
+      wireshark
+      vlc
+      terraform
+      prusa-slicer
+      nixfmt
+      cmatrix
+      btop
+      wget
+      restic
+      chromium
+      helvum
+      rclone
+      woeusb
+      pavucontrol
+      tor-browser
+      drawio
+      google-chrome
+      spotify
+      openconnect
+      killall
+      android-studio
+      gnome-tweaks
+      vesktop
+      gnupg
+      vlc
+      pinentry-gnome3
+      docker-compose
+      telegram-desktop
+      gnumake
+      wireshark
+      kubernetes
+      kind
+      networkmanager-openvpn
+      cyberduck
+      comma
+      android-tools
+      tailscale
+      gnupg
+      github-copilot-cli
+      mpv-unwrapped
+      daisydisk
+      spotify
+      antigravity-cli
+      claude-code
+      zotero
+      androidenv.androidPkgs.ndk-bundle
     ])
-  ];
+    ++
+      [
+        inputs.agenix.packages.x86_64-linux.default
+        inputs.anodyne-api.packages.x86_64-linux.default
+        inputs.anodyne-chrp.packages.x86_64-linux.default
+        inputs.anodyne-molpic.packages.x86_64-linux.default
+        inputs.firefox.packages.x86_64-linux.default
+      ]
+        # Google Cloud SDK with additional components
+        (
+          google-cloud-sdk.withExtraComponents [
+            google-cloud-sdk.components.gke-gcloud-auth-plugin
+          ]
+        );
 
   programs = {
     firefox.policies = {
