@@ -30,6 +30,7 @@
     ../../modules/shell
     ../../modules/services/flohannes-de
     ../../modules/services/haos-vm
+    ../../modules/services/ai-slop-vm
     ../../modules/services/syncserver
     ../container/network.nix
   ];

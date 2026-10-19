@@ -102,6 +102,8 @@ in
         RuntimeMaxSec = "24h";
         ExecStart = "${flow-exporter-custom}/bin/flow-exporter --brokers=localhost:${toString cfg.exporter.kafkaPort} --topic=${cfg.exporter.kafkaTopic} --asn=${toString cfg.exporter.asn}";
         Restart = "on-failure";
+        # kafka takes a while to listen, don't hit the start limit before that
+        RestartSec = 5;
       };
     };
   };

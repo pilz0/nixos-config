@@ -24,7 +24,9 @@
     import json
 
     start_all()
-    server.wait_for_unit("nextcloud-setup.service")
+    server.wait_for_unit("multi-user.target")
+    # oneshot without RemainAfterExit, so it's inactive once done
+    assert server.get_unit_info("nextcloud-setup")["Result"] == "success"
     server.wait_for_unit("phpfpm-nextcloud.service")
     server.wait_for_unit("nginx.service")
     server.wait_for_open_port(80)

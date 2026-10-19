@@ -37,8 +37,8 @@
     stranger.wait_for_unit("multi-user.target")
 
     with subtest("monitoring server can scrape both exporters"):
-        scraper.succeed("curl -4 -fsS --max-time 10 http://server:9100/metrics | grep -q '^node_uname_info'")
-        scraper.succeed("curl -4 -fsS --max-time 10 http://server:9558/metrics | grep -q '^systemd_unit_state'")
+        scraper.succeed("curl -4 -fsS --max-time 10 http://server:9100/metrics | grep '^node_uname_info' >/dev/null")
+        scraper.succeed("curl -4 -fsS --max-time 10 http://server:9558/metrics | grep '^systemd_unit_state' >/dev/null")
 
     with subtest("other hosts are firewalled off"):
         for port in [9100, 9558]:

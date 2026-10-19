@@ -12,8 +12,8 @@
 
   pilz = {
     services.nginx = {
-        enable = true;
-        enableMonitoring = true;
+      enable = true;
+      enableMonitoring = true;
     };
     monitoring = {
       blackbox-anodyne.enable = true;
@@ -63,58 +63,58 @@
     hostName = "monitoring";
   };
 
-    systemd.network = {
-      enable = true;
-      networks = {
-        "10-eth0" = {
-          networkConfig = {
-            IPv6AcceptRA = false;
-          };
-          matchConfig.Name = "eth0";
-          address = [
-            "45.150.123.15/32"
-            "2a0f:be01:0:100::a3/128"
-          ];
-          routes = [
-            {
-              Gateway = "169.254.1.1";
-              Destination = "0.0.0.0/0";
-              GatewayOnLink = true;
-            }
-            {
-              Gateway = "fe80::1";
-              Destination = "::/0";
-              GatewayOnLink = true;
-            }
-          ];
-          linkConfig.RequiredForOnline = "routable";
-        };
-      };
-      config = {
+  systemd.network = {
+    enable = true;
+    networks = {
+      "10-eth0" = {
         networkConfig = {
-          # https://github.com/systemd/systemd/issues/36347
-          ManageForeignRoutes = false;
-          ManageForeignRoutingPolicyRules = false;
-          IPv4Forwarding = false;
-          IPv6Forwarding = false;
+          IPv6AcceptRA = false;
         };
-      };
-      wait-online = {
-        enable = false;
-        anyInterface = false;
+        matchConfig.Name = "eth0";
+        address = [
+          "45.150.123.15/32"
+          "2a0f:be01:0:100::a3/128"
+        ];
+        routes = [
+          {
+            Gateway = "169.254.1.1";
+            Destination = "0.0.0.0/0";
+            GatewayOnLink = true;
+          }
+          {
+            Gateway = "fe80::1";
+            Destination = "::/0";
+            GatewayOnLink = true;
+          }
+        ];
+        linkConfig.RequiredForOnline = "routable";
       };
     };
+    config = {
+      networkConfig = {
+        # https://github.com/systemd/systemd/issues/36347
+        ManageForeignRoutes = false;
+        ManageForeignRoutingPolicyRules = false;
+        IPv4Forwarding = false;
+        IPv6Forwarding = false;
+      };
+    };
+    wait-online = {
+      enable = false;
+      anyInterface = false;
+    };
+  };
 
   networking = {
     domain = "dus1.as214958.net";
     firewall = {
-    allowedTCPPorts = [
-      80
-      443
-    ];
-    allowedUDPPorts = [
-    ];
-  };
+      allowedTCPPorts = [
+        80
+        443
+      ];
+      allowedUDPPorts = [
+      ];
+    };
   };
 
   fileSystems."/".device = lib.mkForce "/dev/pool/root";

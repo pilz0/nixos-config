@@ -16,6 +16,6 @@
     with subtest("flow-exporter connects to kafka and serves metrics"):
         machine.wait_for_unit("flow-exporter.service")
         machine.wait_for_open_port(9590, timeout=120)
-        machine.succeed("curl -fsS http://localhost:9590/metrics | grep -q '^# HELP'")
+        machine.succeed("curl -fsS http://localhost:9590/metrics | grep '^# HELP' >/dev/null")
   '';
 }

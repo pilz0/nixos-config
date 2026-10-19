@@ -149,6 +149,10 @@
       url = "git+ssh://git@github.com/pilz0/vpn-confinement-jetson.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    goonfin = {
+      url = "git+ssh://git@github.com/pilz0/goonfin.git?ref=main";
+      flake = false;
+    };
     nixarr-jetson = {
       url = "github:nix-media-server/nixarr";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -181,6 +185,10 @@
     };
     nix-darwin = {
       url = "github:lnl7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hydra-mcp = {
+      url = "github:slopinger/hydra-mcp";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-rosetta-builder = {

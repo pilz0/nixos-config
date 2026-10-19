@@ -43,7 +43,7 @@ in
         machine.succeed("runuser -u tor -- test -r /var/lib/tor/keys/as214958.secret_family_key")
 
     with subtest("metrics port is served"):
-        machine.wait_until_succeeds("curl -fsS 'http://[::1]:9052/metrics' | grep -q '^tor_'")
+        machine.wait_until_succeeds("curl -fsS 'http://[::1]:9052/metrics' | grep '^tor_' >/dev/null")
 
     with subtest("relay is configured as a non-exit relay"):
         torrc = machine.succeed("cat $(systemctl show -p ExecStart --value tor | grep -o '/nix/store/[^ ]*torrc' | head -1)")

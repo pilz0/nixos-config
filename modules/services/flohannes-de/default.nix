@@ -26,7 +26,7 @@ in
     ];
 
     systemd.tmpfiles.rules = [
-      "d '/var/lib/wordpress/flohannes.de/webp-express' 0750 wordpress wwwrun - -"
+      "d '/var/lib/wordpress/flohannes.de/webp-express' 0750 wordpress ${config.services.nginx.group} - -"
     ];
 
     services.wordpress = {

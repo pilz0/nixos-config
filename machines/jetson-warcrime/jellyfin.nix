@@ -1,5 +1,11 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 let
+  # our jellyfin-web fork, see github:pilz0/goonfin
+  goonfin-web = pkgs.jellyfin-web.overrideAttrs {
+    pname = "goonfin-web";
+    src = inputs.goonfin;
+  };
+
   jetson-ffmpeg = pkgs.callPackage ../../pkgs/jetson-ffmpeg.nix { };
 
   # the tegra encoder/decoder is only reachable through nvidia's multimedia api (nvmpi),
@@ -43,12 +49,17 @@ let
   };
 
   # v4l2 mode only knows the h264 encoder, without this hevc always falls back to libx265
-  jellyfin = (pkgs.jellyfin.override { jellyfin-ffmpeg = ffmpeg; }).overrideAttrs (old: {
-    postPatch = (old.postPatch or "") + ''
-      substituteInPlace MediaBrowser.MediaEncoding/Encoder/EncoderValidator.cs \
-        --replace-fail '"h264_v4l2m2m",' '"h264_v4l2m2m", "hevc_v4l2m2m",'
-    '';
-  });
+  jellyfin =
+    (pkgs.jellyfin.override {
+      jellyfin-ffmpeg = ffmpeg;
+      jellyfin-web = goonfin-web;
+    }).overrideAttrs
+      (old: {
+        postPatch = (old.postPatch or "") + ''
+          substituteInPlace MediaBrowser.MediaEncoding/Encoder/EncoderValidator.cs \
+            --replace-fail '"h264_v4l2m2m",' '"h264_v4l2m2m", "hevc_v4l2m2m",'
+        '';
+      });
 in
 {
   services.jellyfin = {

@@ -61,9 +61,9 @@ in
         client.succeed("test \"$(stat -c %U /run/agenix/nixbuildssh)\" = marie")
 
     with subtest("builder is registered"):
-        machines = client.succeed("cat /etc/nix/machines")
-        assert "ssh-ng://root@builder" in machines, machines
-        assert "/run/agenix/nixbuildssh" in machines, machines
+        nix_machines = client.succeed("cat /etc/nix/machines")
+        assert "ssh-ng://root@builder" in nix_machines, nix_machines
+        assert "/run/agenix/nixbuildssh" in nix_machines, nix_machines
 
     with subtest("builds are offloaded to the builder"):
         out = client.succeed(f"nix-build --max-jobs 0 --no-out-link -E '{expr}'").strip()

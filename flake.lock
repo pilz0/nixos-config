@@ -1213,6 +1213,23 @@
         "type": "gitlab"
       }
     },
+    "goonfin": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1792424907,
+        "narHash": "sha256-K4ZMQDNY0YoISyDvnvZ4JZtxVziJX8B9wvfItd1TpCk=",
+        "ref": "main",
+        "rev": "c579b846540cbd8543d83fbac865e704d1fd9ba4",
+        "revCount": 30140,
+        "type": "git",
+        "url": "ssh://git@github.com/pilz0/goonfin.git"
+      },
+      "original": {
+        "ref": "main",
+        "type": "git",
+        "url": "ssh://git@github.com/pilz0/goonfin.git"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -1284,6 +1301,29 @@
         "ref": "lix-2.95",
         "type": "git",
         "url": "https://git.lix.systems/lix-project/hydra"
+      }
+    },
+    "hydra-mcp": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "pyproject-build-systems": "pyproject-build-systems",
+        "pyproject-nix": "pyproject-nix",
+        "uv2nix": "uv2nix"
+      },
+      "locked": {
+        "lastModified": 1792422048,
+        "narHash": "sha256-MILmVpV6tyFN4cHNU590nQ86rysQUPz7odKh3rnVtTc=",
+        "owner": "slopinger",
+        "repo": "hydra-mcp",
+        "rev": "4833bccbf98451c125268f68c21c8c308ecf3cb7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "slopinger",
+        "repo": "hydra-mcp",
+        "type": "github"
       }
     },
     "jetpack": {
@@ -2173,6 +2213,56 @@
         "type": "github"
       }
     },
+    "pyproject-build-systems": {
+      "inputs": {
+        "nixpkgs": [
+          "hydra-mcp",
+          "nixpkgs"
+        ],
+        "pyproject-nix": [
+          "hydra-mcp",
+          "pyproject-nix"
+        ],
+        "uv2nix": [
+          "hydra-mcp",
+          "uv2nix"
+        ]
+      },
+      "locked": {
+        "lastModified": 1791170410,
+        "narHash": "sha256-pyru9MpuXRiyq0Bd4q0nHpL4T6HCuZT4B+alcgAYE4A=",
+        "owner": "pyproject-nix",
+        "repo": "build-system-pkgs",
+        "rev": "953d35d03a51dbecaf3feb3fb679eb63e90ebeb4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pyproject-nix",
+        "repo": "build-system-pkgs",
+        "type": "github"
+      }
+    },
+    "pyproject-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "hydra-mcp",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1791657700,
+        "narHash": "sha256-vcCAvhtA7hG+/gOge29hYHy7I/dLkIsr5nLx4sFEQic=",
+        "owner": "pyproject-nix",
+        "repo": "pyproject.nix",
+        "rev": "ddc400a6883b042646d0940e65971bb7f7e96107",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pyproject-nix",
+        "repo": "pyproject.nix",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "agenix": "agenix",
@@ -2187,9 +2277,11 @@
         "emily-nixfiles": "emily-nixfiles",
         "firefox": "firefox_2",
         "flake-utils": "flake-utils_9",
+        "goonfin": "goonfin",
         "home-manager": "home-manager",
         "homebrew-cask": "homebrew-cask",
         "homebrew-core": "homebrew-core",
+        "hydra-mcp": "hydra-mcp",
         "jetpack": "jetpack",
         "nix-darwin": "nix-darwin",
         "nix-homebrew": "nix-homebrew",
@@ -2684,6 +2776,31 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "uv2nix": {
+      "inputs": {
+        "nixpkgs": [
+          "hydra-mcp",
+          "nixpkgs"
+        ],
+        "pyproject-nix": [
+          "hydra-mcp",
+          "pyproject-nix"
+        ]
+      },
+      "locked": {
+        "lastModified": 1792151315,
+        "narHash": "sha256-PMtgvHuGijoIAtPtrBm7kJOI6fxzX4LYPAIK+QVGY+Y=",
+        "owner": "pyproject-nix",
+        "repo": "uv2nix",
+        "rev": "7aba73a3d85454f1118f8cf9de97979b4d26bcac",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pyproject-nix",
+        "repo": "uv2nix",
         "type": "github"
       }
     },

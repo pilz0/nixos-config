@@ -34,6 +34,7 @@
     services.ssh.enable = true;
     shell.enable = true;
     services.haos-vm.enable = true;
+    services.ai-slop-vm.enable = true;
     services.nixarr = {
       enable = true;
       wgConfSecretFile = ../../secrets/wg-jetson.age;

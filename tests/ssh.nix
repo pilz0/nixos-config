@@ -38,7 +38,8 @@ in
 
     with subtest("only publickey auth is offered"):
         out = client.fail(f"{ssh} -v -o PreferredAuthentications=none root@server true 2>&1")
-        assert "Authentications that can continue: publickey\n" in out, out
+        # ssh debug lines end in \r\n
+        assert "debug1: Authentications that can continue: publickey" in out.splitlines(), out
 
     with subtest("weak ciphers, macs and kex are refused"):
         client.fail(f"{ssh} -i /root/id_ed25519 -c aes128-ctr root@server true")

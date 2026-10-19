@@ -12,7 +12,7 @@
     machine.wait_for_open_port(15000, "::1")
 
     with subtest("frontend serves the branded index"):
-        out = machine.succeed("curl -fsS 'http://[::1]:15000/'")
+        out = machine.succeed("curl -fsSL 'http://[::1]:15000/'")
         assert "as214958" in out, out
 
     with subtest("both servers are listed"):

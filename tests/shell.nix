@@ -13,7 +13,9 @@
         assert shell.endswith("/bin/zsh"), shell
 
     with subtest("starship prompt is set up in interactive zsh"):
-        machine.succeed("runuser -u alice -- zsh -ic 'command -v starship && [[ $PROMPT == *starship* ]]'")
+        # starship init is skipped for TERM=dumb
+        prompt = machine.succeed("runuser -u alice -- env TERM=xterm-256color zsh -ic 'print -r -- $PROMPT'")
+        assert "starship" in prompt, prompt
 
     with subtest("autosuggestions are loaded"):
         machine.succeed("runuser -u alice -- zsh -ic 'typeset -f _zsh_autosuggest_start >/dev/null'")

@@ -63,7 +63,7 @@ let
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAYdoA2HeJBzSnUyOkvEsd2YOK/9VVT4rWAlp69WOdC4 root@tor8"
   ];
   monitoring-dus = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKIpuQE+k6Iv/dcpD3VWgutk5x+2u3O+8bNBPczymPAC root@monitoring"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKIpuQE+k6Iv/dcpD3VWgutk5x+2u3O+8bNBPczymPAC root@monitoring"
   ];
 
   all_hosts =
@@ -111,4 +111,5 @@ in
   "wg-jetson.age".publicKeys = marielap ++ jetson-warcrime;
   "smtp-flohannes.age".publicKeys = marielap ++ web1_host ++ emily;
   "syncserver-secrets.age".publicKeys = marielap ++ emily ++ web1_host;
+  "hydra-mcp-password.age".publicKeys = marielap;
 }

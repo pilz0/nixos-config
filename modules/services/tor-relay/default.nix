@@ -62,8 +62,11 @@ in
     };
     systemd.services."sshd@".restartIfChanged = false;
 
+    # tor refuses to start if the keys dir isn't owned by it
     systemd.tmpfiles.rules = [
+      "d /var/lib/tor/keys 0700 tor tor - -"
       "C /var/lib/tor/keys/as214958.secret_family_key - - - - ${config.age.secrets.tor-familiy.path}"
+      "z /var/lib/tor/keys/as214958.secret_family_key 0400 tor tor - -"
     ];
 
     security.sudo.enable = false;

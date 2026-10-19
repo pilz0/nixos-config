@@ -18,6 +18,7 @@
     backupFileExtension = "bck";
     useGlobalPkgs = true;
     useUserPackages = true;
+    extraSpecialArgs = { inherit inputs; };
     users.pilz = {
       imports = [
         inputs.agenix.homeManagerModules.default
