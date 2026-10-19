@@ -31,9 +31,6 @@
         };
         zone = {
           "7.1.0.f.2.0.f.8.e.0.a.2.ip6.arpa" = { };
-          "pilz.foo" = { };
-          "ketamin.trade" = { };
-          "freifick.net" = { };
         };
       };
       keyFiles = [
