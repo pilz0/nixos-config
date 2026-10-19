@@ -52,7 +52,6 @@
       kubernetes
       kind
       networkmanager-openvpn
-      cyberduck
       comma
       android-tools
       tailscale
@@ -69,22 +68,16 @@
       rustc
       rustup
       xld
-    ])
-    ++
-      [
+      ])
+      ++ [
         inputs.agenix.packages.x86_64-linux.default
         inputs.anodyne-api.packages.x86_64-linux.default
         inputs.anodyne-chrp.packages.x86_64-linux.default
         inputs.anodyne-molpic.packages.x86_64-linux.default
         inputs.firefox.packages.x86_64-linux.default
-      ]
-        # Google Cloud SDK with additional components
-        (
-          google-cloud-sdk.withExtraComponents [
-            google-cloud-sdk.components.gke-gcloud-auth-plugin
-          ]
-        );
-
+      ];
+catppuccin.autoEnable = true;
+catppuccin.enable = true;
   programs = {
     firefox.policies = {
       DisablePocket = true;
