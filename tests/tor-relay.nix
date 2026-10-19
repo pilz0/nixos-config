@@ -12,7 +12,7 @@ let
       ''
         mkdir $out
         age-keygen -o $out/key.txt
-        tor --keygen-family test >/dev/null
+        HOME=$TMPDIR tor --keygen-family test >/dev/null
         age -r "$(age-keygen -y $out/key.txt)" -o $out/family.age test.secret_family_key
       '';
 in

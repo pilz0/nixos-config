@@ -20,6 +20,6 @@
             assert srv in out, out
 
     with subtest("frontend only listens on loopback"):
-        machine.fail("curl -fsS --max-time 5 http://${"$"}(hostname -I | cut -d' ' -f1):15000/")
+        machine.fail("curl -fsS --max-time 5 http://$(hostname -I | cut -d' ' -f1):15000/")
   '';
 }
