@@ -8,11 +8,9 @@
 }:
 {
   imports = [
-    #"${modulesPath}/virtualisation/proxmox-image.nix"
     inputs.determinate.nixosModules.default
     "${modulesPath}/virtualisation/disk-image.nix"
     "${modulesPath}/profiles/qemu-guest.nix"
-    ../container/network.nix
   ];
 
   system.build.image = lib.mkForce (
@@ -59,7 +57,7 @@
   networking = {
     usePredictableInterfaceNames = false;
     useNetworkd = true;
-    domain = "ams1.as214958.net";
+    domain = lib.mkDefault "ams1.as214958.net";
     nameservers = lib.mkAfter [
       "2606:4700:4700::1111"
       "1.1.1.1"

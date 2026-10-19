@@ -32,11 +32,11 @@ in
     };
     monitoring-servers-v4 = lib.mkOption {
       type = lib.types.str;
-      default = "94.142.240.36";
+      default = "94.142.240.36,45.150.123.15";
     };
     monitoring-servers-v6 = lib.mkOption {
       type = lib.types.str;
-      default = "2a0e:8f02:f017::3";
+      default = "2a0e:8f02:f017::3,2a0f:be01:0:100::a3";
     };
   };
 

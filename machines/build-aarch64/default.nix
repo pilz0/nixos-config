@@ -9,7 +9,6 @@
     ../../profiles/builder
     ../../profiles/oracle
     ./dns.nix
-    inputs.disko.nixosModules.disko
   ];
 
   swapDevices = [

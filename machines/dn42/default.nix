@@ -39,7 +39,7 @@
     extraCommands = ''
       ${pkgs.iptables}/bin/iptables -A INPUT -p tcp --dport 18000 -s 94.142.241.152 -j ACCEPT
       ${pkgs.iptables}/bin/ip6tables -A INPUT -p tcp --dport 18000 -s 2a0e:8f02:f017::2 -j ACCEPT
-      ${pkgs.iptables}/bin/ip6tables -A INPUT -p tcp --dport 9324 -s 2a0e:8f02:f017::3 -j ACCEPT
+      ${pkgs.iptables}/bin/ip6tables -A INPUT -p tcp --dport 9324 -s 2a0e:8f02:f017::3,2a0f:be01:0:100::a3 -j ACCEPT
     '';
   };
 }

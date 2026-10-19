@@ -8,7 +8,6 @@
   imports = [
     ../../profiles/builder
     ../../profiles/oracle
-    inputs.disko.nixosModules.disko
   ];
 
   pilz = {

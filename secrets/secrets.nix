@@ -62,6 +62,9 @@ let
   tor8 = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAYdoA2HeJBzSnUyOkvEsd2YOK/9VVT4rWAlp69WOdC4 root@tor8"
   ];
+  monitoring-dus = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKIpuQE+k6Iv/dcpD3VWgutk5x+2u3O+8bNBPczymPAC root@monitoring"
+  ];
 
   all_hosts =
     Laptop
@@ -90,12 +93,12 @@ in
 {
   "rclone.age".publicKeys = Laptop ++ marielap ++ grafana;
   "restic.age".publicKeys = Laptop ++ marielap ++ grafana;
-  "smtp.age".publicKeys = marielap ++ grafana;
-  "grafana.age".publicKeys = marielap ++ grafana;
+  "smtp.age".publicKeys = marielap ++ grafana ++ monitoring-dus;
+  "grafana.age".publicKeys = marielap ++ grafana ++ monitoring-dus;
   "wg.age".publicKeys = marielap ++ dn42;
   "nixarr-wg.age".publicKeys = marielap ++ jellyfin;
-  "cloudflare_cert.age".publicKeys = marielap ++ web1_host ++ grafana ++ emily;
-  "cloudflare_key.age".publicKeys = marielap ++ web1_host ++ grafana ++ emily;
+  "cloudflare_cert.age".publicKeys = marielap ++ web1_host ++ grafana ++ emily ++ monitoring-dus;
+  "cloudflare_key.age".publicKeys = marielap ++ web1_host ++ grafana ++ emily ++ monitoring-dus;
   "s3-mastodon.age".publicKeys = marielap;
   "netbox.age".publicKeys = marielap ++ netbox;
   "harmonia.age".publicKeys = marielap ++ build ++ build-aarch64;

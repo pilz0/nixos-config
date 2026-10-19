@@ -31,6 +31,7 @@
     ../../modules/services/flohannes-de
     ../../modules/services/haos-vm
     ../../modules/services/syncserver
+    ../container/network.nix
   ];
 }
 # missing:

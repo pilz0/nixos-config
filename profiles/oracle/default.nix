@@ -8,6 +8,7 @@
 {
   imports = [
     inputs.determinate.nixosModules.default
+    inputs.disko.nixosModules.disko
     (modulesPath + "/profiles/qemu-guest.nix")
   ];
 

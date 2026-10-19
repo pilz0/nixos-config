@@ -21,6 +21,10 @@ let
     };
     imports = host._module.args.modules;
     nixpkgs.system = host.config.nixpkgs.system;
+    system.nixos.versionSuffix = host.config.system.nixos.versionSuffix;
+    system.nixos.revision = host.config.system.nixos.revision;
+    nixpkgs.flake.source = host.config.nixpkgs.flake.source;
+    nixpkgs.config = lib.mkForce host.config.nixpkgs.config;
   };
 
   genDarwinCfg =

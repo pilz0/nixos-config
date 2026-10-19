@@ -34,12 +34,6 @@
         sf.mapColmenaMerge self.nixosConfigurations {
           meta = {
             nixpkgs = nixpkgs.legacyPackages.x86_64-linux;
-            nodeNixpkgs = {
-              jetson-warcrime = import inputs.nixpkgs {
-                system = "aarch64-linux";
-                config.allowUnfree = true;
-              };
-            };
             specialArgs = { inherit inputs; };
           };
         }
@@ -142,7 +136,6 @@
     firefox.url = "git+ssh://forgejo@woof.rip/pilz0/firefox.git?ref=fix-darwin-build";
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    #fedi-bot.url = "git+ssh://git@github.com/pilz0/fedi-bot.git";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     treefmt-nix.url = "github:numtide/treefmt-nix";
