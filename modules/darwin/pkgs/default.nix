@@ -79,6 +79,11 @@ in
         inputs.anodyne-chrp.packages.aarch64-darwin.default
         inputs.anodyne-molpic.packages.aarch64-darwin.default
         inputs.firefox.packages.aarch64-darwin.default
+        # upstream vendorHash is stale
+        (inputs.spank.packages.aarch64-darwin.default.overrideAttrs {
+          vendorHash = "sha256-7kF9yM952tWcrRRqxAxpfo5430VHloCVCIIwLxw5Mqk=";
+        })
+        (pkgs.callPackage ../../../pkgs/crack.nix { })
       ]
       ++ (with pkgs-unstable; [
         caffeine
@@ -90,12 +95,20 @@ in
         spotify
         antigravity-cli
         claude-code
+        jellyfin-desktop
+        wireguard-ui
       ]);
     homebrew = {
       taps = builtins.attrNames config.nix-homebrew.taps;
       casks = [
         "android-studio"
         "zotero"
+        "intiface-central"
+        "openvpn-connect"
+        "eddie"
+        "Horos"
+        "krishkrosh/apps/trackweight"
+        "android-studio"
       ];
     };
     nix-homebrew = {

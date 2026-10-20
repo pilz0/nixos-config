@@ -1217,17 +1217,16 @@
       "flake": false,
       "locked": {
         "lastModified": 1792424907,
-        "narHash": "sha256-K4ZMQDNY0YoISyDvnvZ4JZtxVziJX8B9wvfItd1TpCk=",
-        "ref": "main",
+        "narHash": "sha256-dapfVAouX6eSo/ArxDd95TWYGgs+CW86mKAr+71iEy8=",
+        "owner": "pilz0",
+        "repo": "goonfin",
         "rev": "c579b846540cbd8543d83fbac865e704d1fd9ba4",
-        "revCount": 30140,
-        "type": "git",
-        "url": "ssh://git@github.com/pilz0/goonfin.git"
+        "type": "github"
       },
       "original": {
-        "ref": "main",
-        "type": "git",
-        "url": "ssh://git@github.com/pilz0/goonfin.git"
+        "owner": "pilz0",
+        "repo": "goonfin",
+        "type": "github"
       }
     },
     "home-manager": {
@@ -2293,6 +2292,7 @@
         "nixpkgs": "nixpkgs_21",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "sops-nix": "sops-nix_2",
+        "spank": "spank",
         "treefmt-nix": "treefmt-nix_4",
         "vpnconfinement-jetson": "vpnconfinement-jetson",
         "vscode-server": "vscode-server",
@@ -2337,6 +2337,29 @@
       "original": {
         "owner": "Mic92",
         "repo": "sops-nix",
+        "type": "github"
+      }
+    },
+    "spank": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1787452398,
+        "narHash": "sha256-ODylZ9hGk/xGH2BCrQ3sOQW3GNKLCHPUmYc0Ca4xRxw=",
+        "owner": "taigrr",
+        "repo": "spank",
+        "rev": "a5f95a002fb29dfc3f705b74565d656239976a54",
+        "type": "github"
+      },
+      "original": {
+        "owner": "taigrr",
+        "repo": "spank",
         "type": "github"
       }
     },

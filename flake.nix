@@ -155,7 +155,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     goonfin = {
-      url = "git+ssh://git@github.com/pilz0/goonfin.git?ref=main";
+      url = "github:pilz0/goonfin";
       flake = false;
     };
     nixarr-jetson = {
@@ -207,6 +207,11 @@
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    spank = {
+      url = "github:taigrr/spank";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
     };
     wp4nix = {
       url = "git+https://git.helsinki.tools/helsinki-systems/wp4nix.git";
