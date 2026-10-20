@@ -9,26 +9,19 @@ in
 {
   options.pilz.monitoring.node-exporter = {
     enable = lib.mkEnableOption "";
-    monitoring-servers-v4 = lib.mkOption {
-      type = lib.types.str;
-      default = "94.142.240.36,45.150.123.15";
-    };
-    monitoring-servers-v6 = lib.mkOption {
-      type = lib.types.str;
-      default = "2a0e:8f02:f017::3,2a0f:be01:0:100::a3";
-    };
   };
   config = lib.mkIf cfg.enable {
     services.prometheus = {
       exporters = {
-        node = {
-          enable = true;
-        };
+        node.enable = true;
+        systemd.enable = true;
       };
     };
     networking.firewall.extraCommands = ''
-      iptables -I nixos-fw -p tcp -s ${cfg.monitoring-servers-v4} -m tcp --dport 9100 -j nixos-fw-accept
-      ip6tables -I nixos-fw -p tcp -s ${cfg.monitoring-servers-v6} -m tcp --dport 9100 -j nixos-fw-accept
+      ip6tables -I nixos-fw -p tcp -s ${config.monitoring.servers.v6} -m tcp --dport 9558 -j nixos-fw-accept
+      iptables -I nixos-fw -p tcp -s ${config.monitoring.servers.v4} -m tcp --dport 9558 -j nixos-fw-accept
+      iptables -I nixos-fw -p tcp -s ${config.monitoring.servers.v4}-m tcp --dport 9100 -j nixos-fw-accept
+      ip6tables -I nixos-fw -p tcp -s ${config.monitoring.servers.v6} -m tcp --dport 9100 -j nixos-fw-accept
     '';
   };
 }

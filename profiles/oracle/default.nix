@@ -28,7 +28,6 @@
     services.ssh.enable = true;
     common.enable = true;
     monitoring.node-exporter.enable = true;
-    monitoring.systemd-exporter.enable = true;
   };
 
   networking = {

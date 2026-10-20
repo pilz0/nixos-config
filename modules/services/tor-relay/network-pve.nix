@@ -10,14 +10,6 @@ in
 {
   options.pilz.networking.tor-relay = {
     enable = lib.mkEnableOption "";
-    monitoring-servers-v4 = lib.mkOption {
-      type = lib.types.str;
-      default = "94.142.240.36,45.150.123.15";
-    };
-    monitoring-servers-v6 = lib.mkOption {
-      type = lib.types.str;
-      default = "2a0e:8f02:f017::3,2a0f:be01:0:100::a3";
-    };
 
     eth0 = {
       address = lib.mkOption {
@@ -41,8 +33,8 @@ in
   config = lib.mkIf cfg.enable {
     networking.firewall = {
       extraCommands = ''
-        ${pkgs.iptables}/bin/iptables -I nixos-fw -p tcp -s ${cfg.monitoring-servers-v4} --dport 9052 -j nixos-fw-accept
-        ${pkgs.iptables}/bin/ip6tables -I nixos-fw -p tcp -s ${toString cfg.monitoring-servers-v6} --dport 9052 -j nixos-fw-accept
+        ${pkgs.iptables}/bin/iptables -I nixos-fw -p tcp -s ${config.monitoring.servers.v4} --dport 9052 -j nixos-fw-accept
+        ${pkgs.iptables}/bin/ip6tables -I nixos-fw -p tcp -s ${config.monitoring.servers.v6} --dport 9052 -j nixos-fw-accept
       '';
     };
     systemd.network = {

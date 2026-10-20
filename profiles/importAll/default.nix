@@ -8,9 +8,9 @@
     ../../modules/monitoring/loki
     ../../modules/monitoring/netflow-exporter
     ../../modules/monitoring/node-exporter
-    ../../modules/monitoring/systemd-exporter
     ../../modules/monitoring/prometheus
     ../../modules/monitoring/promtail
+    ../../modules/monitoring/set-monitoring-defaults
     ../../modules/nixos-builder-client
     ../../modules/services/as214958-net
     ../../modules/services/diyhrt-web

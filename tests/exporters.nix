@@ -7,12 +7,8 @@
         pilz.monitoring = {
           node-exporter = {
             enable = true;
-            monitoring-servers-v4 = nodes.scraper.networking.primaryIPAddress;
           };
-          systemd-exporter = {
-            enable = true;
-            monitoring-servers-v4 = nodes.scraper.networking.primaryIPAddress;
-          };
+          servers.v4 = nodes.scraper.networking.primaryIPAddress;
         };
       };
     scraper =
@@ -30,7 +26,6 @@
   testScript = ''
     start_all()
     server.wait_for_unit("prometheus-node-exporter.service")
-    server.wait_for_unit("prometheus-systemd-exporter.service")
     server.wait_for_open_port(9100)
     server.wait_for_open_port(9558)
     scraper.wait_for_unit("multi-user.target")

@@ -35,9 +35,9 @@
     allowedUDPPorts = [
     ];
     extraCommands = ''
-      ${pkgs.iptables}/bin/iptables -A INPUT -p tcp --dport 3323 -s 94.142.240.36 -j ACCEPT
+      ${pkgs.iptables}/bin/iptables -A INPUT -p tcp --dport 3323 -s ${config.monitoring.servers.v4} -j ACCEPT
       ${pkgs.iptables}/bin/ip6tables -A INPUT -p tcp --dport 3323 -s 2a02:898:0:20::427:1 -j ACCEPT
-      ${pkgs.iptables}/bin/iptables -A INPUT -p tcp --dport 8323 -s 94.142.240.36 -j ACCEPT
+      ${pkgs.iptables}/bin/iptables -A INPUT -p tcp --dport 8323 -s ${config.monitoring.servers.v4} -j ACCEPT
       ${pkgs.iptables}/bin/ip6tables -A INPUT -p tcp --dport 8323 -s 2a02:898:0:20::427:1 -j ACCEPT
       ${pkgs.iptables}/bin/iptables -A INPUT -p tcp --dport 3323 -s 10.10.10.1 -j ACCEPT
       ${pkgs.iptables}/bin/ip6tables -A INPUT -p tcp --dport 3323 -s 2a0e:8f02:f017::/48 -j ACCEPT
