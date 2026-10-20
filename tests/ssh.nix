@@ -43,7 +43,9 @@ in
 
     with subtest("weak ciphers, macs and kex are refused"):
         client.fail(f"{ssh} -i /root/id_ed25519 -c aes128-ctr root@server true")
-        client.fail(f"{ssh} -i /root/id_ed25519 -m hmac-sha2-256 root@server true")
+        # all allowed ciphers are AEAD, which skip MAC negotiation, so check the effective config instead
+        macs = server.succeed("sshd -T -f /etc/ssh/sshd_config | grep '^macs '").split()[1].split(",")
+        assert "hmac-sha2-256" not in macs, macs
         client.fail(f"{ssh} -i /root/id_ed25519 -o KexAlgorithms=diffie-hellman-group14-sha256 root@server true")
   '';
 }

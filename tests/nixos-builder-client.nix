@@ -50,7 +50,7 @@ in
   };
 
   testScript = ''
-    expr = "derivation { name = \"remote-build\"; system = \"x86_64-linux\"; builder = \"/bin/sh\"; args = [ \"-c\" \"cat /proc/sys/kernel/hostname > $out\" ]; nonce = builtins.currentTime; }"
+    expr = "derivation { name = \"remote-build\"; system = \"x86_64-linux\"; builder = \"/bin/sh\"; args = [ \"-c\" \"read h < /proc/sys/kernel/hostname; echo $h > $out\" ]; nonce = builtins.currentTime; }"
 
     start_all()
     builder.wait_for_unit("sshd.service")

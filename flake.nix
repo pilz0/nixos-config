@@ -25,7 +25,6 @@
         inherit (self) checks;
         inherit (self) packages;
         nixosConfigurations = sf.mapHydraHosts self.nixosConfigurations;
-        # single job that goes red if any VM test fails
         tests = nixpkgs.legacyPackages.x86_64-linux.releaseTools.aggregate {
           name = "tests";
           constituents = builtins.attrValues (builtins.removeAttrs self.checks.x86_64-linux [ "formatting" ]);

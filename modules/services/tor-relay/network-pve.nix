@@ -33,8 +33,8 @@ in
   config = lib.mkIf cfg.enable {
     networking.firewall = {
       extraCommands = ''
-        ${pkgs.iptables}/bin/iptables -I nixos-fw -p tcp -s ${config.monitoring.servers.v4} --dport 9052 -j nixos-fw-accept
-        ${pkgs.iptables}/bin/ip6tables -I nixos-fw -p tcp -s ${config.monitoring.servers.v6} --dport 9052 -j nixos-fw-accept
+        ${pkgs.iptables}/bin/iptables -I nixos-fw -p tcp -s ${config.pilz.monitoring.servers.v4} --dport 9052 -j nixos-fw-accept
+        ${pkgs.iptables}/bin/ip6tables -I nixos-fw -p tcp -s ${config.pilz.monitoring.servers.v6} --dport 9052 -j nixos-fw-accept
       '';
     };
     systemd.network = {

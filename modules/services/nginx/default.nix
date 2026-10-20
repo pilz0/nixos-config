@@ -35,8 +35,8 @@ in
     };
 
     networking.firewall.extraCommands = lib.mkIf cfg.enableMonitoring ''
-      ${pkgs.iptables}/bin/iptables -A INPUT -p tcp --dport ${toString config.services.prometheus.exporters.nginx.port} -s ${config.monitoring.servers.v4} -j ACCEPT
-      ${pkgs.iptables}/bin/ip6tables -A INPUT -p tcp --dport ${toString config.services.prometheus.exporters.nginx.port} -s ${config.monitoring.servers.v6} -j ACCEPT
+      ${pkgs.iptables}/bin/iptables -A INPUT -p tcp --dport ${toString config.services.prometheus.exporters.nginx.port} -s ${config.pilz.monitoring.servers.v4} -j ACCEPT
+      ${pkgs.iptables}/bin/ip6tables -A INPUT -p tcp --dport ${toString config.services.prometheus.exporters.nginx.port} -s ${config.pilz.monitoring.servers.v6} -j ACCEPT
     '';
 
     services = {

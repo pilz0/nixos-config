@@ -66,17 +66,16 @@
       devenv
       rustc
       rustup
-      xld
-      ])
-      ++ [
-        inputs.agenix.packages.x86_64-linux.default
-        inputs.anodyne-api.packages.x86_64-linux.default
-        inputs.anodyne-chrp.packages.x86_64-linux.default
-        inputs.anodyne-molpic.packages.x86_64-linux.default
-        inputs.firefox.packages.x86_64-linux.default
-      ];
-catppuccin.autoEnable = true;
-catppuccin.enable = true;
+    ])
+    ++ [
+      inputs.agenix.packages.x86_64-linux.default
+      inputs.anodyne-api.packages.x86_64-linux.default
+      inputs.anodyne-chrp.packages.x86_64-linux.default
+      inputs.anodyne-molpic.packages.x86_64-linux.default
+      inputs.firefox.packages.x86_64-linux.default
+    ];
+  catppuccin.autoEnable = true;
+  catppuccin.enable = true;
   programs = {
     firefox.policies = {
       DisablePocket = true;
