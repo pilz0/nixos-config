@@ -31,7 +31,7 @@ stdenv.mkDerivation {
     description = "libnvmpi, the L4T multimedia api wrapper used by ffmpeg's nvmpi codecs";
     homepage = "https://github.com/Keylost/jetson-ffmpeg";
     license = licenses.mit;
-    maintainers = with maintainers; [ pilz0 ];
+    maintainers = with maintainers; [ pilz ];
     platforms = [ "aarch64-linux" ];
   };
 }

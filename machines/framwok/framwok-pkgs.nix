@@ -58,7 +58,6 @@
       gnupg
       github-copilot-cli
       mpv-unwrapped
-      daisydisk
       spotify
       antigravity-cli
       claude-code
