@@ -3,6 +3,7 @@
     ../../modules/audio
     ../../modules/common
     ../../modules/common/pkgs
+    ../../modules/march-fixes
     ../../modules/monitoring/blackbox-exporter
     ../../modules/monitoring/grafana
     ../../modules/monitoring/loki
