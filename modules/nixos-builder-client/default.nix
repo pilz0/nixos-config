@@ -56,6 +56,7 @@ in
             "big-parallel"
             "kvm"
             "nixos-test"
+            "gccarch-x86-64-v3"
           ];
         }
       ];

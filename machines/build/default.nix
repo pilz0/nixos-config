@@ -51,6 +51,9 @@
       "benchmark"
       "big-parallel"
       "kvm"
+      "gccarch-x86-64-v3"
+      "gccarch-x86-64-v2"
+      "gccarch-x86-64"
     ];
     max-jobs = 10;
     cores = 36;

@@ -33,6 +33,7 @@
   security.sudo.wheelNeedsPassword = false;
 
   nixpkgs = {
+    hostPlatform.gcc.arch = "x86-64-v3";
     config = {
       allowUnfree = true;
     };

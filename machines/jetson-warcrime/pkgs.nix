@@ -13,7 +13,16 @@ in
       jetson-stats
       fastfetch
       alacritty
-      python3
+      (python3.withPackages (
+        ps: with ps; [
+          opencv4
+          onnxruntime
+          numpy
+        ]
+      ))
+      llama-cpp
+      cudaPackages.cudatoolkit
+      cudaPackages.saxpy
       cmatrix
       btop
       wget

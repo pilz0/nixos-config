@@ -44,23 +44,29 @@
         }
       );
 
-      images = sf.mapImagesMerge self.nixosConfigurations [
-        "tor1"
-        "tor2"
-        "tor3"
-        "tor4"
-        "tor5"
-        "tor6"
-        "tor7"
-        "tor8"
-        "build"
-        "anodyne"
-        "dn42"
-        "jellyfin"
-        "rpki"
-        "grafana"
-        "web1"
-      ] { };
+      images =
+        sf.mapImagesMerge self.nixosConfigurations
+          [
+            "tor1"
+            "tor2"
+            "tor3"
+            "tor4"
+            "tor5"
+            "tor6"
+            "tor7"
+            "tor8"
+            "build"
+            "anodyne"
+            "dn42"
+            "jellyfin"
+            "rpki"
+            "grafana"
+            "web1"
+          ]
+          {
+            jetson-warcrime-flash =
+              self.nixosConfigurations.jetson-warcrime.config.system.build.initrdFlashScript;
+          };
 
       nixosConfigurations = sf.mapNixosCfg {
         hosts = sf.mapHostsMerge ./machines {

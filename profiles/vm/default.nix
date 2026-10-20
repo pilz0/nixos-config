@@ -23,6 +23,11 @@
     }
   );
 
+  # VMs run on the EPYC 7642 (cpu type host); monitoring-dus lives elsewhere
+  nixpkgs.hostPlatform = lib.mkIf (config.networking.hostName != "monitoring") {
+    gcc.arch = "x86-64-v3";
+  };
+
   services.qemuGuest.enable = true;
   services.spice-vdagentd.enable = true;
 
