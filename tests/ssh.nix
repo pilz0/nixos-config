@@ -28,7 +28,8 @@ in
 
     with subtest("host key is ed25519 at /etc/keys"):
         server.succeed("test -s /etc/keys/ssh_host_ed25519_key")
-        client.succeed(f"{ssh} -i /root/id_ed25519 -o HostKeyAlgorithms=ssh-ed25519 root@server true")
+        # client networking may still be coming up
+        client.wait_until_succeeds(f"{ssh} -i /root/id_ed25519 -o HostKeyAlgorithms=ssh-ed25519 root@server true")
 
     with subtest("root can log in with an ed25519 key"):
         client.succeed(f"{ssh} -i /root/id_ed25519 root@server true")
