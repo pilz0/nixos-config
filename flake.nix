@@ -2,10 +2,10 @@
   description = "Pilz's nixos infra";
   nixConfig = {
     allow-import-from-derivation = true;
-    extra-experimental-features = [
-      "pipe-operators"
-      "pipe-operator"
-    ];
+#    extra-experimental-features = [
+#      "pipe-operators"
+#      "pipe-operator"
+#    ];
   };
   outputs =
     {

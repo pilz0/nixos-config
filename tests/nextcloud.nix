@@ -30,6 +30,7 @@
     server.wait_for_unit("phpfpm-nextcloud.service")
     server.wait_for_unit("nginx.service")
     server.wait_for_open_port(80)
+    server.succeed("OC_PASS=S4uhdNRVZntUns nextcloud-occ user:add --password-from-env --group admin root")
 
     with subtest("nextcloud is installed"):
         status = json.loads(client.succeed("curl -fsS http://cloud.freifick.net/status.php"))

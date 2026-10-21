@@ -19,13 +19,10 @@
 
   config = lib.mkIf config.pilz.services.nextcloud.enable {
 
-    environment.etc."nextcloud-admin-pass".text = "S4uhdNRVZntUns";
-
     services.nextcloud = {
       package = pkgs.nextcloud34;
       enable = true;
       hostName = "cloud.freifick.net";
-      config.adminpassFile = "/etc/nextcloud-admin-pass";
       config.dbtype = "sqlite";
       settings = {
         maintenance_window_start = 1;

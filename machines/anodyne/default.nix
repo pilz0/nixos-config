@@ -46,4 +46,5 @@
       contactEmail = "acme@pilz.foo";
     };
   };
+  system.stateVersion = "23.11";
 }

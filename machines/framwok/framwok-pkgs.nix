@@ -4,6 +4,9 @@
   ...
 }:
 {
+  # zotero still bundles EOL Firefox ESR 140
+  nixpkgs.config.permittedInsecurePackages = [ "firefox-esr-140-bin-unwrapped-140.17.0esr" ];
+
   environment.systemPackages =
     (with pkgs; [
       mitmproxy

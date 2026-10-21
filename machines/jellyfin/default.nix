@@ -5,7 +5,7 @@
 }:
 {
   imports = [
-    ../../profiles/vm
+    ../../profiles/container
   ];
 
   pilz = {
