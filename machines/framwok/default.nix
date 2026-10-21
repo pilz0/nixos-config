@@ -46,7 +46,6 @@
       trezor-udev-rules
       yubikey-personalization
     ];
-
     fwupd.enable = true;
   };
 
