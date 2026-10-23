@@ -43,10 +43,12 @@ in
       backend = "podman";
       containers.jira = {
         inherit (cfg) image;
-        volumes = [ "/var/lib/jira:/var/atlassian/application-data/jira" ]
-          ++ lib.optionals (cfg.crackJar != null) [
-            "${cfg.crackJar}:/opt/atlassian/jira/atlassian-jira/WEB-INF/lib/atlassian-extras-3.4.6.jar:ro"
-          ];
+        volumes = [
+          "/var/lib/jira:/var/atlassian/application-data/jira"
+        ]
+        ++ lib.optionals (cfg.crackJar != null) [
+          "${cfg.crackJar}:/opt/atlassian/jira/atlassian-jira/WEB-INF/lib/atlassian-extras-3.4.6.jar:ro"
+        ];
         extraOptions = [ "--network=host" ];
         environment = {
           ATL_PROXY_NAME = cfg.domain;

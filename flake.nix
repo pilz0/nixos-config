@@ -21,10 +21,13 @@
     in
     {
       hydraJobs = {
-        inherit (self) images;
+        # the r35 jetson kernel and its out-of-tree modules don't support nixpkgs' kmodigest module signing
+        images = builtins.removeAttrs self.images [ "jetson-warcrime-flash" ];
         inherit (self) checks;
         inherit (self) packages;
-        nixosConfigurations = sf.mapHydraHosts self.nixosConfigurations;
+        nixosConfigurations = sf.mapHydraHosts (
+          builtins.removeAttrs self.nixosConfigurations [ "jetson-warcrime" ]
+        );
         tests = nixpkgs.legacyPackages.x86_64-linux.releaseTools.aggregate {
           name = "tests";
           constituents = builtins.attrValues (builtins.removeAttrs self.checks.x86_64-linux [ "formatting" ]);

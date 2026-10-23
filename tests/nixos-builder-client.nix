@@ -50,7 +50,7 @@ in
   };
 
   testScript = ''
-    expr = "derivation { name = \"remote-build\"; system = \"x86_64-linux\"; builder = \"/bin/sh\"; args = [ \"-c\" \"read h < /proc/sys/kernel/hostname; echo $h > $out\" ]; nonce = builtins.currentTime; }"
+    expr = "derivation { name = \"remote-build\"; system = \"x86_64-linux\"; builder = \"/bin/sh\"; args = [ \"-c\" \"echo remote > $out\" ]; nonce = builtins.currentTime; }"
 
     start_all()
     builder.wait_for_unit("sshd.service")
@@ -67,7 +67,7 @@ in
 
     with subtest("builds are offloaded to the builder"):
         out = client.succeed(f"nix-build --max-jobs 0 --no-out-link -E '{expr}'").strip()
-        built_on = client.succeed(f"cat {out}").strip()
-        assert built_on == "builder", built_on
+        # the sandbox hostname is always "localhost", so check the builder's store instead
+        builder.succeed(f"nix-store --check-validity {out}")
   '';
 }
