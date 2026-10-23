@@ -625,11 +625,11 @@
         "vpn-confinement": "vpn-confinement"
       },
       "locked": {
-        "lastModified": 1792573193,
-        "narHash": "sha256-xFepdDt0YxdaJaJSShmfPjI6R7dK3ztit8S9QmOBuQ0=",
+        "lastModified": 1792594524,
+        "narHash": "sha256-gRfV+VceauM3GRdvdm1k8wrEaQoFfAj8aqltF4UzrU8=",
         "ref": "refs/heads/main",
-        "rev": "ecfb0c1db28adc00dc52579a267a86b5b072e5d0",
-        "revCount": 652,
+        "rev": "ac82b75d95f24d1a93acd31338865bf252f2b791",
+        "revCount": 653,
         "type": "git",
         "url": "https://woof.rip/emily/nixfiles.git"
       },
@@ -703,18 +703,18 @@
         "nixpkgs": "nixpkgs_18"
       },
       "locked": {
-        "lastModified": 1792569257,
-        "narHash": "sha256-phdqGE/GjUDllBwGwYAw0Kx+ilXBVSFtTicH6iKRK/o=",
+        "lastModified": 1792592513,
+        "narHash": "sha256-F/zbx/AeXaaQuunpmZ6zghT5mtiivN99I/h0ffFdkSg=",
         "ref": "fix-darwin-build",
-        "rev": "ac078abc9f1a05e5b0672806db5c3536ee2b6be1",
-        "revCount": 179,
+        "rev": "30a31d078f78cb9cd827212631c73774b358957d",
+        "revCount": 180,
         "type": "git",
-        "url": "ssh://forgejo@woof.rip/pilz0/firefox.git"
+        "url": "https://woof.rip/pilz0/firefox.git"
       },
       "original": {
         "ref": "fix-darwin-build",
         "type": "git",
-        "url": "ssh://forgejo@woof.rip/pilz0/firefox.git"
+        "url": "https://woof.rip/pilz0/firefox.git"
       }
     },
     "flake-compat": {
@@ -1236,11 +1236,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792495086,
-        "narHash": "sha256-TyoYH983Nsc++1scw0SoOEKshPSJWJDxK7tTmuZ974M=",
+        "lastModified": 1792605213,
+        "narHash": "sha256-J73EBU30r2hXvHCcBtaigQDAIu/GGPYk1nc6P9THcmg=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "ec80131710bffcdf3b8498cf41f3a0579833b023",
+        "rev": "ab97a5d09e0f2aa7339cfd35ec5824fd6653e27c",
         "type": "github"
       },
       "original": {
@@ -1252,11 +1252,11 @@
     "homebrew-cask": {
       "flake": false,
       "locked": {
-        "lastModified": 1792572659,
-        "narHash": "sha256-2ekK7/d8QrQTFWgVQKb0yXxWTZ2IgHtIiyHLFcHr2KM=",
+        "lastModified": 1792645006,
+        "narHash": "sha256-4sUtlrHuDvQTaYhMo2dvyJmcnijkOH1z/gxNnhqmc8E=",
         "owner": "homebrew",
         "repo": "homebrew-cask",
-        "rev": "9f4d69d754e13307a61ef7789be28e3552d92213",
+        "rev": "f5a6680e3a3bbfc4d10052b4a90841a55c73609f",
         "type": "github"
       },
       "original": {
@@ -1268,11 +1268,11 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1792577271,
-        "narHash": "sha256-i5KFneGhYm/6SaALVkwttalXl6yBBjGNfbFkMNfaXho=",
+        "lastModified": 1792644985,
+        "narHash": "sha256-7B2ndBr37exfuAgAOApSlEgsVYB6O1v0x/qmPk5I+Ko=",
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "4b38cd6174fa1d62a8bd8a57c3b26903a4466fa4",
+        "rev": "a3c406ef9ed72fbdfd92be5106d9140e8ba4ce87",
         "type": "github"
       },
       "original": {
@@ -1436,11 +1436,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792366139,
-        "narHash": "sha256-jto4pdsl0bgErQ5vaMc3gOyj//PILLRJuqX3I7fUk6s=",
+        "lastModified": 1792624390,
+        "narHash": "sha256-Qw1+LMJtF10B8FVqZdIlAEfNyGmhxzfgnvm1UD9+zY8=",
         "owner": "lnl7",
         "repo": "nix-darwin",
-        "rev": "f0ec2b3fae4df92ea7788359aef9e07bb88d720f",
+        "rev": "57abbd54db8e267474f9154d80bad195462fa081",
         "type": "github"
       },
       "original": {
@@ -2940,11 +2940,11 @@
     "wp4nix": {
       "flake": false,
       "locked": {
-        "lastModified": 1792523706,
-        "narHash": "sha256-SmE3wwnIxZuTn0SLV8qJXHjJAGuYno6bX/ZBkLIClnY=",
+        "lastModified": 1792609607,
+        "narHash": "sha256-ixdkPcmrMiuW8IzvLc1rfKuRY0SXpsL4V7/MSAOxSNg=",
         "ref": "refs/heads/master",
-        "rev": "bd06ade909c7173d162badf2429a5d3f0b09318b",
-        "revCount": 1895,
+        "rev": "f13e1468438e187798c316ebc15c8492a0c4bbd1",
+        "revCount": 1896,
         "type": "git",
         "url": "https://git.helsinki.tools/helsinki-systems/wp4nix.git"
       },

@@ -27,6 +27,7 @@
     ../../modules/services/knot-dns
     ../../modules/services/timemachine-server
     ../../modules/services/nextcloud
+    ../../modules/services/jira
     ../../modules/shell
     ../../modules/services/flohannes-de
     ../../modules/services/haos-vm

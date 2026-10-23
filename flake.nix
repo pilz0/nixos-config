@@ -2,10 +2,10 @@
   description = "Pilz's nixos infra";
   nixConfig = {
     allow-import-from-derivation = true;
-#    extra-experimental-features = [
-#      "pipe-operators"
-#      "pipe-operator"
-#    ];
+    #    extra-experimental-features = [
+    #      "pipe-operators"
+    #      "pipe-operator"
+    #    ];
   };
   outputs =
     {
@@ -61,6 +61,7 @@
             "rpki"
             "grafana"
             "web1"
+            "jira"
           ]
           {
             jetson-warcrime-flash =
@@ -102,6 +103,7 @@
       {
         packages = {
           flow-exporter = pkgs.callPackage ./pkgs/flow-exporter.nix { };
+          jira-crack = pkgs.callPackage ./pkgs/jira-crack.nix { };
           jetson-stats = pkgs.callPackage ./pkgs/jetson-stats.nix { };
           netsage-sankey-panel = pkgs.callPackage ./pkgs/netsage-sankey-panel.nix {
             inherit (pkgs.grafanaPlugins) grafanaPlugin;
@@ -143,7 +145,7 @@
     anodyne-molpic.url = "github:pilz0/anodyne-molpic/add-nix-flake";
     anodyne-api.url = "github:pilz0/anodyne-api/add-nix-flake";
     anodyne-chrp.url = "github:pilz0/anodyne-chrp/add-nix-flake";
-    firefox.url = "git+ssh://forgejo@woof.rip/pilz0/firefox.git?ref=fix-darwin-build";
+    firefox.url = "git+https://woof.rip/pilz0/firefox.git?ref=fix-darwin-build";
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";

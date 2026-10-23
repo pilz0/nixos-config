@@ -20,7 +20,7 @@
   config = lib.mkIf config.pilz.services.nextcloud.enable {
 
     services.nextcloud = {
-      package = pkgs.nextcloud34;
+      package = pkgs.nextcloud35;
       enable = true;
       hostName = "cloud.freifick.net";
       config.dbtype = "sqlite";
