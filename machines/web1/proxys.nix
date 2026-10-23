@@ -21,6 +21,15 @@
           proxyWebsockets = true;
         };
       };
+      "jira.pilz.foo" = {
+        enableACME = true;
+        forceSSL = true;
+        http3 = true;
+        quic = true;
+        locations."/" = {
+          proxyPass = "http://jira.ams1.as214958.net:8080";
+        };
+      };
       "lg.as214958.net" = {
         enableACME = true;
         forceSSL = true;

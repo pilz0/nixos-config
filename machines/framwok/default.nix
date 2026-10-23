@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   inputs,
   ...
@@ -33,7 +34,6 @@
   security.sudo.wheelNeedsPassword = false;
 
   nixpkgs = {
-    hostPlatform.gcc.arch = "x86-64-v3";
     config = {
       allowUnfree = true;
     };
@@ -47,7 +47,6 @@
       trezor-udev-rules
       yubikey-personalization
     ];
-
     fwupd.enable = true;
   };
 
@@ -72,6 +71,16 @@
     LC_TIME = "de_DE.UTF-8";
   };
   time.timeZone = "Europe/Berlin";
+
+  boot.kernelPackages = pkgs.linuxPackages.extend (
+    _: prev: {
+      framework-laptop-kmod = prev.framework-laptop-kmod.overrideAttrs (old: {
+        postInstall = (old.postInstall or "") + ''
+          ${lib.getExe pkgs.buildPackages.kmodigest} $out/lib/modules/*/extra/framework_laptop.ko
+        '';
+      });
+    }
+  );
 
   boot.loader = {
     systemd-boot.enable = true;

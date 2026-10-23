@@ -5,7 +5,8 @@
 }:
 {
   imports = [
-    ../../profiles/vm
+    ../../profiles/container
+    ../../profiles/mira
   ];
 
   pilz = {
@@ -22,18 +23,6 @@
     deployment = {
       targetHost = "jellyfin.ams1.as214958.net";
       tags = [ "infra" ];
-    };
-  };
-
-  users.users = {
-    emily = {
-      extraGroups = [
-        "wheel"
-      ];
-      isNormalUser = true;
-      openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA/+iN407+HsfHbbC3tfdA8Yf4TZ08qXQMb4tb/SDAs+"
-      ];
     };
   };
 
