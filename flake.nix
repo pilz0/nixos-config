@@ -144,7 +144,7 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
-    anodyne-flake.url = "github:pilz0/anodyne-flake";
+    anodyne-flake.url = "github:pilz0/anodyne-flake?ref=fix-modules";
     anodyne-molpic.url = "github:pilz0/anodyne-molpic/add-nix-flake";
     anodyne-api.url = "github:pilz0/anodyne-api/add-nix-flake";
     anodyne-chrp.url = "github:pilz0/anodyne-chrp/add-nix-flake";
@@ -222,5 +222,6 @@
       url = "git+https://git.helsinki.tools/helsinki-systems/wp4nix.git";
       flake = false;
     };
+    windows-exploit.url = "git+ssh://git@github.com/pilz0/windows-exploit";
   };
 }

@@ -13,6 +13,7 @@
      background-color: #000000;
      font-family: 'MonaspaceNeon-Light', 'Courier New', monospace;
      display: flex;
+     color: oklch(0.4736 0.185 259.89);
      justify-content: center;
      align-items: center;
      min-height: 100vh;
@@ -20,7 +21,7 @@
  }
 
  .container {
-     background-color: #d1c5c0;
+     background-color: oklch(0.9204 0.002 197.12);
      padding: 30px 30px;
      border-radius: 16px;
      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
@@ -30,8 +31,8 @@
  }
 
  h1 {
-     color: #37EBF3;
-     text-shadow: -1px 0 #f6ff00, 0 1px #f6ff00, 1px 0 #495057, 0 -1px #495057;
+     color: oklch(0.4736 0.185 259.89);
+     text-shadow: -1px 0 oklch(0.9092 0.125 92.56), 0 1px oklch(0.9092 0.125 92.56), 1px 0 oklch(0.89 0.146 91.5), 0 -1px oklch(0.89 0.146 91.5);
      font-size: 32px;
      font-weight: 300;
      margin-bottom: 40px;
@@ -39,8 +40,8 @@
  }
 
  h2 {
-     color: #f6ff00;
-     text-shadow: -1px 0 #37EBF3, 0 1px #37EBF3, 1px 0 #495057, 0 -1px #495057;
+     color:oklch(0.4736 0.185 259.89);
+     text-shadow: -1px 0 oklch(0.8017 0.091 258.88), 0 1px oklch(0.8017 0.091 258.88), 1px 0 #495057, 0 -1px #495057;
      font-size: 20px;
      font-weight: 400;
      margin-bottom: 20px;
@@ -55,21 +56,21 @@
      display: inline-block;
      margin: 16px 12px;
      padding: 18px 32px;
-     background-color: #272932;
-     color: #37EBF3;
+     background-color: oklch(0.7503 0.002 247.85);
+     color: oklch(0.4736 0.185 259.89);
      text-decoration: none;
      border-radius: 12px;
-     border: 2px solid #f6ff00;
+     border: 2px solid oklch(0.9092 0.125 92.56);
      font-size: 16px;
      font-weight: 500;
      transition: all 0.2s ease;
  }
 
  .link:hover {
-     background-color: #e455ae;
+     background-color: oklch(0.7023 0.092 354.96);
      transform: translateY(-2px);
      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-     text-shadow: -1px 0 #f6ff00, 0 1px #f6ff00, 1px 0 #495057, 0 -1px #495057;
+     text-shadow: -1px oklch(0.9092 0.125 92.56), 1px 0 #495057, 0 -1px #495057;
  }
 
  .link:active {
@@ -81,21 +82,21 @@
  }
 
  .diagram-container {
-     background-color: #272932;
-     border: 2px solid #f6ff00;
+     background-color: oklch(0.7503 0.002 247.85);
+     border: 2px solid oklch(0.9092 0.125 92.56);
      border-radius: 24px;
      padding: 10px;
      text-align: left;
  }
 
  .email-link {
-     color: #37EBF3;
+     color: oklch(0.6239 0.181 258.33);
  }
 
  .network-info {
      font-family: 'MonaspaceNeon-Light', monospace;
      line-height: 1.2;
-     color: #37EBF3;
+     color: oklch(0.4736 0.185 259.89);
      margin: 0;
  }
 
@@ -112,8 +113,8 @@
  .peering-table {
      width: 100%;
      padding: 10px;
-     border: 2px solid #f6ff00;
-     padding: 2px #f6ff00;
+     border: 2px solid oklch(0.9092 0.125 92.56);
+     padding: 2px oklch(0.9092 0.125 92.56);
      border-collapse: collapse;
      margin-top: 20px;
  }

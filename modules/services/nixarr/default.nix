@@ -2,6 +2,7 @@
   config,
   inputs,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -54,6 +55,11 @@ in
       };
 
       exporters.enable = true;
+
+      nixarr-py.package = pkgs.callPackage ./nixarr-py.nix {
+        inherit (inputs) nixarr;
+        jellyfin = config.nixarr.jellyfin.package;
+      };
 
       transmission = {
         enable = true;

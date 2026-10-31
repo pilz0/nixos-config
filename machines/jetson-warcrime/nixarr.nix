@@ -2,6 +2,7 @@
   config,
   inputs,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -50,6 +51,11 @@ in
       vpn = {
         enable = true;
         wgConf = config.age.secrets.nixarr-wg.path;
+      };
+
+      nixarr-py.package = pkgs.callPackage ../../modules/services/nixarr/nixarr-py.nix {
+        nixarr = inputs.nixarr-jetson;
+        jellyfin = config.nixarr.jellyfin.package;
       };
 
       transmission = {
