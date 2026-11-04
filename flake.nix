@@ -198,7 +198,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hydra-mcp = {
-      url = "github:slopinger/hydra-mcp";
+      url = "github:slopmaxxer/hydra-mcp";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-rosetta-builder = {
@@ -222,6 +222,5 @@
       url = "git+https://git.helsinki.tools/helsinki-systems/wp4nix.git";
       flake = false;
     };
-    windows-exploit.url = "git+ssh://git@github.com/pilz0/windows-exploit";
   };
 }

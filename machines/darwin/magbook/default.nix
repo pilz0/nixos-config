@@ -32,5 +32,6 @@
     "lima-full-1.2.2"
     "lima-additional-guestagents-1.2.2"
     "electron-39.8.10"
+    "firefox-esr-140-bin-unwrapped-140.17.0esr"
   ];
 }

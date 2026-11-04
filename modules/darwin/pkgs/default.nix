@@ -66,6 +66,7 @@ in
         rustc
         rustup
         xld
+        zotero
         #firefox
         cyberduck
         comma
@@ -101,8 +102,6 @@ in
     homebrew = {
       taps = builtins.attrNames config.nix-homebrew.taps;
       casks = [
-        "android-studio"
-        "zotero"
         "intiface-central"
         "openvpn-connect"
         "eddie"

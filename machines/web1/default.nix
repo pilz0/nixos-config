@@ -8,7 +8,6 @@
     ../../profiles/vm
     ../../profiles/mira
     ./proxys.nix
-    inputs.windows-exploit.nixosModules.pwn
   ];
 
   services.pwn = {
