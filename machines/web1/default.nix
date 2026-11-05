@@ -10,13 +10,6 @@
     ./proxys.nix
   ];
 
-  services.pwn = {
-    #enable = true;
-    httpPort = 9961;
-    port = 63993;
-    wgConf = config.age.secrets."wg-pwn".path;
-  };
-
   age.secrets = {
     wg-pwn = {
       file = ../../secrets/wg-pwn.age;

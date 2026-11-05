@@ -78,6 +78,7 @@
           };
           build-aarch64.system = "aarch64-linux";
           build-aarch64-2.system = "aarch64-linux";
+          graphene.system = "aarch64-linux";
         };
       };
     }
@@ -217,6 +218,10 @@
       url = "github:taigrr/spank";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
+    };
+    nixos-avf = {
+      url = "github:nix-community/nixos-avf";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     wp4nix = {
       url = "git+https://git.helsinki.tools/helsinki-systems/wp4nix.git";
