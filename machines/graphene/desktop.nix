@@ -4,7 +4,6 @@
   ...
 }:
 let
-  # weston's panel only loads PNG; a missing icon falls back to a default one
   hicolor = pkg: name: "${pkg}/share/icons/hicolor/48x48/apps/${name}.png";
   westonIcon = name: "${pkgs.weston}/share/weston/icon_${name}.png";
 

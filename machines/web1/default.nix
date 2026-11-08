@@ -10,11 +10,6 @@
     ./proxys.nix
   ];
 
-  age.secrets = {
-    wg-pwn = {
-      file = ../../secrets/wg-pwn.age;
-    };
-  };
   pilz = {
     services = {
       syncserver.enable = true;

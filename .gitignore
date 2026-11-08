@@ -40,3 +40,4 @@ update-git-commits.txt
 pve.sh
 pmacctd.conf
 *.zst
+bird.conf

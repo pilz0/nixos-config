@@ -112,5 +112,4 @@ in
   "smtp-flohannes.age".publicKeys = marielap ++ web1_host ++ emily;
   "syncserver-secrets.age".publicKeys = marielap ++ emily ++ web1_host;
   "hydra-mcp-password.age".publicKeys = marielap;
-  "wg-pwn.age".publicKeys = marielap ++ emily ++ web1_host;
 }
