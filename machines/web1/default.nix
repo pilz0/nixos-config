@@ -17,6 +17,7 @@
       diyhrt-web.enable = true;
       timemachine-server.enable = true;
       nextcloud.enable = true;
+      overleaf.enable = true;
       tilesproxy.enable = true;
       nginx = {
         enable = true;

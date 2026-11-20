@@ -145,7 +145,7 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
-    anodyne-flake.url = "github:pilz0/anodyne-flake?ref=fix-modules";
+    anodyne-flake.url = "github:pilz0/anodyne-flake";
     anodyne-molpic.url = "github:pilz0/anodyne-molpic/add-nix-flake";
     anodyne-api.url = "github:pilz0/anodyne-api/add-nix-flake";
     anodyne-chrp.url = "github:pilz0/anodyne-chrp/add-nix-flake";
@@ -153,9 +153,17 @@
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    # tor 0.4.9.17 (unstable still lags on 0.4.9.16)
+    nixpkgs-2605.url = "github:nixos/nixpkgs/nixos-26.05";
+    # nginx 1.30.7 (NGINX2Root, CVE-2026-123007 et al., nixpkgs#589961); drop once nixos-unstable has it
+    nixpkgs-master.url = "github:nixos/nixpkgs/master";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     treefmt-nix.url = "github:numtide/treefmt-nix";
     agenix.url = "github:ryantm/agenix";
+    ecc = {
+      url = "github:affaan-m/ECC";
+      flake = false;
+    };
     vpnconfinement-jetson = {
       url = "git+ssh://git@github.com/pilz0/vpn-confinement-jetson.git";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -189,7 +197,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-needsreboot.url = "https://codeberg.org/Mynacol/nixos-needsreboot/archive/HEAD.tar.gz";
+    nixos-needsreboot.url = "git+https://codeberg.org/Mynacol/nixos-needsreboot.git";
     jetpack = {
       url = "github:anduril/jetpack-nixos/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -199,7 +207,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hydra-mcp = {
-      url = "github:slopmaxxer/hydra-mcp";
+      url = "git+https://woof.rip/slopwife/hydra-mcp.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-rosetta-builder = {

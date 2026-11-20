@@ -40,6 +40,12 @@
     api.enable = true;
     chrp.enable = true;
     pkgs.enable = true;
+    frontend.enable = true;
+    #replicator-primary = {
+    #  enable = true;
+    #  target = "anodyne-secondary.as214958.net";
+    #  sshKey = config.agenix bla bla;
+    #};
     caddy = {
       enable = true;
       domain = "anodyne-nix.as214958.net";

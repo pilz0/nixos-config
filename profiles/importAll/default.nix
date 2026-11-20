@@ -28,6 +28,7 @@
     ../../modules/services/timemachine-server
     ../../modules/services/nextcloud
     ../../modules/services/jira
+    ../../modules/services/overleaf
     ../../modules/shell
     ../../modules/services/flohannes-de
     ../../modules/services/haos-vm
