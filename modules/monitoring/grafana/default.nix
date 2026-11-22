@@ -75,10 +75,9 @@ in
         grafana-oncall-app
         grafana-polystat-panel
         netsage-sankey-panel
-        # upstream re-published the 4.1.0 zip; drop once nixpkgs has the new hash
         (yesoreyeram-infinity-datasource.overrideAttrs (old: {
           src = old.src.overrideAttrs {
-            outputHash = "sha256-pzgHZ2abzFzyKvBIQOTzlirus+AUTE0/VfP2zYnL06I=";
+            outputHash = "sha256-tTT0a98WkGiob1j1s39tat9gOQbGdVpmu6p2q3iUQsg=";
           };
         }))
       ];

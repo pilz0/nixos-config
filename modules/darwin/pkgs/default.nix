@@ -58,7 +58,7 @@ in
         colima
         metasploit
         postgresql_18
-        mitmproxy
+        #mitmproxy
         wireshark
         devenv
         androidenv.androidPkgs.ndk-bundle
