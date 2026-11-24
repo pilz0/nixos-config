@@ -56,8 +56,9 @@
     };
   };
 
-  # nixpkgs renamed cudaPackages.cuda_cccl to cccl, but jetpack-nixos only
-  # replaces cuda_cccl with its deb build, leaving cccl unsupported on 11.4
+  # nixpkgs renamed cudaPackages.cuda_cccl to cccl and cuda_nvtx to nvtx,
+  # but jetpack-nixos only replaces cuda_cccl and cuda_nvtx with their deb builds,
+  # leaving cccl and nvtx unsupported on 11.4
   nixpkgs.overlays = lib.mkAfter [
     # nixpkgs no longer runs a serial `make prepare` before the parallel build
     # (NixOS/nixpkgs@cf4da14a33). The r35 kernel's nvmap overlay gets pulled into
@@ -97,6 +98,15 @@
                   }
                 else
                   prevCudaPkgs.cccl;
+              nvtx =
+                if prevCudaPkgs.cudaMajorMinorVersion == "11.4" then
+                  finalCuda.debWrapBuildRedist {
+                    sourceName = "cuda-nvtx";
+                    drv = prevCudaPkgs.nvtx;
+                  }
+                else
+                  prevCudaPkgs.nvtx;
+              cuda_nvtx = finalCuda.nvtx;
             })
           ];
         }
