@@ -112,11 +112,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1795507796,
-        "narHash": "sha256-UzAFIauxhueh7jkY66+DqaBwgCKoag+cdR3+JqhB3mE=",
+        "lastModified": 1795514165,
+        "narHash": "sha256-Og6VlsYOZVDafDvbsdI+E54y/MM+Qgipc+GfNpjVDz0=",
         "owner": "pilz0",
         "repo": "anodyne-flake",
-        "rev": "a1ee471e7aa628f481e8f0caff78d278dbf84fb3",
+        "rev": "9e30887d99968060f1c1fd5a11af1d41660211cd",
         "type": "github"
       },
       "original": {
@@ -128,11 +128,11 @@
     "anodyne-frontend": {
       "flake": false,
       "locked": {
-        "lastModified": 1795169542,
-        "narHash": "sha256-lOD5J3z2wFzJOWdfb/SWae+2NwXWsZg8lYUwizTE1a0=",
+        "lastModified": 1795514119,
+        "narHash": "sha256-WoBo0uVd6Kbsn1oWZsZyL6NPI685EDKzNsauuBLf0PA=",
         "owner": "AnodyneWiki",
         "repo": "anodyne-frontend",
-        "rev": "cdfd2264953e1be6fa834d82a59a68e7851f103a",
+        "rev": "aedf8133ae052a0e0155b37ba1e3db46e77371b0",
         "type": "github"
       },
       "original": {

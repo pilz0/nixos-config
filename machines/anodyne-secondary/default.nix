@@ -14,7 +14,7 @@
   pilz = {
     deployment = {
       targetHost = "45.150.123.25";
-       tags = [ "infra" ];
+      tags = [ "infra" ];
     };
   };
 
