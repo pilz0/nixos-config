@@ -2,7 +2,6 @@
   pkgs,
   lib,
   config,
-  inputs,
   ...
 }:
 let
@@ -17,14 +16,6 @@ in
     ./tiles.nix
   ];
   config = lib.mkMerge [
-    {
-      # NGINX2Root: unstable still ships 1.30.6; take 1.30.7 from master for every
-      # host running nginx (also those not using pilz.services.nginx).
-      # Drop once nixos-unstable has nixpkgs#589961.
-      services.nginx.package =
-        lib.mkDefault
-          inputs.nixpkgs-master.legacyPackages.${pkgs.stdenv.hostPlatform.system}.nginxStable;
-    }
     (lib.mkIf cfg.enable {
 
       services.prometheus.exporters.nginx = {

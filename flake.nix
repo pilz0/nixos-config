@@ -153,10 +153,6 @@
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    # tor 0.4.9.17 (unstable still lags on 0.4.9.16)
-    nixpkgs-2605.url = "github:nixos/nixpkgs/nixos-26.05";
-    # nginx 1.30.7 (NGINX2Root, CVE-2026-123007 et al., nixpkgs#589961); drop once nixos-unstable has it
-    nixpkgs-master.url = "github:nixos/nixpkgs/master";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     treefmt-nix.url = "github:numtide/treefmt-nix";
     agenix.url = "github:ryantm/agenix";

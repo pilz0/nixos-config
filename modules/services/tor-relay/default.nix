@@ -2,7 +2,6 @@
   lib,
   config,
   pkgs,
-  inputs,
   ...
 }:
 let
@@ -75,7 +74,6 @@ in
 
     services.tor = {
       inherit (cfg) enable;
-      package = inputs.nixpkgs-2605.legacyPackages.${pkgs.stdenv.hostPlatform.system}.tor;
       inherit (cfg) openFirewall;
       relay = {
         inherit (cfg) enable;

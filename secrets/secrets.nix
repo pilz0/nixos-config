@@ -23,6 +23,9 @@ let
   build = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOaCOf4RpWomwnwTIMvFWO0MmtBIyY79SfJL8DRSlaGy root@CT106"
   ];
+  anodyne = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHnliakN1xvFt1jft76tYYooDJrzfDNnVUKUY+nsTa5L root@anodyne"
+  ];
   rpki = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJWxHkhwJPhT0hL1TGWjIxWSRPzMvGleKE9Jq9mCUXOI root@rpki"
   ];
@@ -113,4 +116,5 @@ in
   "syncserver-secrets.age".publicKeys = marielap ++ emily ++ web1_host;
   "hydra-mcp-password.age".publicKeys = marielap;
   "freellmapi-api-key.age".publicKeys = marielap;
+  "anodyne-replicator-ssh.age".publicKeys = marielap ++ anodyne;
 }

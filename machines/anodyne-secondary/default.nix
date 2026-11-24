@@ -14,20 +14,18 @@
   pilz = {
     deployment = {
       targetHost = "45.150.123.25";
-    #   tags = [ "infra" ];
+       tags = [ "infra" ];
     };
   };
 
   anodyne-wiki = {
     enable = true;
     api.enable = true;
-    chrp.enable = true;
     pkgs.enable = true;
-    frontend.enable = true;
-    #replicator-secondary = {
-      #enable = true;
-    #  primaryKey = "";
-    #};
+    replicator-secondary = {
+      enable = true;
+      primaryKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM/G+cAawgNCgLggfJvNxCAIk/meAFYErgqp8JurDhl+ anodyne-replicator";
+    };
     caddy = {
       enable = true;
       domain = "anodyne-nix.as214958.net";
