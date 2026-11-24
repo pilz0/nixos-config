@@ -14,7 +14,7 @@
         tar --zstd -xf ${
           pkgs.fetchurl {
             url = "https://github.com/ollama/ollama/releases/download/v${old.version}/ollama-linux-arm64-jetpack5.tar.zst";
-            hash = "sha256-a1N2yCsW6ioOdVB5u1i3Ip/oyiRsN0AcT88QZKqv+bQ=";
+            hash = "sha256-4ucItJXEqPnr+t7oyK3nzqKaxp+Q0cFlV6XQChBDx5M=";
           }
         } -C $out
         for f in $out/lib/ollama/cuda_jetpack5/*.so*; do
