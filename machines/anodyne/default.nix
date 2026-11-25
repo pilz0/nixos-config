@@ -18,7 +18,7 @@
       ];
     };
     deployment = {
-      targetHost = "2a0e:8f02:f017::29";
+      targetHost = "anodyne-primary.ams1.as214958.net";
       tags = [
         "infra"
       ];
@@ -43,7 +43,7 @@
     frontend.enable = true;
     replicator-primary = {
       enable = true;
-      target = "45.150.123.25";
+      target = "anodyne-secondary.dus1.as214958.net";
       sshKey = config.age.secrets.anodyne-replicator-ssh.path;
     };
     caddy = {

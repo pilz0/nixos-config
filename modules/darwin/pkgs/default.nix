@@ -96,16 +96,18 @@ in
         spotify
         antigravity-cli
         claude-code
+        discord
         jellyfin-desktop
         wireguard-ui
       ]);
     homebrew = {
+      enable = true;
       taps = builtins.attrNames config.nix-homebrew.taps;
       casks = [
         "intiface-central"
         "openvpn-connect"
         "eddie"
-        "Horos"
+        "horos"
         "krishkrosh/apps/trackweight"
         "android-studio"
       ];
@@ -117,6 +119,7 @@ in
       taps = {
         "homebrew/homebrew-core" = inputs.homebrew-core;
         "homebrew/homebrew-cask" = inputs.homebrew-cask;
+        "krishkrosh/homebrew-apps" = inputs.homebrew-apps;
       };
       mutableTaps = false;
       trust = {

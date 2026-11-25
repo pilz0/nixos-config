@@ -12,6 +12,8 @@ in
   };
   config = lib.mkIf cfg.enable {
 
+    system.primaryUser = "pilz";
+
     determinateNix.customSettings = {
       extra-substituters = lib.mkAfter [
         "https://cache.kyouma.net"

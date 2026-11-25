@@ -141,17 +141,45 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
-    anodyne-flake.url = "github:pilz0/anodyne-flake";
-    anodyne-molpic.url = "github:pilz0/anodyne-molpic/add-nix-flake";
-    anodyne-api.url = "github:pilz0/anodyne-api/add-nix-flake";
-    anodyne-chrp.url = "github:pilz0/anodyne-chrp/add-nix-flake";
-    firefox.url = "git+https://woof.rip/pilz0/firefox.git?ref=fix-darwin-build";
+    homebrew-apps = {
+      url = "github:krishkrosh/homebrew-apps";
+      flake = false;
+    };
+    anodyne-flake = {
+      url = "github:AnodyneWiki/anodyne-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    anodyne-molpic = {
+      url = "github:pilz0/anodyne-molpic/add-nix-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    anodyne-api = {
+      url = "github:pilz0/anodyne-api/add-nix-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    anodyne-chrp = {
+      url = "github:pilz0/anodyne-chrp/add-nix-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    firefox = {
+      url = "git+https://woof.rip/pilz0/firefox.git?ref=fix-darwin-build";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    treefmt-nix.url = "github:numtide/treefmt-nix";
-    agenix.url = "github:ryantm/agenix";
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     ecc = {
       url = "github:affaan-m/ECC";
       flake = false;
@@ -173,23 +201,33 @@
       url = "github:nix-media-server/nixarr";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    catppuccin.url = "github:catppuccin/nix";
+    catppuccin = {
+      url = "github:catppuccin/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     colmena = {
       url = "github:nix-community/colmena";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
+    determinate = {
+      url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     vscode-server.url = "github:nix-community/nixos-vscode-server";
     #    microvm.url = "github:microvm-nix/microvm.nix";
     emily-nixfiles = {
       url = "git+https://woof.rip/emily/nixfiles.git";
       inputs.home-manager.follows = "home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-needsreboot.url = "git+https://codeberg.org/Mynacol/nixos-needsreboot.git";
+    nixos-needsreboot = {
+      url = "git+https://codeberg.org/Mynacol/nixos-needsreboot.git";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     jetpack = {
       url = "github:anduril/jetpack-nixos/master";
       inputs.nixpkgs.follows = "nixpkgs";

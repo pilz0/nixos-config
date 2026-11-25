@@ -13,7 +13,7 @@
 
   pilz = {
     deployment = {
-      targetHost = "45.150.123.25";
+      targetHost = "anodyne-secondary.dus1.as214958.net";
       tags = [ "infra" ];
     };
   };
