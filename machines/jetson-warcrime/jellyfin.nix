@@ -1,10 +1,16 @@
 { pkgs, inputs, ... }:
 let
   # our jellyfin-web fork, see github:pilz0/goonfin
-  goonfin-web = pkgs.jellyfin-web.overrideAttrs {
+  goonfin-web = pkgs.jellyfin-web.overrideAttrs (old: {
     pname = "goonfin-web";
     src = inputs.goonfin;
-  };
+    npmDeps = pkgs.fetchNpmDeps {
+      inherit (old) postPatch;
+      src = inputs.goonfin;
+      name = "goonfin-web-npm-deps";
+      hash = "sha256-kcDBFX4MQxixlIKrOezTkufaOYfkxE7yc/b/HlCim0I=";
+    };
+  });
 
   jetson-ffmpeg = pkgs.callPackage ../../pkgs/jetson-ffmpeg.nix { };
 
