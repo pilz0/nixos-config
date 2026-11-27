@@ -42,6 +42,8 @@
                 "dn42.ams1.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
                 "netbox.ams1.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
                 "build.ams1.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
+                "anodyne-primary.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
+                "anodyne-secondary.dus1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
                 "anodyne-primary.ams1.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
                 "anodyne-secondary.dus1.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
                 "grafana.ams1.as214958.net:9590" # netflow exporter
