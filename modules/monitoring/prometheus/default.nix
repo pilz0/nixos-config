@@ -49,6 +49,8 @@
                 "build-aarch64.as214958.net:${toString systemd.port}"
                 "build-aarch64-2.as214958.net:${toString node.port}"
                 "build-aarch64-2.as214958.net:${toString systemd.port}"
+                "anodyne-primary.ams1.as214958.net:${toString node.port}"
+                "anodyne-secondary.dus1.as214958.net:${toString node.port}"
                 "anodyne-primary.ams1.as214958.net:${toString systemd.port}"
                 "anodyne-secondary.dus1.as214958.net:${toString systemd.port}"
               ];

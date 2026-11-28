@@ -25,8 +25,8 @@
   pilz = {
     deployment = {
       targetUser = "marie";
-      targetHost = "192.168.0.225";
-      #targetHost = "100.96.163.120";
+      #targetHost = "192.168.0.225";
+      targetHost = "100.96.163.120";
     };
     common.enable = true;
     audio.enable = true;
