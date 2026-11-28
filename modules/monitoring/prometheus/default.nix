@@ -42,7 +42,6 @@
                 "dn42.ams1.as214958.net:${toString systemd.port}"
                 "netbox.ams1.as214958.net:${toString systemd.port}"
                 "build.ams1.as214958.net:${toString systemd.port}"
-                "anodyne-nix.as214958.net:${toString systemd.port}"
                 "grafana.ams1.as214958.net:9590" # netflow exporter
                 "anodyne.wiki:${toString node.port}"
                 "build-aarch64.as214958.net:${toString node.port}"
