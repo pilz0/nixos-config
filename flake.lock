@@ -120,19 +120,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-<<<<<<< HEAD
         "lastModified": 1795888179,
         "narHash": "sha256-6ftTYgryGzXTNjAKsLSiDbYfhJKXV1o3s5FAt8xaa34=",
         "owner": "AnodyneWiki",
         "repo": "anodyne-flake",
         "rev": "82012430c66b2da6bdfe7421e95fe1ec3123d3f7",
-=======
-        "lastModified": 1795789788,
-        "narHash": "sha256-YiqZwWspYs6I72lfhQiOU9OJf1QPPZFI/jhcjfbHXhY=",
-        "owner": "AnodyneWiki",
-        "repo": "anodyne-flake",
-        "rev": "c6af420081bca01c8254a5282d836065e0c84483",
->>>>>>> c197c78
         "type": "github"
       },
       "original": {
@@ -148,19 +140,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-<<<<<<< HEAD
         "lastModified": 1795888003,
         "narHash": "sha256-7r4/EUoq9l2KatZAhIfMRdOdGsS29Uc4a/85m9IvLp4=",
         "owner": "AnodyneWiki",
         "repo": "anodyne-frontend",
         "rev": "a1a113d605c5b5807ba125323aca6844c933fb41",
-=======
-        "lastModified": 1795788949,
-        "narHash": "sha256-I0LfhEI7FPusiaI7RGLWzFHCQEi4CwBz68yOjTTG/eI=",
-        "owner": "AnodyneWiki",
-        "repo": "anodyne-frontend",
-        "rev": "f766014fa53007bac88ce546275bc77dbe25bc2f",
->>>>>>> c197c78
         "type": "github"
       },
       "original": {
@@ -1308,19 +1292,11 @@
         ]
       },
       "locked": {
-<<<<<<< HEAD
         "lastModified": 1795827905,
         "narHash": "sha256-Udjs2j0EkvK+qGXKHRIQwXWRgzNBIl4oXSUktuOzbmQ=",
         "owner": "nix-community",
         "repo": "home-manager",
         "rev": "5f5abf5eb8de62d954232f3797b5bf4505656b91",
-=======
-        "lastModified": 1795748630,
-        "narHash": "sha256-J1iQ1QMnkFwZFXnlPt2t3Qx7TsGjw08/0L3QMqNt+Wg=",
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "rev": "54f903fdaaf5d5720ed36706fe75332af69eb793",
->>>>>>> c197c78
         "type": "github"
       },
       "original": {
@@ -1348,19 +1324,11 @@
     "homebrew-cask": {
       "flake": false,
       "locked": {
-<<<<<<< HEAD
-        "lastModified": 1795887864,
-        "narHash": "sha256-aRrVAgNNxGLLvcmWMZ6VabCWdu9T3rONiYg0aQMXNRQ=",
+        "lastModified": 1795887876,
+        "narHash": "sha256-T2EJKj+Jqp+VCn6KWnWgQTSeeV2z84m9dH+vomijNGE=",
         "owner": "homebrew",
         "repo": "homebrew-cask",
-        "rev": "80ab9b5e4db20a8da94c7861f216a952790417ee",
-=======
-        "lastModified": 1795793462,
-        "narHash": "sha256-auHJMBeAWP+JNquEf+VXlZvusUwBVVc/v+BK13HXT4Y=",
-        "owner": "homebrew",
-        "repo": "homebrew-cask",
-        "rev": "a23625544b2fe23752c04c8ff12b6dd7fae1804e",
->>>>>>> c197c78
+        "rev": "d47de7ea51cb03adaa78ab8af4ef876254af9542",
         "type": "github"
       },
       "original": {
@@ -1372,19 +1340,11 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
-<<<<<<< HEAD
-        "lastModified": 1795885227,
-        "narHash": "sha256-hre8nRNWM8uFv+Bs4lWUf4gAlZFdTKj3Op9/Hp4KkaI=",
+        "lastModified": 1795888152,
+        "narHash": "sha256-YXIoV8cf9ZoKmkNfHDs4VjYKbTI02Ka0qXIuJe2TNEM=",
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "2ecad2755b1cf8935ccdd90de1d57aef38981328",
-=======
-        "lastModified": 1795784946,
-        "narHash": "sha256-M8kqI3XbFxjnTLPpX3NHpO/zudk5GW3+HEehaAaHvjo=",
-        "owner": "homebrew",
-        "repo": "homebrew-core",
-        "rev": "c034486c217c34a3cb8e5f0f39b7d321ab3e5d47",
->>>>>>> c197c78
+        "rev": "e1f90b3bf981eb44d7d3d797533639776be630c5",
         "type": "github"
       },
       "original": {
@@ -1954,13 +1914,8 @@
     },
     "nixpkgs_11": {
       "locked": {
-<<<<<<< HEAD
         "lastModified": 1795761588,
         "narHash": "sha256-lyvlcjA/bJySrgwKiEoIYFNkDJM6aOck6/9gGRm9He4=",
-=======
-        "lastModified": 1795234589,
-        "narHash": "sha256-f/VVvxf5RsQgWVhUtefoca5ktVg0DA2bnkMOcmSnozo=",
->>>>>>> c197c78
         "owner": "nixos",
         "repo": "nixpkgs",
         "rev": "78cc855faf4382e44b781c23bf9f456b924ef0e2",
@@ -2960,19 +2915,11 @@
     "wp4nix": {
       "flake": false,
       "locked": {
-<<<<<<< HEAD
         "lastModified": 1795809399,
         "narHash": "sha256-uZHDQenxbHcn9uGAq1+YBQp5W2eNCaZeUJ369OeZTdE=",
         "ref": "refs/heads/master",
         "rev": "b88c159946f5878b14d617e6a8d3864f572d3182",
         "revCount": 1933,
-=======
-        "lastModified": 1795723091,
-        "narHash": "sha256-QEx/nQSLkqMxfOrJ05rl6bP+FIVXax/iBmB9sM5OhKQ=",
-        "ref": "refs/heads/master",
-        "rev": "f5775acb1ad5c973a6d956fb6fb96fe2c76afb71",
-        "revCount": 1932,
->>>>>>> c197c78
         "type": "git",
         "url": "https://git.helsinki.tools/helsinki-systems/wp4nix.git"
       },
