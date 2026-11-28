@@ -23,35 +23,36 @@
           scrape_interval = "30s";
           static_configs = [
             {
-              targets = [
-                "[2a0e:8f02:f017::1]:${toString config.services.prometheus.exporters.node.port}"
-                "[2a0e:8f02:f017::1]:${toString config.services.prometheus.exporters.bird.port}"
-                "web1.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
-                "web1.ams1.as214958.net:${toString config.services.prometheus.exporters.nginx.port}"
-                "grafana.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
-                "jellyfin.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
-                "jellyfin.ams1.as214958.net:${toString config.services.prometheus.exporters.wireguard.port}"
-                "rpki.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
-                "dn42.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
-                "netbox.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
-                "build.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
-                "web1.ams1.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
-                "grafana.ams1.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
-                "jellyfin.ams1.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
-                "rpki.ams1.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
-                "dn42.ams1.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
-                "netbox.ams1.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
-                "build.ams1.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
-                "anodyne-primary.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
-                "anodyne-secondary.dus1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
-                "anodyne-primary.ams1.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
-                "anodyne-secondary.dus1.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
+              targets = with config.services.prometheus.exporters; [
+                "[2a0e:8f02:f017::1]:${toString node.port}"
+                "[2a0e:8f02:f017::1]:${toString bird.port}"
+                "web1.ams1.as214958.net:${toString node.port}"
+                "web1.ams1.as214958.net:${toString nginx.port}"
+                "grafana.ams1.as214958.net:${toString node.port}"
+                "jellyfin.ams1.as214958.net:${toString node.port}"
+                "jellyfin.ams1.as214958.net:${toString wireguard.port}"
+                "rpki.ams1.as214958.net:${toString node.port}"
+                "dn42.ams1.as214958.net:${toString node.port}"
+                "netbox.ams1.as214958.net:${toString node.port}"
+                "build.ams1.as214958.net:${toString node.port}"
+                "web1.ams1.as214958.net:${toString systemd.port}"
+                "grafana.ams1.as214958.net:${toString systemd.port}"
+                "jellyfin.ams1.as214958.net:${toString systemd.port}"
+                "rpki.ams1.as214958.net:${toString systemd.port}"
+                "dn42.ams1.as214958.net:${toString systemd.port}"
+                "netbox.ams1.as214958.net:${toString systemd.port}"
+                "build.ams1.as214958.net:${toString systemd.port}"
+                "anodyne-nix.as214958.net:${toString systemd.port}"
                 "grafana.ams1.as214958.net:9590" # netflow exporter
-                "anodyne.wiki:${toString config.services.prometheus.exporters.node.port}"
-                "build-aarch64.as214958.net:${toString config.services.prometheus.exporters.node.port}"
-                "build-aarch64.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
-                "build-aarch64-2.as214958.net:${toString config.services.prometheus.exporters.node.port}"
-                "build-aarch64-2.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
+                "anodyne.wiki:${toString node.port}"
+                "build-aarch64.as214958.net:${toString node.port}"
+                "build-aarch64.as214958.net:${toString systemd.port}"
+                "build-aarch64-2.as214958.net:${toString node.port}"
+                "build-aarch64-2.as214958.net:${toString systemd.port}"
+                "anodyne-primary.ams1.as214958.net:${toString node.port}"
+                "anodyne-secondary.dus1.as214958.net:${toString node.port}"
+                "anodyne-primary.ams1.as214958.net:${toString systemd.port}"
+                "anodyne-secondary.dus1.as214958.net:${toString systemd.port}"
               ];
             }
           ];
@@ -61,34 +62,18 @@
           scrape_interval = "30s";
           static_configs = [
             {
-              targets = [
-                "tor1.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
-                "tor2.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
-                "tor3.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
-                "tor4.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
-                "tor5.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
-                "tor6.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
-                "tor7.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
-                "tor8.ams1.as214958.net:${toString config.services.prometheus.exporters.node.port}"
-                "tor1.ams1.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
-                "tor2.ams1.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
-                "tor3.ams1.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
-                "tor4.ams1.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
-                "tor5.ams1.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
-                "tor6.ams1.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
-                "tor7.ams1.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
-                "tor8.ams1.as214958.net:${toString config.services.prometheus.exporters.systemd.port}"
-                "tor1.ams1.as214958.net:9052" # tor
-                "tor2.ams1.as214958.net:9052" # tor
-                "tor3.ams1.as214958.net:9052" # tor
-                "tor4.ams1.as214958.net:9052" # tor
-                "tor5.ams1.as214958.net:9052" # tor
-                "tor6.ams1.as214958.net:9052" # tor
-                "tor7.ams1.as214958.net:9052" # tor
-                "tor8.ams1.as214958.net:9052" # tor
-                "tor1.catgirl.dog:${toString config.services.prometheus.exporters.node.port}"
-                "tor2.catgirl.dog:${toString config.services.prometheus.exporters.node.port}"
-              ];
+              targets = lib.concatMap (num:
+                map (p:
+                  "tor${toString num}.ams1.as214958.net:${toString p}"
+                ) (with config.services.prometheus.exporters; [
+                  node.port
+                  systemd.port
+                  9052
+                ])
+              ) (lib.range 1 8) ++ (with config.services.prometheus.exporters; [
+                "tor1.catgirl.dog:${toString node.port}"
+                "tor2.catgirl.dog:${toString node.port}"
+              ]);
             }
           ];
         }
