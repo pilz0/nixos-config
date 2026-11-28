@@ -99,6 +99,7 @@ in
         discord
         jellyfin-desktop
         wireguard-ui
+        codex
       ]);
     homebrew = {
       enable = true;
